@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cors.each do |cor| %>
+      <tr>
+        <td><%= cor.nome %></td>
+        <td><%= link_to 'Show', cor %></td>
+        <td><%= link_to 'Edit', edit_cor_path(cor) %></td>
+        <td><%= link_to 'Destroy', cor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cor', new_cor_path %>

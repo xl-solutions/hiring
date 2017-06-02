@@ -1,0 +1,2 @@
+class Cor < ApplicationRecord
+end
