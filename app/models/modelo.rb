@@ -1,3 +1,6 @@
 class Modelo < ApplicationRecord
-	has_one :produto
+	has_many :produtos
+
+	validates :nome, presence: {
+			  message: 'Nome do Modelo não pode ser vazio!'}
 end
