@@ -1,0 +1,18 @@
+default: &default
+  adapter: sqlite3
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/hiring_development.sqlite3
+
+test:
+  <<: *default
+  database: db/hiring_test.sqlite3
+
+production:
+  <<: *default
+  database: db/hiring_production.sqlite3
+  

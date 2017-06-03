@@ -1,0 +1,22 @@
+<%= form_with(model: modalidade, local: true) do |form| %>
+  <% if modalidade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(modalidade.errors.count, "error") %> prohibited this modalidade from being saved:</h2>
+
+      <ul>
+      <% modalidade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :modalidade_nome %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

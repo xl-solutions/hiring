@@ -1,0 +1,68 @@
+
+<h1>Produtos</h1>
+
+  <%= search_form_for @q do |f| %>
+
+    <%= f.label :fabricante_nome_cont %>
+    <%= f.search_field :fabricante_nome_cont %>
+
+    <%= f.label :modelo_nome_cont %>
+    <%= f.search_field :modelo_nome_cont %>
+
+    <%= f.label :cor_nome_cont %>
+    <%= f.search_field :cor_nome_cont %>
+
+    <%= f.label :modalidade_nome_cont %>
+    <%= f.search_field :modalidade_nome_cont %>
+
+    <%= f.submit %>
+  <% end %>
+  <br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fabricante</th>
+      <th>Modelo</th>
+      <th>Cor</th>
+      <th>Modalidade</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @produtos.each do |produto| %>
+      <tr>
+        <td><%= produto.fabricante.nome unless produto.fabricante.nil?  %></td>
+        <td><%= produto.modelo.nome unless produto.modelo.nil? %></td>
+        <td><%= produto.cor.nome unless produto.cor.nil? %></td>
+        <td><%= produto.modalidade.nome unless produto.modalidade.nil? %></td>
+        <td><%= produto.quantidade unless produto.quantidade.nil? %></td>
+        <td><%= produto.valor unless produto.valor.nil? %></td>
+        <td><%= link_to 'Show', produto %></td>
+        <td><%= link_to 'Edit', edit_produto_path(produto) %></td>
+        <td><%= link_to 'Destroy', produto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p id="notice">
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>">
+      <ul>
+      <% value.each do |value| %>
+        <li><%= value.to_s %></li>
+        <br>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</p>
+
+
+<%= link_to 'Import', '/import' %>
