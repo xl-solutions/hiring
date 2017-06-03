@@ -1,0 +1,7 @@
+<h1>CsvUploader#index</h1>
+	<%=	form_tag import_path, multpart: true do %>
+		<%= file_field_tag :file %>
+		<%= submit_tag "CSV Uploader" %>
+	<% end %>	
+<p>Find me in app/views/csv_uploader/index.html.erb</p>
+<%= link_to  'Estoque', produtos_path  %>
