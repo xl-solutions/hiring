@@ -1,0 +1,36 @@
+{
+  "name": "stocks-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "standard --verbose | snazzy && nodemon index.js --exec babel-node",
+    "test": "jest"
+  },
+  "author": "Felipe Cabianchi",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "compression": "^1.6.2",
+    "express": "^4.15.3",
+    "google-finance": "^0.1.9",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "jest": "^20.0.4",
+    "nodemon": "^1.11.0",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2",
+    "supertest": "^3.0.0"
+  },
+  "standard": {
+    "ignore": [
+      "tests/"    
+    ]
+  }
+}
