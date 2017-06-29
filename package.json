@@ -1,0 +1,11 @@
+{
+  "name": "stocks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run server",
+    "test": "cd ./backend && npm install && npm test",
+    "server": "cd ./backend && npm install && npm start"
+  }
+}
