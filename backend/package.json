@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "compression": "^1.6.2",
+    "cors": "^2.8.3",
     "express": "^4.15.3",
     "google-finance": "^0.1.9",
     "moment": "^2.18.1",
@@ -30,7 +31,7 @@
   },
   "standard": {
     "ignore": [
-      "tests/"    
+      "tests/"
     ]
   }
 }
