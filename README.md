@@ -3,6 +3,7 @@
  - dentro da pasta hiring rode o comando npm start
  - as dependencias serão instaladas e o servidor vai subir
  - para rodar os testes use npm test
+ - aplicação ira subir em http://localhost:8888
 
 ## Frontend
 - Dados das ações estão armazenados no localStorage
