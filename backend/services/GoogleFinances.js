@@ -21,8 +21,14 @@ class GoogleFinances {
                 return helpers.date.subtractDate(1, 'days');
             case 'Sunday':
                 return helpers.date.subtractDate(2, 'days');
-            default:
-                return helpers.date.getDate();
+            default: {
+                const now = new Date();
+                if (now.getHours() >= 17) {
+                    return helpers.date.getDate();
+                }
+
+                return helpers.date.subtractDate(1, 'days');
+            }
         }
     }
 
