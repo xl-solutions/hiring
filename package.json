@@ -1,0 +1,27 @@
+{
+  "name": "stock-market-app",
+  "version": "1.0.0",
+  "description": "Stock market application written in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test-backend": "cd ./backend && npm install && npm test",
+    "test-frontend": "cd ./frontend && npm install && npm test",
+    "test": "npm run test-backend && npm run test-frontend",
+    "start-backend": "cd ./backend && npm install && npm start",
+    "start-frontend": "cd ./frontend && npm install && npm run prod",
+    "start": "npm install && concurrently --kill-others \"npm run start-frontend\" \"npm run start-backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denis-bernardo/hiring.git"
+  },
+  "author": "Denis Bernardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denis-bernardo/hiring/issues"
+  },
+  "homepage": "https://github.com/denis-bernardo/hiring#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  }
+}
