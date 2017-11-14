@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: XLCellPhonesStore_development
+
+
+test:
+  <<: *default
+  database: XLCellPhonesStore_test
+
+production:
+  <<: *default
+  database: XLCellPhonesStore_production
+  username: XLCellPhonesStore
+  password: <%= ENV['XLCELLPHONESSTORE_DATABASE_PASSWORD'] %>

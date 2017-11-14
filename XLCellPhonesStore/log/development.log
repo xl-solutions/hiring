@@ -1,0 +1,981 @@
+  [1m[35m (138.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "XLCellPhonesStore_test"[0m
+  [1m[35m (342.1ms)[0m  [1m[35mCREATE DATABASE "XLCellPhonesStore_test" ENCODING = 'unicode'[0m
+  [1m[35m (60.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (26.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (7.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3961739809143107250)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (28.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-11-14 18:17:36.145600"], ["updated_at", "2017-11-14 18:17:36.145600"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(3961739809143107250)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (205.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "XLCellPhonesStore_test"[0m
+  [1m[35m (462.6ms)[0m  [1m[35mCREATE DATABASE "XLCellPhonesStore_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "hstore"[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto"[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pg_trgm"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "unaccent"[0m
+  [1m[35m (24.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (0)[0m
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-11-14 18:17:41.210544"], ["updated_at", "2017-11-14 18:17:41.210544"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3961739809143107250)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStocks (20171114182341)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3961739809143107250)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3961739809143107250)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStocks (20171114182341)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3961739809143107250)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3961739809143107250)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStocks (20171114182341)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (63.3ms)[0m  [1m[35mCREATE TABLE "stocks" ("id" bigserial primary key, "vendor" character varying, "model" character varying, "color" character varying, "is_pre_paid" boolean DEFAULT 'true', "quantity" integer, "amount" float, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171114182341"]]
+  [1m[35m (11.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3961739809143107250)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2017-11-14 17:44:11 -0200
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  Rendered stocks/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 354ms (Views: 343.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-14 17:46:55 -0200
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  Rendered stocks/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 188ms (Views: 177.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-14 17:49:18 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  Rendered stocks/index.html.erb within layouts/application (4.5ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    10:     <td>Valor</td>
+    11:   </th>
+    12:   <tr>
+    13:     <% @stocks.each do |stock_unity| %>
+    14:       <%= stock_unity.vendor.humanize %>
+    15:       <%= stock_unity.model %>
+    16:       <%= stock_unity.color %>
+  
+app/views/stocks/index.html.erb:13:in `_app_views_stocks_index_html_erb__3062816503790853150_70234113641020'
+Started GET "/" for 127.0.0.1 at 2017-11-14 17:50:45 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  Rendered stocks/index.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    10:     <td>Valor</td>
+    11:   </th>
+    12:   <tr>
+    13:     <% @stocks.each do |stock_unity| %>
+    14:       <%= stock_unity.vendor.humanize %>
+    15:       <%= stock_unity.model %>
+    16:       <%= stock_unity.color %>
+  
+app/views/stocks/index.html.erb:13:in `_app_views_stocks_index_html_erb__3062816503790853150_70234124967040'
+Started GET "/" for 127.0.0.1 at 2017-11-14 17:59:15 -0200
+  [1m[35m (7.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StocksController#index as HTML
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `result' for #<Class:0x00007f82938bd860>):
+  
+app/controllers/stocks_controller.rb:5:in `index'
+Started GET "/" for 127.0.0.1 at 2017-11-14 17:59:22 -0200
+Processing by StocksController#index as HTML
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `results' for #<Class:0x00007f8290afcc78>):
+  
+app/controllers/stocks_controller.rb:5:in `index'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:00:52 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  Rendered stocks/index.html.erb within layouts/application (14.0ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `status_eq' for Ransack::Search<class: Stock, base: Grouping <combinator: and>>:Ransack::Search):
+    11:       <%= f.search_field :model_cont, placeholder: "Modelo" %>
+    12:     </div>
+    13:     <div class="form-group">
+    14:       <%= f.select :status_eq, [['Pré-Pago', true], ['Pos-Pago', false]], include_blank: 'Todos' %>
+    15:     </div>
+    16: 
+    17:     <%= f.submit %>
+  
+app/views/stocks/index.html.erb:14:in `block in _app_views_stocks_index_html_erb__4149718578975502478_70099373351420'
+app/views/stocks/index.html.erb:4:in `_app_views_stocks_index_html_erb__4149718578975502478_70099373351420'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:01:08 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (19.0ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (54.3ms)
+Completed 200 OK in 276ms (Views: 253.2ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:01:41 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.6ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 18ms (Views: 15.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:04:53 -0200
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (2.1ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mStock Load (0.2ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mStock Load (0.3ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mStock Load (0.3ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mStock Load (0.3ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mStock Load (0.2ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mStock Load (0.2ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendered stocks/index.html.erb within layouts/application (264.4ms)
+Completed 500 Internal Server Error in 287ms (ActiveRecord: 6.9ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `update_all_stocks' for #<#<Class:0x00007fea69ba9360>:0x00007fea69bd9e20>
+Did you mean?  update_all_stocks_url
+               update_all_stocks_path):
+    11: </section>
+    12: 
+    13: <section>
+    14:   <%= form_with url: update_all_stocks do |f| %>
+    15:     <%= f.input_field :csv_file %>
+    16:     <%= f.submit 'Enviar' %>
+    17:   <% end %>
+  
+app/views/stocks/index.html.erb:14:in `_app_views_stocks_index_html_erb__4526308895146022178_70322386458360'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:05:03 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.7ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendered stocks/index.html.erb within layouts/application (117.4ms)
+Completed 500 Internal Server Error in 141ms (ActiveRecord: 9.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `input_field' for #<ActionView::Helpers::FormBuilder:0x00007fea696dd7f0>):
+    12: 
+    13: <section>
+    14:   <%= form_with url: update_all_stocks_path do |f| %>
+    15:     <%= f.input_field :csv_file %>
+    16:     <%= f.submit 'Enviar' %>
+    17:   <% end %>
+    18: </section>
+  
+app/views/stocks/index.html.erb:15:in `block in _app_views_stocks_index_html_erb__4526308895146022178_70322393597260'
+app/views/stocks/index.html.erb:14:in `_app_views_stocks_index_html_erb__4526308895146022178_70322393597260'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:05:11 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.1ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendered stocks/index.html.erb within layouts/application (110.8ms)
+Completed 500 Internal Server Error in 118ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `input' for #<ActionView::Helpers::FormBuilder:0x00007fea6a21fed8>):
+    12: 
+    13: <section>
+    14:   <%= form_with url: update_all_stocks_path do |f| %>
+    15:     <%= f.input :csv_file %>
+    16:     <%= f.submit 'Enviar' %>
+    17:   <% end %>
+    18: </section>
+  
+app/views/stocks/index.html.erb:15:in `block in _app_views_stocks_index_html_erb__4526308895146022178_70322386377460'
+app/views/stocks/index.html.erb:14:in `_app_views_stocks_index_html_erb__4526308895146022178_70322386377460'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:05:21 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.1ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendered stocks/index.html.erb within layouts/application (100.3ms)
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `upload' for #<ActionView::Helpers::FormBuilder:0x00007fea6acafe20>):
+    12: 
+    13: <section>
+    14:   <%= form_with url: update_all_stocks_path do |f| %>
+    15:     <%= f.upload :csv_file %>
+    16:     <%= f.submit 'Enviar' %>
+    17:   <% end %>
+    18: </section>
+  
+app/views/stocks/index.html.erb:15:in `block in _app_views_stocks_index_html_erb__4526308895146022178_70322382976260'
+app/views/stocks/index.html.erb:14:in `_app_views_stocks_index_html_erb__4526308895146022178_70322382976260'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:05:26 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Stock Load (0.0ms)[0m  [1m[34mSELECT  "stocks".* FROM "stocks" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendered stocks/index.html.erb within layouts/application (110.6ms)
+Completed 500 Internal Server Error in 118ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `file' for #<ActionView::Helpers::FormBuilder:0x00007fea6adf4740>
+Did you mean?  fields):
+    12: 
+    13: <section>
+    14:   <%= form_with url: update_all_stocks_path do |f| %>
+    15:     <%= f.file :csv_file %>
+    16:     <%= f.submit 'Enviar' %>
+    17:   <% end %>
+    18: </section>
+  
+app/views/stocks/index.html.erb:15:in `block in _app_views_stocks_index_html_erb__4526308895146022178_70322394211380'
+app/views/stocks/index.html.erb:14:in `_app_views_stocks_index_html_erb__4526308895146022178_70322394211380'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:06:57 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 206ms (Views: 199.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:15:14 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 27ms (Views: 24.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:24:37 -0200
+  
+SyntaxError (/Users/diegocharles/Labs/XLCellPhonesStore/app/controllers/stocks_controller.rb:13: syntax error, unexpected keyword_end
+    end
+       ^):
+  
+app/controllers/stocks_controller.rb:13: syntax error, unexpected keyword_end
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:25:49 -0200
+Processing by StocksController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:37: syntax error, unexpected ',', expecting keyword_end
+se if row[:modalide] == 'pos',
+                              ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:39: syntax error, unexpected tLABEL, expecting '='
+                amount:               row[:valor]
+                       ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/stock.rb:37: syntax error, unexpected ',', expecting keyword_end
+app/models/stock.rb:39: syntax error, unexpected tLABEL, expecting '='
+app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/stocks_controller.rb:4:in `index'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:26:13 -0200
+Processing by StocksController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:37: syntax error, unexpected ',', expecting keyword_end
+ if (row[:modalide] == 'pos'),
+                              ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:39: syntax error, unexpected tLABEL, expecting '='
+                amount:               row[:valor]
+                       ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/stock.rb:37: syntax error, unexpected ',', expecting keyword_end
+app/models/stock.rb:39: syntax error, unexpected tLABEL, expecting '='
+app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/stocks_controller.rb:4:in `index'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:26:30 -0200
+Processing by StocksController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:37: syntax error, unexpected ',', expecting ':'
+w[:modalide] == 'pos' ? false,
+                              ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:39: syntax error, unexpected tLABEL, expecting '='
+                amount:               row[:valor]
+                       ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:42: syntax error, unexpected keyword_rescue, expecting keyword_end
+    rescue Exception => e
+          ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/stock.rb:37: syntax error, unexpected ',', expecting ':'
+app/models/stock.rb:39: syntax error, unexpected tLABEL, expecting '='
+app/models/stock.rb:42: syntax error, unexpected keyword_rescue, expecting keyword_end
+app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/stocks_controller.rb:4:in `index'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:26:44 -0200
+Processing by StocksController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:42: syntax error, unexpected keyword_rescue, expecting keyword_end
+    rescue Exception => e
+          ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/stock.rb:42: syntax error, unexpected keyword_rescue, expecting keyword_end
+app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/stocks_controller.rb:4:in `index'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:27:04 -0200
+Processing by StocksController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:42: syntax error, unexpected keyword_rescue, expecting keyword_end
+      rescue Exception => e
+            ^
+/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input
+  end
+     ^):
+  
+app/models/stock.rb:42: syntax error, unexpected keyword_rescue, expecting keyword_end
+app/models/stock.rb:46: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/stocks_controller.rb:4:in `index'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:27:52 -0200
+Processing by StocksController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/diegocharles/Labs/XLCellPhonesStore/app/models/stock.rb:33: syntax error, unexpected keyword_do_block
+      begin do
+              ^):
+  
+app/models/stock.rb:33: syntax error, unexpected keyword_do_block
+app/controllers/stocks_controller.rb:4:in `index'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:28:49 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.6ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 45ms (Views: 33.9ms | ActiveRecord: 4.6ms)
+
+
+Started POST "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:29:13 -0200
+  
+ActionController::RoutingError (No route matches [POST] "/stocks/update_all"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.10.0) lib/puma/configuration.rb:225:in `call'
+puma (3.10.0) lib/puma/server.rb:605:in `handle_request'
+puma (3.10.0) lib/puma/server.rb:437:in `process_client'
+puma (3.10.0) lib/puma/server.rb:301:in `block in run'
+puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:29:42 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 30ms (Views: 27.6ms | ActiveRecord: 0.4ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:29:48 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Hwm0Sj4ShQ+26ogGkUQcaOlJ8MnnL1G4PaArXeIfnV1psJBOTX8Pt5SoUur7BACMPIR5I6BXyrtmxB8zQpaIkQ==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6e49dc88 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-n9ctvt.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `import' for #<Class:0x00007fea6e6e2408>):
+  
+app/controllers/stocks_controller.rb:9:in `update_all'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:30:33 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.5ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 35ms (Views: 30.3ms | ActiveRecord: 0.5ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:30:41 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9gF54golzS2W75CACkNkJyF4dzKVP2k7GizekWxLZKKAuF3meUhHlbStSmxgA3jD9LX+2NJH8jhBSOr/zMJxbg==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6dd44748 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-jbdnk9.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `transaction' for Class:Class):
+  
+app/models/stock.rb:32:in `import_from_file'
+app/controllers/stocks_controller.rb:9:in `update_all'
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:31:05 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9gF54golzS2W75CACkNkJyF4dzKVP2k7GizekWxLZKKAuF3meUhHlbStSmxgA3jD9LX+2NJH8jhBSOr/zMJxbg==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6a502f60 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1nb5ro9.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering stocks/index.html.erb within layouts/application
+  Rendered stocks/index.html.erb within layouts/application (13.9ms)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (No Ransack::Search object was provided to search_form_for!):
+    1: <h1>Welcome to MobileDevices Invetory</h1>
+    2: 
+    3: <section style="margin: 20px;">
+    4:    <%= search_form_for @q do |f| %>
+    5:     <%= f.search_field :vendor_cont, placeholder: "Fabricante" %>
+    6:     <%= f.search_field :model_cont, placeholder: "Modelo" %>
+    7:     <%= f.select :is_pre_paid_eq, [['Pré-Pago', true], ['Pos-Pago', false]], include_blank: 'Todos' %>
+  
+app/views/stocks/index.html.erb:4:in `_app_views_stocks_index_html_erb__4526308895146022178_70322425710740'
+app/controllers/stocks_controller.rb:14:in `update_all'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:31:15 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.9ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 27ms (Views: 18.5ms | ActiveRecord: 5.3ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:32:25 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8V+1byEa+tRznvB0WJDcT1MAjRvhpKuONgzLvbNnFNyH5pFrUndwbFHcKpgy0MCrhs0E8abcMI1taP/TE+4BEA==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6f928db0 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1d82dux.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering stocks/index.html.erb within layouts/application
+  Rendered stocks/index.html.erb within layouts/application (13.6ms)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (No Ransack::Search object was provided to search_form_for!):
+    1: <h1>Welcome to MobileDevices Invetory</h1>
+    2: 
+    3: <section style="margin: 20px;">
+    4:    <%= search_form_for @q do |f| %>
+    5:     <%= f.search_field :vendor_cont, placeholder: "Fabricante" %>
+    6:     <%= f.search_field :model_cont, placeholder: "Modelo" %>
+    7:     <%= f.select :is_pre_paid_eq, [['Pré-Pago', true], ['Pos-Pago', false]], include_blank: 'Todos' %>
+  
+app/views/stocks/index.html.erb:4:in `_app_views_stocks_index_html_erb__4526308895146022178_70322388649360'
+app/controllers/stocks_controller.rb:14:in `update_all'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:32:51 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.6ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 46ms (Views: 36.5ms | ActiveRecord: 3.8ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:32:55 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FboyMY9s1K47lrTJNK+YYfiXV+p5PnIUHqpdczjlz3VjAxY1/AFeFhnUbiVe74SFLVreAD5G6RdFzmkdmGzauQ==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6e2afb10 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1htet8e.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to 
+Completed 500 Internal Server Error in 129ms (ActiveRecord: 0.3ms)
+
+
+  
+NoMethodError (undefined method `index_url' for #<StocksController:0x00007fea6e2b55d8>
+Did you mean?  index):
+  
+app/controllers/stocks_controller.rb:14:in `update_all'
+Started GET "/" for 127.0.0.1 at 2017-11-14 18:33:04 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 39ms (Views: 30.4ms | ActiveRecord: 3.7ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:33:09 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m/QqAobBxM+Wqs1s3EA8SBS+2ATQUgUKdkFPGr1WXSbtTQ4G9axOd7ToF4C2ACCswXNR7pcqngktJXt0Hd9I6g==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6dbbe568 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1l2y29k.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 7ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:33:09 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.3ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 28ms (Views: 22.3ms | ActiveRecord: 0.3ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:35:25 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NI0EncKSkSpUOh5favuYyIQYRMr4bSShoCqDpz4P6XgCNaL86HdT4t73HA85HG8eJxZiJlsDIvNtDRU/cuMcMA==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6e78d218 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1dbrmyo.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:35:25 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 44ms (Views: 38.5ms | ActiveRecord: 0.4ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:36:05 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"frzWCWOJtubRAOfe/RVnFFPgM9pL4UX0hlpH0HJtP/JIBHBoSWx0LlvN5Y6u8pDC8O4VNuiPQ6ZLfdFIPoHKug==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6f8db970 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-14vlwir.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 5ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:36:05 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.6ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 26ms (Views: 19.8ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:36:08 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 0.4ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:36:52 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"y0GGqago662kKY813ghczhudhfUy4mqNPe+Ge2pHz5q9+KKt20VhFYZrVdm0SEAqzlAMH3Wa8Y5mi7IVys7aVg==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea69d71648 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-nyvsah.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `ingo' for #<ActiveSupport::Logger:0x00007fea6ac36c50>
+Did you mean?  info):
+  
+app/models/stock.rb:44:in `rescue in block in import_from_file'
+app/models/stock.rb:33:in `block in import_from_file'
+app/models/stock.rb:32:in `import_from_file'
+app/controllers/stocks_controller.rb:9:in `update_all'
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:36:54 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"y0GGqago662kKY813ghczhudhfUy4mqNPe+Ge2pHz5q9+KKt20VhFYZrVdm0SEAqzlAMH3Wa8Y5mi7IVys7aVg==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6d8d5748 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-dip8v3.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.4ms)
+
+
+  
+NoMethodError (undefined method `ingo' for #<ActiveSupport::Logger:0x00007fea6ac36c50>
+Did you mean?  info):
+  
+app/models/stock.rb:44:in `rescue in block in import_from_file'
+app/models/stock.rb:33:in `block in import_from_file'
+app/models/stock.rb:32:in `import_from_file'
+app/controllers/stocks_controller.rb:9:in `update_all'
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:37:09 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"y0GGqago662kKY813ghczhudhfUy4mqNPe+Ge2pHz5q9+KKt20VhFYZrVdm0SEAqzlAMH3Wa8Y5mi7IVys7aVg==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6f81b580 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-wes4zr.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+#<NameError: uninitialized constant Stock::CSV>
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 6ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:37:09 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 31ms (Views: 24.7ms | ActiveRecord: 3.2ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:37:28 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+8Iep4AS0qlFjq1F35guySKOp15Nfpy17uv9KKvMEoXNerjGqvcQYc9DrxWMf9kfgYCBsu4QmucjzGuw5yDnzQ==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6a5190a8 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1anw6rx.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 109ms (ActiveRecord: 27.9ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:37:28 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.6ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 23ms (Views: 19.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:37:30 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.3ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 21ms (Views: 18.6ms | ActiveRecord: 0.3ms)
+
+
+  [1m[35m (6.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "stocks"[0m
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:39:24 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UwqBb26dA738O9SBbRdzz4G1cmEn96B6/ynki9IO+Agls6VrHfCJBd55Dm0HV28rVHj7i2CPO3mkTdDlcoftxA==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6af22ce8 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1p09urs.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+#<TypeError: superclass must be a Class (Hash given)>
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:39:24 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 35ms (Views: 28.9ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:40:00 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 36ms (Views: 28.2ms | ActiveRecord: 2.5ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:40:09 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Be5Vig8E+YfcKTUyk+wRd3tHAZfAFX68JDOqgMuGUG9zV3GOfGlzP/5r7975rA2TroqIfYdt5b9/V57uaw9Fow==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6e76fa38 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1w3qotd.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+#<ActiveRecord::RecordInvalid: Validation failed: Vendor is not included in the list, Quantity is not a number, Amount is not a number>
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 19ms (ActiveRecord: 7.4ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:40:09 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (1.6ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 29ms (Views: 23.6ms | ActiveRecord: 1.6ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:40:53 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bAtVNrQr2UmjlqPG46YyTsbpVMSZ4vzu7K+IJ5N1nJZas/NXns4bgSlboZawQcWYZedyKDqM+rwhiB6/35lp3g==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fea6dba58d8 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-5096-1kjm6y0.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+#<NoMethodError: undefined method `pry' for #<Binding:0x00007fea6e5e9790>
+Did you mean?  try>
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 6ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:40:53 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.3ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 29ms (Views: 24.0ms | ActiveRecord: 2.2ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:41:03 -0200
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jKkt9qLa/0lwY2nb7fQ+3lzV3OGYC9tpNLDtTUjdwc66EYuXiD89gfqua4u+E8kI/9v6DTtl3Tv5l3vVBDE0hg==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb587d73e00 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-6416-1c8qvu1.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+#<ActiveRecord::RecordInvalid: Validation failed: Vendor is not included in the list, Quantity is not a number, Amount is not a number>
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 27229ms (ActiveRecord: 6.3ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:41:31 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.5ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 235ms (Views: 222.3ms | ActiveRecord: 3.4ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:41:37 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jOFrX+zgUMyng0w5tWRsDWscCl6Gb13/Zgt2u6A78sa6Wc0+xgWSBC1OTmnmg5vbyBIssiUBW62rLOAj7NcHjg==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb58bc1cda0 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-6416-1uew9qd.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+#<ActiveRecord::RecordInvalid: Validation failed: Vendor is not included in the list, Amount must be greater than 0.0>
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 16ms (ActiveRecord: 3.5ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:41:37 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.3ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 22ms (Views: 19.3ms | ActiveRecord: 0.3ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:42:50 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LOSwbCPHQI9tWJlENLEA0e+GpykD85dvQhWxuV57iHUaXBYNCSKCR+eVmxRnVvcHTIiBxaCdkT2PMichEpd9PQ==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb58cc824b0 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-6416-1n0aipm.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+#<ActiveRecord::RecordInvalid: Validation failed: Vendor is not included in the list, Amount must be greater than 0.0>
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 66272ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:43:56 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.3ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 26ms (Views: 19.3ms | ActiveRecord: 2.0ms)
+
+
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:44:05 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8BALH5rbgNjaPSjidUslQmv9qfDSN5CsBWHCbCEfRD7GqK1+sD5CEFDwKrImrNKUyPOPHHFZlv7IRlT0bfOxdg==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb58bf2eca0 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-6416-1q0tjrw.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (10.5ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "motorola"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 1299.0], ["created_at", "2017-11-14 20:44:05.111016"], ["updated_at", "2017-11-14 20:44:05.111016"]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "motorola"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 599.0], ["created_at", "2017-11-14 20:44:05.123396"], ["updated_at", "2017-11-14 20:44:05.123396"]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "motorola"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 1299.0], ["created_at", "2017-11-14 20:44:05.125303"], ["updated_at", "2017-11-14 20:44:05.125303"]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "motorola"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 599.0], ["created_at", "2017-11-14 20:44:05.128561"], ["updated_at", "2017-11-14 20:44:05.128561"]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "samsung"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 4500.0], ["created_at", "2017-11-14 20:44:05.130139"], ["updated_at", "2017-11-14 20:44:05.130139"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "samsung"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 3299.0], ["created_at", "2017-11-14 20:44:05.131559"], ["updated_at", "2017-11-14 20:44:05.131559"]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "samsung"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 4500.0], ["created_at", "2017-11-14 20:44:05.133150"], ["updated_at", "2017-11-14 20:44:05.133150"]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "samsung"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 3299.0], ["created_at", "2017-11-14 20:44:05.134634"], ["updated_at", "2017-11-14 20:44:05.134634"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "apple"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 2599.0], ["created_at", "2017-11-14 20:44:05.136063"], ["updated_at", "2017-11-14 20:44:05.136063"]]
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "apple"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 1499.0], ["created_at", "2017-11-14 20:44:05.137813"], ["updated_at", "2017-11-14 20:44:05.137813"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "apple"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 2599.0], ["created_at", "2017-11-14 20:44:05.141480"], ["updated_at", "2017-11-14 20:44:05.141480"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["vendor", "apple"], ["is_pre_paid", "f"], ["quantity", 0], ["amount", 1499.0], ["created_at", "2017-11-14 20:44:05.143264"], ["updated_at", "2017-11-14 20:44:05.143264"]]
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 52ms (ActiveRecord: 23.0ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:44:05 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.5ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 38ms (Views: 34.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:44:56 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.5ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 31ms (Views: 27.1ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35mSQL (12.4ms)[0m  [1m[31mDELETE FROM "stocks"[0m
+Started PUT "/stocks/update_all" for 127.0.0.1 at 2017-11-14 18:47:13 -0200
+Processing by StocksController#update_all as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m/QqAobBxM+Wqs1s3EA8SBS+2ATQUgUKdkFPGr1WXSbtTQ4G9axOd7ToF4C2ACCswXNR7pcqngktJXt0Hd9I6g==", "csv_file"=>#<ActionDispatch::Http::UploadedFile:0x00007fb58874fca8 @tempfile=#<Tempfile:/var/folders/5z/d2hn2wgn5lz9756187hwrryw0000gn/T/RackMultipart20171114-6416-dnmkw7.csv>, @original_filename="stock.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"csv_file\"; filename=\"stock.csv\"\r\nContent-Type: text/csv\r\n">, "commit"=>"Enviar"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["vendor", "motorola"], ["model", "Moto G5 16GB"], ["color", "Preto"], ["quantity", 20], ["amount", 1299.0], ["created_at", "2017-11-14 20:47:13.608456"], ["updated_at", "2017-11-14 20:47:13.608456"]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["vendor", "motorola"], ["model", "Moto G5 16GB"], ["color", "Preto"], ["is_pre_paid", "f"], ["quantity", 20], ["amount", 599.0], ["created_at", "2017-11-14 20:47:13.611264"], ["updated_at", "2017-11-14 20:47:13.611264"]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["vendor", "motorola"], ["model", "Moto G5 16GB"], ["color", "Vermelho"], ["quantity", 20], ["amount", 1299.0], ["created_at", "2017-11-14 20:47:13.613689"], ["updated_at", "2017-11-14 20:47:13.613689"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["vendor", "motorola"], ["model", "Moto G5 16GB"], ["color", "Vermelho"], ["is_pre_paid", "f"], ["quantity", 20], ["amount", 599.0], ["created_at", "2017-11-14 20:47:13.616430"], ["updated_at", "2017-11-14 20:47:13.616430"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["vendor", "samsung"], ["model", "Galaxy S8 64GB"], ["color", "Arctic Gray"], ["quantity", 20], ["amount", 4500.0], ["created_at", "2017-11-14 20:47:13.618163"], ["updated_at", "2017-11-14 20:47:13.618163"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["vendor", "samsung"], ["model", "Galaxy S8 64GB"], ["color", "Arctic Gray"], ["is_pre_paid", "f"], ["quantity", 20], ["amount", 3299.0], ["created_at", "2017-11-14 20:47:13.620959"], ["updated_at", "2017-11-14 20:47:13.620959"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["vendor", "samsung"], ["model", "Galaxy S8 64GB"], ["color", "Midnight Black"], ["quantity", 20], ["amount", 4500.0], ["created_at", "2017-11-14 20:47:13.622756"], ["updated_at", "2017-11-14 20:47:13.622756"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "is_pre_paid", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["vendor", "samsung"], ["model", "Galaxy S8 64GB"], ["color", "Midnight Black"], ["is_pre_paid", "f"], ["quantity", 20], ["amount", 3299.0], ["created_at", "2017-11-14 20:47:13.624320"], ["updated_at", "2017-11-14 20:47:13.624320"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["vendor", "apple"], ["model", "iPhone SE 16GB"], ["color", "Space Gray"], ["quantity", 10], ["amount", 2599.0], ["created_at", "2017-11-14 20:47:13.625859"], ["updated_at", "2017-11-14 20:47:13.625859"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["vendor", "apple"], ["model", "iPhone SE 16GB"], ["color", "Space Gray"], ["quantity", 10], ["amount", 1499.0], ["created_at", "2017-11-14 20:47:13.627542"], ["updated_at", "2017-11-14 20:47:13.627542"]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["vendor", "apple"], ["model", "iPhone SE 16GB"], ["color", "Rose"], ["quantity", 5], ["amount", 2599.0], ["created_at", "2017-11-14 20:47:13.629040"], ["updated_at", "2017-11-14 20:47:13.629040"]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "stocks" ("vendor", "model", "color", "quantity", "amount", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["vendor", "apple"], ["model", "iPhone SE 16GB"], ["color", "Rose"], ["quantity", 5], ["amount", 1499.0], ["created_at", "2017-11-14 20:47:13.630727"], ["updated_at", "2017-11-14 20:47:13.630727"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/stocks
+Completed 200 OK in 50ms (ActiveRecord: 10.3ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:47:13 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 30ms (Views: 26.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:47:54 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 22ms (Views: 18.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:48:08 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 22ms (Views: 19.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:48:19 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 31ms (Views: 27.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:48:33 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (1.3ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 36ms (Views: 31.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/stocks" for 127.0.0.1 at 2017-11-14 18:49:55 -0200
+Processing by StocksController#index as HTML
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 28ms (Views: 24.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/stocks?utf8=%E2%9C%93&q%5Bvendor_cont%5D=Samsung&q%5Bmodel_cont%5D=&q%5Bis_pre_paid_eq%5D=&commit=Search" for 127.0.0.1 at 2017-11-14 18:50:02 -0200
+Processing by StocksController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"vendor_cont"=>"Samsung", "model_cont"=>"", "is_pre_paid_eq"=>""}, "commit"=>"Search"}
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (5.2ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE ("stocks"."vendor" ILIKE '%Samsung%')[0m
+  Rendered stocks/index.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 33ms (Views: 22.8ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/stocks?utf8=%E2%9C%93&q%5Bvendor_cont%5D=&q%5Bmodel_cont%5D=&q%5Bis_pre_paid_eq%5D=&commit=Search" for 127.0.0.1 at 2017-11-14 18:50:05 -0200
+Processing by StocksController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"vendor_cont"=>"", "model_cont"=>"", "is_pre_paid_eq"=>""}, "commit"=>"Search"}
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 26ms (Views: 21.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/stocks?utf8=%E2%9C%93&q%5Bvendor_cont%5D=&q%5Bmodel_cont%5D=Moto+G5&q%5Bis_pre_paid_eq%5D=&commit=Search" for 127.0.0.1 at 2017-11-14 18:50:09 -0200
+Processing by StocksController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"vendor_cont"=>"", "model_cont"=>"Moto G5", "is_pre_paid_eq"=>""}, "commit"=>"Search"}
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.5ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE ("stocks"."model" ILIKE '%Moto G5%')[0m
+  Rendered stocks/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 24ms (Views: 20.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/stocks?utf8=%E2%9C%93&q%5Bvendor_cont%5D=&q%5Bmodel_cont%5D=Moto+G5&q%5Bis_pre_paid_eq%5D=false&commit=Search" for 127.0.0.1 at 2017-11-14 18:50:13 -0200
+Processing by StocksController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"vendor_cont"=>"", "model_cont"=>"Moto G5", "is_pre_paid_eq"=>"false"}, "commit"=>"Search"}
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.7ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE ("stocks"."model" ILIKE '%Moto G5%' AND "stocks"."is_pre_paid" = 'f')[0m
+  Rendered stocks/index.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 24ms (Views: 19.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/stocks?utf8=%E2%9C%93&q%5Bvendor_cont%5D=&q%5Bmodel_cont%5D=&q%5Bis_pre_paid_eq%5D=false&commit=Search" for 127.0.0.1 at 2017-11-14 18:50:16 -0200
+Processing by StocksController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"vendor_cont"=>"", "model_cont"=>"", "is_pre_paid_eq"=>"false"}, "commit"=>"Search"}
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks" WHERE "stocks"."is_pre_paid" = 'f'[0m
+  Rendered stocks/index.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 28ms (Views: 23.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/stocks?utf8=%E2%9C%93&q%5Bvendor_cont%5D=&q%5Bmodel_cont%5D=&q%5Bis_pre_paid_eq%5D=&commit=Search" for 127.0.0.1 at 2017-11-14 18:51:28 -0200
+Processing by StocksController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"vendor_cont"=>"", "model_cont"=>"", "is_pre_paid_eq"=>""}, "commit"=>"Search"}
+  Rendering stocks/index.html.erb within layouts/application
+  [1m[36mStock Load (0.4ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  Rendered stocks/index.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 30ms (Views: 27.2ms | ActiveRecord: 0.4ms)
+
+

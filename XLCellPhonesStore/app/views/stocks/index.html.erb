@@ -1,0 +1,44 @@
+<h1>Welcome to MobileDevices Inventory</h1>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
+
+<section style="margin: 20px;">
+   <%= search_form_for @q do |f| %>
+    <%= f.search_field :vendor_cont, placeholder: "Fabricante" %>
+    <%= f.search_field :model_cont, placeholder: "Modelo" %>
+    <%= f.select :is_pre_paid_eq, [['Pré-Pago', true], ['Pos-Pago', false]], include_blank: 'Todos' %>
+
+    <%= f.submit %>
+  <% end %>
+</section>
+
+<section style="margin: 20px">
+  <%= form_with url: update_all_stocks_path, method: :put do |f| %>
+    <%= f.file_field :csv_file %>
+    <%= f.submit 'Enviar' %>
+  <% end %>
+</section>
+
+<table>
+  <tr>
+    <th>Fabricante</th>
+    <th>Modelo</th>
+    <th>Cor</th>
+    <th>Modalidade</th>
+    <th>Aparelhos em estoque</th>
+    <th>Valor</th>
+  </tr>
+
+  <% @stocks.each do |stock_unity| %>
+    <tr>
+      <td><%= stock_unity.vendor.humanize %></td>
+      <td><%= stock_unity.model %></td>
+      <td><%= stock_unity.color %></td>
+      <td><%= stock_unity.pre_or_post_paid_pt_br %></td>
+      <td><%= stock_unity.quantity %></td>
+      <td><%= number_to_currency stock_unity.amount %></td>
+    </tr>
+  <% end %>
+</table>
