@@ -1,26 +1,23 @@
-# Background
+# README
 
-Um novo cliente contratou a XL Solutions para desenvolver uma loja virtual especializada na venda de aparelhos de telefonia celular. Para criar o inventário inicial da loja, com todos os telefones disponíveis, o estoque e seus preços, enviou arquivos CSV com os dados a incluir. Informou também que periodicamente precisará atualizar o inventário com planilhas idênticas.
+# Importadodor de arquivos csv
 
-Para facilitar esse processo, é necessário criar uma interface para upload desses arquivos, e uma segunda interface que permita que a pessoa avalie o inventário da loja, mostrando aparelhos, valores e quantidades, assim como dando a possibilidade de aplicar alguns filtros.
+## Dependências do Sistema
 
-# Requisitos
+* Ruby version ruby 2.3.1p112
+* Rails version rails (5.0.6)
 
-1. O usuário fará upload de um arquivo .csv no formato fornecido em `input_valido` através de um formulário;
-2. Os dados contidos no arquivo serão normalizados e salvos em um banco de dados relacional;
-3. O usuário será redirecionado para a página com o inventário, que indicará o sucesso ou falha da importação (preferencialmente com o motivo, no caso de falha);
-4. O usuário poderá visualizar os dados importados e buscá-los por fabricante, modelo e modalidade de venda (pré- ou pós-pago).
+## Configuração Básica
 
-# Observações:
+* Clone este repositorio
+* Instale as demais dependencias com bundle install
 
-- A aplicação deve ser feita usando ferramentas do universo Ruby (Rails, Sinatra, Roda, Cuba, Hanami, etc);
-- Não é necessário se preocupar com autenticação;
-- Aspectos estéticos não são primordiais;
-- A aplicação deverá ter testes automatizados.
+## Banco de dados
 
-# Procedimento para entrega do teste:
+* Este projeto esta configurado para ser usado com sqlite, por sem mais simples, porém se for de interesse basta editar o arquivo config/database.yml acrescentando as informações de acesso ao banco para o mesmo rodar em postgresql(testado), mysql(não testado), para um funcionamento normal
 
-1. Faça o fork desse projeto no github;
-2. Codifique a aplicação nesse fork;
-3. Escreva um README explicando como rodar sua aplicação e os testes. Dê o máximo de detalhes;
-4. Abra um pull request quando estiver pronto.
+* Criação do banco de dados: para a criação do banco de dados basta executar rake db:create e para inicia-lo basta executar rake db:migrate
+
+## Suite de teste
+* Os testes estão escritos usando Minitest, o projeto possui teste de aceitação na pasta test/features e tambem testes unitarios na pasta test/controllers, para executa-los basta rodar rake
+

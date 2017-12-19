@@ -1,0 +1,89 @@
+<div class="column phones-page">
+  <!-- filter-bar -->
+  <div class="ui center aligned grid ">
+    <%= form_tag( phones_path, method:"get", class: 'ui form') do %>
+      <div class="inline fields">
+        <div class="field">
+          <%= label_tag "Modelo" %>
+          <%= text_field_tag 'phones_filter[models]',nil , placeholder:"Modelo" %>
+        </div><!-- field -->
+        <div class="field">
+          <%= label_tag "Cores" %>
+          <div class="ui multiple selection dropdown">
+            <!-- This will receive comma separated value like OH,TX,WY !-->
+            <input name="phones_filter[colors]" id="phones_filter_colors" type="hidden" value="">
+            <i class="dropdown icon"></i>
+            <div class="default text">Todas</div>
+            <div class="menu">
+              <% @colors.each do |color| %>
+                <div class="item" data-value="<%= color %>" ><%= color %></div>
+              <% end %>
+            </div>
+          </div>
+        </div> <!-- field -->
+        <div class="field">
+          <%= label_tag "Modalidade" %>
+          <div class="ui multiple selection dropdown">
+            <!-- This will receive comma separated value like OH,TX,WY !-->
+            <input name="phones_filter[plans]" type="hidden" value="">
+            <i class="dropdown icon"></i>
+            <div class="default text">Todas</div>
+            <div class="menu">
+              <% @plans.each do |plan| %>
+                <div class="item" data-value="<%= plan %>" ><%= plan %></div>
+              <% end %>
+            </div>
+          </div>
+        </div> <!-- field -->
+        <div class="field">
+          <%= label_tag "Fabricante" %>
+          <div class="ui multiple selection dropdown">
+            <!-- This will receive comma separated value like OH,TX,WY !-->
+            <input name="phones_filter[manufacturers]" type="hidden" value="">
+            <i class="dropdown icon"></i>
+            <div class="default text">Todas</div>
+            <div class="menu">
+              <% @manufacturers.each do |manufacturer| %>
+                <div class="item" data-value="<%= manufacturer %>" ><%= manufacturer %></div>
+              <% end %>
+            </div>
+          </div>
+        </div> <!-- field -->
+        <%= submit_tag("Filtrar", class:"ui teal button" ) %>
+      </div><!-- inline fields -->
+    <% end %>
+  </div><!-- ui center aligned grid -->
+  <!-- filter-bar -->
+
+  <table class="ui striped table">
+    <thead>
+      <tr>
+        <th>Fabricante</th>
+        <th>Modelo</th>
+        <th>Cor</th>
+        <th>Modalidade</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @phones.each do |phone| %>
+        <tr>
+          <td><%= phone.manufacturer %></td>
+          <td><%= phone.model %></td>
+          <td><%= phone.color %></td>
+          <td><%= phone.plan %></td>
+          <td><%= phone.quantity %></td>
+          <td><%= phone.price %></td>
+          <td><%= link_to 'Ver', phone %></td>
+          <td><%= link_to 'Editar', edit_phone_path(phone) %></td>
+          <td><%= link_to 'Apagar', phone, method: :delete, data: { confirm: 'Você tem certeza ?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+</div><!--/column -->

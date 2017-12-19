@@ -1,0 +1,49 @@
+<% if phone.errors.any? %>
+  <div id="error_explanation">
+    <h4><%= pluralize(phone.errors.count, "erro") %> impedindo de salvar:</h4>
+
+    <% phone.errors.full_messages.each do |message| %>
+      <div class="ui warning message"><%= message %></div>
+    <% end %>
+
+  </div>
+<% end %>
+
+
+<%= form_for(phone, :html=>{ class:'ui form'}) do |f| %>
+
+  <div class="field">
+    <%= f.label 'Fabricante' %>
+    <%= f.text_field :manufacturer %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Modelo' %>
+    <%= f.text_field :model %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Cor' %>
+    <%= f.text_field :color %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Modalidade' %>
+    <%= f.text_field :plan %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Quantidade' %>
+    <%= f.text_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'preço' %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class:'ui button green' %>
+  </div>
+
+<% end %>

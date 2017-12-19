@@ -1,0 +1,11 @@
+<div class="ui grid container">
+  <div class="column">
+  <h2>Edição</h2>
+
+  <%= render 'form', phone: @phone %>
+
+  <%= link_to 'Ver Cadastro', @phone, class:'ui button' %>
+  <%= link_to 'Cancelar', phones_path, class:'ui button' %>
+
+  </div>
+</div>
