@@ -16,6 +16,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+config/database.yml
 
 /node_modules
 /yarn-error.log
