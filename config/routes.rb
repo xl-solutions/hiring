@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :cellphones, only: [:index]
+
+  get 'import', to: 'importer#import'
+  post 'upload_file', to: 'importer#upload_file'
 end
