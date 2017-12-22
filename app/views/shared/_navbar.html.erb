@@ -1,0 +1,39 @@
+<div class="ui stackable menu">
+  <%= link_to image_tag('logo_placeholder.png', alt:'Logo Place Holder', title:'Logo Place Holder'), root_path, class:'item' %>
+  <%= link_to 'Phones', phones_path , class:'item'%>
+  <%= link_to 'Cadastrar Novo Telefone', new_phone_path, class:'item' %>
+  <div class="right menu">
+    <div class="item">
+      <%= form_tag importer_phones_path, multipart: true do %>
+        <span class="ui teal button btn-file">
+          Selecionar arquivo para importação
+          <%= file_field_tag :file %>
+        </span>
+        <%= submit_tag "importar", class:"ui primary button" %>
+      <% end %>
+      </div>
+  </div>
+</div> <!-- header -->
+
+<div class="ui center aligned grid notice">
+  <div class="column">
+    <% if notice %>
+      <% if notice.kind_of?(Array) %>
+        <% notice.each do |message| %>
+          <div id="notice" class="ui warning message"><%= message['message'] %></div>
+          <% if message['errors'].present? %>
+            <% message['errors'].each do |err| %>
+              <div id="notice" class="ui warning message"><%= err %></div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div id="notice" class="ui warning message"><%= notice %></div>
+      <% end %>
+
+    <% end %>
+    <% if alert %>
+      <div id="alert" class="ui warning message"><%= alert %></div>
+    <% end %>
+  </div>
+</div>

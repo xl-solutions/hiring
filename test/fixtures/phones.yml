@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer: Motorola
+  model: Moto G5 16GB
+  color: Preto
+  plan: PRE
+  quantity: 20
+  price: 1299
+
+two:
+  manufacturer: Samsung
+  model: Galaxy S8 64GB
+  color: Arctic Gray
+  plan: POS
+  quantity: 20
+  price: 1299

@@ -1,0 +1,27 @@
+<div class="ui grid container">
+  <div class="ui card">
+    <div class="content">
+      <div class="header"><%= @phone.model %></div>
+    </div>
+    <div class="content">
+      <div class="ui small feed">
+        <div class="event">
+          <div class="content">
+            <div class="summary">
+               <p>Cor: <%= @phone.color %></p>
+               <p>Modalidade: <%= @phone.plan %></p>
+               <p>Quantidade: <%= @phone.quantity %></p>
+               <p>Preço: <%= @phone.price %></p>
+               <p>Fabricate: <%= @phone.manufacturer %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <%= link_to 'Voltar', phones_path, class:'ui button' %>
+      <%= link_to 'Editar', edit_phone_path(@phone), class:'ui button' %>
+    </div>
+  </div>
+
+</div> <!-- grid -->
