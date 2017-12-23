@@ -1,3 +1,26 @@
-<div class="container">
-  <h1>Hello</h1>
-</div>
+<h1>Cellphones</h1>
+
+<%= render 'filter' %>
+
+<table class="table">
+  <thead>
+    <th>Fabricante</th>
+    <th>Modelo</th>
+    <th>Cor</th>
+    <th>Modalidade</th>
+    <th>Quantidade</th>
+    <th>Valor</th>
+  </thead>
+  <tbody>
+    <% @cellphones.each do |cellphone| %>
+      <tr>
+        <td><%= cellphone.maker %></td>
+        <td><%= cellphone.model %></td>
+        <td><%= cellphone.color %></td>
+        <td><%= cellphone.modality %></td>
+        <td><%= cellphone.quantity %></td>
+        <td><%= cellphone.value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

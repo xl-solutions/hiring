@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'cellphones#index'
+
   resources :cellphones, only: [:index]
 
   get 'import', to: 'importer#import'

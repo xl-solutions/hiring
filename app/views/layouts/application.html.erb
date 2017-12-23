@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-xs navbar-light bg-faded">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -27,6 +27,13 @@
       </div>
     </nav>
 
-    <%= yield %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert <%= key == 'notice' ? 'alert-success' : 'alert-danger' %>"><%= value %></div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
   </body>
 </html>

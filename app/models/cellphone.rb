@@ -1,5 +1,13 @@
 class Cellphone < ApplicationRecord
 
+  scope :filter_by_attrs, -> (query) { where(query) if query[0].present? }
+
+  FILTER_PARAMS = [
+    :maker,
+    :model,
+    :modality
+  ].freeze
+
   FIELDS_LABELS = {
     "fabricante": {
       "label": "maker",
@@ -31,6 +39,7 @@ class Cellphone < ApplicationRecord
     def import_csv(file)
       if valid_csv?(file)
         CellphoneImporterJob.perform_now(file.path)
+        true
       end
     end
 
