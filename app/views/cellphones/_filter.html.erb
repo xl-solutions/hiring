@@ -1,0 +1,20 @@
+<div class="card card-margin">
+  <div class="card-body">
+    <%= form_tag cellphones_path, method: :get do %>
+      <div class="row filter-margin">
+        <div class="col-sm-3">
+          <%= text_field_tag :maker, nil, class: 'form-control', placeholder: 'Fabricante' %>
+        </div>
+        <div class="col-sm-3">
+          <%= text_field_tag :model, nil, class: 'form-control', placeholder: 'Modelo' %>
+        </div>
+        <div class="col-sm-3">
+          <%= select_tag :modality, options_for_select(['pre', 'pos']), class: 'form-control', include_blank: 'Modalidade' %>
+        </div>
+        <div class="col-sm-3">
+          <%= button_tag 'Pesquisar',  class: "btn btn-success btn-sm" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
