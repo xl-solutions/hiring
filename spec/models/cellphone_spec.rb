@@ -61,7 +61,7 @@ describe Cellphone do
       context "failure" do
         let(:file) { File.new("spec/fixtures/invalid.csv") }
 
-        it "returns true" do
+        it "returns false" do
           expect(Cellphone.valid_csv?(file)).to eql(false)
         end
       end
