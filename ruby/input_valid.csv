@@ -1,4 +1,4 @@
-fabricante,modelo,cor,modalidade,quantidade,valor
+manufacturer,model,color,carrier_plan_type,quantity,price
 Motorola,Moto G5 16GB,Preto,pre,20,1299
 Motorola,Moto G5 16GB,Preto,pos,20,599
 Motorola,Moto G5 16GB,Vermelho,pre,20,1299
