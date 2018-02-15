@@ -7,7 +7,7 @@ A stock broker is developing a system to allow investors to make better decision
   - Current price vs other stocks;
   - Gains projection with a specific date acquisition.
   
-To accomplish that, the software company decided to develop two applications: a backend service specialized in the requirements (that will allow the two features to be reusable in other products of the company) and a configurable dashboard that will allow data visualization. YouR mission is to develop both parts.
+To accomplish that, the software company decided to develop two applications: a backend service specialized in the requirements (that will allow the two features to be reusable in other products of the company) and a configurable dashboard that will allow data visualization. Your mission is to develop both parts.
    
 
 # Technical Requirements
