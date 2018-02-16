@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
+    "consign": "^0.1.6",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "helmet": "^3.11.0"
+  },
+  "description": "Server to hiring test",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha tests --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marco-maturana/hiring.git"
+  },
+  "author": "Marco Aurélio Maturana Silveira <marco.maturana.ro@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marco-maturana/hiring/issues"
+  },
+  "homepage": "https://github.com/marco-maturana/hiring#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.1"
+  }
+}
