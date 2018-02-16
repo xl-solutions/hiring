@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-consign()
+consign({cwd: 'server'})
   .include('controllers')
   .then('routes')
   .into(app)
