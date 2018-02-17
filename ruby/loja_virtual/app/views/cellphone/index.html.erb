@@ -1,3 +1,10 @@
+
+<% if flash[:errors] %>
+	<% flash[:errors].each do |flash| %>
+		<p> <%= flash %> </p>
+	<% end %>
+<% end %>
+
 <h1>Cellphone List</h1>
 
 <% if @cellphones.empty? %>

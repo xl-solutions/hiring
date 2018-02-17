@@ -1,6 +1,8 @@
 require 'roo'
 
 class CellphoneController < ApplicationController
+
+
   def index
   	@cellphones = Cellphone.all
   end
@@ -34,7 +36,7 @@ class CellphoneController < ApplicationController
       cellphone = Cellphone.new(params)
 
       unless cellphone.save
-      	flash[:errors].push("Error at row number: #{row_no}: #{cellphone.errors.full_messages.join(', ')}") 
+      	flash[:errors].push("Invalid row (#{row_no}): #{cellphone.errors.full_messages.join(', ')}") 
       end
     end
 end
