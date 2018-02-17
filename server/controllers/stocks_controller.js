@@ -15,11 +15,21 @@ module.exports.history = (app, req, res) => {
           low: 14.50,
           high: 15.16,
           closing: 14.57,
-          pricedAt: '2017-04-05' }]})
+          pricedAt: '2017-04-05' }]
+        })
 }
 
 module.exports.compare = (app, req, res) => {
-
+  res.json({
+    lastPrices: [
+      { name: "OIBR4.SA",
+        lastPrice: 3.41,
+        pricedAt: "2017-05-18T14:15:16Z"
+      }, {
+        name: "TIMP3.SA",
+        lastPrice: 9.93,
+        pricedAt: "2017-05-18T14:15:16Z"
+      }]})
 }
 
 module.exports.gains = (app, req, res) => {

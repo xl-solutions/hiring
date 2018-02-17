@@ -8,6 +8,7 @@ chai.use(chaiHttp)
 
 const
   stock_name = 'PETR4.SA',
+  stocks_array = 'PETR4.SA,VALE5.SA',
   historyFrom = '2018-01-01',
   historyTo = '2018-01-02'
 
@@ -57,6 +58,27 @@ describe('Test in stocks_controller', () => {
           expect(price.low).to.be.a('number')
           expect(price.high).to.be.a('number')
           expect(price.closing).to.be.a('number')
+          expect(price.pricedAt).to.be.a('string')
+
+          expect(isDateISO8601(price.pricedAt)).to.equal(true)
+        })
+
+        done()
+      })
+  })
+
+  it('Test route /stocks/:stock_name/compare', (done) => {
+    chai.request(app)
+      .get('/stocks/' + stocks_array + '/compare')
+      .end((err, res) => {
+        expect(res.status).to.equal(200)
+        expect(res.body).to.be.an('object')
+        expect(res.body.lastPrices).to.be.an('array')
+
+        res.body.lastPrices.forEach((price) => {
+          expect(price).have.all.keys('name', 'lastPrice', 'pricedAt')
+          expect(price.name).to.be.a('string')
+          expect(price.lastPrice).to.be.a('number')
           expect(price.pricedAt).to.be.a('string')
 
           expect(isDateISO8601(price.pricedAt)).to.equal(true)
