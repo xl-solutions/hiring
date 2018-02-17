@@ -1,10 +1,10 @@
 module.exports.quote = (app, req, res) => {
-  res.json({ name: "PETR4.SA", lastPrice: 25.11, pricedAt: "2017-06-23T14:15:16Z" })
+  res.json({ name: 'PETR4.SA', lastPrice: 25.11, pricedAt: '2017-06-23T14:15:16Z' })
 }
 
 module.exports.history = (app, req, res) => {
   res.json(
-    { name: "PETR4.SA",
+    { name: 'PETR4.SA',
       prices: [
         { opening: 14.67,
           low: 14.57,
@@ -22,16 +22,22 @@ module.exports.history = (app, req, res) => {
 module.exports.compare = (app, req, res) => {
   res.json({
     lastPrices: [
-      { name: "OIBR4.SA",
+      { name: 'OIBR4.SA',
         lastPrice: 3.41,
-        pricedAt: "2017-05-18T14:15:16Z"
+        pricedAt: '2017-05-18T14:15:16Z'
       }, {
-        name: "TIMP3.SA",
+        name: 'TIMP3.SA',
         lastPrice: 9.93,
-        pricedAt: "2017-05-18T14:15:16Z"
+        pricedAt: '2017-05-18T14:15:16Z'
       }]})
 }
 
 module.exports.gains = (app, req, res) => {
-
+  res.json({
+    name: 'USIM5.SA',
+    purchasedAmount: 100,
+    purchasedAt: '2016-05-31',
+    priceAtDate: 3.97,
+    lastPrice: 4.33,
+    capitalGains: 36.0 })
 }
