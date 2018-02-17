@@ -49,7 +49,7 @@ class CellphoneControllerTest < ActionDispatch::IntegrationTest
 
   private
   	def import_file_and_validate file, row_count
-  	  csv_file = File.join(TESTDIR, file)
+  	  csv_file = Rack::Test::UploadedFile.new("#{TESTDIR}/#{file}", "text")
 
 	  assert_difference('Cellphone.count', row_count) do
   	    post '/cellphone/import', params: { file: csv_file }

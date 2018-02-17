@@ -13,13 +13,16 @@ class CellphoneController < ApplicationController
 
   def import
   	flash[:errors] = []
-  	parsed = Roo::CSV.new(params.require(:file)).parse(headers: true)
+
+  	parsed = Roo::CSV.new(params.require(:file).tempfile).parse(headers: true)
 
   	parsed.shift #remove header line
 
   	parsed.each_with_index do |row, index|
   	  build_and_save(row, index)
   	end
+
+    redirect_to cellphone_index_url
   end
 
   private

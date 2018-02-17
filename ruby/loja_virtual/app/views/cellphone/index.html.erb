@@ -29,3 +29,7 @@
 
 <% end %>
 
+<%= form_tag({action: :import}, multipart: true) do %>
+  <%= file_field_tag 'file' %>
+  <%= submit_tag("Submit") %>
+<% end %>
