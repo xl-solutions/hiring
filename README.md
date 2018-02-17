@@ -1,12 +1,119 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions TEst
+# Technical test - XL Solutions 
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+This test was implemented using NodeJS to the backend and the [VueJS](https://vuejs.org/) with [Quasar Framework](http://quasar-framework.org/) to the frontend .
+If you want to know more about the proposal of the test using NodeJS, access:
 
-Choose a language to which you are interested and follow the instructions:
+- [NodeJS](doc-node-test/README_ENGLISH.md)
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
+## How to run the project?
 
+- Clone the project
+- Acess the project directory
+
+### Running the server
+
+<p>How default value, the server will be run in the port 3000.</p>
+<p>If you want to change server port, create a <i>.env</i> file in 
+*server* folder and set the<i>APP_PORT</i> value.</p>
+To you know how to create <i>.env</i> file, use the example <i>.env.example</i></p>
+
+- To run the server, put in terminal *"npm run start-server"*
+- To run the test, put in terminal *"npm run test-server"*
+
+The server offer four endpoits:
+
+#### `/stocks/:stock_name/quote` - Returns the last price of a stock ####
+
+Input:
+
+- `stock_name` - URI passed parameter indicating the stock name (Ex: PETR4.SA, VALE5.SA)
+
+Return:
+
+```js
+{
+  "name": string,
+  "lastPrice": number,
+  "pricedAt": string // date and time in ISO 8601, UTC format
+}
+```
+
+#### `/stocks/:stock_name/history?from=<string>&to=<string>` - Historic price of a stock in a given date range ####
+
+Input:
+
+- `stock_name` - URI passed parameter indicating the stock name (Ex: PETR4.SA, VALE5.SA)
+- `from` - string with date in ISO 8601 format
+- `to` - string with date in ISO 8601 format
+
+Return:
+```js
+{
+  "name": string,
+  "prices": [<pricing>, <pricing>, ...]
+}
+```
+
+The pricing scheme is shown bellow:
+
+```js
+{
+  "opening": number,
+  "low": number,
+  "high": number,
+  "closing": number,
+  "pricedAt": string with date in ISO 8601 UTC format
+}
+```
+
+#### `/stocks/:stock_name/compare` - Compares a stock with one or more stocks ####
+
+Input:
+
+- `stock_name` - URI passed parameter indicating the stock name (Ex: PETR4.SA, VALE5.SA)
+- Payload JSON with stock list:
+
+```js
+{
+  "stocks": [<string>, <string>, ...]
+}
+```
+
+Return:
+
+```js
+{
+  "lastPrices": [<lastPrice>, <lastPrice>...]
+}
+```
+
+`lastPrice` scheme:
+
+```js
+{
+  "name": string,
+  "lastPrice": number,
+  "pricedAt": string with date in ISO 8601 UTC format
+}
+```
+
+#### `/stocks/:stock_name/gains?purchasedAmount=<number>&purchasedAt=<string>` - Gain projection for a specific date ####
+
+Input:
+
+- `stock_name` - URI passed parameter indicating the stock name (Ex: PETR4.SA, VALE5.SA)
+- `purchasedAmount` - `number` amount of stocks
+- `purchasedAt` - `string` string with date in ISO 8601 format
+
+Return:
+
+```js
+{
+  "name": string,
+  "purchasedAmount": number,
+  "purchasedAt": string, // string with date in ISO 8601 format,
+  "priceAtDate": number, // Acquisition date price
+  "lastPrice": number,   // Current price
+  "capitalGains": number // Gain or losses with the stock
+}
+```
