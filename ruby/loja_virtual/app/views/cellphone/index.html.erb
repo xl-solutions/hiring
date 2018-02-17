@@ -1,0 +1,31 @@
+<h1>Cellphone List</h1>
+
+<% if @cellphones.empty? %>
+<p>There is no cellphone record in the database.</p>
+<% else %>
+
+<table>
+	<tr>
+		<th>Manufacturer</th>
+		<th>Model</th>
+		<th>Color</th>
+		<th>Carrier Plan Type</th>
+		<th>Quantity</th>
+		<th>Price</th>
+	</tr>
+
+	<% @cellphones.each do |c| %>
+		<tr>
+			<td><%= c.manufacturer %></td>
+			<td><%= c.model %></td>
+			<td><%= c.color %></td>
+			<td><%= c.carrier_plan_type %></td>
+			<td><%= c.quantity %></td>
+			<td><%= c.price %></td>
+		</tr>
+	<% end %>
+
+</table>
+
+<% end %>
+
