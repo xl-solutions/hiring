@@ -61,3 +61,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # CSV Lib
 gem 'roo'
+
+#JS Libs
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails'
