@@ -10,9 +10,9 @@
     "helmet": "^3.11.0",
     "moment": "^2.20.1"
   },
-  "description": "Server to hiring test",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "mocha tests --recursive"
   },
   "repository": {

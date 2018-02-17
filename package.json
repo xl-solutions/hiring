@@ -1,0 +1,19 @@
+{
+  "name": "test-xl-soluctions",
+  "version": "1.0.0",
+  "description": "Test XL Soluctions using nodejs",
+  "scripts": {
+    "start-server": "cd ./server && npm install && npm start",
+    "test-server": "cd ./server && npm install && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marco-maturana/hiring.git"
+  },
+  "author": "Marco Aurelio Maturana Silveira <marco.maturana.ro@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marco-maturana/hiring/issues"
+  },
+  "homepage": "https://github.com/marco-maturana/hiring#readme"
+}
