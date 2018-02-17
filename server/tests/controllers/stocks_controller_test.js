@@ -4,11 +4,15 @@ let
   chaiHttp = require('chai-http'),
   moment = require('moment')
 
-let expect = chai.expect
-
 chai.use(chaiHttp)
 
 const stock_name = 'PETR4.SA'
+
+let expect = chai.expect
+
+let isDateISO8601 = (date) => {
+  return moment(date, moment.ISO_8601, true).isValid()
+}
 
 /**
  * The response of this request has a return like this json object
@@ -26,9 +30,8 @@ describe('Test in stocks_controller', () => {
         expect(res.body.lastPrice).to.be.a('number')
         expect(res.body.pricedAt).to.be.a('string')
 
-        //check data format
-        let validFormat = moment(res.body.pricedAt, moment.ISO_8601, true).isValid()
-        expect(validFormat).to.equal(true)
+        //check data format is valid
+        expect(isDateISO8601(res.body.pricedAt)).to.equal(true)
 
         done();
       });
