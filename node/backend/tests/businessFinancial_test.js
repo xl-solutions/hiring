@@ -18,6 +18,11 @@ describe('Testes no módulo financeiro das regras de negócio', () => {
 		chai.expect(test.pricedAt).to.be.a('string');
 		chai.expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(test.pricedAt)).be.true;
 	});
+	it('Deve retornar vazio ao tentar recuperar a última cotação de uma ação inválida', async () => {
+		const stock = 'UNKNOW.SA';
+		const test = await businessFinancial.getRecentQuote(stock);
+		chai.expect(test).not.exist;
+	});
 	it('Deve recuperar o histórico de preços de uma ação', async () => {
 		const stock = 'PETR4.SA';
 		const test = await businessFinancial.getHistoricalQuote(stock, '2018-01-01', '2018-01-27');
@@ -41,38 +46,47 @@ describe('Testes no módulo financeiro das regras de negócio', () => {
 			chai.expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(element.pricedAt)).be.true;
 		});
 	});
-	it('Deve recuperar os últimos preços de uma lista de ações (uma por vez)', async () => {
-		const stocks = ['PETR4.SA', 'VALE3.SA', 'OIBR4.SA'];
+	it('Deve retornar vazio ao tentar recuperar o histórico de preços de uma ação inválida', async () => {
+		const stock = 'UNKNOW.SA';
+		const test = await businessFinancial.getHistoricalQuote(stock, '2018-01-01', '2018-01-27');
+		chai.expect(test).not.exist;
+	});
+	it('Deve recuperar os últimos preços de uma lista de ações (uma por vez), atentando para ações inválidas', async () => {
+		const stocks = ['PETR4.SA', 'UNKNOW.SA', 'OIBR4.SA'];
 		const tests = await businessFinancial.getStocksDataSerial(stocks);
 		chai.expect(tests).exist;
 		chai.expect(tests.lastPrices).exist;
 		tests.lastPrices.forEach(test => {
 			chai.expect(test).exist;
 			chai.expect(test.name).exist;
-			chai.expect(test.name).to.be.a('string');
-			chai.expect(stocks.indexOf(test.name)).to.be.greaterThan(-1);
-			chai.expect(test.lastPrice).exist;
-			chai.expect(test.lastPrice).to.be.a('number');
-			chai.expect(test.pricedAt).exist;
-			chai.expect(test.pricedAt).to.be.a('string');
-			chai.expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(test.pricedAt)).be.true;
+			if (Object.keys(test).length > 1) {
+				chai.expect(test.name).to.be.a('string');
+				chai.expect(stocks.indexOf(test.name)).to.be.greaterThan(-1);
+				chai.expect(test.lastPrice).exist;
+				chai.expect(test.lastPrice).to.be.a('number');
+				chai.expect(test.pricedAt).exist;
+				chai.expect(test.pricedAt).to.be.a('string');
+				chai.expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(test.pricedAt)).be.true;
+			}
 		});
 	});
-	it('Deve recuperar os últimos preços de uma lista de ações (em paralelo)', async () => {
-		const stocks = ['PETR4.SA', 'VALE3.SA', 'OIBR4.SA'];
+	it('Deve recuperar os últimos preços de uma lista de ações (em paralelo), atentando para ações inválidas', async () => {
+		const stocks = ['PETR4.SA', 'UNKNOW.SA', 'OIBR4.SA'];
 		const tests = await businessFinancial.getStocksDataParalel(stocks);
 		chai.expect(tests).exist;
 		chai.expect(tests.lastPrices).exist;
 		tests.lastPrices.forEach(test => {
 			chai.expect(test).exist;
 			chai.expect(test.name).exist;
-			chai.expect(test.name).to.be.a('string');
-			chai.expect(stocks.indexOf(test.name)).to.be.greaterThan(-1);
-			chai.expect(test.lastPrice).exist;
-			chai.expect(test.lastPrice).to.be.a('number');
-			chai.expect(test.pricedAt).exist;
-			chai.expect(test.pricedAt).to.be.a('string');
-			chai.expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(test.pricedAt)).be.true;
+			if (Object.keys(test).length > 1) {
+				chai.expect(test.name).to.be.a('string');
+				chai.expect(stocks.indexOf(test.name)).to.be.greaterThan(-1);
+				chai.expect(test.lastPrice).exist;
+				chai.expect(test.lastPrice).to.be.a('number');
+				chai.expect(test.pricedAt).exist;
+				chai.expect(test.pricedAt).to.be.a('string');
+				chai.expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(test.pricedAt)).be.true;
+			}
 		});
 	});
 	it('Deve projetar os ganhos de compra de uma ação', async () => {
@@ -96,5 +110,12 @@ describe('Testes no módulo financeiro das regras de negócio', () => {
 		chai.expect(test.lastPrice).to.be.a('number');
 		chai.expect(test.capitalGains).exist;
 		chai.expect(test.capitalGains).be.equal(purchasedAmount * (test.lastPrice - test.priceAtDate));
+	});
+	it('Deve retornar vazio ao tentar projetar os ganhos de compra de uma ação inválida', async () => {
+		const stockName = 'UNKNOW.SA';
+		const purchasedAmount = 100;
+		const purchasedAt = '2018-01-01';
+		const test = await businessFinancial.projectGains(stockName, purchasedAmount, purchasedAt);
+		chai.expect(test).not.exist;
 	});
 });

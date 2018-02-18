@@ -1,18 +1,10 @@
-const googleFinance = require('google-finance');
 const moment = require('moment');
-async function getHistorical(stockName, from, to) {
-	const symbol = `BVMF:${stockName.split('.')[0]}`;
-	return googleFinance.historical({
-		symbol,
-		from: from.format('YYYY-MM-DD'),
-		to: to.format('YYYY-MM-DD')
-	});
-}
+const { getHistorical } = require('../service/stock');
 module.exports = {
 	async getRecentQuote(stockName) {
 		const historical = await getHistorical(stockName, moment().subtract(5, 'days'), moment());
 		if (!historical || !historical.length) {
-			return {};
+			return;
 		}
 		const len = historical.length;
 		return {
@@ -24,7 +16,7 @@ module.exports = {
 	async getHistoricalQuote(stockName, from, to) {
 		const historical = await getHistorical(stockName, moment(from, 'YYYY-MM-DD'), moment(to, 'YYYY-MM-DD'));
 		if (!historical || !historical.length) {
-			return {};
+			return;
 		}
 		result = {
 			name: stockName
@@ -43,7 +35,9 @@ module.exports = {
 	async getStocksDataParalel(stocksNames) {
 		const promises = stocksNames.reduce((arr, stockName) => {
 			arr.push(new Promise((resolve) => {
-				this.getRecentQuote(stockName).then((fullfiled) => resolve(fullfiled));
+				this.getRecentQuote(stockName).then((fullfiled) => fullfiled ? resolve(fullfiled) : resolve({
+					name: stockName
+				}));
 			}));
 			return arr;
 		}, []);
@@ -57,7 +51,9 @@ module.exports = {
 		await stocksNames.reduce((promise, stockName) => {
 			return promise.then(() => {
 				return this.getRecentQuote(stockName).then(h => {
-					data.push(h);
+					data.push(h ? h : {
+						name: stockName
+					});
 					return Promise.resolve();
 				});
 			});
@@ -69,7 +65,7 @@ module.exports = {
 	async projectGains(stockName, purchasedAmount, purchasedAt) {
 		const historical = await getHistorical(stockName, moment(purchasedAt, 'YYYY-MM-DD'), moment());
 		if (!historical || !historical.length) {
-			return {};
+			return;
 		}
 		const len = historical.length;
 		return {

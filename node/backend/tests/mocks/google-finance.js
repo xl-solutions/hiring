@@ -11,6 +11,9 @@ module.exports = {
 		if (!options || !options.symbol || !options.from || !options.to) {
 			throw new Error('Missing params');
 		}
+		if (options.symbol == 'BVMF:UNKNOW') {
+			return promisifyResult([]);
+		}
 		if (!/\d{4}-\d{2}-\d{2}/.test(options.to) || !/\d{4}-\d{2}-\d{2}/.test(options.from)) {
 			throw new Error('Invalid date format');
 		}
