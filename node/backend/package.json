@@ -4,6 +4,8 @@
   "description": "Cool Financial Service backend",
   "main": "server.js",
   "scripts": {
+    "prestart": "npm install",
+    "start": "node server.js",
     "test": "mocha -R spec --exit"
   },
   "dependencies": {

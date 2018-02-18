@@ -7,6 +7,12 @@ const { join } = require('path');
 const routesPath = join(__dirname, '../routes');
 module.exports = () => {
 	app.set('port', port);
+	app.use(function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Methods", "GET, PUT, OPTIONS");
+		res.header("Access-Control-Allow-Headers", "Content-Type, Accept");
+		next();
+	  });
     app.use(bodyParser.json({
 		type: 'application/json'
 	}));
