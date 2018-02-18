@@ -26,7 +26,7 @@ The server offer four endpoits:
 
 Input:
 
-- `stock_name` - URI passed parameter indicating the stock name (Ex: PETR4.SA, VALE5.SA)
+- `stock_name` - URI passed parameter indicating the stock name (Ex: BVMF:PETR4, BVMF:VALE3, NASDAQ:AAPL)
 
 Return:
 
@@ -42,7 +42,7 @@ Return:
 
 Input:
 
-- `stock_name` - URI passed parameter indicating the stock name (Ex: PETR4.SA, VALE5.SA)
+- `stock_name` - URI passed parameter indicating the stock name (Ex: BVMF:PETR4, BVMF:VALE3, NASDAQ:AAPL)
 - `from` - string with date in ISO 8601 format
 - `to` - string with date in ISO 8601 format
 
@@ -70,7 +70,7 @@ The pricing scheme is shown bellow:
 
 Input:
 
-- `stock_name` - URI passed parameter indicating the stock name (Ex: PETR4.SA, VALE5.SA)
+- `stock_name` - URI passed parameter indicating the stock name (Ex: BVMF:PETR4, BVMF:VALE3, NASDAQ:AAPL)
 - Payload JSON with stock list:
 
 ```js
@@ -101,7 +101,7 @@ Return:
 
 Input:
 
-- `stock_name` - URI passed parameter indicating the stock name (Ex: PETR4.SA, VALE5.SA)
+- `stock_name` - URI passed parameter indicating the stock name (Ex: BVMF:PETR4, BVMF:VALE3, NASDAQ:AAPL)
 - `purchasedAmount` - `number` amount of stocks
 - `purchasedAt` - `string` string with date in ISO 8601 format
 
