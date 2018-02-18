@@ -1,0 +1,19 @@
+{
+  "name": "coolfinancialservice",
+  "version": "1.0.0",
+  "description": "Cool Financial Service backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "dependencies": {
+    "google-finance": "^0.1.11",
+    "moment": "^2.20.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.1"
+  },
+  "author": "DanielFrag <danielmarcos2@yahoo.com.br>",
+  "license": "ISC"
+}
