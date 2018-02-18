@@ -41,9 +41,26 @@ describe('Testes no módulo financeiro das regras de negócio', () => {
 			chai.expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(element.pricedAt)).be.true;
 		});
 	});
-	it('Deve recuperar os últimos preços de uma lista de ações', async () => {
-		const stocks = ['PETR4.SA', 'VALE5.SA', 'OIBR4.SA'];
-		const tests = await businessFinancial.getStocksData(stocks);
+	it('Deve recuperar os últimos preços de uma lista de ações (uma por vez)', async () => {
+		const stocks = ['PETR4.SA', 'VALE3.SA', 'OIBR4.SA'];
+		const tests = await businessFinancial.getStocksDataSerial(stocks);
+		chai.expect(tests).exist;
+		chai.expect(tests.lastPrices).exist;
+		tests.lastPrices.forEach(test => {
+			chai.expect(test).exist;
+			chai.expect(test.name).exist;
+			chai.expect(test.name).to.be.a('string');
+			chai.expect(stocks.indexOf(test.name)).to.be.greaterThan(-1);
+			chai.expect(test.lastPrice).exist;
+			chai.expect(test.lastPrice).to.be.a('number');
+			chai.expect(test.pricedAt).exist;
+			chai.expect(test.pricedAt).to.be.a('string');
+			chai.expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(test.pricedAt)).be.true;
+		});
+	});
+	it('Deve recuperar os últimos preços de uma lista de ações (em paralelo)', async () => {
+		const stocks = ['PETR4.SA', 'VALE3.SA', 'OIBR4.SA'];
+		const tests = await businessFinancial.getStocksDataParalel(stocks);
 		chai.expect(tests).exist;
 		chai.expect(tests.lastPrices).exist;
 		tests.lastPrices.forEach(test => {
@@ -73,7 +90,6 @@ describe('Testes no módulo financeiro das regras de negócio', () => {
 		chai.expect(test.purchasedAt).exist;
 		chai.expect(test.purchasedAt).to.be.a('string');
 		chai.expect(/^\d{4}-\d{2}-\d{2}$/.test(test.purchasedAt)).be.true;
-		chai.expect(test.purchasedAt).to.be.equal(purchasedAt);
 		chai.expect(test.priceAtDate).exist;
 		chai.expect(test.priceAtDate).to.be.a('number');
 		chai.expect(test.lastPrice).exist;

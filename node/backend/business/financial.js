@@ -40,7 +40,19 @@ module.exports = {
 		});
 		return result;
 	},
-	async getStocksData(stocksNames) {
+	async getStocksDataParalel(stocksNames) {
+		const promises = stocksNames.reduce((arr, stockName) => {
+			arr.push(new Promise((resolve) => {
+				this.getRecentQuote(stockName).then((fullfiled) => resolve(fullfiled));
+			}));
+			return arr;
+		}, []);
+		const data = await Promise.all(promises);
+		return {
+			lastPrices: data
+		};
+	},
+	async getStocksDataSerial(stocksNames) {
 		const data = [];
 		await stocksNames.reduce((promise, stockName) => {
 			return promise.then(() => {
