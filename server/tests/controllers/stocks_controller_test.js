@@ -7,12 +7,12 @@ let
 chai.use(chaiHttp)
 
 const
-  stock_name = 'PETR4.SA',
-  stocks_array = 'PETR4.SA,VALE5.SA',
-  historyFrom = '2018-01-01',
-  historyTo = '2018-01-02'
+  stock_name = 'BVMF:PETR4',
+  stocks_array = 'BVMF:PETR4,BVMF:VALE3',
+  historyFrom = '2018-01-02',
+  historyTo = '2018-01-05'
   purchasedAmount = '100'
-  purchasedAt = '2018-01-01'
+  purchasedAt = '2018-01-02'
 
 
 let expect = chai.expect
@@ -48,7 +48,7 @@ describe('Test in stocks_controller', () => {
 
   it('Test route /stocks/:stock_name/history', (done) => {
     chai.request(app)
-      .get('/stocks/' + stock_name + '/history?from=<' + historyFrom + '>&to=<' + historyTo + '>')
+      .get('/stocks/' + stock_name + '/history?from=' + historyFrom + '&to=' + historyTo)
       .end((err, res) => {
         expect(res.status).to.equal(200)
         expect(res.body).to.be.an('object')
@@ -94,7 +94,7 @@ describe('Test in stocks_controller', () => {
 
   it('Test route /stocks/:stock_name/gains', (done) => {
     chai.request(app)
-      .get('/stocks/' + stock_name + '/gains?purchasedAmount=<' + purchasedAmount + '>&purchasedAt=<' + purchasedAt + '>')
+      .get('/stocks/' + stock_name + '/gains?purchasedAmount=' + purchasedAmount + '&purchasedAt=' + purchasedAt)
       .end((err, res) => {
         expect(res.status).to.equal(200)
         expect(res.body).to.be.an('object')
