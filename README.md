@@ -1,4 +1,4 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions TEst
+# Testes Técnicos XL solutions / Tecnical XL Solutions Test
 
 Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
 
