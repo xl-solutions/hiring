@@ -13,7 +13,7 @@ Para isso, a equipe de software da empresa optou por desenvolver um APP que dar�
 
 Sua solução deverá ter testes automatizados.
 
-Para obter dados de ações, você poderá usar o Google Finance ou o Yahoo Finance, e dispor daqueles relativos aos papéis da BOVESPA. Há bibliotecas prontas para isso — sinta-se livre para utilizá-las.
+To obtain the stock information you may use Alpha Vantage (https://www.alphavantage.co). If you find libraries for that, you are allowed to use them.
 
 O tratamento de erros não será explicitado nos endpoints. O candidato ou candidata poderá inferir casos que poderão gerar erros ou duplicidades nos dados, e tratá-los de acordo. A ausência de tratamento não desqualifica a proposta; a presença, no entanto, contará pontos a favor.
 
@@ -41,7 +41,7 @@ As funcionalidades esperadas são:
 - Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
 - Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
 
-Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Google Finance, Yahoo Finance, ou fazer uma arquitetura master-detail simples.
+Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Google Finance ou fazer uma arquitetura master-detail simples.
 
 
-[yahoofin]: http://www.canbike.org/information-technology/yahoo-finance-url-download-to-a-csv-file.html
+https://www.alphavantage.co
