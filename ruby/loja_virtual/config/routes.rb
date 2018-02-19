@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :cellphone do
   	collection do
   		post :import
+  		post :search
   	end
   end
 

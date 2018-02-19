@@ -2,9 +2,20 @@ require 'roo'
 
 class CellphoneController < ApplicationController
 
-
   def index
   	@cellphones = Cellphone.all
+  end
+
+  def search
+    puts params[:query_param]
+
+    @selected = Cellphone.where("model LIKE :param", param: "%#{params[:query_param]}%")
+
+    puts @selected
+
+    respond_to do |format|
+        format.js
+    end
   end
 
   def create
