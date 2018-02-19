@@ -17,8 +17,8 @@ protocol TimeSerieDescription {
 }
 
 public final class TimeSerie: CustomStringConvertible, TimeSerieDescription {
-   
-
+    
+    
     
     let date: String
     let open: Float
@@ -27,12 +27,7 @@ public final class TimeSerie: CustomStringConvertible, TimeSerieDescription {
     let close: Float
     let volume: Int
     
-    required public init(date: String,
-                         open: Float,
-                         high: Float,
-                         low: Float,
-                         close: Float,
-                         volume: Int) {
+    required public init(date: String,open: Float,high: Float,low: Float,close: Float,volume: Int) {
         self.date = date
         self.open = open
         self.high = high

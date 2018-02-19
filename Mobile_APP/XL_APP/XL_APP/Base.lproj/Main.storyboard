@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Portfolio-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="XL_APP" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,9 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sXu-TG-MiO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sXu-TG-MiO">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="stockCell" id="tOZ-hZ-M1U">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tOZ-hZ-M1U" id="Ahp-du-tWe">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -32,10 +42,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="srQ-pk-kIJ">
+                    <navigationItem key="navigationItem" title="Portfolio" id="srQ-pk-kIJ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZzL-QB-RhS">
                             <connections>
-                                <action selector="addStock:" destination="BYZ-38-t0r" id="7is-G3-wYP"/>
+                                <segue destination="NZa-Az-h1j" kind="show" id="AdJ-aZ-puC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -46,6 +56,145 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="476" y="114.69265367316342"/>
+        </scene>
+        <!--Portfolio Search View Controller-->
+        <scene sceneID="x4I-8O-afN">
+            <objects>
+                <viewController id="NZa-Az-h1j" customClass="PortfolioSearchViewController" customModule="XL_APP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kDm-GS-2mx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Simbolo (ex: AAPL)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VCW-fI-hnU">
+                                <rect key="frame" x="16" y="74" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="72s-ay-hGF">
+                                <rect key="frame" x="16" y="179" width="343" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="6rs-74-hVP"/>
+                                    <constraint firstAttribute="width" constant="343" id="Uf2-NT-ZQO"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="540772136.03162098">
+                                    <!--2018-02-19 22:28:56 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-31413600">
+                                    <!--2000-01-03 10:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data da ação" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqu-aX-5Wu">
+                                <rect key="frame" x="16" y="150" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Função" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FzA-rD-riH">
+                                <rect key="frame" x="16" y="349" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fLS-Lh-Haq">
+                                <rect key="frame" x="16" y="378" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Diaria"/>
+                                    <segment title="Semanal"/>
+                                    <segment title="Mensal"/>
+                                </segments>
+                            </segmentedControl>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Diaria irá fazer uma busca mais completa com maior chance de achar o valor no dia especifico, porem deixara o app mais lento." textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="O4w-Tz-fNI">
+                                <rect key="frame" x="16" y="414" width="343" height="67"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="xi5-Oa-3Fo"/>
+                                </constraints>
+                                <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tamanho" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aW3-Iq-acR">
+                                <rect key="frame" x="16" y="489" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="a4G-1Z-Bq0">
+                                <rect key="frame" x="16" y="518" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Completo"/>
+                                    <segment title="Compacto"/>
+                                </segments>
+                            </segmentedControl>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Valor da ação (Em dolares)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3dE-2o-KNC">
+                                <rect key="frame" x="16" y="112" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Completo tem uma chance alta de encontrar a ação no dia requerido, porem a pesquisa pode ficar muito lenta." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2wP-w7-dJR">
+                                <rect key="frame" x="16" y="554" width="343" height="67"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="a4G-1Z-Bq0" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="2co-HF-Ni9"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="3dE-2o-KNC" secondAttribute="trailing" constant="16" id="3YK-9S-V8O"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="fqu-aX-5Wu" secondAttribute="trailing" constant="16" id="4GC-xa-R8q"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="2wP-w7-dJR" secondAttribute="trailing" constant="16" id="7uh-qu-ffD"/>
+                            <constraint firstItem="aW3-Iq-acR" firstAttribute="top" secondItem="O4w-Tz-fNI" secondAttribute="bottom" constant="8" id="9T6-VD-y3R"/>
+                            <constraint firstItem="a4G-1Z-Bq0" firstAttribute="top" secondItem="aW3-Iq-acR" secondAttribute="bottom" constant="8" id="Dlh-TN-YR4"/>
+                            <constraint firstItem="72s-ay-hGF" firstAttribute="top" secondItem="fqu-aX-5Wu" secondAttribute="bottom" constant="8" symbolic="YES" id="IPd-cv-KWy"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="O4w-Tz-fNI" secondAttribute="trailing" constant="16" id="NVS-qM-M7T"/>
+                            <constraint firstItem="aW3-Iq-acR" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="Qr5-eD-myW"/>
+                            <constraint firstItem="fqu-aX-5Wu" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="QsL-y9-Mgu"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="bottom" secondItem="2wP-w7-dJR" secondAttribute="bottom" constant="46" id="Uk0-9o-QSl"/>
+                            <constraint firstItem="fLS-Lh-Haq" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="aNw-kY-4Je"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="aW3-Iq-acR" secondAttribute="trailing" constant="16" id="bMF-ZN-Crw"/>
+                            <constraint firstItem="FzA-rD-riH" firstAttribute="top" secondItem="72s-ay-hGF" secondAttribute="bottom" constant="8" symbolic="YES" id="bYS-Ub-QHo"/>
+                            <constraint firstItem="2wP-w7-dJR" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="bsx-3h-qgd"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="VCW-fI-hnU" secondAttribute="trailing" constant="16" id="cxB-vr-zxv"/>
+                            <constraint firstItem="fqu-aX-5Wu" firstAttribute="top" secondItem="3dE-2o-KNC" secondAttribute="bottom" constant="8" id="gkL-j0-tC6"/>
+                            <constraint firstItem="O4w-Tz-fNI" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="kcj-9b-clM"/>
+                            <constraint firstItem="2wP-w7-dJR" firstAttribute="top" secondItem="a4G-1Z-Bq0" secondAttribute="bottom" constant="8" id="lS3-4Y-K9o"/>
+                            <constraint firstItem="72s-ay-hGF" firstAttribute="leading" secondItem="fqu-aX-5Wu" secondAttribute="leading" id="nDa-jz-EIC"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="fLS-Lh-Haq" secondAttribute="trailing" constant="16" id="neE-jl-sSq"/>
+                            <constraint firstItem="VCW-fI-hnU" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="o0X-70-Tjc"/>
+                            <constraint firstItem="3dE-2o-KNC" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="o9s-lv-lJ1"/>
+                            <constraint firstItem="VCW-fI-hnU" firstAttribute="top" secondItem="22V-tI-84r" secondAttribute="top" constant="10" id="oac-Qt-JMU"/>
+                            <constraint firstItem="FzA-rD-riH" firstAttribute="leading" secondItem="22V-tI-84r" secondAttribute="leading" constant="16" id="pw6-J2-XAW"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="FzA-rD-riH" secondAttribute="trailing" constant="16" id="sqS-DM-pk7"/>
+                            <constraint firstItem="22V-tI-84r" firstAttribute="trailing" secondItem="a4G-1Z-Bq0" secondAttribute="trailing" constant="16" id="tN1-pl-uT4"/>
+                            <constraint firstItem="O4w-Tz-fNI" firstAttribute="top" secondItem="fLS-Lh-Haq" secondAttribute="bottom" constant="8" id="vPe-hQ-cKO"/>
+                            <constraint firstItem="3dE-2o-KNC" firstAttribute="top" secondItem="VCW-fI-hnU" secondAttribute="bottom" constant="8" id="wC2-d2-atf"/>
+                            <constraint firstItem="fLS-Lh-Haq" firstAttribute="top" secondItem="FzA-rD-riH" secondAttribute="bottom" constant="8" id="zqo-EE-1wc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="22V-tI-84r"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qc2-kL-UGa">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="5Sb-g7-WhS">
+                            <connections>
+                                <action selector="done:" destination="NZa-Az-h1j" id="FcN-0G-x82"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="72s-ay-hGF" id="bnP-wf-Ptg"/>
+                        <outlet property="functionDescription" destination="O4w-Tz-fNI" id="zmH-fb-phh"/>
+                        <outlet property="functionSegment" destination="fLS-Lh-Haq" id="atv-5B-fYk"/>
+                        <outlet property="sizeDescription" destination="2wP-w7-dJR" id="FIL-xq-dbJ"/>
+                        <outlet property="sizeSegment" destination="a4G-1Z-Bq0" id="doH-Ac-xJc"/>
+                        <outlet property="symbolText" destination="VCW-fI-hnU" id="Xa5-t8-4Sp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cov-QJ-V3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1348" y="115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ri2-nQ-NiX">

@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+//Codigo Criado por Roshan no link: https://github.com/rugoli/AVSwift
 class DataFetch<TimeSerie: Decodable>: NSObject {
     let url: URL
     fileprivate let metadataKey: String = "Metadata"

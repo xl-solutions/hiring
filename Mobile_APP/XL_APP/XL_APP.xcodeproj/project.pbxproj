@@ -16,6 +16,10 @@
 		ACA362AA20379226005B5247 /* XL_APP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACA362A820379226005B5247 /* XL_APP.xcdatamodeld */; };
 		ACA362AC20379226005B5247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACA362AB20379226005B5247 /* Assets.xcassets */; };
 		ACA362AF20379226005B5247 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA362AD20379226005B5247 /* LaunchScreen.storyboard */; };
+		ACD250EF203B96F700A9FCE1 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD250EE203B96F700A9FCE1 /* Portfolio.swift */; };
+		ACEBD8F9203B7A2E00C22480 /* AVKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEBD8F8203B7A2E00C22480 /* AVKey.swift */; };
+		ACEBD8FC203B7B8500C22480 /* StockURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEBD8FB203B7B8500C22480 /* StockURL.swift */; };
+		ACEBD901203B8F5200C22480 /* PortfolioSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEBD900203B8F5200C22480 /* PortfolioSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		ACA362AB20379226005B5247 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACA362AE20379226005B5247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACA362B020379226005B5247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACD250EE203B96F700A9FCE1 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
+		ACEBD8F8203B7A2E00C22480 /* AVKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVKey.swift; sourceTree = "<group>"; };
+		ACEBD8FB203B7B8500C22480 /* StockURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockURL.swift; sourceTree = "<group>"; };
+		ACEBD900203B8F5200C22480 /* PortfolioSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioSearchViewController.swift; sourceTree = "<group>"; };
 		DF4853445D56196A911BD95A /* Pods_XL_APP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XL_APP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -84,10 +92,12 @@
 		ACA362A020379226005B5247 /* XL_APP */ = {
 			isa = PBXGroup;
 			children = (
+				ACEBD8FD203B8DE100C22480 /* ViewController */,
+				ACEBD8FA203B7B6F00C22480 /* StockSearch */,
+				ACEBD8F7203B7A1500C22480 /* Singleton */,
 				AC504EC3203B5C5B008E6C18 /* DataFetch */,
 				ACCFEDCC2038D621002DB080 /* Model */,
 				ACA362A120379226005B5247 /* AppDelegate.swift */,
-				ACA362A320379226005B5247 /* ViewController.swift */,
 				ACA362A520379226005B5247 /* Main.storyboard */,
 				ACA362AB20379226005B5247 /* Assets.xcassets */,
 				ACA362AD20379226005B5247 /* LaunchScreen.storyboard */,
@@ -101,8 +111,34 @@
 			isa = PBXGroup;
 			children = (
 				AC42D1D2203B415300479782 /* TimeSerie.swift */,
+				ACD250EE203B96F700A9FCE1 /* Portfolio.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		ACEBD8F7203B7A1500C22480 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				ACEBD8F8203B7A2E00C22480 /* AVKey.swift */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
+		ACEBD8FA203B7B6F00C22480 /* StockSearch */ = {
+			isa = PBXGroup;
+			children = (
+				ACEBD8FB203B7B8500C22480 /* StockURL.swift */,
+			);
+			path = StockSearch;
+			sourceTree = "<group>";
+		};
+		ACEBD8FD203B8DE100C22480 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ACEBD900203B8F5200C22480 /* PortfolioSearchViewController.swift */,
+				ACA362A320379226005B5247 /* ViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		F68A94BB66073945E6FF3E49 /* Frameworks */ = {
@@ -244,9 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACA362A420379226005B5247 /* ViewController.swift in Sources */,
+				ACEBD901203B8F5200C22480 /* PortfolioSearchViewController.swift in Sources */,
 				AC42D1D3203B415300479782 /* TimeSerie.swift in Sources */,
+				ACD250EF203B96F700A9FCE1 /* Portfolio.swift in Sources */,
+				ACEBD8FC203B7B8500C22480 /* StockURL.swift in Sources */,
 				AC504EC5203B5C6B008E6C18 /* DataFetch.swift in Sources */,
 				ACA362A220379226005B5247 /* AppDelegate.swift in Sources */,
+				ACEBD8F9203B7A2E00C22480 /* AVKey.swift in Sources */,
 				ACA362AA20379226005B5247 /* XL_APP.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
