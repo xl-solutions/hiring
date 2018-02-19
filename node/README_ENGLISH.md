@@ -16,7 +16,7 @@ The service must be implemented via HTTP, and the requests and responses will be
 
 Your solution must have automated tests from both frontend and backend.
 
-To obtain the stock information you may use Google Finance or Yahoo Finance and make available BOVESPA stock information. There are some available libraries for that and you are allowed to use them.
+To obtain the stock information you may use Alpha Vantage (https://www.alphavantage.co). If you find libraries for that, you are allowed to use them.
 
 The error handling will not be specified. The candidate may interfere in the error cases or duplicity, and handle them. The absense of this error handling will not disqualify the test; The presence of those will count extra points.
 
@@ -44,7 +44,7 @@ Features:
 - See historic stock price, allowing a data rage;
 - Make a gains projection of a stock based on a past date of acquisition;
 
-If you don't know how to organize this features, You may use Google Finance and Yahoo Finance to get inspiration or make a simple master-detail.
+If you don't know how to organize this features, You may use Yahoo Finance to get inspiration or make a simple master-detail.
 
 ## Backend
 
@@ -175,4 +175,4 @@ $ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5
 ```
 
 
-[yahoofin]: http://www.canbike.org/information-technology/yahoo-finance-url-download-to-a-csv-file.html
+https://www.alphavantage.co
