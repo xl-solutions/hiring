@@ -1,33 +1,28 @@
 <template>
-  <div class="custom-input">
+  <div class="container custom-input">
     <h1>Dashboard</h1>
     <br/>
-    <input v-model="stockName" style="text-transform: uppercase">
-    <button @click="addStock" :disabled="queringData">Add</button>
-    <!-- displays list --> 
-    <ul>
-      <li v-for="s in stocksData" :key="s.name" class="w3-card-4">
-        <header class="w3-container w3-blue">
-          {{ s.name }}
-        </header>
-        <div class="w3-container">
-          <div class="block">
-            R${{ s.lastPrice.toString().replace('.', ',') }}
-          </div>
-          <div class="block right">
-            <button @click="getHistory(s.name)">
-              Histórico
-            </button>
-          </div>
-          <div class="block right">
-            <button @click="getProjection(s.name)">
-              Projeção
-            </button>
-          </div>
+    <input id="add-name" v-model="stockName" style="text-transform: uppercase">
+    <button id="add-btn" class="waves-effect waves-light btn" @click="addStock" :disabled="queringData">Add</button>
+    <ul class="collection">
+      <li v-for="s in stocksData" :key="s.name" class="collection-item">
+        <div class="title">
+          <span>
+            {{ s.name }}
+          </span>
         </div>
-        <footer class="w3-container w3-green">
-          {{ new Date(s.pricedAt).toLocaleDateString() }}
-        </footer>
+        <div>
+          <p>
+            R${{ s.lastPrice && s.lastPrice.toString().replace('.', ',') }}<br/>
+            {{ s.pricedAt && new Date(s.pricedAt).toLocaleDateString() }}
+          </p>
+        </div>
+        <button class="waves-effect waves-light btn" @click="getHistory(s.name)">
+          Histórico
+        </button>
+        <button class="waves-effect waves-light btn" @click="getProjection(s.name)">
+          Projeção
+        </button>
       </li>
     </ul>
   </div>
@@ -52,9 +47,11 @@ export default {
         }, {
           'Content-Type': 'application/json'
         })
-        .then(fullfiled => {
-          this.$store.commit('UPDATE_STOCKS_DATA', fullfiled.body.lastPrices);
+        .then(response => {
+          const stocks = response.body.lastPrices.filter(s => s.lastPrice);
+          this.$store.commit('UPDATE_STOCKS_DATA', stocks);
           this.stocksData = this.$store.state.stocksData.slice(0, this.$store.state.stocksData.length);
+          this.$store.commit('UPDATE_STOCKS_NAME', stocks.map(s => s.name));
         })
         .catch(err => console.log(err));
     },
@@ -68,21 +65,24 @@ export default {
   methods: {
       addStock() {
         this.queringData = true;
-        if (!this.stockName || this.$store.state.stocksNames.find(e => e == this.stockName)) {
+        const stockName = this.stockName.toUpperCase();
+        if (!stockName || this.$store.state.stocksNames.find(e => e == stockName)) {
           this.resetInput();
           return;
         }
-        console.log(this.$store.state.stocksNames.find(e => e == this.stockName));
-        this.$store.commit('INSERT_STOCK_NAME', this.stockName.toUpperCase());
+        this.$store.commit('INSERT_STOCK_NAME', stockName);
         this.$http
-          .get(`${process.env.API}/stocks/${this.stockName.toUpperCase()}/quote`)
+          .get(`${process.env.API}/stocks/${stockName}/quote`)
           .then(response => {
             if (response.body) {
               this.$store.commit('INSERT_STOCK_DATA', response.body);
               this.stocksData = this.$store.state.stocksData.slice(0, this.$store.state.stocksData.length);
+            } else {
+              this.$store.commit('REMOVE_STOCK_NAME', stockName);
             }
             this.resetInput();
           }, responseError => {
+            this.$store.commit('REMOVE_STOCK_NAME', stockName);
             this.resetInput();
           })
           .catch(err => {
