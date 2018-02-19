@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 function load (component) {
-  return () => import(`views/${component}.vue`)
+  return () => import(`@/${component}.vue`)
 }
 
 export default new VueRouter({
@@ -12,17 +12,17 @@ export default new VueRouter({
   routes: [
     {
       path: '*',
-      component: load('layouts/default'),
+      component: load('layouts/DefaultLayout'),
       children: [
         {
           path: '/portfolio',
-          component: load('pages/stocks/portfolio')
+          component: load('pages/stocks/Portfolio')
         }, {
           path: '/history',
-          component: load('pages/stocks/history')
+          component: load('pages/stocks/History')
         }, {
           path: '/gains',
-          component: load('pages/stocks/gains')
+          component: load('pages/stocks/Gains')
         }
       ]
     }
