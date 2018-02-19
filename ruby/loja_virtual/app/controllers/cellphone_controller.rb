@@ -9,7 +9,8 @@ class CellphoneController < ApplicationController
   def search
     puts params[:query_param]
 
-    @selected = Cellphone.where("model LIKE :param", param: "%#{params[:query_param]}%")
+    @selected = Cellphone.where("(model LIKE :param) OR (manufacturer LIKE :param) OR (color LIKE :param)", 
+      param: "%#{params[:query_param]}%")
 
     puts @selected
 
