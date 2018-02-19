@@ -17,10 +17,12 @@ export default new VueRouter({
         {
           path: '/portfolio',
           component: load('pages/stocks/portfolio')
-        },
-        {
+        }, {
           path: '/history',
           component: load('pages/stocks/history')
+        }, {
+          path: '/gains',
+          component: load('pages/stocks/gains')
         }
       ]
     }
