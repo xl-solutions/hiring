@@ -1,11 +1,10 @@
-
 <% if flash[:errors] %>
-	<% flash[:errors].each do |flash| %>
-		<p> <%= flash %> </p>
-	<% end %>
+	<div class="alert alert-danger" role="alert">
+		<% flash[:errors].each do |flash| %>
+			<p> <%= flash %> </p>
+		<% end %>
+	</div>
 <% end %>
-
-<h1>Cellphone List</h1>
 
 <%= form_with url: { action: "search" } do |form| %>
   <%= form.text_field :query_param %>

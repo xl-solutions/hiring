@@ -14,7 +14,7 @@ class CellphoneControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_match 'Cellphone List', @response.body  
-    assert_match 'There is no cellphone record in the database.', @response.body
+    assert_match 'There are no cellphone records in the database.', @response.body
   end
 
   test "should insert a cellphone record" do
