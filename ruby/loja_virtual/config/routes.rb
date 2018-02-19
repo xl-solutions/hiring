@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   	collection do
   		post :import
   		post :search
+
+  		get :show_list
+      get :show_import
   	end
   end
 

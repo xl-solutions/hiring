@@ -3,13 +3,26 @@ require 'roo'
 class CellphoneController < ApplicationController
 
   def index
-  	@cellphones = Cellphone.all
   end
 
   def search
     @selected = Cellphone.where("(model LIKE :param) OR (manufacturer LIKE :param) OR (color LIKE :param)", 
       param: "%#{params[:query_param]}%")
 
+    respond_to do |format|
+        format.js
+    end
+  end
+
+  def show_list
+    @cellphones = Cellphone.all
+    
+    respond_to do |format|
+        format.js
+    end
+  end
+
+  def show_import
     respond_to do |format|
         format.js
     end
