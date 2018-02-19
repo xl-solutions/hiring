@@ -15,7 +15,7 @@ O serviço deverá ser implementado via HTTP, e o formato de serialização das 
 
 Sua solução deverá ter testes automatizados, tanto no frontend quanto no backend.
 
-Para obter dados de ações, você poderá usar o Google Finance ou o Yahoo Finance, e dispor daqueles relativos aos papéis da BOVESPA. Há bibliotecas prontas para isso — sinta-se livre para utilizá-las.
+Para obter dados de ações, você poderá usar o Alpha Vantage (https://www.alphavantage.co). Caso queira utilizar bibliotecas prontas para isso — sinta-se livre para utilizá-las.
 
 O tratamento de erros não será explicitado nos endpoints. O candidato ou candidata poderá inferir casos que poderão gerar erros ou duplicidades nos dados, e tratá-los de acordo. A ausência de tratamento não desqualifica a proposta; a presença, no entanto, contará pontos a favor.
 
@@ -43,7 +43,7 @@ As funcionalidades esperadas são:
 - Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
 - Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
 
-Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Google Finance, Yahoo Finance, ou fazer uma arquitetura master-detail simples.
+Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Yahoo Finance, ou fazer uma arquitetura master-detail simples.
 
 ## Backend
 
@@ -173,4 +173,4 @@ $ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5
 ```
 
 
-[yahoofin]: http://www.canbike.org/information-technology/yahoo-finance-url-download-to-a-csv-file.html
+https://www.alphavantage.co
