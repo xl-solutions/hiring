@@ -5,16 +5,16 @@
         {{message}}
       </q-alert>
     </div>
-    <div class="row items-center">
-      <div class="col-lg-10">
-        <q-field  icon="trending up">
-          <q-input v-model="symbol" float-label="Informe the stock symbol (BVMF:PETR4, NASDAQ:AAPL)" />
-        </q-field>
+    <form @submit.prevent="getStock">
+      <div class="row items-center">
+        <div class="col-lg-12">
+          <q-input v-model="symbol" stack-label="Informe the stock symbol (BVMF:PETR4, NASDAQ:AAPL)"/>
+        </div>
       </div>
-      <div class="col-lg-2">
-        <q-btn small icon="search" @click="getStock">SEARCH</q-btn>
+      <div class="row">
+        <q-btn small icon="search" type="submit" style="margin-left: auto">SEARCH</q-btn>
       </div>
-    </div>
+    </form>
     <div class="row" style="margin-top: 20px">
       <div class="col">
         <q-data-table
@@ -63,16 +63,7 @@
         stocks: [],
         config: {
           title: 'Stocks',
-          refresh: true,
-          noHeader: false,
-          columnPicker: true,
-          leftStickyColumns: 0,
-          rightStickyColumns: 2,
-          bodyStyle: {
-            maxHeight: '500px'
-          },
           rowHeight: '50px',
-          responsive: true,
           pagination: {
             rowsPerPage: 10,
             options: [5, 10]
@@ -115,10 +106,16 @@
     methods: {
       getStock () {
         this.$http.get('/stocks/' + this.symbol + '/quote')
-          .then((resp) => {
-            this.stocks.push(resp.data)
-            LocalStorage.set('stocks', this.stocks)
-            this.symbol = ''
+          .then((res) => {
+            if (res.data.errors) {
+              let errors = res.data.errors
+              this.showMessage(errors[Object.keys(errors)[0]][0])
+            }
+            else {
+              this.stocks.push(res.data)
+              LocalStorage.set('stocks', this.stocks)
+              this.symbol = ''
+            }
           }).catch(() => {
             this.showMessage('Symbol not found!')
           })

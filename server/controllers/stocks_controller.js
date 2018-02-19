@@ -1,6 +1,32 @@
 let
   googleFinance = require('google-finance'),
-  moment = require('moment')
+  moment = require('moment'),
+  validate = require("validate.js")
+
+validate.extend(validate.validators.datetime, {
+  parse: (value) => {
+    return +moment(value)
+  },
+  format: (value) => {
+    return moment(value).format('YYYY-MM-DD')
+  }
+})
+
+
+const historyValidade = {
+  from: {
+    presence: {
+      allowEmpty: false
+    },
+    datetime: true
+  },
+  to: {
+    presence: {
+      allowEmpty: false
+    },
+    datetime: true
+  }
+}
 
 module.exports.quote = (app, req, res) => {
   googleFinance.historical({
@@ -8,8 +34,9 @@ module.exports.quote = (app, req, res) => {
     //Get the last five days. Because some days, like sunday, no has cotation
     from: moment().subtract(5, 'days').format('YYYY-MM-DD'),
   }, (err, quotes) => {
-    if (err || quotes.length < 1)
-      res.sendStatus(404)
+    if (err || quotes.length < 1) {
+      res.json({errors: {stock_name: ['Symbol not found!']}})
+    }
     else {
       let quote = quotes.pop()
       res.json({
@@ -22,69 +49,89 @@ module.exports.quote = (app, req, res) => {
 }
 
 module.exports.history = (app, req, res) => {
-  googleFinance.historical({
-    symbol: req.params.stock_name,
-    from: new Date(req.query.from),
-    to: new Date(req.query.to)
-  }, (err, quotes) => {
-    if (err || quotes.length < 1)
-      res.sendStatus(404)
-    else {
-      let result = []
+  let errors = validate(req.query, historyValidade)
 
-      quotes.forEach((quote) => {
-        result.push({
-          opening: quote.open,
-          low: quote.low,
-          high: quote.high,
-          closing: quote.close,
-          pricedAt: quote.date
-        })
-      })
-
-      res.json({name: quotes[0].symbol, prices: result})
+  if (errors) {
+    res.json({errors: errors})
+  }
+  else {
+    if (moment(req.query.from) >= moment(req.query.to)) {
+      res.json({errors: {from: ['From must be less than To']}})
     }
-  })
+    else if (moment(req.query.to) > moment()) {
+      res.json({errors: {from: ['To must be less or equal the current date']}})
+    }
+    else {
+      googleFinance.historical({
+        symbol: req.params.stock_name,
+        from: new Date(req.query.from),
+        to: new Date(req.query.to)
+      }, (err, quotes) => {
+        if (err || quotes.length < 1) {
+          res.json({errors: {stock_name: ['Symbol not found!']}})
+        }
+        else {
+          let result = []
+
+          quotes.forEach((quote) => {
+            result.push({
+              opening: quote.open,
+              low: quote.low,
+              high: quote.high,
+              closing: quote.close,
+              pricedAt: quote.date
+            })
+          })
+
+          res.json({name: quotes[0].symbol, lastPrices: result})
+        }
+      })
+    }
+  }
 }
 
 module.exports.compare = (app, req, res) => {
   let stocks = req.params.stock_name.replace(' ', '')
   stocks = stocks.split(',')
 
-  if (stocks.length < 2)
-    res.status(400).send({error: 'Send more then one symbol!'})
+  if (stocks.length < 2) {
+    res.json({errors: {stock_name: ['Send more then one stock symbol']}})
+  }
+  else {
+    googleFinance.historical({
+      symbols: stocks,
+      //Get the last five days. Because some days, like sunday, no has cotation
+      from: moment().subtract(5, 'days').format('YYYY-MM-DD'),
+    }, (err, quotes) => {
+      if (err || quotes.length < 2) {
+        res.json({errors: {stock_name: ['Symbols not found!']}})
+      }
+      else {
+        prices = []
 
-  googleFinance.historical({
-    symbols: stocks,
-    //Get the last five days. Because some days, like sunday, no has cotation
-    from: moment().subtract(5, 'days').format('YYYY-MM-DD'),
-  }, (err, quotes) => {
-    if (err || quotes.length < 2)
-      res.sendStatus(404)
+        for (let key in quotes) {
+          let last = quotes[key].pop()
+          prices.push({
+            name: last.symbol,
+            lastPrice: last.close,
+            pricedAt: last.date
+          })
+        }
 
-    prices = []
-
-    for (let key in quotes) {
-      let last = quotes[key].pop()
-      prices.push({
-        name: last.symbol,
-        lastPrice: last.close,
-        pricedAt: last.date
-      })
-    }
-
-    res.json({lastPrices: prices})
-  })
+        res.json({lastPrices: prices})
+      }
+    })
+  }
 }
 
 module.exports.gains = (app, req, res) => {
   googleFinance.historical({
     symbol: req.params.stock_name,
     from: new Date(req.query.purchasedAt),
-    to: moment().format('YYYY-MM-DD')
   }, (err, quotes) => {
-    if (err || quotes.length < 1)
-      res.sendStatus(404)
+    if (err || quotes.length < 1) {
+      res.json({errors: {stock_name: ['Symbol not found!']}})
+    }
     else {
       let amount = parseInt(req.query.purchasedAmount)
 

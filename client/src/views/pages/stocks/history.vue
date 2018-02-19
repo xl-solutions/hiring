@@ -1,19 +1,26 @@
 <template>
   <q-layout class="layout-padding">
-    <div class="row md-gutter	">
-      <div class="col-lg-4 col-sm-12">
-        <q-select separator stack-label="Select the symbol" v-model="symbol" :options="options"/>
-      </div>
-      <div class="col-lg-4 col-sm-12">
-        <q-datetime v-model="from" stack-label="From" />
-      </div>
-      <div class="col-lg-4 col-sm-12">
-        <q-datetime v-model="to" stack-label="To" />
-      </div>
-    </div>
     <div class="row">
-      <q-btn small icon="search" @click="getHistory" style="margin-left: auto">SEARCH</q-btn>
+      <q-alert ref="alert" v-if="message" enter="bounceInLeft" leave="bounceOutRight" style="width: 100%">
+        {{message}}
+      </q-alert>
     </div>
+    <form @submit.prevent="getHistory">
+      <div class="row md-gutter">
+        <div class="col-lg-4 col-sm-12">
+          <q-select separator stack-label="Select the symbol" v-model="search.symbol" :options="options"/>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <q-datetime v-model="search.from" stack-label="From" />
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <q-datetime v-model="search.to" stack-label="To" />
+        </div>
+      </div>
+      <div class="row">
+        <q-btn small icon="search" type="submit" style="margin-left: auto">SEARCH</q-btn>
+      </div>
+    </form>
     <hr>
     <div class="row" style="margin-top: 20px">
       <q-data-table
@@ -28,6 +35,7 @@
 <script>
   import {
     LocalStorage,
+    QAlert,
     QBtn,
     QDataTable,
     QDatetime,
@@ -38,6 +46,7 @@
   export default {
     name: 'history',
     components: {
+      QAlert,
       QBtn,
       QDataTable,
       QDatetime,
@@ -47,13 +56,16 @@
     data () {
       return {
         message: '',
-        symbol: '',
-        from: '',
-        to: '',
+        search: {},
         options: [],
         lastPrices: [],
         config: {
-          title: 'Stock History'
+          title: 'Stock History',
+          rowHeight: '50px',
+          pagination: {
+            rowsPerPage: 10,
+            options: [5, 10]
+          }
         },
         columns: [
           {
@@ -101,10 +113,17 @@
     },
     methods: {
       getHistory () {
-        this.$http.get('/stocks/' + this.symbol + '/history?from=' + this.from + '&to=' + this.to)
-          .then((resp) => {
-            console.log(resp)
-            this.lastPrices = resp.data.prices
+        this.$http.get(
+          '/stocks/' + this.search.symbol +
+          '/history?from=' + this.search.from + '&to=' + this.search.to)
+          .then((res) => {
+            if (res.data.errors) {
+              let errors = res.data.errors
+              this.showMessage(errors[Object.keys(errors)[0]][0])
+            }
+            else {
+              this.lastPrices = res.data.lastPrices
+            }
           }).catch(() => {
             this.showMessage('Symbol not found!')
           })

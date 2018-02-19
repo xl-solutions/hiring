@@ -1,19 +1,26 @@
 <template>
   <q-layout class="layout-padding">
-    <div class="row md-gutter" style="padding: 10px;">
-      <div class="col-lg-4 col-sm-12">
-        <q-select separator stack-label="Select the symbol" v-model="search.symbol" :options="selectOptions"/>
-      </div>
-      <div class="col-lg-4 col-sm-12">
-        <q-input type="number" v-model="search.purchasedAmount" stack-label="Purchased amount"/>
-      </div>
-      <div class="col-lg-4 col-sm-12">
-        <q-datetime v-model="search.purchasedAt" stack-label="From" />
-      </div>
-    </div>
     <div class="row">
-      <q-btn small icon="search" @click="getGains" style="margin-left: auto">SEARCH</q-btn>
+      <q-alert ref="alert" v-if="message" enter="bounceInLeft" leave="bounceOutRight" style="width: 100%">
+        {{message}}
+      </q-alert>
     </div>
+    <form @submit.prevent="getGains">
+      <div class="row md-gutter" style="padding: 10px;">
+        <div class="col-lg-4 col-sm-12">
+          <q-select separator stack-label="Select the symbol" v-model="search.symbol" :options="selectOptions"/>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <q-input type="number" v-model="search.purchasedAmount" stack-label="Purchased amount"/>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <q-datetime v-model="search.purchasedAt" stack-label="From" />
+        </div>
+      </div>
+      <div class="row">
+        <q-btn small icon="search" type="submit" style="margin-left: auto">SEARCH</q-btn>
+      </div>
+    </form>
     <hr>
     <div class="row">
       <div class="col">
@@ -49,6 +56,7 @@
 <script>
   import {
     LocalStorage,
+    QAlert,
     QBtn,
     QCard,
     QCardMain,
@@ -62,7 +70,7 @@
   export default {
     name: 'gains',
     components: {
-      LocalStorage,
+      QAlert,
       QBtn,
       QCard,
       QCardMain,
@@ -74,8 +82,8 @@
     data () {
       return {
         selectOptions: [],
-        search: { },
-        stock: { }
+        search: {},
+        stock: {}
       }
     },
     mounted () {
@@ -94,8 +102,12 @@
           '/stocks/' + this.search.symbol +
           '/gains?purchasedAmount=' + this.search.purchasedAmount +
           '&purchasedAt=' + this.search.purchasedAt)
-          .then((resp) => {
-            this.stock = resp.data
+          .then((res) => {
+            if (res.data.errors) {
+              let errors = res.data.errors
+              this.showMessage(errors[Object.keys(errors)[0]][0])
+            }
+            this.stock = res.data
           }).catch(() => {
             this.showMessage('Symbol not found!')
           })

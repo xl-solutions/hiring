@@ -14,7 +14,7 @@ If you want to know more about the proposal of the test using NodeJS, access:
 
 <p>How default value, the server will be run in the port 3000.</p>
 <p>If you want to change server port, create a <i>.env</i> file in 
-*server* folder and set the<i>APP_PORT</i> value.</p>
+*server* folder and set the <i>APP_PORT</i> value and change axios base url in <i>/client/src/main.js</i>.</p>
 To you know how to create <i>.env</i> file, use the example <i>.env.example</i></p>
 
 - To run the server, put in terminal *"npm run start-server"*
