@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7B3B003A9D975A303630D3BE /* Pods_XL_APP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF4853445D56196A911BD95A /* Pods_XL_APP.framework */; };
+		AC42D1D3203B415300479782 /* TimeSerie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42D1D2203B415300479782 /* TimeSerie.swift */; };
+		AC504EC5203B5C6B008E6C18 /* DataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC504EC4203B5C6B008E6C18 /* DataFetch.swift */; };
 		ACA362A220379226005B5247 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA362A120379226005B5247 /* AppDelegate.swift */; };
 		ACA362A420379226005B5247 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA362A320379226005B5247 /* ViewController.swift */; };
 		ACA362A720379226005B5247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA362A520379226005B5247 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		3DBF643E06732B18041C09D3 /* Pods-XL_APP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XL_APP.release.xcconfig"; path = "Pods/Target Support Files/Pods-XL_APP/Pods-XL_APP.release.xcconfig"; sourceTree = "<group>"; };
 		55D69CF1B6D27E0FC59C67AA /* Pods-XL_APP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XL_APP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XL_APP/Pods-XL_APP.debug.xcconfig"; sourceTree = "<group>"; };
+		AC42D1D2203B415300479782 /* TimeSerie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSerie.swift; sourceTree = "<group>"; };
+		AC504EC4203B5C6B008E6C18 /* DataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetch.swift; sourceTree = "<group>"; };
 		ACA3629E20379226005B5247 /* XL_APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XL_APP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACA362A120379226005B5247 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACA362A320379226005B5247 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +55,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AC504EC3203B5C5B008E6C18 /* DataFetch */ = {
+			isa = PBXGroup;
+			children = (
+				AC504EC4203B5C6B008E6C18 /* DataFetch.swift */,
+			);
+			path = DataFetch;
+			sourceTree = "<group>";
+		};
 		ACA3629520379226005B5247 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +84,8 @@
 		ACA362A020379226005B5247 /* XL_APP */ = {
 			isa = PBXGroup;
 			children = (
+				AC504EC3203B5C5B008E6C18 /* DataFetch */,
+				ACCFEDCC2038D621002DB080 /* Model */,
 				ACA362A120379226005B5247 /* AppDelegate.swift */,
 				ACA362A320379226005B5247 /* ViewController.swift */,
 				ACA362A520379226005B5247 /* Main.storyboard */,
@@ -81,6 +95,14 @@
 				ACA362A820379226005B5247 /* XL_APP.xcdatamodeld */,
 			);
 			path = XL_APP;
+			sourceTree = "<group>";
+		};
+		ACCFEDCC2038D621002DB080 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC42D1D2203B415300479782 /* TimeSerie.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F68A94BB66073945E6FF3E49 /* Frameworks */ = {
@@ -126,6 +148,7 @@
 				TargetAttributes = {
 					ACA3629D20379226005B5247 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -170,18 +193,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-XL_APP/Pods-XL_APP-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/BigBoard/BigBoard.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigBoard.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -229,6 +244,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACA362A420379226005B5247 /* ViewController.swift in Sources */,
+				AC42D1D3203B415300479782 /* TimeSerie.swift in Sources */,
+				AC504EC5203B5C6B008E6C18 /* DataFetch.swift in Sources */,
 				ACA362A220379226005B5247 /* AppDelegate.swift in Sources */,
 				ACA362AA20379226005B5247 /* XL_APP.xcdatamodeld in Sources */,
 			);
@@ -368,11 +385,13 @@
 			baseConfigurationReference = 55D69CF1B6D27E0FC59C67AA /* Pods-XL_APP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = XL_APP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "EMV.XL-APP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -383,6 +402,7 @@
 			baseConfigurationReference = 3DBF643E06732B18041C09D3 /* Pods-XL_APP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = XL_APP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

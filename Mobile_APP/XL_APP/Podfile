@@ -7,11 +7,5 @@ target 'XL_APP' do
 
 
   # Pods for XL_APP
-  pod 'Alamofire', '~> 4.5'
-
-  pod 'AlamofireObjectMapper'
-
-  pod 'BigBoard'
-
 
 end
