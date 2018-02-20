@@ -4,7 +4,9 @@
   "description": "Test XL Soluctions using nodejs",
   "scripts": {
     "start-server": "cd ./server && npm install && npm start",
-    "test-server": "cd ./server && npm install && npm test"
+    "start-client": "cd ./client && npm start",
+    "test-server": "cd ./server && npm install && npm test",
+    "start": "npm run start-server | npm run start-client"
   },
   "repository": {
     "type": "git",
