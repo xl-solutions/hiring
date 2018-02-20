@@ -10,4 +10,10 @@ import UIKit
 
 class Portfolio: NSObject {
     var timeSerie: TimeSerie?
+    var valorDaAcao: Double?
+    init(timeSerie: TimeSerie, valorDaAcao: Double) {
+        self.timeSerie = timeSerie
+        self.valorDaAcao = valorDaAcao
+        
+    }
 }

@@ -17,11 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let url = StockURL(symbol: "AAPL", function: .daily, outputSize: .full).returnURL()
-//        print(url)
-//        DataFetch<TimeSerie>(url: url).getResults { (timeSeries, error) in
-//            print(timeSeries!)
-//        }
+
         
         // Do any additional setup after loading the view, typically from a nib.
     }

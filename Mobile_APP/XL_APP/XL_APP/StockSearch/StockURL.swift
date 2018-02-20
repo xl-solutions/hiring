@@ -7,20 +7,23 @@
 //
 
 import UIKit
+public enum Function: String, CodingKey {
+    case daily = "TIME_SERIES_DAILY"
+    case weekly = "TIME_SERIES_WEEKLY"
+    case monthly = "TIME_SERIES_MONTHLY"
+}
+
+public enum OutputSize:  String {
+    case compact = "compact"
+    case full = "full"
+}
 
 class StockURL: NSObject {
     var symbol: String?
     open var function: Function
     open var outputSize: OutputSize
-    enum Function: String, CodingKey {
-        case daily = "TIME_SERIES_DAILY"
-        case weekly = "TIME_SERIES_WEEKLY"
-        case monthly = "TIME_SERIES_MONTHLY"
-    }
-    enum OutputSize:  String {
-        case compact = "compact"
-        case full = "full"
-    }
+    
+    
     
     init(symbol: String, function: Function, outputSize: OutputSize) {
         self.symbol = symbol

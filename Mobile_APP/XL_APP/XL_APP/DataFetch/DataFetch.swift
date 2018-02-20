@@ -21,9 +21,11 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
     
     public func getResults(completion: ([TimeSerie]?, Error?) -> Void) {
         do {
+
             let data = try Data.init(contentsOf: url)
+            //print(data)
             let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: Any]
-            //print(json)
+            
             var dataKey: String? = nil
             for key in json.keys {
                 if key != metadataKey {
@@ -34,24 +36,32 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
             }
             
             guard let timeSeriesKey = dataKey else {
+                
                 return
             }
-            let timeSeries: [String: [String: String]] = json[timeSeriesKey]! as! [String : [String: String]]
-            //print(timeSeries)
-            let parsed: [TimeSerie] = timeSeries.flatMap({ key, value in
-                var mutableDict = value
-                mutableDict["date"] = key
-                //print(mutableDict)
-                do {
-                    let element = try JSONDecoder().decode(TimeSerie.self, from: JSONSerialization.data(withJSONObject: mutableDict, options: .prettyPrinted))
-                    //print(element)
-                    return element
-                } catch {
-                    completion(nil, error)
-                }
-                return nil
-            })
-            completion(parsed, nil)
+            if json["Error Message"] != nil {
+                print(json["Error Message"]!)
+            }else{
+                let timeSeries: [String: [String: String]] = json[timeSeriesKey]! as! [String : [String: String]]
+                //print(timeSeries)
+                let parsed: [TimeSerie] = timeSeries.flatMap({ key, value in
+                    var mutableDict = value
+                    mutableDict["date"] = key
+                    //print(mutableDict)
+                    do {
+                        
+                        let element = try JSONDecoder().decode(TimeSerie.self, from: JSONSerialization.data(withJSONObject: mutableDict, options: .prettyPrinted))
+                        //print(element)
+                        return element
+                    } catch {
+                        completion(nil, error)
+                    }
+                    return nil
+                })
+                completion(parsed, nil)
+            }
+            
+            
         } catch {
             completion(nil, error)
         }

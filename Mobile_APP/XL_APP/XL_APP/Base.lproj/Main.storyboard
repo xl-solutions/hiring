@@ -103,6 +103,9 @@
                                     <segment title="Semanal"/>
                                     <segment title="Mensal"/>
                                 </segments>
+                                <connections>
+                                    <action selector="functionSelected:" destination="NZa-Az-h1j" eventType="valueChanged" id="2wJ-uf-kaa"/>
+                                </connections>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Diaria irá fazer uma busca mais completa com maior chance de achar o valor no dia especifico, porem deixara o app mais lento." textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="O4w-Tz-fNI">
                                 <rect key="frame" x="16" y="414" width="343" height="67"/>
@@ -126,6 +129,9 @@
                                     <segment title="Completo"/>
                                     <segment title="Compacto"/>
                                 </segments>
+                                <connections>
+                                    <action selector="sizeChanged:" destination="NZa-Az-h1j" eventType="valueChanged" id="5Ym-y4-Hok"/>
+                                </connections>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Valor da ação (Em dolares)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3dE-2o-KNC">
                                 <rect key="frame" x="16" y="112" width="343" height="30"/>
@@ -190,6 +196,7 @@
                         <outlet property="sizeDescription" destination="2wP-w7-dJR" id="FIL-xq-dbJ"/>
                         <outlet property="sizeSegment" destination="a4G-1Z-Bq0" id="doH-Ac-xJc"/>
                         <outlet property="symbolText" destination="VCW-fI-hnU" id="Xa5-t8-4Sp"/>
+                        <outlet property="valorText" destination="3dE-2o-KNC" id="Gyc-xx-nrp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cov-QJ-V3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
