@@ -1,0 +1,18 @@
+<div class="container">
+	<%= form_with url: { action: "search" } do |form| %>
+		<label for='query_param'>Filter</label> 
+  		<%= form.search_field :query_param %>
+  		<%= form.submit "Search" %>
+	<% end %>
+
+	<h1>Cellphone List</h1>
+	
+
+	<div id="cellphone_list">
+		<% if cellphones.empty? %>
+			<p>There are no cellphone records in the database.</p>
+		<% else %>
+			<%= render partial: 'cellphone_grid', locals: { cellphones: cellphones } %>
+		<% end %>
+	</div>
+</div>

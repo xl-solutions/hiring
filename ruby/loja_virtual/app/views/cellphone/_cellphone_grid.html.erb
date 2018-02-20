@@ -1,0 +1,22 @@
+<table>
+	<tr>
+		<th>Manufacturer</th>
+		<th>Model</th>
+		<th>Color</th>
+		<th>Carrier Plan Type</th>
+		<th>Quantity</th>
+		<th>Price</th>
+	</tr>
+
+	<% cellphones.each do |c| %>
+		<tr>
+			<td><%= c.manufacturer %></td>
+			<td><%= c.model %></td>
+			<td><%= c.color %></td>
+			<td><%= c.carrier_plan_type %></td>
+			<td><%= c.quantity %></td>
+			<td><%= c.price %></td>
+		</tr>
+	<% end %>
+
+</table>

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" href="#">Cellphones</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  	</button>
+  	<div class="collapse navbar-collapse" id="navbarNav">
+    	<ul class="navbar-nav">
+	      	<li class="nav-item active">
+	        	<a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+	      	</li>
+	      	<li class="nav-item">
+	      		<%= link_to "List", { action: "show_list" }, class: 'nav-link', remote: true %>
+	      	</li>
+	      	<li class="nav-item">
+	      		<%= link_to "Import", { action: "show_import" }, class: 'nav-link', remote: true %>
+	      	</li>
+    	</ul>
+  	</div>
+</nav>
+
+<% if flash[:errors] %>
+	<% unless flash[:errors].empty? %>
+		<div class="alert alert-danger" role="alert">
+			<% flash[:errors].each do |flash| %>
+				<p> <%= flash %> </p>
+			<% end %>
+		</div>
+	<% end %>
+<% end %>
+
+<div id="body-content" class="container-fluid"></div>
