@@ -26,7 +26,7 @@ Aplicacao deve estar disponivel em:
 
 * http://localhost:3000/
 
-#COMO USAR
+# COMO USAR
 
 Ao iniciar a aplicacao pela primeira vez, nao havera nenhum registro no banco de dados.
 
