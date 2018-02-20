@@ -13,9 +13,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 
     @IBOutlet weak var stocksTableView: UITableView!
+    var portfolios :[Portfolio]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.portfolios = []
         self.stocksTableView.dataSource = self
         self.stocksTableView.delegate = self
         self.stocksTableView.tableFooterView = UIView()
@@ -23,18 +25,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.portfolios = PortfolioDAO.shared.selectPortfolio()
         self.stocksTableView.reloadData()
-        PortfolioDAO.shared.selectPortfolio()
+        
 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Portfolios.shared.portfolios!.count
+        return self.portfolios!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stockCell", for: indexPath)
-        let portf = Portfolios.shared.portfolios![indexPath.row]
+        let portf = self.portfolios![indexPath.row]
         cell.textLabel?.text = "\(portf.symbol!) - $\(portf.valorDaAcao!)"
         cell.detailTextLabel?.text = "Data: \((portf.timeSerie?.date)!)"
         return cell

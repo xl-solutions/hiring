@@ -111,7 +111,7 @@ class PortfolioSearchViewController: UIViewController {
                         let portfolio = Portfolio(symbol: symbol.uppercased(),timeSerie: timeSerie, valorDaAcao: valor)
 
                         //Salva a ação no array de Portifolio da Singleton Portfolios
-                        Portfolios.shared.portfolios?.append(portfolio)
+                        //Portfolios.shared.portfolios?.append(portfolio)
                         PortfolioDAO.shared.insertPortfolio(portfolio: portfolio)
                         //Volta para a tela anterior
                         self.navigationController?.popViewController(animated: true)

@@ -28,20 +28,21 @@ class PortfolioDAO: NSObject {
         }
     }
     
-    func selectPortfolio(){
-
+    func selectPortfolio() -> [Portfolio]{
+        var portfolios = [Portfolio]()
         do{
             for portfolioRow in (try ConnectDAO.shared.db?.prepare(portfolioT))! {
                 let timeSerie = TimeSerie(date: portfolioRow[Columns.date], open: portfolioRow[Columns.open], high: portfolioRow[Columns.high], low: portfolioRow[Columns.low], close: portfolioRow[Columns.close], volume: Int(portfolioRow[Columns.volume]))
                 let portfolio = Portfolio(id: Int(portfolioRow[Columns.id]), symbol: portfolioRow[Columns.symbol], timeSerie: timeSerie, valorDaAcao: portfolioRow[Columns.valorAcao])
 
-                Portfolios.shared.portfolios?.append(portfolio)
+                portfolios.append(portfolio)
                 
             }
         }catch{
             
         }
-
+        
+        return portfolios
     }
 
 }
