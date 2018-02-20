@@ -5,10 +5,10 @@ let
 
 validate.extend(validate.validators.datetime, {
   parse: (value) => {
-    return +moment(value)
+    return +moment(value).utc()
   },
   format: (value) => {
-    return moment(value).format('YYYY-MM-DD')
+    return moment(value).utc().format('YYYY-MM-DD')
   }
 })
 
