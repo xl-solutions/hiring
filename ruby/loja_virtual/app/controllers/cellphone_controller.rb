@@ -15,6 +15,8 @@ class CellphoneController < ApplicationController
   end
 
   def show_list
+    flash[:errors] = []
+
     @cellphones = Cellphone.all
     
     respond_to do |format|
@@ -23,6 +25,8 @@ class CellphoneController < ApplicationController
   end
 
   def show_import
+    flash[:errors] = []
+
     respond_to do |format|
         format.js
     end

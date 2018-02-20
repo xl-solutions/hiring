@@ -20,11 +20,13 @@
 </nav>
 
 <% if flash[:errors] %>
-	<div class="alert alert-danger" role="alert">
-		<% flash[:errors].each do |flash| %>
-			<p> <%= flash %> </p>
-		<% end %>
-	</div>
+	<% unless flash[:errors].empty? %>
+		<div class="alert alert-danger" role="alert">
+			<% flash[:errors].each do |flash| %>
+				<p> <%= flash %> </p>
+			<% end %>
+		</div>
+	<% end %>
 <% end %>
 
 <div id="body-content" class="container-fluid"></div>
