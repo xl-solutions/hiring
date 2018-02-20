@@ -6,13 +6,19 @@ import { setImmediate } from 'timers';
 Vue.use(Vuex);
 Vue.use(vueRes);
 Vue.http.interceptors.unshift((request, next) => {
-  next(request.respondWith({
-    name: 'BAR',
-    lastPrice: 99.99,
-    pricedAt: '2018-02-16T02:00:00.000Z'
-  }, {
-    status: 200
-  }));
+  if (request.method == 'GET' && request.url.indexOf('BAR/quote') > -1) {
+    next(request.respondWith({
+      name: 'BAR',
+      lastPrice: 99.99,
+      pricedAt: '2018-02-16T02:00:00.000Z'
+    }, {
+      status: 200
+    }));
+  } else {
+    next(request.respondWith({}, {
+      status: 404
+    }));
+  }
 });
 describe('Home.vue', () => {
   let vm;
@@ -72,6 +78,27 @@ describe('Home.vue', () => {
         expect(vm.$store.state.stocksNames[0]).be.equal('BAR');
         expect(vm.$store.state.stocksData.length).be.greaterThan(0);
         expect(vm.$store.state.stocksData[0].name).be.equal('BAR');
+        done();
+      }, 10);
+    });
+  });
+  it('Deve impedir que uma ação inválida seja adicionada', (done) => {
+    vm.$store.state.stocksNames = [];
+    vm.$store.state.stocksData = [];
+    vm.$data.stocksData = [];
+    vm.$data.stockName = 'foo';
+
+    setImmediate(function() {
+      expect(vm.$el.querySelector('#add-name').value).be.equal(vm.$data.stockName);
+      vm.$el.querySelector('#add-btn').click();
+      setTimeout(() => {
+        const span = vm.$el.querySelector('span');
+        expect(span).not.exist;
+        const p = vm.$el.querySelector('p');
+        expect(p).not.exist;
+        expect(vm.$data.stocksData.length).be.equal(0);
+        expect(vm.$store.state.stocksNames.length).be.equal(0);
+        expect(vm.$store.state.stocksData.length).be.equal(0);
         done();
       }, 10);
     });

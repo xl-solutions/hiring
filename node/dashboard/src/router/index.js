@@ -11,5 +11,15 @@ export default new VueRouter({
 		path: '/',
 		name: 'home',
 		component: load('Home')
+	}, {
+		path: '/history',
+		name: 'history',
+		component: load('History'),
+		props: true
+	}, {
+		path: '/projection',
+		name: 'projection',
+		component: load('Projection'),
+		props: true
 	}]
 });
