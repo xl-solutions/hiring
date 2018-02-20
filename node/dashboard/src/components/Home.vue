@@ -12,13 +12,13 @@
             <li v-for="s in stocksData" :key="s.name" class="collection-item">
             <div class="title">
                 <span>
-                {{ s.name }}
+                    {{ s.name }}
                 </span>
             </div>
             <div>
                 <p>
-                R${{ s.lastPrice && s.lastPrice.toString().replace('.', ',') }}<br/>
-                {{ s.pricedAt && new Date(s.pricedAt).toLocaleDateString() }}
+                    R${{ s.lastPrice && s.lastPrice.toString().replace('.', ',') }}<br/>
+                    {{ s.pricedAt && new Date(s.pricedAt).toLocaleDateString() }}
                 </p>
             </div>
             <button class="waves-effect waves-light btn" @click="getHistory(s.name)">
@@ -29,6 +29,21 @@
             </button>
             </li>
         </ul>
+        <div v-show="alert" class="modal-top">
+            <div>
+                <h4>
+                    Erro
+                </h4>
+                <p>
+                    Não foi possível encontrar dados da ação solicitada
+                </p>
+            </div>
+            <div>
+                <button class="waves-effect waves-light btn" @click="hideModal">
+                    Ok
+                </button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -61,6 +76,7 @@ export default {
     },
     data () {
         return {
+            alert: false,
             queringData: false,
             stocksData: [],
             stockName: ''
@@ -86,6 +102,7 @@ export default {
                     }
                     this.resetInput();
                 }, responseError => {
+                    this.alert = true;
                     this.$store.commit('REMOVE_STOCK_NAME', stockName);
                     this.resetInput();
                 })
@@ -110,6 +127,9 @@ export default {
                 }
             });
         },
+        hideModal() {
+            this.alert = false;
+        },
         resetInput() {
             this.queringData = false;
             this.stockName = '';
@@ -117,9 +137,3 @@ export default {
     }
 }
 </script>
-<style>
-.custom-input {
-    width: 500px;
-    max-width: 90vw;
-}
-</style>
