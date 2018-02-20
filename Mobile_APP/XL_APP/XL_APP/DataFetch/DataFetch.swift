@@ -8,7 +8,7 @@
 
 import UIKit
 
-//Codigo Criado por Roshan no link: https://github.com/rugoli/AVSwift
+//Codigo Criado por Roshan no link: https://github.com/rugoli/AVSwift, com modificações para validar alguns dados
 class DataFetch<TimeSerie: Decodable>: NSObject {
     let url: URL
     fileprivate let metadataKey: String = "Metadata"
@@ -23,35 +23,27 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
         do {
 
             let data = try Data.init(contentsOf: url)
-            //print(data)
             let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: Any]
-            
             var dataKey: String? = nil
             for key in json.keys {
                 if key != metadataKey {
                     dataKey = key
-                    //print(dataKey)
                     break
                 }
             }
-            
             guard let timeSeriesKey = dataKey else {
-                
                 return
             }
             if json["Error Message"] != nil {
                 print(json["Error Message"]!)
             }else{
                 let timeSeries: [String: [String: String]] = json[timeSeriesKey]! as! [String : [String: String]]
-                //print(timeSeries)
                 let parsed: [TimeSerie] = timeSeries.flatMap({ key, value in
                     var mutableDict = value
                     mutableDict["date"] = key
-                    //print(mutableDict)
                     do {
                         
                         let element = try JSONDecoder().decode(TimeSerie.self, from: JSONSerialization.data(withJSONObject: mutableDict, options: .prettyPrinted))
-                        //print(element)
                         return element
                     } catch {
                         completion(nil, error)
@@ -60,8 +52,6 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
                 })
                 completion(parsed, nil)
             }
-            
-            
         } catch {
             completion(nil, error)
         }

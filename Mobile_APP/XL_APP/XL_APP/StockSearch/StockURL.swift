@@ -31,6 +31,7 @@ class StockURL: NSObject {
         self.outputSize = outputSize
     }
     
+    // Cria uma url de acordo com os dados fornecidos no objeto
     func returnURL() -> URL{
         return URL(string: "https://www.alphavantage.co/query?function=\(function.rawValue)&symbol=\(symbol!)&outputsize=\(outputSize)&apikey=\(AVKey.shared.key)")!
     }

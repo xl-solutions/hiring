@@ -27,7 +27,9 @@ public final class TimeSerie: CustomStringConvertible, TimeSerieDescription {
     let close: Float
     let volume: Int
     
+    
     required public init(date: String,open: Float,high: Float,low: Float,close: Float,volume: Int) {
+        
         self.date = date
         self.open = open
         self.high = high
@@ -65,7 +67,6 @@ extension TimeSerie: Decodable{
         let container = try decoder.container(keyedBy: AVHistoricalStockPriceModelKeys.self) // defining our (keyed) container
         do {
             let date: String = try container.decode(String.self, forKey: .date)
-            //let date = try dateString.toDate()
             let open: String = try container.decode(String.self, forKey: .open)
             let high: String = try container.decode(String.self, forKey: .high)
             let low: String = try container.decode(String.self, forKey: .low)

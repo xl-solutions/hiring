@@ -10,6 +10,8 @@
 		7B3B003A9D975A303630D3BE /* Pods_XL_APP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF4853445D56196A911BD95A /* Pods_XL_APP.framework */; };
 		AC42D1D3203B415300479782 /* TimeSerie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42D1D2203B415300479782 /* TimeSerie.swift */; };
 		AC504EC5203B5C6B008E6C18 /* DataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC504EC4203B5C6B008E6C18 /* DataFetch.swift */; };
+		AC7D240A203C6B0800065EC7 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D2409203C6B0800065EC7 /* DateFormat.swift */; };
+		AC7D240C203C76ED00065EC7 /* Portfolios.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D240B203C76ED00065EC7 /* Portfolios.swift */; };
 		ACA362A220379226005B5247 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA362A120379226005B5247 /* AppDelegate.swift */; };
 		ACA362A420379226005B5247 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA362A320379226005B5247 /* ViewController.swift */; };
 		ACA362A720379226005B5247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA362A520379226005B5247 /* Main.storyboard */; };
@@ -27,6 +29,8 @@
 		55D69CF1B6D27E0FC59C67AA /* Pods-XL_APP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XL_APP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XL_APP/Pods-XL_APP.debug.xcconfig"; sourceTree = "<group>"; };
 		AC42D1D2203B415300479782 /* TimeSerie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSerie.swift; sourceTree = "<group>"; };
 		AC504EC4203B5C6B008E6C18 /* DataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetch.swift; sourceTree = "<group>"; };
+		AC7D2409203C6B0800065EC7 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		AC7D240B203C76ED00065EC7 /* Portfolios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolios.swift; sourceTree = "<group>"; };
 		ACA3629E20379226005B5247 /* XL_APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XL_APP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACA362A120379226005B5247 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACA362A320379226005B5247 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +75,14 @@
 			path = DataFetch;
 			sourceTree = "<group>";
 		};
+		AC7D2408203C6AE700065EC7 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				AC7D2409203C6B0800065EC7 /* DateFormat.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
 		ACA3629520379226005B5247 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +104,7 @@
 		ACA362A020379226005B5247 /* XL_APP */ = {
 			isa = PBXGroup;
 			children = (
+				AC7D2408203C6AE700065EC7 /* Date */,
 				ACEBD8FD203B8DE100C22480 /* ViewController */,
 				ACEBD8FA203B7B6F00C22480 /* StockSearch */,
 				ACEBD8F7203B7A1500C22480 /* Singleton */,
@@ -120,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				ACEBD8F8203B7A2E00C22480 /* AVKey.swift */,
+				AC7D240B203C76ED00065EC7 /* Portfolios.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -285,8 +299,10 @@
 				ACD250EF203B96F700A9FCE1 /* Portfolio.swift in Sources */,
 				ACEBD8FC203B7B8500C22480 /* StockURL.swift in Sources */,
 				AC504EC5203B5C6B008E6C18 /* DataFetch.swift in Sources */,
+				AC7D240C203C76ED00065EC7 /* Portfolios.swift in Sources */,
 				ACA362A220379226005B5247 /* AppDelegate.swift in Sources */,
 				ACEBD8F9203B7A2E00C22480 /* AVKey.swift in Sources */,
+				AC7D240A203C6B0800065EC7 /* DateFormat.swift in Sources */,
 				ACA362AA20379226005B5247 /* XL_APP.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,7 +4,7 @@
 //
 //  Created by Everton Miranda Vitório on 16/02/18.
 //  Copyright © 2018 Everton Miranda Vitório. All rights reserved.
-//Key: TBP3N4DMWY00AZJH
+
 
 import UIKit
 
@@ -12,28 +12,31 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
-    var portifolios: [Portfolio]?
     @IBOutlet weak var stocksTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.stocksTableView.dataSource = self
+        self.stocksTableView.delegate = self
+        self.stocksTableView.tableFooterView = UIView()
 
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
+    override func viewWillAppear(_ animated: Bool) {
+          self.stocksTableView.reloadData()
+
+    }
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return Portfolios.shared.portfolios!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stockCell", for: indexPath)
+        let portf = Portfolios.shared.portfolios![indexPath.row]
+        cell.textLabel?.text = "\(portf.symbol!) - $\(portf.valorDaAcao!)"
+        cell.detailTextLabel?.text = "Data: \((portf.timeSerie?.date)!)"
         return cell
     }
 

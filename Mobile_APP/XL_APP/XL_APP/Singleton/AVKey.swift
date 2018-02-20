@@ -9,6 +9,7 @@
 import UIKit
 
 class AVKey: NSObject {
+    //Chave para receber os dados do Alpha Vantage
     let key = "TBP3N4DMWY00AZJH"
     static let shared = AVKey()
 

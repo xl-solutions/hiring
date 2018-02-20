@@ -17,57 +17,55 @@ class PortfolioSearchViewController: UIViewController {
     @IBOutlet weak var sizeDescription: UITextView!
     
     @IBOutlet weak var valorText: UITextField!
+    // Opção da Function da pesquisa
     var function: Function?
+    // Opção do OutputSize da pesquisa
     var size: OutputSize?
-    var portfolio: Portfolio?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.function = .daily
         self.size = .full
-//        print(formaterDate())
     }
     
     @IBAction func functionSelected(_ sender: UISegmentedControl) {
-
+        
         switch  sender.selectedSegmentIndex{
         case 0:
             functionDescription.text = "Diaria irá fazer uma busca mais completa com maior chance de achar o valor no dia especifico, porem pode deixara a busca mais lenta."
+            //Seta a function para daily
             self.function = .daily
             break
         case 1:
             functionDescription.text = "Semanal fará uma busca de semana em semana até no maximo de 20 anos atrás. A busca pode ficar um pouco lenta."
+            // Seta a function para weekly
             self.function = .weekly
             break
             
         default:
             functionDescription.text = "Mensal fará uma busca de mês em mês até no maximo de 20 anos. A busca será menos lenta que a anterior."
+            //Seta a function para monthly
             self.function = .monthly
         }
     }
-    func formaterDate() -> String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
 
-        return formatter.string(from: datePicker.date)
-    }
-    
     
     @IBAction func sizeChanged(_ sender: UISegmentedControl) {
         switch  sender.selectedSegmentIndex{
         case 0:
             sizeDescription.text = "Completo tem uma chance alta de encontrar a ação no dia requerido, porem a pesquisa pode ficar muito lenta."
+            // Seta o OutputSize para full
             self.size = .full
             break
         default:
             sizeDescription.text = "Compacto tem uma chance pequena (no maximo 100 itens serão encontrados) de encontrar a ação no dia requerido, porem a pesquisa pode ser mais rapida."
+            // Seta o OutputSize para compact
             self.size = .compact
         }
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
         self.savePortfolio()
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
@@ -75,33 +73,44 @@ class PortfolioSearchViewController: UIViewController {
     
     
     func savePortfolio(){
-        let url = StockURL(symbol: self.symbolText.text!, function: self.function!, outputSize: self.size!).returnURL()
-        print(url)
-        DataFetch<TimeSerie>(url: url).getResults { (timeSeries, error) in
-            print(error)
-            if timeSeries != nil{
-                for timeSerie in timeSeries! {
-                   
-                    if timeSerie.date == self.formaterDate(){
-                        if let valor = Double(self.valorText.text!){
-                            self.portfolio = Portfolio(timeSerie: timeSerie, valorDaAcao: valor)
-                            print(self.portfolio?.valorDaAcao)
-                            
-                        }else{
-                            print("VALOR INVALIDO!")
+        if let symbol = self.symbolText.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            if(symbol != ""){
+                // Cria uma url de acordo com os dados fornecidos
+                let url = StockURL(symbol: symbol, function: self.function!, outputSize: self.size!).returnURL()
+                // Verifica se o valor informado é um Double valido
+                if let valor = Double(self.valorText.text!){
+                    // Pega e decodifica os dados da API para um array de TimeSerie
+                    DataFetch<TimeSerie>(url: url).getResults { (timeSeries, error) in
+                        //Verifica se foi possivel fazer o decode do TimeSeries da API
+                        if timeSeries != nil{
+                            for timeSerie in timeSeries! {
+                                // Verifica se existe alguma ação com a data desejada pelo usuario
+                                if timeSerie.date == DateFormat.dateToString(date: self.datePicker.date){
+                                    // Se existir salva no portfolio
+                                    let portfolio = Portfolio(symbol: symbol.uppercased(),timeSerie: timeSerie, valorDaAcao: valor)
+                                    //Salva a ação no array de Portifolio da Singleton Portfolios
+                                    Portfolios.shared.portfolios?.append(portfolio)
+                                    //Volta para a tela anterior
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                                
+                            }
                         }
-
-                        print("Igual")
                     }
+                    
+                }else{
+                    print("VALOR INVALIDO!")
                 }
             }
             
         }
+        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
-
-
+    
+    
 }
