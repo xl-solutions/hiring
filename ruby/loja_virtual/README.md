@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+O sistema foi desenvolvido utilizando os seguintes artefatos:
 
-Things you may want to cover:
+* Ruby version - 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]
 
-* Ruby version
+* Rails version - Rails 5.1.5
 
-* System dependencies
+* SQLite3
 
-* Configuration
+Ao efetuar checkout do projeto, executar os seguintes comandos na pasta raiz:
 
-* Database creation
+* bundle install
 
-* Database initialization
+* rake db:create db:migrate
 
-* How to run the test suite
+Para executar os testes unitarios e funcionais, basta executar o seguinte comando:
 
-* Services (job queues, cache servers, search engines, etc.)
+* rails test
 
-* Deployment instructions
+Para iniciar a aplicacao, executar o comando:
 
-* ...
+* rails server
+
+Aplicacao deve estar disponivel em:
+
+* http://localhost:3000/
