@@ -1,6 +1,7 @@
 <div class="container">
 	<%= form_with url: { action: "search" } do |form| %>
-  		<%= form.text_field :query_param %>
+		<label for='query_param'>Filter</label> 
+  		<%= form.search_field :query_param %>
   		<%= form.submit "Search" %>
 	<% end %>
 
