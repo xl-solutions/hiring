@@ -6,7 +6,7 @@ class CellphoneController < ApplicationController
   end
 
   def search
-    @selected = Cellphone.where("(model LIKE :param) OR (manufacturer LIKE :param) OR (color LIKE :param)", 
+    @selected = Cellphone.where("(model LIKE :param) OR (manufacturer LIKE :param) OR (color LIKE :param) OR (carrier_plan_type LIKE :param)", 
       param: "%#{params[:query_param]}%")
 
     respond_to do |format|
