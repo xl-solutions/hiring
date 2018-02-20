@@ -107,6 +107,7 @@
       getStock () {
         this.$http.get('/stocks/' + this.symbol + '/quote')
           .then((res) => {
+            console.log(res.data)
             if (res.data.errors) {
               let errors = res.data.errors
               this.showMessage(errors[Object.keys(errors)[0]][0])
