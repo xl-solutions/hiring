@@ -21,7 +21,7 @@ public enum Function: String, CodingKey {
     case monthly = "TIME_SERIES_MONTHLY"
 }
 
-// Enum das colunas da tabela possiveis
+// Struct das colunas da tabela Portfolio
 struct Columns{
     static let id = Expression<Int64>("id")
     static let symbol = Expression<String>("symbol")

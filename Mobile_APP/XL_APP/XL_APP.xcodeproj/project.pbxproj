@@ -10,6 +10,7 @@
 		7B3B003A9D975A303630D3BE /* Pods_XL_APP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF4853445D56196A911BD95A /* Pods_XL_APP.framework */; };
 		AC1A8E6B203CBD7F0001902F /* PortfolioDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A8E6A203CBD7F0001902F /* PortfolioDAO.swift */; };
 		AC1A8E6C203CC6B30001902F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1A8E6D203CC6B30001902F /* SQLite.framework */; };
+		AC1A8E70203CE96A0001902F /* SimpleNumberFormarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A8E6F203CE96A0001902F /* SimpleNumberFormarter.swift */; };
 		AC396DD9203CAD160050B794 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC396DD8203CAD160050B794 /* Constants.swift */; };
 		AC42D1D3203B415300479782 /* TimeSerie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42D1D2203B415300479782 /* TimeSerie.swift */; };
 		AC501D5E203CB663007AF908 /* ConnectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC501D5D203CB663007AF908 /* ConnectDAO.swift */; };
@@ -32,6 +33,7 @@
 		55D69CF1B6D27E0FC59C67AA /* Pods-XL_APP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XL_APP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XL_APP/Pods-XL_APP.debug.xcconfig"; sourceTree = "<group>"; };
 		AC1A8E6A203CBD7F0001902F /* PortfolioDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDAO.swift; sourceTree = "<group>"; };
 		AC1A8E6D203CC6B30001902F /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC1A8E6F203CE96A0001902F /* SimpleNumberFormarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNumberFormarter.swift; sourceTree = "<group>"; };
 		AC396DD8203CAD160050B794 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AC42D1D2203B415300479782 /* TimeSerie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSerie.swift; sourceTree = "<group>"; };
 		AC501D5D203CB663007AF908 /* ConnectDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDAO.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 				3DBF643E06732B18041C09D3 /* Pods-XL_APP.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AC1A8E6E203CE9550001902F /* NumberFormarter */ = {
+			isa = PBXGroup;
+			children = (
+				AC1A8E6F203CE96A0001902F /* SimpleNumberFormarter.swift */,
+			);
+			path = NumberFormarter;
 			sourceTree = "<group>";
 		};
 		AC396DDA203CAD1C0050B794 /* Constants */ = {
@@ -136,13 +146,13 @@
 		ACA362A020379226005B5247 /* XL_APP */ = {
 			isa = PBXGroup;
 			children = (
+				AC1A8E6E203CE9550001902F /* NumberFormarter */,
 				AC501D5C203CB64F007AF908 /* DAO */,
 				AC396DDA203CAD1C0050B794 /* Constants */,
 				AC7D240D203C8A4900065EC7 /* Alert */,
 				AC7D2408203C6AE700065EC7 /* Date */,
 				ACEBD8FD203B8DE100C22480 /* ViewController */,
 				ACEBD8FA203B7B6F00C22480 /* StockSearch */,
-				ACEBD8F7203B7A1500C22480 /* Singleton */,
 				AC504EC3203B5C5B008E6C18 /* DataFetch */,
 				ACCFEDCC2038D621002DB080 /* Model */,
 				ACA362A120379226005B5247 /* AppDelegate.swift */,
@@ -162,13 +172,6 @@
 				ACD250EE203B96F700A9FCE1 /* Portfolio.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		ACEBD8F7203B7A1500C22480 /* Singleton */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Singleton;
 			sourceTree = "<group>";
 		};
 		ACEBD8FA203B7B6F00C22480 /* StockSearch */ = {
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACA362A420379226005B5247 /* ViewController.swift in Sources */,
+				AC1A8E70203CE96A0001902F /* SimpleNumberFormarter.swift in Sources */,
 				ACEBD901203B8F5200C22480 /* PortfolioSearchViewController.swift in Sources */,
 				AC42D1D3203B415300479782 /* TimeSerie.swift in Sources */,
 				ACD250EF203B96F700A9FCE1 /* Portfolio.swift in Sources */,

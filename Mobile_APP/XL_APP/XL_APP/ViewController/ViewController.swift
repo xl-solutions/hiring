@@ -17,16 +17,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.portfolios = []
-        self.stocksTableView.dataSource = self
-        self.stocksTableView.delegate = self
-        self.stocksTableView.tableFooterView = UIView()
+//        self.portfolios = PortfolioDAO.shared.selectPortfolio()
+//        self.stocksTableView.reloadData()
+//        self.stocksTableView.dataSource = self
+//        self.stocksTableView.delegate = self
+//        self.stocksTableView.tableFooterView = UIView()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.portfolios = PortfolioDAO.shared.selectPortfolio()
         self.stocksTableView.reloadData()
+        self.stocksTableView.dataSource = self
+        self.stocksTableView.delegate = self
+        self.stocksTableView.tableFooterView = UIView()
         
 
     }
@@ -38,7 +42,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stockCell", for: indexPath)
         let portf = self.portfolios![indexPath.row]
-        cell.textLabel?.text = "\(portf.symbol!) - $\(portf.valorDaAcao!)"
+        let formarter = SimpleNumberFormarter.format2Digits()
+        let numberFormated = formarter.string(for: portf.valorDaAcao!)
+        cell.textLabel?.text = "\(portf.symbol!) - $\(numberFormated!)"
         cell.detailTextLabel?.text = "Data: \((portf.timeSerie?.date)!)"
         return cell
     }

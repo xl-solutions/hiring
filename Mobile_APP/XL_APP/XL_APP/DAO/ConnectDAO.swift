@@ -14,18 +14,20 @@ class ConnectDAO: NSObject {
     var db: Connection?
     
     override init() {
+        // Pega o diretorio atual
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
             ).first!
         do{
-
+            // connect no banco pelo diretorio atual
             self.db = try Connection("\(path)/db.portfolio")
-        }catch {
-           
+        }catch let err{
+            print(err)
         }
         
     }
     
+    //cria a tabela caso não exista Portfolio
     func createTable(){
         let portfolio = Table("Portfolio")
         do{
@@ -42,8 +44,8 @@ class ConnectDAO: NSObject {
                 t.column(Columns.valorAcao)
             })
 
-        }catch{
-            
+        }catch let err{
+            print(err)
         }
     }
 }

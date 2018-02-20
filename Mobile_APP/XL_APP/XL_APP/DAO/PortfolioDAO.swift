@@ -16,6 +16,8 @@ class PortfolioDAO: NSObject {
         ConnectDAO.shared.createTable()
         
     }
+    
+    // Inserir os dados na tabela portfolio
     func insertPortfolio(portfolio: Portfolio){
         do{
             
@@ -23,11 +25,12 @@ class PortfolioDAO: NSObject {
                 try ConnectDAO.shared.db?.run(portfolioT.insert(Columns.symbol <- portfolio.symbol!, Columns.date <- timeSerie.date, Columns.open <- timeSerie.open, Columns.high <- timeSerie.high, Columns.low <- timeSerie.low, Columns.close <- timeSerie.close, Columns.volume <- Int64(timeSerie.volume),Columns.valorAcao <- portfolio.valorDaAcao!))
             }
             
-        }catch{
-            
+        }catch let err{
+            print(err)
         }
     }
     
+    // Selecionar os dados da tabela portfolio
     func selectPortfolio() -> [Portfolio]{
         var portfolios = [Portfolio]()
         do{
@@ -38,8 +41,8 @@ class PortfolioDAO: NSObject {
                 portfolios.append(portfolio)
                 
             }
-        }catch{
-            
+        }catch let err{
+            print(err)
         }
         
         return portfolios
