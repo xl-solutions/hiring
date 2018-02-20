@@ -18,11 +18,6 @@
         </button>
         <ul class="collection">
             <li v-for="s in stocksData" :key="s.name" class="collection-item">
-                <div class="title">
-                    <span>
-                        {{ s.name }}
-                    </span>
-                </div>
                 <div>
                     <p>
                         Dia: {{ s.pricedAt && new Date(s.pricedAt).toLocaleDateString() }}<br/>

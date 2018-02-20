@@ -16,7 +16,6 @@
         <button id="search-btn" class="waves-effect waves-light btn" @click="project" :disabled="queringData">
             Buscar
         </button>
-
         <div v-if="stockData" class="card">
             <div class="card-content">
                 <span class="card-title">
@@ -31,7 +30,6 @@
                 </p>
             </div>
         </div>
-
         <div v-show="alert" class="modal-top">
             <div>
                 <h4>
