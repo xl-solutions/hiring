@@ -6,6 +6,8 @@ target 'XL_APP' do
   use_frameworks!
 
 
+
   # Pods for XL_APP
+  pod 'SQLite.swift', '~> 0.11.4'
 
 end

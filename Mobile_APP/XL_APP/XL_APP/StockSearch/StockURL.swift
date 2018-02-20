@@ -7,16 +7,8 @@
 //
 
 import UIKit
-public enum Function: String, CodingKey {
-    case daily = "TIME_SERIES_DAILY"
-    case weekly = "TIME_SERIES_WEEKLY"
-    case monthly = "TIME_SERIES_MONTHLY"
-}
 
-public enum OutputSize:  String {
-    case compact = "compact"
-    case full = "full"
-}
+
 
 class StockURL: NSObject {
     var symbol: String?
@@ -33,7 +25,7 @@ class StockURL: NSObject {
     
     // Cria uma url de acordo com os dados fornecidos no objeto
     func returnURL() -> URL{
-        return URL(string: "https://www.alphavantage.co/query?function=\(function.rawValue)&symbol=\(symbol!)&outputsize=\(outputSize)&apikey=\(AVKey.shared.key)")!
+        return URL(string: "https://www.alphavantage.co/query?function=\(function.rawValue)&symbol=\(symbol!)&outputsize=\(outputSize)&apikey=\(Constants.key)")!
     }
 
 }

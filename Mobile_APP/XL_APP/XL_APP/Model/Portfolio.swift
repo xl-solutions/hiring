@@ -9,10 +9,18 @@
 import UIKit
 
 class Portfolio: NSObject {
+    var id: Int?
     var timeSerie: TimeSerie?
     var valorDaAcao: Double?
     var symbol: String?
     init(symbol: String,timeSerie: TimeSerie, valorDaAcao: Double) {
+        self.symbol = symbol
+        self.timeSerie = timeSerie
+        self.valorDaAcao = valorDaAcao
+        
+    }
+    
+    init(id: Int, symbol: String, timeSerie: TimeSerie, valorDaAcao: Double) {
         self.symbol = symbol
         self.timeSerie = timeSerie
         self.valorDaAcao = valorDaAcao

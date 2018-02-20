@@ -21,14 +21,14 @@ public final class TimeSerie: CustomStringConvertible, TimeSerieDescription {
     
     
     let date: String
-    let open: Float
-    let high: Float
-    let low: Float
-    let close: Float
+    let open: Double
+    let high: Double
+    let low: Double
+    let close: Double
     let volume: Int
     
     
-    required public init(date: String,open: Float,high: Float,low: Float,close: Float,volume: Int) {
+    required public init(date: String,open: Double,high: Double,low: Double,close: Double,volume: Int) {
         
         self.date = date
         self.open = open
@@ -54,6 +54,7 @@ public final class TimeSerie: CustomStringConvertible, TimeSerieDescription {
     
 }
 extension TimeSerie: Decodable{
+    // Enum das keys do json
     enum AVHistoricalStockPriceModelKeys: String, CodingKey {
         case date = "date"
         case open = "1. open"
@@ -63,6 +64,7 @@ extension TimeSerie: Decodable{
         case volume = "5. volume"
     }
     
+    // Init do decoder
     public convenience init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AVHistoricalStockPriceModelKeys.self) // defining our (keyed) container
         do {
@@ -72,7 +74,7 @@ extension TimeSerie: Decodable{
             let low: String = try container.decode(String.self, forKey: .low)
             let close: String = try container.decode(String.self, forKey: .close)
             let volume: String = try container.decode(String.self, forKey: .volume)
-            self.init(date: date, open: Float(open)!, high: Float(high)!, low: Float(low)! , close: Float(close)!, volume: Int(volume)!)
+            self.init(date: date, open: Double(open)!, high: Double(high)!, low: Double(low)! , close: Double(close)!, volume: Int(volume)!)
         } catch {
             throw ModelError.parsingError(error: error.localizedDescription)
         }

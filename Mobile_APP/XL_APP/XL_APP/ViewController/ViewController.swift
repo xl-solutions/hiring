@@ -23,10 +23,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewWillAppear(_ animated: Bool) {
-          self.stocksTableView.reloadData()
+        self.stocksTableView.reloadData()
+        PortfolioDAO.shared.selectPortfolio()
 
     }
-
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Portfolios.shared.portfolios!.count

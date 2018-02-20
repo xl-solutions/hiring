@@ -123,7 +123,7 @@
                                     <action selector="functionSelected:" destination="NZa-Az-h1j" eventType="valueChanged" id="2wJ-uf-kaa"/>
                                 </connections>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Diaria irá fazer uma busca mais completa com maior chance de achar o valor no dia especifico, porem deixara o app mais lento." textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="O4w-Tz-fNI">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" editable="NO" text="Diaria irá fazer uma busca mais completa com maior chance de achar o valor no dia especifico, porem deixara o app mais lento." textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="O4w-Tz-fNI">
                                 <rect key="frame" x="16" y="414" width="343" height="67"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -155,7 +155,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Completo tem uma chance alta de encontrar a ação no dia requerido, porem a pesquisa pode ficar muito lenta." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2wP-w7-dJR">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" editable="NO" text="Completo tem uma chance alta de encontrar a ação no dia requerido, porem a pesquisa pode ficar muito lenta." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2wP-w7-dJR">
                                 <rect key="frame" x="16" y="554" width="343" height="67"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

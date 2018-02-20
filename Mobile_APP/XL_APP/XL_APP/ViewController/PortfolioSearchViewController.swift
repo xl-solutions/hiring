@@ -26,6 +26,7 @@ class PortfolioSearchViewController: UIViewController {
         super.viewDidLoad()
         self.function = .daily
         self.size = .full
+        self.datePicker.maximumDate = Date()
     }
     
     @IBAction func functionSelected(_ sender: UISegmentedControl) {
@@ -73,40 +74,62 @@ class PortfolioSearchViewController: UIViewController {
     
     
     func savePortfolio(){
+        
         if let symbol = self.symbolText.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
             if(symbol != ""){
                 // Cria uma url de acordo com os dados fornecidos
                 let url = StockURL(symbol: symbol, function: self.function!, outputSize: self.size!).returnURL()
                 // Verifica se o valor informado é um Double valido
                 if let valor = Double(self.valorText.text!){
-                    // Pega e decodifica os dados da API para um array de TimeSerie
-                    DataFetch<TimeSerie>(url: url).getResults { (timeSeries, error) in
-                        //Verifica se foi possivel fazer o decode do TimeSeries da API
-                        if timeSeries != nil{
-                            for timeSerie in timeSeries! {
-                                // Verifica se existe alguma ação com a data desejada pelo usuario
-                                if timeSerie.date == DateFormat.dateToString(date: self.datePicker.date){
-                                    // Se existir salva no portfolio
-                                    let portfolio = Portfolio(symbol: symbol.uppercased(),timeSerie: timeSerie, valorDaAcao: valor)
-                                    //Salva a ação no array de Portifolio da Singleton Portfolios
-                                    Portfolios.shared.portfolios?.append(portfolio)
-                                    //Volta para a tela anterior
-                                    self.navigationController?.popViewController(animated: true)
-                                }
-                                
-                            }
-                        }
+                    if valor > 0{
+                        // Pega e decodifica os dados da API para um array de TimeSerie
+                        self.dataFetch(url: url, valor: valor, symbol: symbol)
+                    }else{
+                        Alert.alert(titulo: "", mensagem: "Valor da ação deve ser maior que 0!", popView: false, viewController: self)
                     }
                     
+                    
                 }else{
-                    print("VALOR INVALIDO!")
+                    Alert.alert(titulo: "", mensagem: "Valor da ação invalido!", popView: false, viewController: self)
                 }
             }
-            
+        }
+        
+        
+    }
+    
+    func dataFetch(url: URL, valor: Double, symbol: String){
+        var flagDate = false
+        DataFetch<TimeSerie>(url: url).getResults(controller: self) { (timeSeries, error) in
+            //Verifica se foi possivel fazer o decode do TimeSeries da API
+            if timeSeries != nil{
+                for timeSerie in timeSeries! {
+                    // Verifica se existe alguma ação com a data desejada pelo usuario
+                    if timeSerie.date == DateFormat.dateToString(date: self.datePicker.date){
+                        flagDate = true
+                        // Se existir salva no portfolio
+                        let portfolio = Portfolio(symbol: symbol.uppercased(),timeSerie: timeSerie, valorDaAcao: valor)
+
+                        //Salva a ação no array de Portifolio da Singleton Portfolios
+                        Portfolios.shared.portfolios?.append(portfolio)
+                        PortfolioDAO.shared.insertPortfolio(portfolio: portfolio)
+                        //Volta para a tela anterior
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
+                }
+                // caso nenhum ação na data desejada seja encontrada informa o usuario.
+                if !flagDate{
+                    Alert.alert(titulo: "", mensagem: "Nenhuma ação na data informada encontrada!", popView: false, viewController: self)
+                }
+            }else{
+                Alert.alert(titulo: "", mensagem: "Não foi possivel achar a ação desejada!", popView: false, viewController: self)
+            }
         }
         
     }
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         

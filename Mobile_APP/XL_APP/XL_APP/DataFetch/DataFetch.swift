@@ -19,13 +19,15 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
         super.init()
     }
     
-    public func getResults(completion: ([TimeSerie]?, Error?) -> Void) {
+    public func getResults(controller: UIViewController,completion: ([TimeSerie]?, Error?) -> Void) {
         do {
 
             let data = try Data.init(contentsOf: url)
             let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: Any]
+            
             var dataKey: String? = nil
             for key in json.keys {
+                
                 if key != metadataKey {
                     dataKey = key
                     break
@@ -35,9 +37,10 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
                 return
             }
             if json["Error Message"] != nil {
-                print(json["Error Message"]!)
+                Alert.alert(titulo: "", mensagem: "Não foi possivel encontrar o simbolo desejado!", popView: false, viewController: controller)
             }else{
                 let timeSeries: [String: [String: String]] = json[timeSeriesKey]! as! [String : [String: String]]
+
                 let parsed: [TimeSerie] = timeSeries.flatMap({ key, value in
                     var mutableDict = value
                     mutableDict["date"] = key
