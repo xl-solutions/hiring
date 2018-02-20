@@ -11,6 +11,16 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//GET
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/celulares', 'CelularController@uploadForm');
+
+//POST
+Route::post('/filters', 'CelularController@filters');
+Route::post('/upload', 'CelularController@uploadSubmit');

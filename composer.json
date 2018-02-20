@@ -1,0 +1,8 @@
+{
+    "require-dev": {
+        "laravel/dusk": "^2.0",
+        "laravel/browser-kit-testing": "^2.0"
+    },
+    "require": {
+    }
+}
