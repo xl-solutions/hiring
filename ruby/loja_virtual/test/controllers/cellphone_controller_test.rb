@@ -8,28 +8,6 @@ class CellphoneControllerTest < ActionDispatch::IntegrationTest
   	DatabaseCleaner.clean
   end
 
-  test "should get an empty list of cellphone records" do
-    get cellphone_index_url
-    
-    assert_response :success
-
-    assert_match 'Cellphone List', @response.body  
-    assert_match 'There are no cellphone records in the database.', @response.body
-  end
-
-  test "should insert a cellphone record" do
-  	assert_difference('Cellphone.count') do
-  		post '/cellphone', params: { cellphone: { manufacturer: 'test', model: 'test', color: 'test', 
-  			carrier_plan_type: 'pre', quantity: 0, price: 0 } }
-  	end
-
-  	assert_redirected_to cellphone_index_url
-
-  	get cellphone_index_url
-
-  	assert_match '<td>test</td>', @response.body
-  end
-
   test "should import cellphone records from a valid csv file" do
   	import_file_and_validate('input_valid_single_row.csv', 1) 
   end
