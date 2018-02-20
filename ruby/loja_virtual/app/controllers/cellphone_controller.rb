@@ -45,6 +45,8 @@ class CellphoneController < ApplicationController
 
   	parsed.shift #remove header line
 
+    Cellphone.delete_all
+
   	parsed.each_with_index do |row, index|
   	  build_and_save(row, index)
   	end
