@@ -1,3 +1,6 @@
+# Resolução
+Segue o detalhamento da solução proposta
+
 # Background
 
 Uma corretora de ações está desenvolvendo um sistema para permitir que pequenos investidores possam tomar decisões melhores sobre seu portfólio. Uma das funcionalidades importantes é a de verificar o desempenho de uma ação em cinco cenários:
@@ -174,3 +177,55 @@ $ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5
 
 
 [yahoofin]: http://www.canbike.org/information-technology/yahoo-finance-url-download-to-a-csv-file.html
+
+
+#Solução Proposta
+
+##Node
+
+###Geral
+
+Esta solução foi dividida em duas aplicações web. Uma para o dashboard, que ficará disponível na porta 8080, e outra para o servidor do serviço de consulta de ações, que ficará disponível na porta 8081.
+A solução foi dividida desta maneira buscando isolar funcionalidades e possíveis adaptações de código para construção de aplicativos.
+
+Para levantar as duas aplicações basta digitar no terminal, na raiz do projeto (diretório "hiring"), o comando
+```
+$ (cd node/backend; npm start)& cd node/dashboard; npm start
+```
+
+Para encerrar o projeto do dashboard, basta digitar "CTRL + C" no terminal.
+Caso o comando acima tenha sido executado, o backend estará rodando em background. Para encerrá-lo, é preciso trazê-lo para o primeiro plano digitando "fg" no terminal e dando "Enter". Ao trazê-lo para o primeiro plano, basta encerrá-lo com o comando "CTRL + C".
+
+###Testes
+Ambos os projetos possuem testes.
+Os arquivos de testes estão nas seguintes pastas:
+- node/test/unit/specs para o dashboard
+- node/backend/tests para o backend
+
+###O backend
+Está organizado nas seguintes camadas:
+- business: contém as regras de negócio para manipulação e formatação de dados
+- services: encapsula chamadas para aplicações externas
+- controllers: distribui as responsabilidades, dentro da aplicação, para obtenção dos dados requisitados
+- config: encapsula todas as configurações necessárias para o servidor
+
+Para rodar os testes do backend basta acessar pelo terminal a pasta "tests" do backend (node/backend/tests) e rodar o comando:
+```
+$ npm test <nome_do_arquivo_de_teste_a_ser_executado>
+```
+
+Os testes cobrem a camada de negócio, a camada de serviço, os controllers e o servidor como um todo.
+
+
+###O dashboard
+Foi utilizado o Vue.js junto com a biblioteca de CSS Materialize.
+Os arquivos principais estão na pasta "node/dashboard/src" e estão separados por componentes.
+Cada componente representa uma funcionalidade dentro da aplicação.
+Na "Home" é possível incluir uma ação. Os dados desta ação são consultados no backend e, caso ela seja uma ação válida, o nome da ação fica armazenado no local storage do browser, para futuras consultas, e os dados da ação são armazenados no session storage do browser. Desta tela é possível acessar a seção de histórico ou de projeções de uma ação.
+Na tela de histórico é possível obter as diversas cotações de uma ação a partir de um intervalo entre datas.
+Na tela de projeção é possível obter a projeção de lucros ou perdas com uma ação a partir da data da compra e da quantidade de ações compradas nesta data.
+
+Para rodar os testes do dashboard, basta acessar pelo terminal a pasta "node/dashboard" e rodar o comando:
+```
+$ npm test
+```
