@@ -29,41 +29,50 @@ class GainViewController: UIViewController {
         self.currentStock()
         let gain = self.estimateGain()
         self.chanceGainLabelColor(gain: gain)
-        let formater = SimpleNumberFormarter.format2Digits()
-        let formated = formater.number(from: "\(gain)")
-        self.gainLabel.text = "$\(formated!)"
+
+        let formated = String(format: "$%.2f", gain)
+        self.gainLabel.text = "\(formated)"
     }
     
     func currentStock(){
         let url = StockURL(symbol: (portfolio?.symbol)!, function: Function.daily, outputSize: OutputSize.compact).returnURL()
         
         DataFetch<TimeSerie>(url: url).getResults(controller: self, completion: { (timeSeries, error) in
+            // Ordernar pois o valor se desordena no final
             let tempArray = SortTimeSerie.sortByDate(timeSeries: timeSeries!)
+            // Pegar o primeiro dado ordernado pois ele sera da data mais atual
             self.timeSerie = tempArray[0]
         })
         
     }
     
+    //Calcular o valor das ações
     func estimateAcoes(timeSerie: TimeSerie) -> Double{
-        return timeSerie.open * Double((self.portfolio?.qtdAcoes)!)
+        return self.estimateOHLCAverage(timeSerie: timeSerie) * Double((self.portfolio?.qtdAcoes)!)
     }
     
+    // Mudar a cor do GainLabel de acordo se o lucro é negativo positivo ou neutro
     func chanceGainLabelColor(gain: Double){
         if gain > 0{
             self.gainLabel.textColor = UIColor.green
         }else if gain < 0{
             self.gainLabel.textColor = UIColor.red
+        // gain == 0
         }else{
             self.gainLabel.textColor = UIColor.blue
         }
     }
     
+    func estimateOHLCAverage(timeSerie: TimeSerie) -> Double{
+        return (timeSerie.close + timeSerie.open + timeSerie.high + timeSerie.low)/4
+    }
+    
+    // Calcular o ganho
     func estimateGain() -> Double{
         let calcPort = self.estimateAcoes(timeSerie: (self.portfolio?.timeSerie)!)
-        print(calcPort)
         let calcCurrent = self.estimateAcoes(timeSerie: self.timeSerie!)
-        print(calcCurrent)
-        return calcPort - calcCurrent
+
+        return calcCurrent - calcPort
     }
     
     
