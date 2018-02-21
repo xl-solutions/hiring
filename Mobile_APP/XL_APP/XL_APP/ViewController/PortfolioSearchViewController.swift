@@ -29,6 +29,8 @@ class PortfolioSearchViewController: UIViewController {
         self.datePicker.maximumDate = Date()
     }
     
+    
+    //MARK: SEGMENT CONTROLLs
     @IBAction func functionSelected(_ sender: UISegmentedControl) {
         
         switch  sender.selectedSegmentIndex{
@@ -65,6 +67,7 @@ class PortfolioSearchViewController: UIViewController {
         }
     }
     
+    //MARK: DONE
     @IBAction func done(_ sender: UIBarButtonItem) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.savePortfolio()
@@ -72,7 +75,7 @@ class PortfolioSearchViewController: UIViewController {
     }
     
     
-    
+    //MARK: DATA MANIPULATION
     func savePortfolio(){
         if let symbol = self.symbolText.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
             if(symbol != ""){

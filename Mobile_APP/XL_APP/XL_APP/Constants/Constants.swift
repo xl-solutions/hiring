@@ -14,13 +14,6 @@ struct Constants {
     static let plist = "Portfolio"
 }
 
-// Enum das Functions possiveis
-public enum Function: String, CodingKey {
-    case daily = "TIME_SERIES_DAILY"
-    case weekly = "TIME_SERIES_WEEKLY"
-    case monthly = "TIME_SERIES_MONTHLY"
-}
-
 // Struct com os identificadores da Storyboard
 struct  Storyboard {
     static let lucroSegue = "gainSegue"
@@ -28,6 +21,25 @@ struct  Storyboard {
     
 }
 
+
+//MARK: URL STRUCT
+// Enum das Functions possiveis
+public enum Function: String, CodingKey {
+    case daily = "TIME_SERIES_DAILY"
+    case weekly = "TIME_SERIES_WEEKLY"
+    case monthly = "TIME_SERIES_MONTHLY"
+}
+
+// Enum do OutputSize possiveis
+public enum OutputSize:  String {
+    case compact = "compact"
+    case full = "full"
+}
+
+
+
+
+//MARK: PORTFOLIO TABLE STRUCT
 // Struct das colunas da tabela Portfolio
 struct Columns{
     static let id = Expression<Int64>("id")
@@ -43,8 +55,4 @@ struct Columns{
 
 
 
-// Enum do OutputSize possiveis
-public enum OutputSize:  String {
-    case compact = "compact"
-    case full = "full"
-}
+

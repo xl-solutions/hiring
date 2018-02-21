@@ -28,5 +28,16 @@ class Portfolio: NSObject {
         
     }
     
+    func description(for object: Any) -> String {
+        var descriptionString = "\n"
+        let objectMirror = Mirror(reflecting: object)
+        for child in objectMirror.children {
+            if let propertyName = child.label {
+                descriptionString += "\n\(propertyName): \(child.value)"
+            }
+        }
+        return descriptionString
+    }
+    
     
 }

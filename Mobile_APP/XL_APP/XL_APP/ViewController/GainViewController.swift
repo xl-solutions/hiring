@@ -27,13 +27,15 @@ class GainViewController: UIViewController {
             self.acaoLabel.text = "Quantidade de ações: \(portfolio.qtdAcoes!)"
         }
         self.currentStock()
-        let gain = self.estimateGain()
+        let gain = Estimate.estimateGain(portifolio: self.portfolio!, timeSerie: self.timeSerie!)
         self.chanceGainLabelColor(gain: gain)
 
         let formated = String(format: "$%.2f", gain)
         self.gainLabel.text = "\(formated)"
     }
     
+    
+    //MARK: DATA MANIPULATION
     func currentStock(){
         let url = StockURL(symbol: (portfolio?.symbol)!, function: Function.daily, outputSize: OutputSize.compact).returnURL()
         
@@ -46,11 +48,8 @@ class GainViewController: UIViewController {
         
     }
     
-    //Calcular o valor das ações
-    func estimateAcoes(timeSerie: TimeSerie) -> Double{
-        return self.estimateOHLCAverage(timeSerie: timeSerie) * Double((self.portfolio?.qtdAcoes)!)
-    }
     
+    // MARK: Label Color Change
     // Mudar a cor do GainLabel de acordo se o lucro é negativo positivo ou neutro
     func chanceGainLabelColor(gain: Double){
         if gain > 0{
@@ -62,19 +61,5 @@ class GainViewController: UIViewController {
             self.gainLabel.textColor = UIColor.blue
         }
     }
-    
-    func estimateOHLCAverage(timeSerie: TimeSerie) -> Double{
-        return (timeSerie.close + timeSerie.open + timeSerie.high + timeSerie.low)/4
-    }
-    
-    // Calcular o ganho
-    func estimateGain() -> Double{
-        let calcPort = self.estimateAcoes(timeSerie: (self.portfolio?.timeSerie)!)
-        let calcCurrent = self.estimateAcoes(timeSerie: self.timeSerie!)
-
-        return calcCurrent - calcPort
-    }
-    
-    
 
 }
