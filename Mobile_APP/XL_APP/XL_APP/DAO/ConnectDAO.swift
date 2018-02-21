@@ -41,7 +41,7 @@ class ConnectDAO: NSObject {
                 t.column(Columns.low)
                 t.column(Columns.close)
                 t.column(Columns.volume)
-                t.column(Columns.valorAcao)
+                t.column(Columns.qtdAcoes)
             })
 
         }catch let err{

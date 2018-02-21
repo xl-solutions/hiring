@@ -46,7 +46,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Hhz-1Y-vZY" kind="show" identifier="lucroSegue" id="eUG-aQ-wMh"/>
+                                            <segue destination="Hhz-1Y-vZY" kind="show" identifier="gainSegue" id="eUG-aQ-wMh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -152,11 +152,11 @@
                                     <action selector="sizeChanged:" destination="NZa-Az-h1j" eventType="valueChanged" id="5Ym-y4-Hok"/>
                                 </connections>
                             </segmentedControl>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Valor da ação (Em dolares)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3dE-2o-KNC">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantidade de ações" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3dE-2o-KNC">
                                 <rect key="frame" x="16" y="112" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" editable="NO" text="Completo tem uma chance alta de encontrar a ação no dia requerido, porem a pesquisa pode ficar muito lenta." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2wP-w7-dJR">
                                 <rect key="frame" x="16" y="554" width="343" height="67"/>
@@ -209,23 +209,23 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="acoesText" destination="3dE-2o-KNC" id="OdK-qt-Dft"/>
                         <outlet property="datePicker" destination="72s-ay-hGF" id="bnP-wf-Ptg"/>
                         <outlet property="functionDescription" destination="O4w-Tz-fNI" id="zmH-fb-phh"/>
                         <outlet property="functionSegment" destination="fLS-Lh-Haq" id="atv-5B-fYk"/>
                         <outlet property="sizeDescription" destination="2wP-w7-dJR" id="FIL-xq-dbJ"/>
                         <outlet property="sizeSegment" destination="a4G-1Z-Bq0" id="doH-Ac-xJc"/>
                         <outlet property="symbolText" destination="VCW-fI-hnU" id="Xa5-t8-4Sp"/>
-                        <outlet property="valorText" destination="3dE-2o-KNC" id="Gyc-xx-nrp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cov-QJ-V3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1348" y="115"/>
         </scene>
-        <!--Lucro View Controller-->
+        <!--Gain View Controller-->
         <scene sceneID="R2i-n3-ddP">
             <objects>
-                <viewController id="Hhz-1Y-vZY" customClass="LucroViewController" customModule="XL_APP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Hhz-1Y-vZY" customClass="GainViewController" customModule="XL_APP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6tK-VA-n4m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -248,7 +248,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valor Ação $" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cs8-cK-Ks7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantidade Ações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cs8-cK-Ks7">
                                 <rect key="frame" x="16" y="208" width="343" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -256,7 +256,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxB-jR-4pq">
                                 <rect key="frame" x="16" y="449" width="343" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -285,7 +285,7 @@
                     <connections>
                         <outlet property="acaoLabel" destination="Cs8-cK-Ks7" id="EcX-4u-6cf"/>
                         <outlet property="dateLabel" destination="WBi-8U-KH1" id="I4w-gd-bck"/>
-                        <outlet property="lucroLabel" destination="rxB-jR-4pq" id="18T-cy-4hb"/>
+                        <outlet property="gainLabel" destination="rxB-jR-4pq" id="zYj-JY-VH8"/>
                         <outlet property="symbolLabel" destination="RJg-c6-AIE" id="T6o-ZW-R8I"/>
                     </connections>
                 </viewController>

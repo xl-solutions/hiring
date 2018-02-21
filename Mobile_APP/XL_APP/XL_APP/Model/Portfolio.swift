@@ -11,19 +11,19 @@ import UIKit
 class Portfolio: NSObject {
     var id: Int?
     var timeSerie: TimeSerie?
-    var valorDaAcao: Double?
+    var qtdAcoes: Int?
     var symbol: String?
-    init(symbol: String,timeSerie: TimeSerie, valorDaAcao: Double) {
+    init(symbol: String,timeSerie: TimeSerie, qtdAcoes: Int) {
         self.symbol = symbol
         self.timeSerie = timeSerie
-        self.valorDaAcao = valorDaAcao
+        self.qtdAcoes = qtdAcoes
         
     }
     
-    init(id: Int, symbol: String, timeSerie: TimeSerie, valorDaAcao: Double) {
+    init(id: Int, symbol: String, timeSerie: TimeSerie, qtdAcoes: Int) {
         self.symbol = symbol
         self.timeSerie = timeSerie
-        self.valorDaAcao = valorDaAcao
+        self.qtdAcoes = qtdAcoes
         
     }
     

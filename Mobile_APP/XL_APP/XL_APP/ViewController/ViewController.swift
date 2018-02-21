@@ -38,18 +38,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.stockCell, for: indexPath)
         let portf = self.portfolios![indexPath.row]
-        let formarter = SimpleNumberFormarter.format2Digits()
-        let numberFormated = formarter.string(for: portf.valorDaAcao!)
-        cell.textLabel?.text = "\(portf.symbol!) - $\(numberFormated!)"
+        cell.textLabel?.text = "\(portf.symbol!) - \(portf.qtdAcoes!)"
         cell.detailTextLabel?.text = "Data: \((portf.timeSerie?.date)!)"
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.lucroSegue{
-            if let lucroVC = segue.destination as? LucroViewController{
+            if let gainVC = segue.destination as? GainViewController{
                 let indexPath = self.stocksTableView.indexPathForSelectedRow
-                lucroVC.portfolio = self.portfolios?[(indexPath?.row)!]
+                gainVC.portfolio = self.portfolios?[(indexPath?.row)!]
             }
         }
     }

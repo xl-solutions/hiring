@@ -23,7 +23,7 @@ public enum Function: String, CodingKey {
 
 // Struct com os identificadores da Storyboard
 struct  Storyboard {
-    static let lucroSegue = "lucroSegue"
+    static let lucroSegue = "gainSegue"
     static let stockCell = "stockCell"
     
 }
@@ -37,7 +37,7 @@ struct Columns{
     static let high = Expression<Double>("high")
     static let low = Expression<Double>("loew")
     static let close = Expression<Double>("close")
-    static let valorAcao = Expression<Double>("valor_acao")
+    static let qtdAcoes = Expression<Int64>("qtd_acoes")
     static let volume = Expression<Int64>("volume")
 }
 

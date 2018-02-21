@@ -16,7 +16,7 @@ class PortfolioSearchViewController: UIViewController {
     @IBOutlet weak var functionDescription: UITextView!
     @IBOutlet weak var sizeDescription: UITextView!
     
-    @IBOutlet weak var valorText: UITextField!
+    @IBOutlet weak var acoesText: UITextField!
     // Opção da Function da pesquisa
     var function: Function?
     // Opção do OutputSize da pesquisa
@@ -79,17 +79,17 @@ class PortfolioSearchViewController: UIViewController {
                 // Cria uma url de acordo com os dados fornecidos
                 let url = StockURL(symbol: symbol, function: self.function!, outputSize: self.size!).returnURL()
                 // Verifica se o valor informado é um Double valido
-                if let valor = Double(self.valorText.text!){
-                    if valor > 0{
+                if let acoes = Int(self.acoesText.text!){
+                    if acoes > 0{
                         // Pega e decodifica os dados da API para um array de TimeSerie
-                        self.dataFetch(url: url, valor: valor, symbol: symbol)
+                        self.dataFetch(url: url, acoes: acoes, symbol: symbol)
                     }else{
-                        Alert.alert(titulo: "", mensagem: "Valor da ação deve ser maior que 0!", popView: false, viewController: self)
+                        Alert.alert(titulo: "", mensagem: "A quantidade de ações deve ser maior que 0!", popView: false, viewController: self)
                     }
                     
                     
                 }else{
-                    Alert.alert(titulo: "", mensagem: "Valor da ação invalido!", popView: false, viewController: self)
+                    Alert.alert(titulo: "", mensagem: "Quantidade de ações invalido!", popView: false, viewController: self)
                 }
             }
         }
@@ -97,7 +97,7 @@ class PortfolioSearchViewController: UIViewController {
         
     }
     
-    func dataFetch(url: URL, valor: Double, symbol: String){
+    func dataFetch(url: URL, acoes: Int, symbol: String){
         var flagDate = false
         DataFetch<TimeSerie>(url: url).getResults(controller: self) { (timeSeries, error) in
             //Verifica se foi possivel fazer o decode do TimeSeries da API
@@ -107,7 +107,7 @@ class PortfolioSearchViewController: UIViewController {
                     if timeSerie.date == DateFormat.dateToString(date: self.datePicker.date){
                         flagDate = true
                         // Se existir salva no portfolio
-                        let portfolio = Portfolio(symbol: symbol.uppercased(),timeSerie: timeSerie, valorDaAcao: valor)
+                        let portfolio = Portfolio(symbol: symbol.uppercased(),timeSerie: timeSerie, qtdAcoes: acoes)
 
                         //Salva a ação no array de Portifolio da Singleton Portfolios
                         //Portfolios.shared.portfolios?.append(portfolio)
