@@ -45,6 +45,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Hhz-1Y-vZY" kind="show" identifier="lucroSegue" id="eUG-aQ-wMh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -218,6 +221,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cov-QJ-V3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1348" y="115"/>
+        </scene>
+        <!--Lucro View Controller-->
+        <scene sceneID="R2i-n3-ddP">
+            <objects>
+                <viewController id="Hhz-1Y-vZY" customClass="LucroViewController" customModule="XL_APP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6tK-VA-n4m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYMBOL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJg-c6-AIE">
+                                <rect key="frame" x="16" y="78" width="343" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-02-21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBi-8U-KH1">
+                                <rect key="frame" x="116" y="124" width="142" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lucro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4T3-BU-PYR">
+                                <rect key="frame" x="16" y="318" width="343" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valor Ação $" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cs8-cK-Ks7">
+                                <rect key="frame" x="16" y="208" width="343" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxB-jR-4pq">
+                                <rect key="frame" x="16" y="449" width="343" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="axm-ey-baR" firstAttribute="trailing" secondItem="4T3-BU-PYR" secondAttribute="trailing" constant="16" id="6QA-TM-szX"/>
+                            <constraint firstItem="rxB-jR-4pq" firstAttribute="leading" secondItem="axm-ey-baR" secondAttribute="leading" constant="16" id="9co-tW-9m3"/>
+                            <constraint firstItem="WBi-8U-KH1" firstAttribute="leading" secondItem="axm-ey-baR" secondAttribute="leading" constant="116" id="ChU-kB-C4S"/>
+                            <constraint firstItem="Cs8-cK-Ks7" firstAttribute="top" secondItem="WBi-8U-KH1" secondAttribute="bottom" constant="63" id="G2v-Ig-igE"/>
+                            <constraint firstItem="RJg-c6-AIE" firstAttribute="top" secondItem="axm-ey-baR" secondAttribute="top" constant="14" id="I5c-N6-u5D"/>
+                            <constraint firstItem="WBi-8U-KH1" firstAttribute="top" secondItem="RJg-c6-AIE" secondAttribute="bottom" constant="16" id="OK9-I9-cmL"/>
+                            <constraint firstItem="4T3-BU-PYR" firstAttribute="leading" secondItem="axm-ey-baR" secondAttribute="leading" constant="16" id="QHz-vB-N1P"/>
+                            <constraint firstItem="axm-ey-baR" firstAttribute="trailing" secondItem="Cs8-cK-Ks7" secondAttribute="trailing" constant="16" id="S4L-AT-7Hf"/>
+                            <constraint firstItem="RJg-c6-AIE" firstAttribute="leading" secondItem="axm-ey-baR" secondAttribute="leading" constant="16" id="axg-3k-1hy"/>
+                            <constraint firstItem="axm-ey-baR" firstAttribute="bottom" secondItem="rxB-jR-4pq" secondAttribute="bottom" constant="182" id="bZO-fT-9dQ"/>
+                            <constraint firstItem="axm-ey-baR" firstAttribute="trailing" secondItem="RJg-c6-AIE" secondAttribute="trailing" constant="16" id="jmQ-6v-kek"/>
+                            <constraint firstItem="axm-ey-baR" firstAttribute="trailing" secondItem="WBi-8U-KH1" secondAttribute="trailing" constant="117" id="rj3-Qz-CXQ"/>
+                            <constraint firstItem="axm-ey-baR" firstAttribute="trailing" secondItem="rxB-jR-4pq" secondAttribute="trailing" constant="16" id="rpg-zB-TgF"/>
+                            <constraint firstItem="Cs8-cK-Ks7" firstAttribute="leading" secondItem="axm-ey-baR" secondAttribute="leading" constant="16" id="sNu-sT-bPY"/>
+                            <constraint firstItem="rxB-jR-4pq" firstAttribute="top" secondItem="4T3-BU-PYR" secondAttribute="bottom" constant="102" id="tK2-RV-43f"/>
+                            <constraint firstItem="4T3-BU-PYR" firstAttribute="top" secondItem="Cs8-cK-Ks7" secondAttribute="bottom" constant="81" id="uxW-aZ-e75"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="axm-ey-baR"/>
+                    </view>
+                    <connections>
+                        <outlet property="acaoLabel" destination="Cs8-cK-Ks7" id="EcX-4u-6cf"/>
+                        <outlet property="dateLabel" destination="WBi-8U-KH1" id="I4w-gd-bck"/>
+                        <outlet property="lucroLabel" destination="rxB-jR-4pq" id="18T-cy-4hb"/>
+                        <outlet property="symbolLabel" destination="RJg-c6-AIE" id="T6o-ZW-R8I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ap-aq-eHS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1025" y="831"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ri2-nQ-NiX">

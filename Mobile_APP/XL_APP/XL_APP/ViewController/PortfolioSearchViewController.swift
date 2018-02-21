@@ -74,7 +74,6 @@ class PortfolioSearchViewController: UIViewController {
     
     
     func savePortfolio(){
-        
         if let symbol = self.symbolText.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
             if(symbol != ""){
                 // Cria uma url de acordo com os dados fornecidos

@@ -21,6 +21,13 @@ public enum Function: String, CodingKey {
     case monthly = "TIME_SERIES_MONTHLY"
 }
 
+// Struct com os identificadores da Storyboard
+struct  Storyboard {
+    static let lucroSegue = "lucroSegue"
+    static let stockCell = "stockCell"
+    
+}
+
 // Struct das colunas da tabela Portfolio
 struct Columns{
     static let id = Expression<Int64>("id")
@@ -33,6 +40,8 @@ struct Columns{
     static let valorAcao = Expression<Double>("valor_acao")
     static let volume = Expression<Int64>("volume")
 }
+
+
 
 // Enum do OutputSize possiveis
 public enum OutputSize:  String {

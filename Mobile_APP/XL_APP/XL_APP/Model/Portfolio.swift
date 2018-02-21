@@ -26,4 +26,6 @@ class Portfolio: NSObject {
         self.valorDaAcao = valorDaAcao
         
     }
+    
+    
 }

@@ -17,11 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.portfolios = PortfolioDAO.shared.selectPortfolio()
-//        self.stocksTableView.reloadData()
-//        self.stocksTableView.dataSource = self
-//        self.stocksTableView.delegate = self
-//        self.stocksTableView.tableFooterView = UIView()
+
 
     }
     
@@ -40,13 +36,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stockCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.stockCell, for: indexPath)
         let portf = self.portfolios![indexPath.row]
         let formarter = SimpleNumberFormarter.format2Digits()
         let numberFormated = formarter.string(for: portf.valorDaAcao!)
         cell.textLabel?.text = "\(portf.symbol!) - $\(numberFormated!)"
         cell.detailTextLabel?.text = "Data: \((portf.timeSerie?.date)!)"
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.lucroSegue{
+            if let lucroVC = segue.destination as? LucroViewController{
+                let indexPath = self.stocksTableView.indexPathForSelectedRow
+                lucroVC.portfolio = self.portfolios?[(indexPath?.row)!]
+            }
+        }
     }
 
 
