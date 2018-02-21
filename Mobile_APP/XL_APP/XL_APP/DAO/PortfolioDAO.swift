@@ -47,5 +47,16 @@ class PortfolioDAO: NSObject {
         
         return portfolios
     }
+    
+    
+    func deleteByID(id: Int64){
+        let query = portfolioT.filter(Columns.id == id)
+        do{
+            try ConnectDAO.shared.db?.run(query.delete())
+        }catch let err{
+            print(err)
+        }
+        
+    }
 
 }

@@ -21,6 +21,7 @@ class Portfolio: NSObject {
     }
     
     init(id: Int, symbol: String, timeSerie: TimeSerie, qtdAcoes: Int) {
+        self.id = id
         self.symbol = symbol
         self.timeSerie = timeSerie
         self.qtdAcoes = qtdAcoes
