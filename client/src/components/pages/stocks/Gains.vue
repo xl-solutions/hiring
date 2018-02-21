@@ -8,13 +8,13 @@
     <form @submit.prevent="getGains">
       <div class="row md-gutter" style="padding: 10px;">
         <div class="col-lg-4 col-sm-12">
-          <q-select separator stack-label="Select the symbol" v-model="search.symbol" :options="selectOptions"/>
+          <q-select separator stack-label="Select the symbol*" v-model="search.symbol" :options="options"/>
         </div>
         <div class="col-lg-4 col-sm-12">
-          <q-input type="number" v-model="search.purchasedAmount" stack-label="Purchased amount"/>
+          <q-input type="number" v-model="search.purchasedAmount" stack-label="Purchased amount*"/>
         </div>
         <div class="col-lg-4 col-sm-12">
-          <q-datetime v-model="search.purchasedAt" stack-label="From" />
+          <q-datetime v-model="search.purchasedAt" stack-label="Purchased at*" />
         </div>
       </div>
       <div class="row">
@@ -81,7 +81,8 @@
     },
     data () {
       return {
-        selectOptions: [],
+        message: '',
+        options: [],
         search: {},
         stock: {}
       }
@@ -90,7 +91,7 @@
       let stocks = LocalStorage.get.item('stocks') || []
 
       stocks.forEach((stock) => {
-        this.selectOptions.push({
+        this.options.push({
           label: stock.name,
           value: stock.name
         })
@@ -107,7 +108,9 @@
               let errors = res.data.errors
               this.showMessage(errors[Object.keys(errors)[0]][0])
             }
-            this.stock = res.data
+            else {
+              this.stock = res.data
+            }
           }).catch(() => {
             this.showMessage('Symbol not found!')
           })

@@ -1,14 +1,14 @@
 <template>
   <q-layout class="layout-padding">
     <div class="row">
-      <q-alert ref="alert" v-if="message" enter="bounceInLeft" leave="bounceOutRight" style="width: 100%">
+      <q-alert id="alert" ref="alert" v-if="message" enter="bounceInLeft" leave="bounceOutRight" style="width: 100%">
         {{message}}
       </q-alert>
     </div>
     <form @submit.prevent="getStock">
       <div class="row items-center">
         <div class="col-lg-12">
-          <q-input v-model="symbol" stack-label="Informe the stock symbol (BVMF:PETR4, NASDAQ:AAPL)"/>
+          <q-input v-model="symbol" stack-label="Informe the stock symbol (BVMF:PETR4, NASDAQ:AAPL)*"/>
         </div>
       </div>
       <div class="row">
@@ -107,7 +107,6 @@
       getStock () {
         this.$http.get('/stocks/' + this.symbol + '/quote')
           .then((res) => {
-            console.log(res.data)
             if (res.data.errors) {
               let errors = res.data.errors
               this.showMessage(errors[Object.keys(errors)[0]][0])
@@ -129,7 +128,6 @@
       },
       showMessage (msg) {
         this.message = msg
-
         // close message after 5 sec
         setTimeout(() => {
           this.message = ''

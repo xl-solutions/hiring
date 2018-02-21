@@ -5,13 +5,12 @@ let
 
 validate.extend(validate.validators.datetime, {
   parse: (value) => {
-    return +moment(value).utc()
+    return moment(value, 'YYYY-MM-DD')
   },
   format: (value) => {
-    return moment(value).utc().format('YYYY-MM-DD')
+    return moment(value, 'YYYY-MM-DD')
   }
 })
-
 
 const historyValidade = {
   from: {
@@ -25,6 +24,21 @@ const historyValidade = {
       allowEmpty: false
     },
     datetime: true
+  }
+}
+
+const gainsValidade = {
+  purchasedAt: {
+    presence: {
+      allowEmpty: false
+    },
+    datetime: true
+  },
+  purchasedAmount: {
+    presence: {
+      allowEmpty: false
+    },
+    numericality: true
   }
 }
 
@@ -49,16 +63,19 @@ module.exports.quote = (app, req, res) => {
 }
 
 module.exports.history = (app, req, res) => {
+  req.query.from = moment(req.query.from, 'YYYY-MM-DD')
+  req.query.to = moment(req.query.to, 'YYYY-MM-DD')
+
   let errors = validate(req.query, historyValidade)
 
   if (errors) {
     res.json({errors: errors})
   }
   else {
-    if (moment(req.query.from) >= moment(req.query.to)) {
+    if (req.query.from >= req.query.to) {
       res.json({errors: {from: ['From must be less than To']}})
     }
-    else if (moment(req.query.to) > moment()) {
+    else if (req.query.to > moment()) {
       res.json({errors: {from: ['To must be less or equal the current date']}})
     }
     else {
@@ -125,27 +142,34 @@ module.exports.compare = (app, req, res) => {
 }
 
 module.exports.gains = (app, req, res) => {
-  googleFinance.historical({
-    symbol: req.params.stock_name,
-    from: new Date(req.query.purchasedAt),
-  }, (err, quotes) => {
-    if (err || quotes.length < 1) {
-      res.json({errors: {stock_name: ['Symbol not found!']}})
-    }
-    else {
-      let amount = parseInt(req.query.purchasedAmount)
+  let errors = validate(req.query, gainsValidade)
 
-      let first = quotes[0]
-      let last = quotes.pop()
+  if (errors) {
+    res.json({errors: errors})
+  }
+  else {
+    googleFinance.historical({
+      symbol: req.params.stock_name,
+      from: req.query.purchasedAt,
+    }, (err, quotes) => {
+      if (err || quotes.length < 1) {
+        res.json({errors: {stock_name: ['Symbol not found!']}})
+      }
+      else {
+        let amount = parseInt(req.query.purchasedAmount)
 
-      res.json({
-        name: last.symbol,
-        purchasedAmount: amount,
-        purchasedAt: first.date,
-        priceAtDate: first.close,
-        lastPrice: last.close,
-        capitalGains: ((amount * last.close) - (amount * first.close))
-      })
-    }
-  })
+        let first = quotes[0]
+        let last = quotes.pop()
+
+        res.json({
+          name: last.symbol,
+          purchasedAmount: amount,
+          purchasedAt: first.date,
+          priceAtDate: first.close,
+          lastPrice: last.close,
+          capitalGains: ((amount * last.close) - (amount * first.close))
+        })
+      }
+    })
+  }
 }

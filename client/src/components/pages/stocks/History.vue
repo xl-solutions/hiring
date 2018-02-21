@@ -8,13 +8,13 @@
     <form @submit.prevent="getHistory">
       <div class="row md-gutter">
         <div class="col-lg-4 col-sm-12">
-          <q-select separator stack-label="Select the symbol" v-model="search.symbol" :options="options"/>
+          <q-select separator stack-label="Select the symbol*" v-model="search.symbol" :options="options"/>
         </div>
         <div class="col-lg-4 col-sm-12">
-          <q-datetime v-model="search.from" stack-label="From" />
+          <q-datetime v-model="search.from" stack-label="From*" format="YYYY-MM-DD"/>
         </div>
         <div class="col-lg-4 col-sm-12">
-          <q-datetime v-model="search.to" stack-label="To" />
+          <q-datetime v-model="search.to" stack-label="To*" format="YYYY-MM-DD"/>
         </div>
       </div>
       <div class="row">
@@ -113,6 +113,8 @@
     },
     methods: {
       getHistory () {
+        this.lastPrices = []
+
         this.$http.get(
           '/stocks/' + this.search.symbol +
           '/history?from=' + this.search.from + '&to=' + this.search.to)

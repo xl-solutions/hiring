@@ -10,15 +10,31 @@ If you want to know more about the proposal of the test using NodeJS, access:
 - Clone the project
 - Acess the project directory
 
-### Running the server
+### Running application
 
-<p>How default value, the server will be run in the port 3000.</p>
-<p>If you want to change server port, create a <i>.env</i> file in 
-*server* folder and set the <i>APP_PORT</i> value and change axios base url in <i>/client/src/main.js</i>.</p>
-To you know how to create <i>.env</i> file, use the example <i>.env.example</i></p>
+<p>The application offer somes commands with npm to run client and server.</p>
 
-- To run the server, put in terminal *"npm run start-server"*
-- To run the test, put in terminal *"npm run test-server"*
+- *"npm start"*: Will be start server on port 3000 and client on 8000
+- *"npm run start-server"*: Run only server using port 3000
+- *"npm run start-client"*: Run only client using port 8000
+
+### Testing application
+
+The application tests must be run individually. The client test will create a report in *"client/test/unit/coverage/lcov-report/index.html
+"*. Use the following commands to do this:
+
+- *"npm run test-server"*: Run server tests
+- *"npm run test-client"*: Run client tests
+
+### Client routes
+
+The client will be offer tree routes
+
+- /portfolio
+- /history
+- /gains
+
+### Server Endpoints
 
 The server offer four endpoits:
 
