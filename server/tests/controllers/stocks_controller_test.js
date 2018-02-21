@@ -52,11 +52,11 @@ describe('Test in stocks_controller', () => {
       .end((err, res) => {
         expect(res.status).to.equal(200)
         expect(res.body).to.be.an('object')
-        expect(res.body).have.all.keys('name', 'prices')
+        expect(res.body).have.all.keys('name', 'lastPrices')
         expect(res.body.name).to.be.a('string')
-        expect(res.body.prices).to.be.an('array')
+        expect(res.body.lastPrices).to.be.an('array')
 
-        res.body.prices.forEach((price) => {
+        res.body.lastPrices.forEach((price) => {
           expect(price).have.all.keys('opening', 'low', 'high', 'closing' ,'pricedAt')
           expect(price.opening).to.be.a('number')
           expect(price.low).to.be.a('number')
