@@ -179,11 +179,11 @@ $ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5
 [yahoofin]: http://www.canbike.org/information-technology/yahoo-finance-url-download-to-a-csv-file.html
 
 
-#Solução Proposta
+# Solução Proposta
 
-##Node
+## Node
 
-###Geral
+### Geral
 
 Esta solução foi dividida em duas aplicações web. Uma para o dashboard, que ficará disponível na porta 8080, e outra para o servidor do serviço de consulta de ações, que ficará disponível na porta 8081.
 A solução foi dividida desta maneira buscando isolar funcionalidades e possíveis adaptações de código para construção de aplicativos.
@@ -196,13 +196,13 @@ $ (cd node/backend; npm start)& cd node/dashboard; npm start
 Para encerrar o projeto do dashboard, basta digitar "CTRL + C" no terminal.
 Caso o comando acima tenha sido executado, o backend estará rodando em background. Para encerrá-lo, é preciso trazê-lo para o primeiro plano digitando "fg" no terminal e dando "Enter". Ao trazê-lo para o primeiro plano, basta encerrá-lo com o comando "CTRL + C".
 
-###Testes
+### Testes
 Ambos os projetos possuem testes.
 Os arquivos de testes estão nas seguintes pastas:
 - node/test/unit/specs para o dashboard
 - node/backend/tests para o backend
 
-###O backend
+### O backend
 Está organizado nas seguintes camadas:
 - business: contém as regras de negócio para manipulação e formatação de dados
 - services: encapsula chamadas para aplicações externas
@@ -217,7 +217,7 @@ $ npm test <nome_do_arquivo_de_teste_a_ser_executado>
 Os testes cobrem a camada de negócio, a camada de serviço, os controllers e o servidor como um todo.
 
 
-###O dashboard
+### O dashboard
 Foi utilizado o Vue.js junto com a biblioteca de CSS Materialize.
 Os arquivos principais estão na pasta "node/dashboard/src" e estão separados por componentes.
 Cada componente representa uma funcionalidade dentro da aplicação.
