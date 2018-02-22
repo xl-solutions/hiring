@@ -1,0 +1,42 @@
+Este programa foi desenvolvido e testado no GNU/Linux Ubuntu 17.04.
+Para sua instalação, realize os procedimentos abaixo.
+
+1 INSTALAÇÃO DE DEPENDÊNCIAS
+
+	1.1 Execute os comandos
+		apt-get update
+		apt-get install apache2 php7.0 php7.0-mysql php7.0-json mariadb-server
+		a2enmod rewrite
+
+
+2 CRIAÇÃO DO BANCO DE DADOS
+
+	2.1 Abra e execute o arquivo hiring/PHP/share/dbscripts/hiring.sql em algum cliente para o MariaDB ou MySQL
+
+	
+3 CONFIGURAÇÃO DO VIRTUAL HOST NO APACHE
+
+	3.1 Copie o conteúdo abaixo e cole-o na seção VirtualHost do arquivo /etc/apache2/sites-available/000-default.conf
+		<Directory /var/www/html/hiring/PHP>
+			Options FollowSymLinks MultiViews
+			AllowOverride None
+			Order allow,deny
+			allow from all
+			RewriteEngine on
+			RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK|OPTIONS)
+			RewriteRule .* - [F]
+			RewriteCond %{REQUEST_FILENAME} !-f
+			RewriteCond %{REQUEST_FILENAME} !-d
+			RewriteRule ^(.*)$ index.php [QSA,L]
+		</Directory>
+
+	3.2 Copie o diretório hiring para /var/www/html/hiring
+
+	3.3 Execute os comandos
+		chmod -R 740 /var/www/html
+		chown -R www-data:www-data /var/www/html/hiring
+		service apache2 restart
+
+4 TESTE O ACESSO
+
+	4.1 Abra seu navegador e acesse a URL http://localhost/hiring/PHP
