@@ -44,7 +44,7 @@ abstract class AbstractControl {
 	protected function assign_command(&$command) {
 		if(empty($command)) {
 			$split = explode('?', $_SERVER['REQUEST_URI']);
-			$this->command = array_slice(explode('/', reset($split)), 4);
+			$this->command = array_slice(explode('/', reset($split)), 3);
 		}
 		else $this->command = explode('/', $command);
 	}
