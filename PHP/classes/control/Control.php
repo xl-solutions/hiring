@@ -1,7 +1,7 @@
 <?php
-define('ICO', '/thmsoft/hiring/PHP/images/hiring.ico');
-define('ICO_NOBG', '/thmsoft/hiring/PHP/images/hiring.ico');
-define('URL', '/thmsoft/hiring/PHP/');
+define('ICO', '/hiring/PHP/images/hiring.ico');
+define('ICO_NOBG', '/hiring/PHP/images/hiring.ico');
+define('URL', '/hiring/PHP/');
 
 require_once('classes/misc/functions.php');
 require_once('classes/control/AbstractControl.php');
