@@ -24,11 +24,9 @@ class XL_APPTests: XCTestCase {
         let nilDateTimeSerie = TimeSerie(date: "", open: doubleFixed, high: doubleFixed, low: doubleFixed, close: doubleFixed, volume: 900)
         self.nilDatePortfolio = Portfolio(symbol: "AAPL", timeSerie: nilDateTimeSerie, qtdAcoes: 500)
         self.portfolio = Portfolio(symbol: "AAPL", timeSerie: self.timeSerie, qtdAcoes: 500)
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
 
         self.portfolios = nil
@@ -107,6 +105,12 @@ class XL_APPTests: XCTestCase {
     // Testa se a função stringToDate funciona normalmente
     func testStringToDate(){
         XCTAssertNotNil(DateFormat.stringToDate(date: "2008-12-02"))
+    }
+    
+    func testChangeDateTime(){
+        let date = DateFormat.stringToDate(date: "2008-12-02")
+        let date2 = DateFormat.changeDateTime(hour: 21, min: 59, sec: 59, date: date!)
+        XCTAssertEqual(date2?.description, "2008-12-02 23:59:59 +0000")
     }
     
     //MARK: SortTimeSerie

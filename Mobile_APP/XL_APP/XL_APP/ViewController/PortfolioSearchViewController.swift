@@ -130,12 +130,7 @@ class PortfolioSearchViewController: UIViewController {
         }
         
     }
-    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
     
     
 }

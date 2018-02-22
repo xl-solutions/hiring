@@ -31,7 +31,6 @@ class HistViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.timeSeries = []
             self.loadHistTimeSerie()
             self.timeSeries = SortTimeSerie.sortByDate(timeSeries: self.timeSeries!)
-            //print(self.timeSeries)
 
         }
     }
@@ -67,7 +66,7 @@ class HistViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    
+    //MARK: Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (timeSeries?.count)!
     }

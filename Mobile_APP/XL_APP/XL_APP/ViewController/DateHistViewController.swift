@@ -39,10 +39,13 @@ class DateHistViewController: UIViewController {
         if segue.identifier == Storyboard.histSegue{
             if let histVC = segue.destination as? HistViewController{
                 histVC.portfolio = self.portfolio
+                if let dateTo = DateFormat.changeDateTime(hour: 21, min: 59, sec: 59, date: self.fromDatePicker.date){
+                    histVC.toDate = dateTo
+                }else{
+                    histVC.toDate = self.fromDatePicker.date
+                }
                 
-                histVC.toDate = self.toDatePicker.date
-                
-                histVC.fromDate = self.fromDatePicker.date
+                histVC.fromDate = Calendar.current.startOfDay(for: self.fromDatePicker.date)
             }
         }
     }

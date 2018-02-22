@@ -28,4 +28,10 @@ class DateFormat: NSObject {
         }
         return formatter.string(from: date!)
     }
+    
+    //Modifica a data para a escolhida
+    static func changeDateTime(hour: Int, min: Int, sec: Int, date: Date) -> Date?{
+        let calendar = NSCalendar.current
+        return calendar.date(bySettingHour: hour, minute: min, second: sec, of: date)
+    }
 }

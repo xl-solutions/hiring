@@ -27,6 +27,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.stocksTableView.delegate = self
         self.stocksTableView.tableFooterView = UIView()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.lucroSegue{
+            if let gainVC = segue.destination as? GainViewController{
+                let indexPath = self.stocksTableView.indexPathForSelectedRow
+                gainVC.portfolio = self.portfolios?[(indexPath?.row)!]
+            }
+        }
+    }
 
     
     //MARK: TableView
@@ -42,14 +51,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Storyboard.lucroSegue{
-            if let gainVC = segue.destination as? GainViewController{
-                let indexPath = self.stocksTableView.indexPathForSelectedRow
-                gainVC.portfolio = self.portfolios?[(indexPath?.row)!]
-            }
-        }
-    }
+ 
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
