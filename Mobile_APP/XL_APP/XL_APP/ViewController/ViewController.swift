@@ -26,8 +26,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.stocksTableView.dataSource = self
         self.stocksTableView.delegate = self
         self.stocksTableView.tableFooterView = UIView()
-        
-
     }
 
     

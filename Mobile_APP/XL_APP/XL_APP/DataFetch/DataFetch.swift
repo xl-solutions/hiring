@@ -38,7 +38,7 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
             if json["Error Message"] != nil {
                 Alert.alert(titulo: "", mensagem: "Não foi possivel encontrar o simbolo desejado!", popView: false, viewController: controller)
             }else{
-                // Separa os dados de uma forma mais facil de pegar já que a API tem seu JSON com uma formatação complicada, porem desordena os dados pela data
+                // Separa os dados de uma forma mais facil de pegar já que a API tem seu JSON com uma formatação complicada, porem desordena os dados que estavam ordernados pela data
                 let timeSeries: [String: [String: String]] = json[timeSeriesKey]! as! [String : [String : String]]
                 let parsed: [TimeSerie] = timeSeries.flatMap({ key, value in
                     var mutableDict = value

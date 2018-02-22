@@ -10,16 +10,22 @@ import UIKit
 
 class DateFormat: NSObject {
     //Converter String para Date
-    static func stringToDate(date: String) -> Date{
+    static func stringToDate(date: String) -> Date?{
         let formater = DateFormatter()
         formater.dateFormat = "yyyy-MM-dd"
-        return formater.date(from: date)!
+        guard let  returning = formater.date(from: date) else{
+            return nil
+        }
+        return returning
     }
     
     // Converter Date para String
-    static func dateToString(date: Date) -> String{
+    static func dateToString(date: Date?) -> String{
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: date)
+        if date == nil{
+            return ""
+        }
+        return formatter.string(from: date!)
     }
 }

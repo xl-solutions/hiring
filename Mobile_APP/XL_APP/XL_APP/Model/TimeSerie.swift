@@ -19,7 +19,7 @@ protocol TimeSerieDescription {
 public final class TimeSerie: CustomStringConvertible, TimeSerieDescription {
     
     
-    
+    // A data não é convertida para Date pois a formatação de alguns dados da API podem vir com erro
     let date: String
     let open: Double
     let high: Double
@@ -37,6 +37,7 @@ public final class TimeSerie: CustomStringConvertible, TimeSerieDescription {
         self.close = close
         self.volume = volume
     }
+    
     public var description: String {
         return self.description(for: self)
     }
@@ -53,6 +54,7 @@ public final class TimeSerie: CustomStringConvertible, TimeSerieDescription {
     }
     
 }
+
 extension TimeSerie: Decodable{
     // Enum das keys do json
     enum AVHistoricalStockPriceModelKeys: String, CodingKey {

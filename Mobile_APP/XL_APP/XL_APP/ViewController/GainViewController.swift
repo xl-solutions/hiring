@@ -27,7 +27,7 @@ class GainViewController: UIViewController {
             self.acaoLabel.text = "Quantidade de ações: \(portfolio.qtdAcoes!)"
         }
         self.currentStock()
-        let gain = Estimate.estimateGain(portifolio: self.portfolio!, timeSerie: self.timeSerie!)
+        let gain = Estimate.estimateGain(portifolio: self.portfolio, timeSerie: self.timeSerie)
         self.chanceGainLabelColor(gain: gain)
 
         let formated = String(format: "$%.2f", gain)
@@ -41,9 +41,12 @@ class GainViewController: UIViewController {
         
         DataFetch<TimeSerie>(url: url).getResults(controller: self, completion: { (timeSeries, error) in
             // Ordernar pois o valor se desordena no final
-            let tempArray = SortTimeSerie.sortByDate(timeSeries: timeSeries!)
-            // Pegar o primeiro dado ordernado pois ele sera da data mais atual
-            self.timeSerie = tempArray[0]
+            if timeSeries != nil{
+                let tempArray = SortTimeSerie.sortByDate(timeSeries: timeSeries!)
+                // Pegar o primeiro dado ordernado pois ele sera da data mais atual
+                self.timeSerie = tempArray[0]
+            }
+            
         })
         
     }

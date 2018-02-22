@@ -19,10 +19,18 @@ class Estimate: NSObject {
     }
     
     // Calcular o ganho
-    static func estimateGain(portifolio: Portfolio, timeSerie: TimeSerie) -> Double{
-        let calcPort = estimateAcoes(timeSerie: portifolio.timeSerie!, qtdAcoes: Double(portifolio.qtdAcoes!))
-        let calcCurrent = estimateAcoes(timeSerie: timeSerie, qtdAcoes: Double(portifolio.qtdAcoes!))
+    static func estimateGain(portifolio: Portfolio?, timeSerie: TimeSerie?) -> Double{
+        if portifolio == nil || timeSerie == nil{
+            return 0
+        }
+        if let tempPort = portifolio{
+            let calcPort = estimateAcoes(timeSerie: tempPort.timeSerie!, qtdAcoes: Double(tempPort.qtdAcoes!))
+            let calcCurrent = estimateAcoes(timeSerie: timeSerie!, qtdAcoes: Double(tempPort.qtdAcoes!))
+
+            return calcCurrent - calcPort
+        }
+       
         
-        return calcCurrent - calcPort
+        return 0
     }
 }
