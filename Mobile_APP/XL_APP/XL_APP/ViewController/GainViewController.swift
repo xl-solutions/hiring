@@ -10,6 +10,7 @@ import UIKit
 
 class GainViewController: UIViewController {
 
+    @IBOutlet weak var lucroDate: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var acaoLabel: UILabel!
@@ -29,6 +30,10 @@ class GainViewController: UIViewController {
         self.currentStock()
         let gain = Estimate.estimateGain(portifolio: self.portfolio, timeSerie: self.timeSerie)
         self.chanceGainLabelColor(gain: gain)
+        if self.timeSerie != nil{
+//            let date = DateFormat.stringToDate(date: (self.timeSerie?.date)!)
+            self.lucroDate.text = "Lucro do dia \((self.timeSerie?.date)!)"
+        }
 
         let formated = String(format: "$%.2f", gain)
         self.gainLabel.text = "\(formated)"
@@ -63,6 +68,17 @@ class GainViewController: UIViewController {
         }else{
             self.gainLabel.textColor = UIColor.blue
         }
+    }
+    
+    //MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.dateHistSegue{
+            if let dateHistVC = segue.destination as? DateHistViewController{
+                
+                dateHistVC.portfolio = self.portfolio
+            }
+        }
+
     }
 
 }

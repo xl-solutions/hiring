@@ -16,6 +16,9 @@
 		AC504EC5203B5C6B008E6C18 /* DataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC504EC4203B5C6B008E6C18 /* DataFetch.swift */; };
 		AC7D240A203C6B0800065EC7 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D2409203C6B0800065EC7 /* DateFormat.swift */; };
 		AC7D240F203C8A5B00065EC7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D240E203C8A5B00065EC7 /* Alert.swift */; };
+		AC9F596B203F306600C53DE3 /* DateHistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F596A203F306600C53DE3 /* DateHistViewController.swift */; };
+		AC9F596D203F391100C53DE3 /* HistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F596C203F391100C53DE3 /* HistViewController.swift */; };
+		AC9F5970203F3CE300C53DE3 /* DateEstimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F596F203F3CE300C53DE3 /* DateEstimate.swift */; };
 		ACA362A220379226005B5247 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA362A120379226005B5247 /* AppDelegate.swift */; };
 		ACA362A420379226005B5247 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA362A320379226005B5247 /* ViewController.swift */; };
 		ACA362A720379226005B5247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA362A520379226005B5247 /* Main.storyboard */; };
@@ -52,6 +55,9 @@
 		AC504EC4203B5C6B008E6C18 /* DataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetch.swift; sourceTree = "<group>"; };
 		AC7D2409203C6B0800065EC7 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		AC7D240E203C8A5B00065EC7 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		AC9F596A203F306600C53DE3 /* DateHistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHistViewController.swift; sourceTree = "<group>"; };
+		AC9F596C203F391100C53DE3 /* HistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistViewController.swift; sourceTree = "<group>"; };
+		AC9F596F203F3CE300C53DE3 /* DateEstimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateEstimate.swift; sourceTree = "<group>"; };
 		ACA3629E20379226005B5247 /* XL_APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XL_APP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACA362A120379226005B5247 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACA362A320379226005B5247 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				ACE09942203E28170012124A /* Estimate.swift */,
+				AC9F596F203F3CE300C53DE3 /* DateEstimate.swift */,
 			);
 			path = Estimate;
 			sourceTree = "<group>";
@@ -225,6 +232,8 @@
 				ACEBD900203B8F5200C22480 /* PortfolioSearchViewController.swift */,
 				ACA362A320379226005B5247 /* ViewController.swift */,
 				ACF76779203D972D00246C8D /* GainViewController.swift */,
+				AC9F596A203F306600C53DE3 /* DateHistViewController.swift */,
+				AC9F596C203F391100C53DE3 /* HistViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -409,14 +418,17 @@
 			files = (
 				ACA362A420379226005B5247 /* ViewController.swift in Sources */,
 				ACEBD901203B8F5200C22480 /* PortfolioSearchViewController.swift in Sources */,
+				AC9F596D203F391100C53DE3 /* HistViewController.swift in Sources */,
 				AC42D1D3203B415300479782 /* TimeSerie.swift in Sources */,
 				ACD250EF203B96F700A9FCE1 /* Portfolio.swift in Sources */,
 				ACEBD8FC203B7B8500C22480 /* StockURL.swift in Sources */,
 				ACE09943203E28170012124A /* Estimate.swift in Sources */,
+				AC9F596B203F306600C53DE3 /* DateHistViewController.swift in Sources */,
 				AC504EC5203B5C6B008E6C18 /* DataFetch.swift in Sources */,
 				AC7D240F203C8A5B00065EC7 /* Alert.swift in Sources */,
 				AC1A8E6B203CBD7F0001902F /* PortfolioDAO.swift in Sources */,
 				AC396DD9203CAD160050B794 /* Constants.swift in Sources */,
+				AC9F5970203F3CE300C53DE3 /* DateEstimate.swift in Sources */,
 				ACA362A220379226005B5247 /* AppDelegate.swift in Sources */,
 				AC7D240A203C6B0800065EC7 /* DateFormat.swift in Sources */,
 				ACA362AA20379226005B5247 /* XL_APP.xcdatamodeld in Sources */,

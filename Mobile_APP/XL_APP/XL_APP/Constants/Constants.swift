@@ -18,6 +18,9 @@ struct Constants {
 struct  Storyboard {
     static let lucroSegue = "gainSegue"
     static let stockCell = "stockCell"
+    static let dateHistSegue = "dateHistSegue"
+    static let histSegue = "histSegue"
+    static let histCell = "histCell"
     
 }
 
