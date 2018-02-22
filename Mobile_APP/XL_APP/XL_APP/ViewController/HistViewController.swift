@@ -10,8 +10,6 @@ import UIKit
 
 class HistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-
     @IBOutlet weak var histTableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
