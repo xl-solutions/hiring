@@ -14,8 +14,7 @@ class StockController: UIViewController {
     @IBOutlet weak var greenView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    
-    let stocks : [(String,Double)] = [("BVMF:", +1.5),("FB", +2.33),("GOOG",-4.3)]
+    var symbols = ["MSFT","GOOGL","PETR3.SA","INFY","HDC"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +26,6 @@ class StockController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
         
     }
 
@@ -58,23 +55,30 @@ extension StockController : UITableViewDelegate {
         let cell = cell as! StockCell
         
         
-        cell.changeBackgroundColor(value: self.stocks[indexPath.row].1)
-        
+        cell.backgroundColor = UIColor.black
         cell.stockLabel.textColor = UIColor.white
-        cell.stockValueLabel.textColor = UIColor.white
         cell.stockLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 24)
-        cell.stockValueLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 24)
         cell.stockLabel.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25)
         cell.stockLabel.shadowOffset = CGSize(width: 0, height: 1)
-        cell.stockValueLabel.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25)
-        cell.stockValueLabel.shadowOffset = CGSize(width: 0, height: 1)
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        StockSingleton.sharedInstance.setSymbol(symbol: symbols[indexPath.row])
+        self.performSegue(withIdentifier: "detail", sender: nil)
+        
+    }
+
 }
+
+
+
 
 extension StockController : UITableViewDataSource {
     
@@ -83,21 +87,16 @@ extension StockController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stocks.count
+        return symbols.count
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StockCell
         
-        cell.stockLabel.text = stocks[indexPath.row].0
-        cell.stockValueLabel.text = "\(stocks[indexPath.row].1)"
-        
-        
-        
-        
-        
-        
+        cell.stockLabel.text = symbols[indexPath.row]
+        cell.selectionStyle = .none
         
         return cell
     }

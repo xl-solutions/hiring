@@ -7,9 +7,8 @@
 //
 
 
-
 enum Endpoint: String {
-    case intraDay = "TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey="
+    case intraDay = "TIME_SERIES_INTRADAY&symbol="
     case daily = "TIME_SERIES_DAILY&symbol=MSFT&apikey="
     case weekend = "TIME_SERIES_WEEKLY&symbol=MSFT&apikey="
     case sma = "SMA&symbol=MSFT&interval=15min&time_period=10&series_type=close&apikey="

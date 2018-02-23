@@ -11,14 +11,17 @@
 		19013422203CEDF700609650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19013420203CEDF700609650 /* Main.storyboard */; };
 		19013424203CEDF800609650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19013423203CEDF800609650 /* Assets.xcassets */; };
 		19013427203CEDF800609650 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19013425203CEDF800609650 /* LaunchScreen.storyboard */; };
-		19013432203CEDF800609650 /* ChallengeHiringXLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19013431203CEDF800609650 /* ChallengeHiringXLTests.swift */; };
+		19013432203CEDF800609650 /* PersistenceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19013431203CEDF800609650 /* PersistenceTest.swift */; };
 		19013444203CEFA100609650 /* StockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19013443203CEFA100609650 /* StockController.swift */; };
 		19013446203CF26C00609650 /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19013445203CF26C00609650 /* StockCell.swift */; };
-		19013448203CF41700609650 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19013447203CF41700609650 /* Extension.swift */; };
 		1901344B203CF68D00609650 /* StockSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1901344A203CF68D00609650 /* StockSingleton.swift */; };
 		1901344E203CF80C00609650 /* StocksPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1901344D203CF80C00609650 /* StocksPersistence.swift */; };
 		19013450203CF84300609650 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1901344F203CF84300609650 /* Stock.swift */; };
 		19013453203CF91E00609650 /* URLAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19013452203CF91E00609650 /* URLAddress.swift */; };
+		192225CD203FA96F00C8CA5B /* StockDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192225CC203FA96F00C8CA5B /* StockDate.swift */; };
+		192225D5203FC1DB00C8CA5B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192225D4203FC1DB00C8CA5B /* Extension.swift */; };
+		192225D9203FC66A00C8CA5B /* DetailStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192225D8203FC66A00C8CA5B /* DetailStockViewController.swift */; };
+		199C4611203FA727000903C9 /* TimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199C4610203FA727000903C9 /* TimeSeries.swift */; };
 		A195912D151A698877B72D2B /* Pods_ChallengeHiringXL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B3BD10E177F4DE2FB950FA /* Pods_ChallengeHiringXL.framework */; };
 		A9BFA4F4C1138867C37D1A94 /* Pods_ChallengeHiringXLTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA3DB9C4307F6E068FAE1AB /* Pods_ChallengeHiringXLTests.framework */; };
 /* End PBXBuildFile section */
@@ -41,15 +44,18 @@
 		19013426203CEDF800609650 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19013428203CEDF800609650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1901342D203CEDF800609650 /* ChallengeHiringXLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChallengeHiringXLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19013431203CEDF800609650 /* ChallengeHiringXLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHiringXLTests.swift; sourceTree = "<group>"; };
+		19013431203CEDF800609650 /* PersistenceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTest.swift; sourceTree = "<group>"; };
 		19013433203CEDF800609650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19013443203CEFA100609650 /* StockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockController.swift; sourceTree = "<group>"; };
 		19013445203CF26C00609650 /* StockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
-		19013447203CF41700609650 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		1901344A203CF68D00609650 /* StockSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSingleton.swift; sourceTree = "<group>"; };
 		1901344D203CF80C00609650 /* StocksPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksPersistence.swift; sourceTree = "<group>"; };
 		1901344F203CF84300609650 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		19013452203CF91E00609650 /* URLAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLAddress.swift; sourceTree = "<group>"; };
+		192225CC203FA96F00C8CA5B /* StockDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDate.swift; sourceTree = "<group>"; };
+		192225D4203FC1DB00C8CA5B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		192225D8203FC66A00C8CA5B /* DetailStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStockViewController.swift; sourceTree = "<group>"; };
+		199C4610203FA727000903C9 /* TimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeries.swift; sourceTree = "<group>"; };
 		1C500B9A6775BA95E19D39F9 /* Pods-ChallengeHiringXLTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeHiringXLTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChallengeHiringXLTests/Pods-ChallengeHiringXLTests.release.xcconfig"; sourceTree = "<group>"; };
 		7D86225DAE6019806A297824 /* Pods-ChallengeHiringXLTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeHiringXLTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChallengeHiringXLTests/Pods-ChallengeHiringXLTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD8351CEFDD8B42314B3051 /* Pods-ChallengeHiringXL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeHiringXL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChallengeHiringXL/Pods-ChallengeHiringXL.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +126,7 @@
 		19013430203CEDF800609650 /* ChallengeHiringXLTests */ = {
 			isa = PBXGroup;
 			children = (
-				19013431203CEDF800609650 /* ChallengeHiringXLTests.swift */,
+				19013431203CEDF800609650 /* PersistenceTest.swift */,
 				19013433203CEDF800609650 /* Info.plist */,
 			);
 			path = ChallengeHiringXLTests;
@@ -130,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				1901344F203CF84300609650 /* Stock.swift */,
+				199C4610203FA727000903C9 /* TimeSeries.swift */,
+				192225CC203FA96F00C8CA5B /* StockDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,7 +160,7 @@
 		1901343F203CEE7B00609650 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				19013447203CF41700609650 /* Extension.swift */,
+				192225D4203FC1DB00C8CA5B /* Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 			children = (
 				19013443203CEFA100609650 /* StockController.swift */,
 				19013445203CF26C00609650 /* StockCell.swift */,
+				192225D8203FC66A00C8CA5B /* DetailStockViewController.swift */,
 			);
 			path = Stock;
 			sourceTree = "<group>";
@@ -412,12 +421,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192225CD203FA96F00C8CA5B /* StockDate.swift in Sources */,
 				19013444203CEFA100609650 /* StockController.swift in Sources */,
+				199C4611203FA727000903C9 /* TimeSeries.swift in Sources */,
+				192225D5203FC1DB00C8CA5B /* Extension.swift in Sources */,
 				1901341D203CEDF700609650 /* AppDelegate.swift in Sources */,
 				19013446203CF26C00609650 /* StockCell.swift in Sources */,
+				192225D9203FC66A00C8CA5B /* DetailStockViewController.swift in Sources */,
 				19013450203CF84300609650 /* Stock.swift in Sources */,
 				19013453203CF91E00609650 /* URLAddress.swift in Sources */,
-				19013448203CF41700609650 /* Extension.swift in Sources */,
 				1901344E203CF80C00609650 /* StocksPersistence.swift in Sources */,
 				1901344B203CF68D00609650 /* StockSingleton.swift in Sources */,
 			);
@@ -427,7 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19013432203CEDF800609650 /* ChallengeHiringXLTests.swift in Sources */,
+				19013432203CEDF800609650 /* PersistenceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

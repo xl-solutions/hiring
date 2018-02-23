@@ -11,8 +11,6 @@ import UIKit
 class StockCell: UITableViewCell {
 
     @IBOutlet weak var stockLabel: UILabel!
-    @IBOutlet weak var stockValueLabel: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
