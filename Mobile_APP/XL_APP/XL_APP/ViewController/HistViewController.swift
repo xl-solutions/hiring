@@ -21,6 +21,8 @@ class HistViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         self.histTableView.tableFooterView = UIView()
+        self.dateLabel.text = self.portfolio.timeSerie?.date
+        self.symbolLabel.text = self.portfolio.symbol
         if toDate<fromDate{
             self.navigationController?.popViewController(animated: false)
         }else{
@@ -29,6 +31,7 @@ class HistViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.timeSeries = []
             self.loadHistTimeSerie()
             self.timeSeries = SortTimeSerie.sortByDate(timeSeries: self.timeSeries!)
+            
 
         }
     }

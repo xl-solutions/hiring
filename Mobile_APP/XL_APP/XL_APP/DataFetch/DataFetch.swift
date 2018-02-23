@@ -21,7 +21,6 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
     
     public func getResults(controller: UIViewController,completion: ([TimeSerie]?, Error?) -> Void) {
         do {
-
             let data = try Data.init(contentsOf: url)
             let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: Any]
             var dataKey: String? = nil
