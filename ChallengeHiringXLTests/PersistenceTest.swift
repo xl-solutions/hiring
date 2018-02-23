@@ -17,6 +17,8 @@ class PersistenceTest: XCTestCase {
         var expectedStock : Stock?
         let expec = expectation(description: "Request return")
         
+        
+        
         StocksPersistence.getStockForSymbol(symbol: "MSFT") { (stock) in
             
             if stock != nil {
