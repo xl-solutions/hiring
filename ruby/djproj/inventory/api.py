@@ -28,7 +28,7 @@ class FileUploadView(views.APIView):
         file_obj = request.data['file']
 
         reader = DictReader(StringIO(file_obj.read().decode("utf-8")))
-        
+
         Product.objects.all().delete()
 
         for row in reader:
