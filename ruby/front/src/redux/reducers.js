@@ -2,32 +2,29 @@ import {
     INVENTORY_REFRESH_REQUESTED,
     INVENTORY_REFRESH_PENDING,
     INVENTORY_REFRESH_SUCCEEDED,
-    INVENTORY_REFRESH_FAILED,
-    FILTERS_SET
+    INVENTORY_REFRESH_FAILED
 } from './actions'
 
 const initialState = {
     inventory: [],
     error: undefined,
-    filters: {}
+    filters: {},
+    loading: false
 }
 
 export const reducer = (state = initialState, action) => {
-    console.log(action)
-
     switch (action.type) {
         case INVENTORY_REFRESH_REQUESTED:
+            break
+
         case INVENTORY_REFRESH_PENDING:
-            break;
+            return {...state, loading: true}
 
         case INVENTORY_REFRESH_SUCCEEDED:
-            return {...state, inventory: action.payload, error: undefined}
+            return {...state, inventory: action.payload, error: undefined, loading: false}
 
         case INVENTORY_REFRESH_FAILED:
-            return {...state, inventory: [], error: action.payload}
-
-        case FILTERS_SET:
-            return {...state, filters: action.payload}
+            return {...state, inventory: [], error: action.payload, loading: false}
     }
 
     return state

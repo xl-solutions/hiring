@@ -12,7 +12,7 @@ function* doInventoryRefresh(action) {
     yield put(inventoryRefreshPending()) 
 
     try {
-        const data = yield call(InventoryService.get, action.filters)
+        const data = yield call(InventoryService.get, action.payload)        
         yield put(inventoryRefreshSuccess(data))
     } catch (error) {
         yield put(inventoryRefreshFail(error))

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { reducer } from './redux/reducers'
 import { sagas } from './redux/sagas'
 import createSagaMiddleware from 'redux-saga'
 import { InventoryList } from './components/InventoryList';
+import { FiltersPanel } from './components/FiltersPanel';
 
 const saga = createSagaMiddleware()
 
@@ -23,14 +25,17 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
+        <MuiThemeProvider> 
+          <div className="App">
 
-          <header className="App-header">  
-          </header>
+            <header className="App-header">  
+            </header>
 
-          <InventoryList/>
+            <FiltersPanel/>
+            <InventoryList/>
 
-        </div>
+          </div>
+        </MuiThemeProvider>
       </Provider>
     );
   }

@@ -18,7 +18,11 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('manufacturer', 'model', 'carrier_plan_type')
+    filter_fields = {
+        'manufacturer': ['contains',], 
+        'model': ['contains',], 
+        'carrier_plan_type': ['exact',]
+    }
         
 
 class FileUploadView(views.APIView):
