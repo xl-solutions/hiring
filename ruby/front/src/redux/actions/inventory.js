@@ -2,7 +2,6 @@ export const INVENTORY_REFRESH_REQUESTED = 'INVENTORY_REFRESH_REQUESTED'
 export const INVENTORY_REFRESH_PENDING = 'INVENTORY_REFRESH_PENDING'
 export const INVENTORY_REFRESH_SUCCEEDED = 'INVENTORY_REFRESH_SUCCEEDED'
 export const INVENTORY_REFRESH_FAILED = 'INVENTORY_REFRESH_FAILED'
-export const FILTERS_SET = 'FILTERS_SET'
 
 export const inventoryRefreshRequest = (filters) => ({
     type: INVENTORY_REFRESH_REQUESTED,
@@ -19,11 +18,6 @@ export const inventoryRefreshSuccess = (data) => ({
 })
 
 export const inventoryRefreshFail = (error) => ({
-    type: INVENTORY_REFRESH_SUCCEEDED, 
+    type: INVENTORY_REFRESH_FAILED, 
     payload: error
-})
-
-export const filtersSet = (filters) => ({
-    type: FILTERS_SET, 
-    payload: filters
 })

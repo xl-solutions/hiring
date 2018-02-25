@@ -24,4 +24,25 @@ export class InventoryService {
                 throw(error.message)
             })
     }
+
+    static upload(file) {
+        const formData = new FormData()
+        formData.append('file', file)
+
+        const url = 'http://localhost:8000/api/upload/'
+
+        return fetch(
+            url, {
+                method: 'PUT',
+                body: formData
+            }
+        ).then(response => {
+            console.log(response.body)
+            if (response.status != 201)
+                throw({message: "Dados inválidos"})
+        }).catch(error => {
+            throw(error.message)
+        })
+
+    }
 }

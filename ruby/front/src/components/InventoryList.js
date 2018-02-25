@@ -64,8 +64,8 @@ class InventoryListComponent extends Component {
 
 export const InventoryList = connect(
     state => ({
-        inventory: state.inventory,
-        errorMsg: state.error
+        inventory: state.inventory.data,
+        errorMsg: state.inventory.error
     }),
     {
         inventoryRefreshRequest

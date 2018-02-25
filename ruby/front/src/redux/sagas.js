@@ -1,9 +1,15 @@
 import { put, call, takeLatest} from 'redux-saga/effects'
 import { 
     INVENTORY_REFRESH_REQUESTED,
+    inventoryRefreshRequest,
     inventoryRefreshPending,
     inventoryRefreshSuccess,
-    inventoryRefreshFail
+    inventoryRefreshFail,
+
+    UPLOAD_REQUESTED,
+    uploadPending,
+    uploadSuccess,
+    uploadFail,    
 } from './actions'
 import { InventoryService } from '../services/InventoryService'
 
@@ -19,6 +25,22 @@ function* doInventoryRefresh(action) {
     }
 }
 
+function* doUpload(action) {
+    
+    yield put(uploadPending()) 
+
+    try {
+        yield call(InventoryService.upload, action.payload)        
+        
+        yield put(uploadSuccess())
+        yield put(inventoryRefreshRequest())        
+    } catch (error) {
+        yield put(uploadFail(error))
+    }
+}
+
+
 export function* sagas() {
     yield takeLatest(INVENTORY_REFRESH_REQUESTED, doInventoryRefresh);
+    yield takeLatest(UPLOAD_REQUESTED, doUpload);
 }
