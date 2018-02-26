@@ -1,0 +1,200 @@
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\ApplicationInsights.config
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\csc.exe
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\System.Collections.Immutable.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\vbc.exe
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\VBCSCompiler.exe
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\roslyn\VBCSCompiler.exe.config
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\projeto.dll.config
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\projeto.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\projeto.pdb
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.Web.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.WindowsServer.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.ApplicationInsights.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.Web.Infrastructure.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Helpers.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Mvc.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Razor.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Webpages.Deployment.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Webpages.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Webpages.Razor.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.Web.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.AI.WindowsServer.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.ApplicationInsights.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Razor.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Webpages.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Webpages.Deployment.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Webpages.Razor.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Helpers.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\bin\System.Web.Mvc.xml
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\obj\Debug\projeto.csprojResolveAssemblyReference.cache
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\obj\Debug\projeto.dll
+c:\users\maiara\documents\visual studio 2015\Projects\projeto\projeto\obj\Debug\projeto.pdb
+C:\Users\Maiara\Documents\Visual Studio 2015\Projects\projeto\projeto\bin\PagedList.dll
+C:\Users\Maiara\Documents\Visual Studio 2015\Projects\projeto\projeto\bin\PagedList.Mvc.dll
+C:\Users\Maiara\Documents\Visual Studio 2015\Projects\projeto\projeto\bin\PagedList.xml
+C:\Users\Maiara\Documents\Visual Studio 2015\Projects\projeto\projeto\bin\PagedList.Mvc.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\ApplicationInsights.config
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\csc.exe
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\vbc.exe
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\VBCSCompiler.exe
+C:\Users\hp\Desktop\projeto\projeto\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\hp\Desktop\projeto\projeto\bin\projeto.dll.config
+C:\Users\hp\Desktop\projeto\projeto\bin\projeto.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\projeto.pdb
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.Web.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.ApplicationInsights.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\PagedList.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\PagedList.Mvc.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Helpers.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Mvc.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Razor.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Webpages.Deployment.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Webpages.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Webpages.Razor.dll
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.Web.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.ApplicationInsights.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\PagedList.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\PagedList.Mvc.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Razor.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Webpages.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Webpages.Deployment.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Webpages.Razor.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Helpers.xml
+C:\Users\hp\Desktop\projeto\projeto\bin\System.Web.Mvc.xml
+C:\Users\hp\Desktop\projeto\projeto\obj\Debug\projeto.csprojResolveAssemblyReference.cache
+C:\Users\hp\Desktop\projeto\projeto\obj\Debug\projeto.dll
+C:\Users\hp\Desktop\projeto\projeto\obj\Debug\projeto.pdb
+D:\projeto\projeto\bin\ApplicationInsights.config
+D:\projeto\projeto\bin\roslyn\csc.exe
+D:\projeto\projeto\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\projeto\projeto\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\projeto\projeto\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\projeto\projeto\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\projeto\projeto\bin\roslyn\System.Collections.Immutable.dll
+D:\projeto\projeto\bin\roslyn\System.Reflection.Metadata.dll
+D:\projeto\projeto\bin\roslyn\vbc.exe
+D:\projeto\projeto\bin\roslyn\VBCSCompiler.exe
+D:\projeto\projeto\bin\roslyn\VBCSCompiler.exe.config
+D:\projeto\projeto\bin\projeto.dll.config
+D:\projeto\projeto\bin\projeto.dll
+D:\projeto\projeto\bin\projeto.pdb
+D:\projeto\projeto\bin\Microsoft.AI.Agent.Intercept.dll
+D:\projeto\projeto\bin\Microsoft.AI.DependencyCollector.dll
+D:\projeto\projeto\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\projeto\projeto\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\projeto\projeto\bin\Microsoft.AI.Web.dll
+D:\projeto\projeto\bin\Microsoft.AI.WindowsServer.dll
+D:\projeto\projeto\bin\Microsoft.ApplicationInsights.dll
+D:\projeto\projeto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\projeto\projeto\bin\Microsoft.Web.Infrastructure.dll
+D:\projeto\projeto\bin\PagedList.dll
+D:\projeto\projeto\bin\PagedList.Mvc.dll
+D:\projeto\projeto\bin\System.Web.Helpers.dll
+D:\projeto\projeto\bin\System.Web.Mvc.dll
+D:\projeto\projeto\bin\System.Web.Razor.dll
+D:\projeto\projeto\bin\System.Web.Webpages.Deployment.dll
+D:\projeto\projeto\bin\System.Web.Webpages.dll
+D:\projeto\projeto\bin\System.Web.Webpages.Razor.dll
+D:\projeto\projeto\bin\Microsoft.AI.DependencyCollector.xml
+D:\projeto\projeto\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\projeto\projeto\bin\Microsoft.AI.Web.xml
+D:\projeto\projeto\bin\Microsoft.AI.WindowsServer.xml
+D:\projeto\projeto\bin\Microsoft.ApplicationInsights.xml
+D:\projeto\projeto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\projeto\projeto\bin\PagedList.xml
+D:\projeto\projeto\bin\PagedList.Mvc.xml
+D:\projeto\projeto\bin\System.Web.Razor.xml
+D:\projeto\projeto\bin\System.Web.Webpages.xml
+D:\projeto\projeto\bin\System.Web.Webpages.Deployment.xml
+D:\projeto\projeto\bin\System.Web.Webpages.Razor.xml
+D:\projeto\projeto\bin\System.Web.Helpers.xml
+D:\projeto\projeto\bin\System.Web.Mvc.xml
+D:\projeto\projeto\obj\Debug\projeto.csprojResolveAssemblyReference.cache
+D:\projeto\projeto\obj\Debug\projeto.dll
+D:\projeto\projeto\obj\Debug\projeto.pdb
+F:\hiring\C\projeto\bin\ApplicationInsights.config
+F:\hiring\C\projeto\bin\roslyn\csc.exe
+F:\hiring\C\projeto\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\hiring\C\projeto\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\hiring\C\projeto\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\hiring\C\projeto\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\hiring\C\projeto\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\hiring\C\projeto\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\hiring\C\projeto\bin\roslyn\System.Collections.Immutable.dll
+F:\hiring\C\projeto\bin\roslyn\System.Reflection.Metadata.dll
+F:\hiring\C\projeto\bin\roslyn\vbc.exe
+F:\hiring\C\projeto\bin\roslyn\VBCSCompiler.exe
+F:\hiring\C\projeto\bin\roslyn\VBCSCompiler.exe.config
+F:\hiring\C\projeto\bin\projeto.dll.config
+F:\hiring\C\projeto\bin\projeto.dll
+F:\hiring\C\projeto\bin\projeto.pdb
+F:\hiring\C\projeto\bin\Microsoft.AI.Agent.Intercept.dll
+F:\hiring\C\projeto\bin\Microsoft.AI.DependencyCollector.dll
+F:\hiring\C\projeto\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\hiring\C\projeto\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\hiring\C\projeto\bin\Microsoft.AI.Web.dll
+F:\hiring\C\projeto\bin\Microsoft.AI.WindowsServer.dll
+F:\hiring\C\projeto\bin\Microsoft.ApplicationInsights.dll
+F:\hiring\C\projeto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\hiring\C\projeto\bin\Microsoft.Web.Infrastructure.dll
+F:\hiring\C\projeto\bin\PagedList.dll
+F:\hiring\C\projeto\bin\PagedList.Mvc.dll
+F:\hiring\C\projeto\bin\System.Web.Helpers.dll
+F:\hiring\C\projeto\bin\System.Web.Mvc.dll
+F:\hiring\C\projeto\bin\System.Web.Razor.dll
+F:\hiring\C\projeto\bin\System.Web.Webpages.Deployment.dll
+F:\hiring\C\projeto\bin\System.Web.Webpages.dll
+F:\hiring\C\projeto\bin\System.Web.Webpages.Razor.dll
+F:\hiring\C\projeto\bin\Microsoft.AI.DependencyCollector.xml
+F:\hiring\C\projeto\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\hiring\C\projeto\bin\Microsoft.AI.Web.xml
+F:\hiring\C\projeto\bin\Microsoft.AI.WindowsServer.xml
+F:\hiring\C\projeto\bin\Microsoft.ApplicationInsights.xml
+F:\hiring\C\projeto\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\hiring\C\projeto\bin\PagedList.xml
+F:\hiring\C\projeto\bin\PagedList.Mvc.xml
+F:\hiring\C\projeto\bin\System.Web.Razor.xml
+F:\hiring\C\projeto\bin\System.Web.Webpages.xml
+F:\hiring\C\projeto\bin\System.Web.Webpages.Deployment.xml
+F:\hiring\C\projeto\bin\System.Web.Webpages.Razor.xml
+F:\hiring\C\projeto\bin\System.Web.Helpers.xml
+F:\hiring\C\projeto\bin\System.Web.Mvc.xml
+F:\hiring\C\projeto\obj\Debug\projeto.csprojResolveAssemblyReference.cache
+F:\hiring\C\projeto\obj\Debug\projeto.dll
+F:\hiring\C\projeto\obj\Debug\projeto.pdb
