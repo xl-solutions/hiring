@@ -8,7 +8,7 @@
 
 import UIKit
 
-//Codigo Criado por Roshan no link: https://github.com/rugoli/AVSwift, com modificações para validar alguns dados
+//Codigo Criado por Roshan no link: https://github.com/rugoli/AVSwift , com modificações para validar alguns dados
 class DataFetch<TimeSerie: Decodable>: NSObject {
     let url: URL
     fileprivate let metadataKey: String = "Metadata"
@@ -25,7 +25,6 @@ class DataFetch<TimeSerie: Decodable>: NSObject {
             let json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: Any]
             var dataKey: String? = nil
             for key in json.keys {
-                
                 if key != metadataKey {
                     dataKey = key
                     break

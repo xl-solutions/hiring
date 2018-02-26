@@ -9,6 +9,7 @@
 import UIKit
 
 class DateEstimate: NSObject {
+    //Calcular quantos dias se passaram de uma data para outra
     static func daysPassed(day1: Date, day2: Date) -> Int?{
         let calendar = NSCalendar.current
         

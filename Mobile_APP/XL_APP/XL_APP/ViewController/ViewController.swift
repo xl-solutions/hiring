@@ -28,6 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.stocksTableView.tableFooterView = UIView()
     }
     
+    //MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.lucroSegue{
             if let gainVC = segue.destination as? GainViewController{

@@ -33,6 +33,7 @@ class DateHistViewController: UIViewController {
         }
     }
     
+    //MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.histSegue{
             if let histVC = segue.destination as? HistViewController{

@@ -100,6 +100,7 @@ class PortfolioSearchViewController: UIViewController {
         
     }
     
+    
     func dataFetch(url: URL, acoes: Int, symbol: String){
         var flagDate = false
         DataFetch<TimeSerie>(url: url).getResults(controller: self) { (timeSeries, error) in
@@ -111,14 +112,12 @@ class PortfolioSearchViewController: UIViewController {
                         flagDate = true
                         // Se existir salva no portfolio
                         let portfolio = Portfolio(symbol: symbol.uppercased(),timeSerie: timeSerie, qtdAcoes: acoes)
-
                         //Salva a ação no array de Portifolio da Singleton Portfolios
                         //Portfolios.shared.portfolios?.append(portfolio)
                         PortfolioDAO.shared.insertPortfolio(portfolio: portfolio)
                         //Volta para a tela anterior
                         self.navigationController?.popViewController(animated: true)
                     }
-                    
                 }
                 // caso nenhum ação na data desejada seja encontrada informa o usuario.
                 if !flagDate{
@@ -130,7 +129,5 @@ class PortfolioSearchViewController: UIViewController {
         }
         
     }
-
-    
     
 }

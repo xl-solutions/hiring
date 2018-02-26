@@ -67,7 +67,7 @@ class XL_APPTests: XCTestCase {
         XCTAssertNotNil(self.portfolios)
     }
     
-    //Testa se o app está salvando normalmente
+    /*//Testa se o app está salvando normalmente
     func testPortfoliosSaved(){
         let count = self.portfolios.count
         PortfolioDAO.shared.insertPortfolio(portfolio: self.portfolio)
@@ -76,12 +76,16 @@ class XL_APPTests: XCTestCase {
         
         
         XCTAssertGreaterThan(self.portfolios.count, count)
-    }
+    }*/
     
-    // Testa se o app está reomovendo normalmente
-    // Caso não queira excluir nenhum dado salvo manuamente faça primeiro o testPortfoliosSaved
-    func testPortfolioRemoved(){
-        let count = self.portfolios.count
+    // Testa se o app está inserindo e removendo normalmente
+    func testPortfolioSavedAndRemoved(){
+        var count = self.portfolios.count
+        PortfolioDAO.shared.insertPortfolio(portfolio: self.portfolio)
+        self.portfolios = PortfolioDAO.shared.selectPortfolio()
+        XCTAssertGreaterThan(self.portfolios.count, count)
+        
+        count = self.portfolios.count
         let portfolio = self.portfolios[count-1]
         PortfolioDAO.shared.deleteByID(id: Int64(portfolio.id!))
         
@@ -107,6 +111,7 @@ class XL_APPTests: XCTestCase {
         XCTAssertNotNil(DateFormat.stringToDate(date: "2008-12-02"))
     }
     
+    //Testa se a função changeDateTime esta funcionando normalmente
     func testChangeDateTime(){
         let date = DateFormat.stringToDate(date: "2008-12-02")
         let date2 = DateFormat.changeDateTime(hour: 21, min: 59, sec: 59, date: date!)
@@ -127,6 +132,7 @@ class XL_APPTests: XCTestCase {
     }
     
     //MARK: Network
+    // Testa a conexão
     func testNetworking(){
         let url = StockURL(symbol: "AAPL", function: Function.daily, outputSize: OutputSize.compact).returnURL()
         

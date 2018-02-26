@@ -13,7 +13,7 @@ class Estimate: NSObject {
         return self.estimateOHLCAverage(timeSerie: timeSerie) * qtdAcoes
     }
 
-    
+    // Calcular o OHLC
     static func estimateOHLCAverage(timeSerie: TimeSerie) -> Double{
         return (timeSerie.close + timeSerie.open + timeSerie.high + timeSerie.low)/4
     }
@@ -30,7 +30,6 @@ class Estimate: NSObject {
             return calcCurrent - calcPort
         }
        
-        
         return 0
     }
 }
