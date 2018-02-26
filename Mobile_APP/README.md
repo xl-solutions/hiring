@@ -1,47 +1,50 @@
-# Background
 
-Uma corretora de ações está desenvolvendo um sistema para permitir que pequenos investidores possam tomar decisões melhores sobre seu portfólio. Uma das funcionalidades importantes é a de verificar o desempenho de uma ação em cinco cenários:
+# Como rodar a Aplicação
+1. Instale o XCode atraves da App Store.
+2. Abra o arquivo XL_APP.xcworkspace.
+..1. Caso o App Não funcione, Instale o [Cocoa pod](https://cocoapods.org/).
+..2. Vai ao terminal, e vá para o diretorio do projeto.
+..3. Digite pod install.
+..4. No arquivo Connection.swift na linha 580, troque:
+```swift
+sqlite3_result_text(context, result, Int32(result.characters.count), SQLITE_TRANSIENT)
+```
+por:
+```swift
+sqlite3_result_text(context, result, Int32(result.count), SQLITE_TRANSIENT)
+```
+..5. No arquivo Schema.swift na linha 151, troque:
+```swift
+let index = string.characters.reduce("") { underscored, character in
+```
+por:
+```swift
+let index = string.reduce("") { underscored, character in
+```
+..6. No arquivo Query.swift na linha 941, troque:
+```swift
+var names = each.expression.template.characters.split { $0 == "." }.map(String.init)
+```
+por:
+```swift
+var names = each.expression.template.split { $0 == "." }.map(String.init)
+```
+..7. No arquivo Expression.swift na linha 80, troque:
+```swift
+return expressed.template.characters.reduce("") { template, character in
+```
+por:
+```swift
+return expressed.template.reduce("") { template, character in
+```
+..8. No arquivo Helpers.swift na linha 59, troque:
+```swift
+let escaped = characters.reduce("") { string, character in
+```
+por:
+```swift
+let escaped = reduce("") { string, character in
+```
 
-   - Preço atual;
-   - Preço histórico;
-   - Preço atual em comparação a outras ações;
-   - Projeção de ganhos com compra em data específica.
-   
-Para isso, a equipe de software da empresa optou por desenvolver um APP que dará visibilidade aos dados. Sua missão para este teste é implementar este APP
-
-# Requisitos técnicos da solução
-
-Sua solução deverá ter testes automatizados.
-
-Para obter dados de ações, você poderá usar o Google Finance ou o Yahoo Finance, e dispor daqueles relativos aos papéis da BOVESPA. Há bibliotecas prontas para isso — sinta-se livre para utilizá-las.
-
-O tratamento de erros não será explicitado nos endpoints. O candidato ou candidata poderá inferir casos que poderão gerar erros ou duplicidades nos dados, e tratá-los de acordo. A ausência de tratamento não desqualifica a proposta; a presença, no entanto, contará pontos a favor.
-
-## Projeção de ganhos
-
-A ideia é implementar algo simples, sem preocupações com dividendos, taxas administrativas ou outras incumbências que afetariam o montante total. Em sendo assim, pressuponha que a compradora investiu seu dinheiro numa determinada quantidade de ações de uma empresa em alguma data no passado, e que deseja saber quanto teria ganhado ou perdido caso o fizesse.
-
-# Como enviar sua proposta
-
-- Crie um fork deste repositório;
-- Implemente sua solução, fazendo commits da maneira que faria em um projeto profissional;
-- Substitua este README com um específico para sua aplicação, indicando como rodá-la, e como executar os testes (fique à vontade para inserir mais detalhes técnicos, caso deseje);
-- Abra um pull request para este repositório.
-
-# Detalhamento
-
-## APP
-
-O importante nesta parte do desafio é que saibamos como você lida com os componentes que formam as técnicas contemporâneas de desenvolvimento client-side, no que tange processamento de assets, transpilers, separação de responsabilidades, minificação, armazenamento local, etc. Por isso, estética não é primordial.
-
-As funcionalidades esperadas são:
-
-- Incluir ações no portifólio;
-- Ver situação atual das ações (último preço e data e hora da atualização);
-- Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
-- Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
-
-Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Google Finance, Yahoo Finance, ou fazer uma arquitetura master-detail simples.
 
 
-[yahoofin]: http://www.canbike.org/information-technology/yahoo-finance-url-download-to-a-csv-file.html
