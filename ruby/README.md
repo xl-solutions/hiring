@@ -1,3 +1,5 @@
+Obs: Procedimentos para rodar a aplicação no final do documento.
+
 # Background
 
 Um novo cliente contratou a XL Solutions para desenvolver uma loja virtual especializada na venda de aparelhos de telefonia celular. Para criar o inventário inicial da loja, com todos os telefones disponíveis, o estoque e seus preços, enviou arquivos CSV com os dados a incluir. Informou também que periodicamente precisará atualizar o inventário com planilhas idênticas.
@@ -33,31 +35,44 @@ Para facilitar esse processo, é necessário criar uma interface para upload des
 # Procedimentos para rodar a aplicação:
 
 Clonar o projeto
-> git clone  https://github.com/paulorsbrito/hiring.git
+```
+#git clone  https://github.com/paulorsbrito/hiring.git
+```
 
 Criar e ativar um virtualenv python 3
-> cd hiring
-> virtualenv -p python3 venv
-> source venv/bin/activate
+```
+# cd hiring
+# virtualenv -p python3 venv
+# source venv/bin/activate
+```
 
 Instalar as dependências do backend
-> pip install -r requirements.txt 
+```
+# pip install -r requirements.txt 
+```
 
 Iniciar o backend
-> cd ruby/
-> cd djproj/
-> ./manage.py migrate
-> ./manage.py runserver
+```
+# cd ruby/
+# cd djproj/
+# ./manage.py migrate
+# ./manage.py runserver
+```
 
 Instalar as dependências do front
-> cd ..
-> cd front/
-> yarn
+```
+# cd ..
+# cd front/
+# yarn
+```
 
 Rodar os testes do front
-> yarn test (teclar "a")
+```
+# yarn test (teclar "a")
+```
 
 Iniciar o servidor de desenvolvimento do front
-> yarn start
-
+```
+# yarn start
+```
 
