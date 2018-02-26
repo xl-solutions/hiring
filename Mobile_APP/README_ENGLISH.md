@@ -1,48 +1,50 @@
-# Background
-
-A stock broker is developing a system to allow investors to make better decisions about their portfolio. A important feature is to verify an stock performance in five scenarios:
-
-  - Current price;
-  - Historic price;
-  - Current price vs other stocks;
-  - Gains projection with a specific date acquisition.
-  
-To accomplish that, the software company decided to develop mobile APP. Your mission is to develop this APP.
-   
-
-# Technical Requirements
-
-Your solution must have automated tests.
-
-To obtain the stock information you may use Google Finance or Yahoo Finance and make available BOVESPA stock information. There are some available libraries for that and you are allowed to use them.
-
-The error handling will not be specified. The candidate may interfere in the error cases or duplicity, and handle them. The absense of this error handling will not disqualify the test; The presence of those will count extra points.
-
-## Gain projections
-
-The idea is to implement something simple, without taking in consideration dividends, administrative taxes or any other indexes that could affect the total amount. Assume that the investor has invested an amount of money on a stock some time in the past, and that he needs to know how much money he would have gain or lost.
-
-# Test delivery procedures:
-
-1. Fork this project on github;
-2. Build your code on the fork;
-3. Write a README explaining how to run your application and the tests. Give as much details as possible;
-4. Open a pull request when you are done;
-
-# Details
-
-## APP
-
-The most important part of this challenge is that we understand how to handle components that build the current technics to build client-side development in terms of assets processing, transpilers, responsibility segregation, minification, local storage, etc. Esthetics are not important.
-
-Features:
-
-- Add stocks to the portfolio;
-- Check current stock  information (last price, date and time of last update);
-- See historic stock price, allowing a data rage;
-- Make a gains projection of a stock based on a past date of acquisition;
-
-If you don't know how to organize this features, You may use Google Finance and Yahoo Finance to get inspiration or make a simple master-detail.
-
-
-[yahoofin]: http://www.canbike.org/information-technology/yahoo-finance-url-download-to-a-csv-file.html
+# How to run the code
+1. Install the XCode through the App Store.
+2. Open the file XL_APP.xcworkspace.
+    1. If the code not run, Install the [Cocoa pod](https://cocoapods.org/).
+    2. Go to the terminal, and go to directory path of the project.
+    3. Type pod install.
+    4. On the file Connection.swift in the line 580, change:
+    ```swift
+    sqlite3_result_text(context, result, Int32(result.characters.count), SQLITE_TRANSIENT)
+    ```
+    por:
+    ```swift
+    sqlite3_result_text(context, result, Int32(result.count), SQLITE_TRANSIENT)
+    ```
+    5. On the file Schema.swift in the line 151, change:
+    ```swift
+    let index = string.characters.reduce("") { underscored, character in
+    ```
+    por:
+    ```swift
+    let index = string.reduce("") { underscored, character in
+    ```
+    6. On the file  Query.swift in the line 941, change:
+    ```swift
+    var names = each.expression.template.characters.split { $0 == "." }.map(String.init)
+    ```
+    por:
+    ```swift
+    var names = each.expression.template.split { $0 == "." }.map(String.init)
+    ```
+    7. On the file  Expression.swift in the line 80, change:
+    ```swift
+    return expressed.template.characters.reduce("") { template, character in
+    ```
+    por:
+    ```swift
+    return expressed.template.reduce("") { template, character in
+    ```
+    8. On the file  Helpers.swift in the line 59, change:
+    ```swift
+    let escaped = characters.reduce("") { string, character in
+    ```
+    por:
+    ```swift
+    let escaped = reduce("") { string, character in
+    ```
+# How to run the tests
+1. The test are on the file : XL_APPTests.swift
+2. To run all test click on the diamond at the side of the class XL_APPTests: ![Losango](https://cdn.discordapp.com/attachments/417644285173825538/417645046440132609/XL_APPTest.png)
+3. To run a specific code click on the diamond at the side of the function desired: ![Função](https://cdn.discordapp.com/attachments/417644285173825538/417646480208429056/FunctionXL_APP.png)

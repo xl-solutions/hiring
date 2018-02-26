@@ -1,8 +1,8 @@
-# Como rodar a Aplicação
+# Como rodar o Codigo
 1. Instale o XCode atraves da App Store.
 2. Abra o arquivo XL_APP.xcworkspace.
-    1. Caso o App Não funcione, Instale o [Cocoa pod](https://cocoapods.org/).
-    2. Vai ao terminal, e vá para o diretorio do projeto.
+    1. Caso o codigo não rode, instale o [Cocoa pod](https://cocoapods.org/).
+    2. Vai ao terminal, e digite o caminho para o diretorio do projeto. cd ~/XL_APP
     3. Digite pod install.
     4. No arquivo Connection.swift na linha 580, troque:
     ```swift

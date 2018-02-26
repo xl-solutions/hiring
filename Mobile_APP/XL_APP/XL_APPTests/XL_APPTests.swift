@@ -55,13 +55,14 @@ class XL_APPTests: XCTestCase {
         XCTAssertEqual(estimate, 0)
     }
     
-    // Testar quantos dias se passou de uma tada para outra
+    // Testar quantos dias se passou de uma data para outra
     func testDaysPassed(){
         let day = DateEstimate.daysPassed(day1: DateFormat.stringToDate(date: "2008-07-29")!, day2: DateFormat.stringToDate(date: "2018-07-29")!)
         XCTAssertEqual(day, 3652)
     }
    
     //MARK: SQLIteTest
+    //Testa se os dados foram carregados
     func testPortfoliosLoad(){
         self.portfolios = PortfolioDAO.shared.selectPortfolio()
         XCTAssertNotNil(self.portfolios)
@@ -84,14 +85,10 @@ class XL_APPTests: XCTestCase {
         PortfolioDAO.shared.insertPortfolio(portfolio: self.portfolio)
         self.portfolios = PortfolioDAO.shared.selectPortfolio()
         XCTAssertGreaterThan(self.portfolios.count, count)
-        
         count = self.portfolios.count
         let portfolio = self.portfolios[count-1]
         PortfolioDAO.shared.deleteByID(id: Int64(portfolio.id!))
-        
         self.portfolios = PortfolioDAO.shared.selectPortfolio()
-        
-        
         XCTAssertGreaterThan(count, self.portfolios.count)
     }
     
@@ -128,22 +125,17 @@ class XL_APPTests: XCTestCase {
         }
         timeSeries = SortTimeSerie.sortByDate(timeSeries: timeSeries)
         XCTAssertNotNil(timeSeries)
-        
     }
     
     //MARK: Network
     // Testa a conexão
     func testNetworking(){
         let url = StockURL(symbol: "AAPL", function: Function.daily, outputSize: OutputSize.compact).returnURL()
-        
         XCTAssertNotNil(url)
-
         DataFetch<TimeSerie>(url: url).getResults(controller: UIViewController(), completion: { (timeSeries, error) in
             XCTAssertNotNil(timeSeries)
             XCTAssertNil(error)
         })
-
     }
-    
     
 }
