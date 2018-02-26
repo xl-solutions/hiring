@@ -8,7 +8,7 @@
     ```swift
     sqlite3_result_text(context, result, Int32(result.characters.count), SQLITE_TRANSIENT)
     ```
-    por:
+    for:
     ```swift
     sqlite3_result_text(context, result, Int32(result.count), SQLITE_TRANSIENT)
     ```
@@ -16,7 +16,7 @@
     ```swift
     let index = string.characters.reduce("") { underscored, character in
     ```
-    por:
+    for:
     ```swift
     let index = string.reduce("") { underscored, character in
     ```
@@ -24,7 +24,7 @@
     ```swift
     var names = each.expression.template.characters.split { $0 == "." }.map(String.init)
     ```
-    por:
+    for:
     ```swift
     var names = each.expression.template.split { $0 == "." }.map(String.init)
     ```
@@ -32,7 +32,7 @@
     ```swift
     return expressed.template.characters.reduce("") { template, character in
     ```
-    por:
+    for:
     ```swift
     return expressed.template.reduce("") { template, character in
     ```
@@ -40,7 +40,7 @@
     ```swift
     let escaped = characters.reduce("") { string, character in
     ```
-    por:
+    for:
     ```swift
     let escaped = reduce("") { string, character in
     ```
