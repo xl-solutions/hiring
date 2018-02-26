@@ -34,24 +34,24 @@ Para facilitar esse processo, é necessário criar uma interface para upload des
 
 # Procedimentos para rodar a aplicação:
 
-Clonar o projeto
+Clonar o projeto:
 ```
-#git clone  https://github.com/paulorsbrito/hiring.git
+# git clone  https://github.com/paulorsbrito/hiring.git
 ```
 
-Criar e ativar um virtualenv python 3
+Criar e ativar um virtualenv python 3:
 ```
 # cd hiring
 # virtualenv -p python3 venv
 # source venv/bin/activate
 ```
 
-Instalar as dependências do backend
+Instalar as dependências do backend:
 ```
 # pip install -r requirements.txt 
 ```
 
-Iniciar o backend
+Iniciar o backend:
 ```
 # cd ruby/
 # cd djproj/
@@ -59,19 +59,19 @@ Iniciar o backend
 # ./manage.py runserver
 ```
 
-Instalar as dependências do front
+Instalar as dependências do front:
 ```
 # cd ..
 # cd front/
 # yarn
 ```
 
-Rodar os testes do front
+Rodar os testes do front:
 ```
 # yarn test (teclar "a")
 ```
 
-Iniciar o servidor de desenvolvimento do front
+Iniciar o servidor de desenvolvimento do front (o navegador será aberto automaticamente):
 ```
 # yarn start
 ```
