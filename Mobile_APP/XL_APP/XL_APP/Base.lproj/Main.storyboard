@@ -360,7 +360,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="K54-nj-XQa" kind="show" identifier="histSegue" id="rIC-Ii-rg0"/>
+                                    <action selector="histSearch:" destination="YKV-Jf-OW9" eventType="touchUpInside" id="SLi-Ir-MDW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -387,6 +387,7 @@
                     <connections>
                         <outlet property="fromDatePicker" destination="8xm-BL-tSV" id="cv2-uu-DUW"/>
                         <outlet property="toDatePicker" destination="qTW-1q-LjX" id="u1i-ww-unN"/>
+                        <segue destination="K54-nj-XQa" kind="show" identifier="histSegue" id="MA1-Ck-Hwi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyw-tG-cLC" userLabel="First Responder" sceneMemberID="firstResponder"/>

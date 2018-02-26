@@ -33,6 +33,15 @@ class DateHistViewController: UIViewController {
         }
     }
     
+    //MARK: Hist action
+    @IBAction func histSearch(_ sender: UIButton) {
+        if Calendar.current.startOfDay(for: self.fromDatePicker.date)<=Calendar.current.startOfDay(for: self.toDatePicker.date) {
+            performSegue(withIdentifier: Storyboard.histSegue, sender: nil)
+        }else{
+            Alert.alert(titulo: "", mensagem: "Data 'De' não pode ser menor que data 'A'!", popView: false, viewController: self)
+        }
+    }
+    
     //MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.histSegue{

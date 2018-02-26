@@ -23,17 +23,11 @@ class HistViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.histTableView.tableFooterView = UIView()
         self.dateLabel.text = self.portfolio.timeSerie?.date
         self.symbolLabel.text = self.portfolio.symbol
-        if toDate<fromDate{
-            self.navigationController?.popViewController(animated: false)
-        }else{
-            self.histTableView.delegate = self
-            self.histTableView.dataSource = self
-            self.timeSeries = []
-            self.loadHistTimeSerie()
-            self.timeSeries = SortTimeSerie.sortByDate(timeSeries: self.timeSeries!)
-            
-
-        }
+        self.histTableView.delegate = self
+        self.histTableView.dataSource = self
+        self.timeSeries = []
+        self.loadHistTimeSerie()
+        self.timeSeries = SortTimeSerie.sortByDate(timeSeries: self.timeSeries!)
     }
     
     //Define se sera uma busca compact ou full
