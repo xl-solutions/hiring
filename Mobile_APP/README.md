@@ -1,4 +1,3 @@
-
 # Como rodar a Aplicação
 1. Instale o XCode atraves da App Store.
 2. Abra o arquivo XL_APP.xcworkspace.
@@ -45,6 +44,6 @@
     ```swift
     let escaped = reduce("") { string, character in
     ```
-
-
-
+# Como rodar os testes
+1. Os testes se encontram no arquivo: XL_APPTests.swift
+2. Para rodar todos os testes clique no losango: (https://cdn.discordapp.com/attachments/417644285173825538/417645046440132609/XL_APPTest.png)
