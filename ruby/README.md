@@ -24,3 +24,40 @@ Para facilitar esse processo, é necessário criar uma interface para upload des
 2. Codifique a aplicação nesse fork;
 3. Escreva um README explicando como rodar sua aplicação e os testes. Dê o máximo de detalhes;
 4. Abra um pull request quando estiver pronto.
+
+# Dependências
+
+- python 3
+- yarn
+
+# Procedimentos para rodar a aplicação:
+
+Clonar o projeto
+> git clone  https://github.com/paulorsbrito/hiring.git
+
+Criar e ativar um virtualenv python 3
+> cd hiring
+> virtualenv -p python3 venv
+> source venv/bin/activate
+
+Instalar as dependências do backend
+> pip install -r requirements.txt 
+
+Iniciar o backend
+> cd ruby/
+> cd djproj/
+> ./manage.py migrate
+> ./manage.py runserver
+
+Instalar as dependências do front
+> cd ..
+> cd front/
+> yarn
+
+Rodar os testes do front
+> yarn test (teclar "a")
+
+Iniciar o servidor de desenvolvimento do front
+> yarn start
+
+
