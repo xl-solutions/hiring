@@ -46,4 +46,5 @@
     ```
 # Como rodar os testes
 1. Os testes se encontram no arquivo: XL_APPTests.swift
-2. Para rodar todos os testes clique no losango: ![Losango](https://cdn.discordapp.com/attachments/417644285173825538/417645046440132609/XL_APPTest.png)
+2. Para rodar todos os testes clique no losango ao lado do class XL_APPTests: ![Losango](https://cdn.discordapp.com/attachments/417644285173825538/417645046440132609/XL_APPTest.png)
+3. Para rodar um codigo em especifico clice no losangolo ao lado da função desejada: ![Função](https://cdn.discordapp.com/attachments/417644285173825538/417646480208429056/FunctionXL_APP.png)
