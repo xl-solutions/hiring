@@ -1,0 +1,39 @@
+﻿@model IEnumerable<projeto.Models.ResumoImportacao>
+
+@{
+    ViewBag.Title = "ResumoImportacao";
+    
+}
+
+<h2>Resumo da Importacao</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Quantidade de produtos inseridos ou atualizados
+        </th>    
+        <th>
+            Quantidade de erros durante o processamento
+        </th>
+        <th>Arquivo de erros</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantidadeInserida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantidadeErros)
+        </td>
+        @if (ViewBag.Erros != null && ViewBag.Erros == "Sim")
+        {
+        <td>
+           @Html.ActionLink("Baixar", "Dowload")
+        </td>
+        }
+    </tr>
+}
+
+</table>
+       

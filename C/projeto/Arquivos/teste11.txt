@@ -1,0 +1,3 @@
+teste;01;200;unidade
+teste2;teste;200;unidade
+teste3;9999999999999;200;unidade

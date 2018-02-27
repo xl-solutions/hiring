@@ -1,0 +1,53 @@
+﻿@model IEnumerable<projeto.Models.Produtos>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+   @using (Html.BeginForm("Index", "Produtos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+   {
+    @Html.TextBox("tbPesquisa")
+    <input type="submit" value="Pesquisar" />
+   }
+</p>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Device</th>
+        <th>Quantidade em estoque</th>
+        <th>Valor Unitário</th>
+        <th>Cor</th>
+        <th>Tipo de plano</th>
+        <th>Valor Total</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.ID)</td>
+        <td>@Html.DisplayFor(modelItem => item.NomeProduto)</td>
+        <td>@Html.DisplayFor(modelItem => item.Quantidade)</td>
+        <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+        <td>@Html.DisplayFor(modelItem => item.CorProduto)</td>    
+        <td>@Html.DisplayFor(modelItem => item.TipoPlano)</td> 
+        <td>@Html.DisplayFor(modelItem => item.ValorTotal)</td> 
+    </tr>
+
+}
+
+<tr>
+        @if (ViewBag.TotalPaginas > 1)
+        {
+            <td colspan="6">
+            @for (var i = 1; i <= ViewBag.TotalPaginas; i++)
+            {
+                @Html.ActionLink(i.ToString() +" | ", "Index","Produtos", new { id = i },null);
+            }
+            </td>
+        }
+</tr>
+  
+</table>
