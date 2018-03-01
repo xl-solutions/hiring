@@ -1,0 +1,81 @@
+﻿@using LojaVirtual.Models;
+@model IEnumerable<ImportarProdutoModel>
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Index</title>
+	<style type="text/css">
+		body {
+			font-family:Arial;
+			font-size: 10pt;
+		}
+
+		table {
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+			background-color:#fff;
+		}
+
+			table th {
+				background-color: #B8DBFD;
+				color:	#333;
+				font-weight: bold;
+			}
+
+			table th, table td {
+				padding: 5px;
+				border: 1px solid #ccc;
+			}
+
+			table, table table td {
+				border: 0px solid #ccc;
+			}
+	</style>
+</head>
+<body>
+	@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+	{
+		<input type="file" name="postedFile" required="true" />
+		<input type="submit" name="Importar" value="Importar Arquivo" />
+	}
+	<p/>
+	@Html.ActionLink("Consultar Produtos Cadastrados", "Index", "Produtos")
+
+	@if (Model.Count() > 0)
+	{
+		<hr />
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td>Fabricante</td>
+				<td>Modelo</td>
+				<td>Cor</td>
+				<td>Quantidade</td>
+				<td>Preço</td>
+				<td>Plano Transporte</td>
+				<td>Situação</td>
+			</tr>
+			@foreach (ImportarProdutoModel import in Model)
+			{
+			<tr>				
+				<td>@import.Fabricante</td>
+				<td>@import.Modelo</td>
+				<td>@import.Cor</td>
+				<td>@import.Quantidade</td>
+				<td>@import.Preco</td>
+				<td>@import.PlanoVenda</td>
+				<td>@import.MensagemErro</td>
+			</tr>
+			}
+		</table>
+	}
+	<h2>@ViewBag.Message</h2>
+
+</body>
+</html>

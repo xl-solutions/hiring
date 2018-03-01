@@ -1,0 +1,24 @@
+membros
+idmembro
+Nome
+
+Campeonatos
+idcampex
+nmcampex
+dtcampex
+dsjogo
+
+Pagamentos
+idcampex
+idmembro
+situacao
+
+
+
+CREATE TABLE IF NOT EXISTS tabela( campo INTEGER PRIMARY KEY AUTOINCREMENT, campo TIPO )
+
+Cursor curso = bancodados.rawQuery("SELECT * FROM TABELA", null);
+
+int indeceColunaId = cursor.getColumnIndex("campo1");
+int indeceColunaNome = cursor.getColumnIndex("campo2");
+
