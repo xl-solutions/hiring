@@ -1,0 +1,44 @@
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\obj\Debug\LojaVirtual.csprojResolveAssemblyReference.cache
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\obj\Debug\LojaVirtual.csproj.CoreCompileInputs.cache
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\LojaVirtual.dll.config
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\LojaVirtual.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\LojaVirtual.pdb
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\Microsoft.Web.Infrastructure.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Helpers.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Mvc.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Razor.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.Deployment.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.Razor.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Razor.xml
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.xml
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.Deployment.xml
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.Razor.xml
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Helpers.xml
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\bin\System.Web.Mvc.xml
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\obj\Debug\LojaVirtual.dll
+E:\Projetos VS\LojaVirtualProj\LojaVirtual\obj\Debug\LojaVirtual.pdb
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\LojaVirtual.dll.config
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\LojaVirtual.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\LojaVirtual.pdb
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\Microsoft.Web.Infrastructure.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Helpers.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Mvc.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Razor.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.Deployment.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.Razor.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Razor.xml
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.xml
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.Deployment.xml
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Webpages.Razor.xml
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Helpers.xml
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\bin\System.Web.Mvc.xml
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\obj\Debug\LojaVirtual.csprojResolveAssemblyReference.cache
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\obj\Debug\LojaVirtual.csproj.CoreCompileInputs.cache
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\obj\Debug\LojaVirtual.dll
+D:\Arquivos\01 - Pessoais\01. Projetos\LojaVirtualProj\LojaVirtual\obj\Debug\LojaVirtual.pdb
