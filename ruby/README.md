@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Informações importantes:
 
-Things you may want to cover:
+* Ruby version 2.5.1
 
-* Ruby version
+* Necessário instalar Ruby 2.5, Rails >= 5, Gem, Postgresql
 
-* System dependencies
+* Iniciar o db com rake db:create
 
-* Configuration
+* rake db:migrate and rails s para começar o teste
 
-* Database creation
+* Importar arquivos CSV, Buscar informações no db para o usuario
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Faltou incluir uma busca mais aprofundada, incluindo quantidade e preço
