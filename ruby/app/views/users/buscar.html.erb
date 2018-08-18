@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Fabricante</th>
+      <th>Modelo</th>
+      <th>Cor</th>
+      <th>Plano</th>
+      <th>Quantidade</th>
+      <th>Preço</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.fabricante %></td>
+          <td><%= user.modelo %></td>
+          <td><%= user.cor %></td>
+          <td><%= user.plano %></td>
+          <td><%= user.quantidade %></td>
+          <td><%= user.preco %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<div>
+  <%= link_to 'Inventario', users_inventario_url %>
+  <%= link_to 'Importar novo CSV', root_url %>
+</div>

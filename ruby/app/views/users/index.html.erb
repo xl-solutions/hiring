@@ -1,0 +1,11 @@
+<div>
+  <h4> Importe seu arquivo CSV aqui! </h4>
+    <%= form_tag import_users_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV" %>
+    <% end %>
+</div>
+
+<div>
+    <h4><%= link_to 'Inventario', users_inventario_url %></h4>
+</div>

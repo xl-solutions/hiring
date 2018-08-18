@@ -1,0 +1,29 @@
+################
+#  POSTGRESQL  #
+################
+development:
+  adapter: postgresql
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  database: test_development
+  username: postgres
+  password: asuna
+
+test:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: test_development
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password:
+
+production:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: test_development
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password:
