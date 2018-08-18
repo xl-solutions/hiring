@@ -10,6 +10,6 @@ Informações importantes:
 
 * rake db:migrate and rails s para começar o teste
 
-* Importar arquivos CSV, Buscar informações no db para o usuario
+* Objetivo: Importar arquivos CSV, Buscar informações no db para o usuario
 
 * Faltou incluir uma busca mais aprofundada, incluindo quantidade e preço
