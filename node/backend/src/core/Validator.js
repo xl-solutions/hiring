@@ -1,6 +1,7 @@
 'use strict';
 
 const Joi = require('joi');
+const HttpError = require('http-errors');
 
 class Validator {
     constructor() {
@@ -53,16 +54,10 @@ class Validator {
                 });
 
                 if (res.error) {
-                    const errors = res.error.details.reduce((result, err) => {
-                        result[err.context.key] = {
-                            rule: err.type.replace(/\./g, '_'),
-                            context: err.context,
-                        };
-                        return result;
-                    }, {});
+                    const msgs = res.error.details.map(error => error.message);
+                    const err = HttpError(400, msgs.join(' and ').replace(/"/g, '\''), { expose: true, code: 400 });
 
-                    // @TODO: create a class of Exception to customize the response of http requests
-                    return Promise.reject(new Error(errors));
+                    return Promise.reject(err);
                 }
 
                 return Promise.resolve(res.value);

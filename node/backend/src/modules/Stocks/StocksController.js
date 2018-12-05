@@ -12,9 +12,42 @@ class StocksController {
     quote(req, res) {
         return this.model.quote(req.params.stock_name)
             .then((response) => {
-                return res.status(201)
+                return res.status(200)
                     .send({
-                        message: 'category-created',
+                        message: 'Get quote with success',
+                        result: response,
+                    });
+            });
+    }
+
+    history(req, res) {
+        return this.model.history(req.params.stock_name, req.query.from, req.query.to)
+            .then((response) => {
+                return res.status(200)
+                    .send({
+                        message: 'Get history with success',
+                        result: response,
+                    });
+            });
+    }
+
+    compare(req, res) {
+        return this.model.compare(req.params.stock_name, req.body)
+            .then((response) => {
+                return res.status(200)
+                    .send({
+                        message: 'Compare stocks',
+                        result: response,
+                    });
+            });
+    }
+
+    gains(req, res) {
+        return this.model.gains(req.params.stock_name, req.query.purchasedAmount, req.query.purchasedAt)
+            .then((response) => {
+                return res.status(200)
+                    .send({
+                        message: 'Get gains to stock',
                         result: response,
                     });
             });

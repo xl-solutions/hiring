@@ -25,7 +25,9 @@ module.exports = (Controller, methodName) => {
                 return controller[methodName](validated, res);
             })
             .catch((err) => {
-                res.status(500).send({ message: err.message });
+                const body = typeof err.body !== 'undefined' ? err.body : { message: err.message, status: false };
+                const code = typeof err.code !== 'undefined' ? err.code : 500;
+                res.status(code).send(body);
             });
     };
 };
