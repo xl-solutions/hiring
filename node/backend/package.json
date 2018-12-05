@@ -1,11 +1,12 @@
 {
-  "name": "backend",
+  "name": "backend-stock-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple API to consume Alpha Vantage data",
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 5000 tests/",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
