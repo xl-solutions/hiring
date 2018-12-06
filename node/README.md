@@ -7,7 +7,7 @@ Após clonar o projeto, navegar até a pasta do projeto clonado e seguir as segu
 
 Instalar as dependências do projeto:
 ```sh
-$ npm test
+$ npm install
 ```
 
 Execução dos testes:
