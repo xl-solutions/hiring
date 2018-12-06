@@ -32,7 +32,7 @@ class StocksController {
     }
 
     compare(req, res) {
-        return this.model.compare(req.params.stock_name, req.body)
+        return this.model.compare(req.params.stock_name, req.body.stocks)
             .then((response) => {
                 return res.status(200)
                     .send({

@@ -68,4 +68,76 @@ describe('Stocks Tests', () => {
                 });
         });
     });
+
+    describe('/POST stocks/{stockName}/compare', () => {
+        it('it should compares an action with one or more actions', (done) => {
+            chai.request(app)
+                .post('/stocks/MSFT/compare')
+                .send({
+                    stocks: ['AAA'],
+                })
+                .end((err, res) => {
+                    res.body.should.be.a('object');
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+
+        it('it should returns a error to required "stocks" param', (done) => {
+            chai.request(app)
+                .post('/stocks/MSFT/compare')
+                .send({ })
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    expect(res.body).to.have.property('message', '\'stocks\' is required');
+                    done();
+                });
+        });
+    });
+
+    describe('/GET stocks/{stockName}/gains?purchasedAmount=3&purchasedAt=2018-11-21', () => {
+        it('it should projects gains on purchase on a specific date', (done) => {
+            chai.request(app)
+                .get('/stocks/MSFT/gains?purchasedAmount=3&purchasedAt=2018-11-21')
+                .end((err, res) => {
+                    res.body.should.be.a('object');
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+
+        it('it should returns a error to required "purchasedAmount" param', (done) => {
+            chai.request(app)
+                .get('/stocks/MSFT/gains?purchasedAt=2018-11-21')
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    expect(res.body).to.have.property('message', '\'purchasedAmount\' is required');
+                    done();
+                });
+        });
+
+        it('it should returns a error to required "purchasedAt" param', (done) => {
+            chai.request(app)
+                .get('/stocks/MSFT/gains?purchasedAmount=3')
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    expect(res.body).to.have.property('message', '\'purchasedAt\' is required');
+                    done();
+                });
+        });
+
+        it('it should returns a error to required "purchasedAmount" and "purchasedAt" param', (done) => {
+            chai.request(app)
+                .get('/stocks/MSFT/gains')
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    expect(res.body).to.have.property('message', '\'purchasedAmount\' is required and \'purchasedAt\' is required');
+                    done();
+                });
+        });
+    });
 });

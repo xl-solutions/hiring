@@ -14,7 +14,7 @@ class StocksModel {
      * @param {string} stockName
      */
     quote(stockName) {
-        return this.service.getQuote(stockName)
+        return this.service.quote(stockName)
             .then((response) => {
                 if (Object.keys(response.data['Global Quote']).length === 0) {
                     return {};
@@ -29,22 +29,10 @@ class StocksModel {
      * @param {string} to A date in ISO format
      */
     history(stockName, from, to) {
-        return this.service.getHistory(stockName)
+        return this.service.history(stockName)
             .then((response) => {
                 this._verifyResponse(response.data);
-
-                from = new Date(from);
-                to = new Date(to);
-
-                const prices = {};
-                Object.keys(response.data['Time Series (Daily)']).forEach((day) => {
-                    const currentDate = new Date(day);
-                    if (currentDate >= from && currentDate <= to) {
-                        prices[day] = response.data['Time Series (Daily)'][day];
-                    }
-                });
-
-                return StocksTransform.history(response.data['Meta Data']['2. Symbol'], prices);
+                return StocksTransform.history(response.data, from, to);
             });
     }
 
@@ -53,11 +41,8 @@ class StocksModel {
      * @param {string} stocks Array of stocks to compare
      */
     compare(stockName, stocks) {
-        return this.service.compare(stockName)
-            .then((response) => {
-                this._verifyResponse(response.data);
-                return stocks;
-            });
+        return this.service.compare(stockName, stocks)
+            .then(response => StocksTransform.compare(response));
     }
 
     /**
@@ -66,13 +51,8 @@ class StocksModel {
      * @param {string} purchasedAt
      */
     gains(stockName, purchasedAmount, purchasedAt) {
-        return this.service.compare(stockName)
-            .then((response) => {
-                this._verifyResponse(response.data);
-                return {
-                    stockName, purchasedAmount, purchasedAt,
-                };
-            });
+        return this.service.gains(stockName, purchasedAmount, purchasedAt)
+            .then(response => StocksTransform.gains(stockName, purchasedAmount, purchasedAt, response));
     }
 
     /**
