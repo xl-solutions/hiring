@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.35;
+    color: #333;
+}
+
+/*
+Main wrappper*/
+#main-wrapper{
+    position: relative;
+}
+
+#main-wrapper > .container-fluid {
+     padding: 50px 15px 0;
+}
+
+.main{
+    width: 80%;
+    display: block;
+    position: relative;
+    padding: 5%;
+}
+
+/*
+sidebar*/
+.sidebar {
+    position: relative; 
+    width: 20%;
+    float: left;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar .nav-item{
+    position: relative;
+    display: block;
+    padding: 0.4rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.sidebar .nav-item:hover > a{
+    color: #333;
+}
+
+
+.sidebar .nav-link {
+    font-size: .8889rem;
+    letter-spacing: .1em;
+    color: #6c757d;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+}
+
+.sidebar-sticky {
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .3rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+input{
+    width: 100%;
+    padding: 10px;
+}
+
+.input-data{
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+/*
+actions menu*/
+.upper-menu{
+    display: inline;
+    list-style: none; 
+    cursor: pointer;
+    
+}
+.upper-menu li{
+    display: inline;
+    list-style: none;
+    float: left;
+    padding: 10px;
+    border: 1px solid black;
+    
+}
+.actions-menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.actions-menu li{
+    background-color: cornsilk;
+    padding: 2%;
+}
+
+/*
+loading*/
+.loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(20,29,37, 0.4);
+    z-index: 9999;
+}
+
+.loading p{
+    background: #fff;
+    width: 150px;
+    text-align: center;
+    margin: 40vh auto 0;
+    padding: 40px 0;
+    border-radius: 3px;
+    box-shadow: 0 0 20px #333;
+}
+
+.delete-acao{
+    color: red !important;
+    float: right;
+    position: absolute;
+    right: 10%;
+    top: 25% ;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 100px;
+    -webkit-transition: .4s;
+} 
+.delete-acao:hover{
+    -webkit-transition: .4s;
+    -webkit-transform: scale(1.1);
+} 
