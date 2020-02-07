@@ -14,10 +14,15 @@ class StocksController {
   }
 
   public async historicPriceStocks(req: Request, res: Response): Promise<Response> {
-    return res.json({
-      name: 'string',
-      prices: []
-    })
+    try {
+      const stockName = req.params.stock_name
+      const { from, to } = req.query
+      const history = await StocksService.fetchHistoricalSharePrice(stockName, from, to)
+      return res.json(history)
+    } catch (error) {
+      const { status, message } = handleErrors(error)
+      return res.status(status).json({ message })
+    }
   }
 
   public async compareStocks(req: Request, res: Response): Promise<Response> {

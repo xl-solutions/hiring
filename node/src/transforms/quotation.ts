@@ -6,6 +6,6 @@ export default (data: object): Quotation => {
   return {
     name: quotation['01. symbol'],
     lastPrice: Number(quotation['05. price']),
-    priceAt: quotation['07. latest trading day']
+    priceAt: new Date(quotation['07. latest trading day']).toISOString()
   }
 }
