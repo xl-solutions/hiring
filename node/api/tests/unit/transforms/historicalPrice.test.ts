@@ -23,7 +23,7 @@ describe('HISTORICAL PRICE TRANSFORM', () => {
     expect(history.prices[0]).toHaveProperty('low')
     expect(history.prices[0]).toHaveProperty('high')
     expect(history.prices[0]).toHaveProperty('closing')
-    expect(history.prices[0]).toHaveProperty('priceAt')
+    expect(history.prices[0]).toHaveProperty('pricedAt')
     expect(history).toStrictEqual({
       name: 'PETR4.SA',
       prices: [
@@ -32,28 +32,28 @@ describe('HISTORICAL PRICE TRANSFORM', () => {
           low: 28.12,
           high: 29.51,
           closing: 29.18,
-          priceAt: '2020-02-06'
+          pricedAt: '2020-02-06'
         },
         {
           opening: 29.05,
           low: 28.39,
           high: 29.22,
           closing: 28.39,
-          priceAt: '2020-02-05'
+          pricedAt: '2020-02-05'
         },
         {
           opening: 28.65,
           low: 28.56,
           high: 29.04,
           closing: 28.63,
-          priceAt: '2020-02-04'
+          pricedAt: '2020-02-04'
         },
         {
           opening: 28.52,
           low: 28.16,
           high: 28.73,
           closing: 28.18,
-          priceAt: '2020-02-03'
+          pricedAt: '2020-02-03'
         }
       ]
     })

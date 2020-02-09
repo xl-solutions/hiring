@@ -3,9 +3,12 @@ import axios, { AxiosInstance } from 'axios'
 import Quotation from '../interfaces/Quotation'
 import History from '../interfaces/Pricing'
 import LastPrices from '../interfaces/LastPrice'
+import Gain from '../interfaces/Gain'
+
 import transformQuotation from '../transforms/quotation'
 import transformHistoricalPrice from '../transforms/historicalPrice'
 import transformComparison from '../transforms/comparison'
+import transformGains from '../transforms/gains'
 
 import dateUtils from '../utils/date'
 
@@ -48,15 +51,17 @@ class StocksService {
 
     const data = await Promise.all(promises)
 
-    if (this.successfulResponse(data)) {
-      const comparison = transformComparison(data)
-      return comparison
+    const comparison = transformComparison(data)
+    if (!comparison.lastPrices.length) {
+      const [errorMessage] = data.map((item) => this.getErrorMessage(item))
+      throw new Error(errorMessage)
     }
 
-    throw new Error(this.getErrorMessage(data))
+    return comparison
+
   }
 
-  public async gains(stockName: string, purchasedAmount: number, purchasedAt: string): Promise<LastPrices> {
+  public async gains(stockName: string, purchasedAmount: number, purchasedAt: string): Promise<Gain> {
     const data = await this.timeSeriesDaily(stockName, 'full')
 
     if (this.successfulResponse(data)) {
@@ -64,11 +69,18 @@ class StocksService {
       const quotationToday = this.getQuotationOn(quotations, dateUtils.toISODate())
       const quotationOnPurchasedDay = this.getQuotationOn(quotations, purchasedAt)
       const capitalGains = this.calculateGains(quotationOnPurchasedDay, quotationToday, purchasedAmount)
-      const exchange = await this.exchangeRates('USD', 'BRL')
-      console.log('capitalGains ', capitalGains)
-      console.log('exchange ', exchange)
-      // const gains = transformGains(data)
-      // return gains
+      const capitalGainsInBrl = await this.convertToBrl(stockName, capitalGains)
+
+      const gains = transformGains({
+        stockName,
+        quotationToday,
+        quotationOnPurchasedDay,
+        purchasedAmount,
+        purchasedAt,
+        capitalGains: capitalGainsInBrl
+      })
+
+      return gains
     }
 
 
@@ -90,27 +102,38 @@ class StocksService {
     return data
   }
 
-  private calculateGains(quotationOnPurchasedDay: object, quotationToday: object, purchasedAmount: number): number {
+  public calculateGains(quotationOnPurchasedDay: object, quotationToday: object, purchasedAmount: number): number {
     const valueOnTheDateOfPurchase = Number(quotationOnPurchasedDay['4. close']) * purchasedAmount
     const valueToday = Number(quotationToday['4. close']) * purchasedAmount
 
     return valueToday - valueOnTheDateOfPurchase
   }
 
-  private getQuotationOn(data: object, purchasedAt: string): object {
+  public getQuotationOn(data: object, purchasedAt: string): object {
     if (data[purchasedAt]) {
       return data[purchasedAt]
     }
 
     const purchasedDate = new Date(purchasedAt)
     const lastQuotationTimestamp = purchasedDate.setDate(purchasedDate.getDate() - 1)
-    const lastQuotationDay =  dateUtils.toISODate(lastQuotationTimestamp)
+    const lastQuotationDay = dateUtils.toISODate(lastQuotationTimestamp)
 
     if (data[lastQuotationDay]) {
       return data[lastQuotationDay]
     }
 
     return this.getQuotationOn(data, lastQuotationDay)
+  }
+
+  public async convertToBrl(stockName: string, gains: number): Promise<number> {
+    if (!stockName.toUpperCase().includes('.SA')) {
+      const exchange = await this.exchangeRates('USD', 'BRL')
+      const exchangeRate = exchange['Realtime Currency Exchange Rate']['5. Exchange Rate']
+
+      return Number(gains.toFixed(2)) * Number(Number(exchangeRate).toFixed(2))
+    }
+
+    return Number(gains.toFixed(2))
   }
 
   private successfulResponse(data: object): boolean {
