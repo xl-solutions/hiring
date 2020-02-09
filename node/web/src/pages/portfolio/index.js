@@ -5,8 +5,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
 import { getQuotation } from '../../services/api/stocks';
-import Table from '../../components/table';
-import Button from '../../components/button';
+import { Button, Table, PageTitle } from '../../components';
 import usePersistedState from '../../utils/usePersistedState';
 
 export default function Portfolio() {
@@ -45,14 +44,19 @@ export default function Portfolio() {
 
   useEffect(() => {
     async function getAndSetAllQuotations() {
-      const quotations = stocksNames.map(async (stockName) => {
-        const { data } = await getQuotation(stockName);
-        return data;
-      })
+      try {
+        const quotations = stocksNames.map(async (stockName) => {
+          const { data } = await getQuotation(stockName);
+          return data;
+        })
 
-      const data = await Promise.all(quotations)
-      setQuotations(data);
-      setInitialLoading(false);
+        const data = await Promise.all(quotations)
+        setQuotations(data);
+      } catch (error) {
+        toast(error.response.data.message, { type: 'error' })
+      } finally {
+        setInitialLoading(false);
+      }
     }
 
     getAndSetAllQuotations();
@@ -60,6 +64,7 @@ export default function Portfolio() {
 
   return (
     <>
+      <PageTitle title='Portifólio' />
       <Formik
         initialValues={{ stockName: '' }}
         validationSchema={Schema}
@@ -70,14 +75,18 @@ export default function Portfolio() {
             <Row style={{ marginBottom: 30 }}>
               <Col xs='12'>
                 <Row>
-                  <Col xs='10'>
+                  <Col xs='4'>
                     <Field
                       name='stockName'
                       render={({ field }) => (
-                        <Input {...field} />
+                        <Input {...field} placeholder='Nome da ação' />
                       )}
                     />
-                    <ErrorMessage name='stockName' />
+                    <ErrorMessage
+                      name='stockName'
+                      component="strong"
+                      className='text-danger mt-1'
+                    />
                   </Col>
                   <Col xs='2'>
                     <Button

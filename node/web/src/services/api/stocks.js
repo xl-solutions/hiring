@@ -12,9 +12,7 @@ export const getHistory = (stockName, from, to) => {
 }
 
 export const stocksCompare = (stockName, stocks) => {
-  return client.post(`/stocks/${stockName}/compare`, {
-    data: { stocks }
-  });
+  return client.post(`/stocks/${stockName}/compare`, { stocks });
 }
 
 export const gainsCalcule = (stockName, purchasedAmount, purchasedAt) => {

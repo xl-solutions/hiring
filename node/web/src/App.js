@@ -3,8 +3,7 @@ import { Container } from 'reactstrap';
 import { ToastContainer } from 'react-toastify';
 
 import Routes from './routes';
-import Header from './components/header';
-import Wrapper from './components/wrapper';
+import { Header, Wrapper } from './components';
 
 function App() {
   return (
