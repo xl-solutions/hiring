@@ -20,13 +20,16 @@ export default function History() {
   });
 
   const columns = [
-    { key: 'name', title: 'Nome' },
-    { key: 'lastPrice', title: 'Último preço' },
-    { key: 'pricedAt', title: 'Atualizado em' },
+    { accessor: 'name', Header: 'Nome' },
+    { accessor: 'lastPrice', Header: 'Último preço' },
+    {
+      accessor: 'pricedAt',
+      Header: 'Atualizado em',
+      Cell: ({ cell }) => cell.value.split('-').reverse().join('/')
+    },
   ];
 
   async function compare({ stockName, stocks }) {
-    console.log({ stockName, stocks })
     try {
       setLoading(true);
       const { data } = await stocksCompare(stockName, stocks);

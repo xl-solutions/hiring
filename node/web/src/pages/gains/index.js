@@ -18,12 +18,16 @@ export default function History() {
   });
 
   const columns = [
-    { key: 'name', title: 'Nome' },
-    { key: 'purchasedAmount', title: 'Quantidade comprada' },
-    { key: 'purchasedAt', title: 'Comprado em' },
-    { key: 'priceAtDate', title: 'Preço na data da compra' },
-    { key: 'lastPrice', title: 'Último preço' },
-    { key: 'capitalGains', title: 'Ganho' }
+    { accessor: 'name', Header: 'Nome' },
+    { accessor: 'purchasedAmount', Header: 'Quantidade comprada' },
+    {
+      accessor: 'purchasedAt',
+      Header: 'Comprado em',
+      Cell: ({ cell }) => cell.value.split('-').reverse().join('/')
+    },
+    { accessor: 'priceAtDate', Header: 'Preço na data da compra' },
+    { accessor: 'lastPrice', Header: 'Último preço' },
+    { accessor: 'capitalGains', Header: 'Ganho' }
   ];
 
   async function calculate({ stockName, purchasedAmount, purchasedAt }) {

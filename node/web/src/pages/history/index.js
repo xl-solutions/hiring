@@ -19,11 +19,15 @@ export default function History() {
   });
 
   const columns = [
-    { key: 'opening', title: 'Abertura' },
-    { key: 'low', title: 'Baixa' },
-    { key: 'high', title: 'Alta' },
-    { key: 'closing', title: 'Fechamento' },
-    { key: 'pricedAt', title: 'Atualizado em' }
+    { accessor: 'opening', Header: 'Abertura' },
+    { accessor: 'low', Header: 'Baixa' },
+    { accessor: 'high', Header: 'Alta' },
+    { accessor: 'closing', Header: 'Fechamento' },
+    {
+      accessor: 'pricedAt',
+      Header: 'Atualizado em',
+      Cell: ({ cell }) => cell.value.split('-').reverse().join('/')
+    }
   ];
 
   async function searchHistory({ stockName, from, to }) {

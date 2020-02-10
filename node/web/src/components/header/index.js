@@ -19,7 +19,7 @@ export default function Header() {
     <div>
       <Navbar color="dark" dark expand="md">
         <Container>
-          <NavbarBrand href="/">Hiring</NavbarBrand>
+          <NavbarBrand href="/">Web</NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>

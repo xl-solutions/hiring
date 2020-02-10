@@ -19,9 +19,13 @@ export default function Portfolio() {
   });
 
   const columns = [
-    { key: 'name', title: 'Nome' },
-    { key: 'lastPrice', title: 'Último preço' },
-    { key: 'pricedAt', title: 'Atualizado em' }
+    { accessor: 'name', Header: 'Nome' },
+    { accessor: 'lastPrice', Header: 'Último preço' },
+    {
+      accessor: 'pricedAt',
+      Header: 'Atualizado em',
+      Cell: ({ cell }) => cell.value.split('-').reverse().join('/')
+    }
   ];
 
   async function stockAdd({ stockName }, { resetForm }) {
