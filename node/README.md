@@ -2,6 +2,10 @@
 
 No diretório do projeto, você pode executar:
 
+### `yarn`
+
+Instala todas as dependencias necessárias para execução do front
+
 ### `yarn start`
 
 Executa o aplicativo no modo de desenvolvimento.<br />
@@ -14,6 +18,10 @@ Cria o aplicativo para produção na pasta `build`. <br />
 # Scripts disponíveis para api
 
 No diretório do projeto, você pode executar:
+
+### `yarn`
+
+Instala todas as dependencias necessárias para execução da api
 
 ### `yarn dev`
 
