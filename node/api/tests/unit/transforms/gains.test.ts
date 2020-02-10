@@ -61,12 +61,22 @@ describe('GAINS TRANSFORM', () => {
     expect(gains).toHaveProperty('lastPrice')
     expect(gains).toHaveProperty('capitalGains')
     expect(gains).toStrictEqual({
-      name: "PETR4.SA",
+      name: 'PETR4.SA',
       purchasedAmount: 50,
-      purchasedAt: "2020-01-01",
+      purchasedAt: '2020-01-01',
       priceAtDate: 30.21,
       lastPrice: 29.12,
       capitalGains: -54.5
+    })
   })
+
+  it('quotation not exists in purchased date', () => {
+    const exists = StocksService.quotationExists({ '2000-01-02': {} }, '2000-01-01')
+    expect(exists).toBe(false)
+  })
+
+  it('quotation exists in purchased date', () => {
+    const exists = StocksService.quotationExists({ '1999-12-31': {} }, '2000-01-01')
+    expect(exists).toBe(true)
   })
 })

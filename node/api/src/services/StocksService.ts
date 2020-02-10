@@ -58,7 +58,6 @@ class StocksService {
     }
 
     return comparison
-
   }
 
   public async gains(stockName: string, purchasedAmount: number, purchasedAt: string): Promise<Gain> {
@@ -82,7 +81,6 @@ class StocksService {
 
       return gains
     }
-
 
     throw new Error(this.getErrorMessage(data))
   }
@@ -110,6 +108,10 @@ class StocksService {
   }
 
   public getQuotationOn(data: object, purchasedAt: string): object {
+    if (!this.quotationExists(data, purchasedAt)) {
+      throw new Error('Stocks not exists in purchased date')
+    }
+
     if (data[purchasedAt]) {
       return data[purchasedAt]
     }
@@ -125,6 +127,15 @@ class StocksService {
     return this.getQuotationOn(data, lastQuotationDay)
   }
 
+  public quotationExists(data: object, purchasedAt: string): boolean {
+    const firstDate = Object.keys(data)[Object.keys(data).length - 1]
+
+    const purchasedDate = new Date(purchasedAt)
+    const oldQuotationDate = new Date(firstDate)
+
+    return oldQuotationDate.getTime() <= purchasedDate.getTime()
+  }
+
   public async convertToBrl(stockName: string, gains: number): Promise<number> {
     if (!stockName.toUpperCase().includes('.SA')) {
       const exchange = await this.exchangeRates('USD', 'BRL')
@@ -137,11 +148,11 @@ class StocksService {
   }
 
   private successfulResponse(data: object): boolean {
-    return !data['Note'] && !data['Error Message']
+    return !data.Note && !data['Error Message']
   }
 
   private getErrorMessage(data: object): string {
-    return data['Note'] || data['Error Message'] || 'Unknown error'
+    return data.Note || data['Error Message'] || 'Unknown error'
   }
 }
 
