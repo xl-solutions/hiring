@@ -29,9 +29,15 @@ export default function Portfolio() {
   ];
 
   async function stockAdd({ stockName }, { resetForm }) {
-    setStocksNames([...new Set([...stocksNames, stockName])]);
-    await getAndSetQuotation(stockName);
-    resetForm();
+    if (stocksNames.includes(stockName.toUpperCase())) {
+      return toast('Stocks already added to the portfolio', { type: 'warning' })
+    }
+
+    try {
+      await getAndSetQuotation(stockName);
+      setStocksNames([...new Set([...stocksNames, stockName.toUpperCase()])]);
+      resetForm();
+    } catch (error) { }
   }
 
   async function getAndSetQuotation(stockName) {
@@ -41,6 +47,7 @@ export default function Portfolio() {
       setQuotations([...quotations, data]);
     } catch (error) {
       toast(error.response.data.message, { type: 'error' })
+      throw error
     } finally {
       setLoading(false);
     }
