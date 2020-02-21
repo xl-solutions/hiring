@@ -10,5 +10,6 @@ namespace inventory.Repository
         IList<T> RetrieveAll();
         void RollbackTransaction();
         void Save(T entity);
+        IList<T> SearchSmartphone(string data);
     }
 }

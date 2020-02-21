@@ -26,8 +26,8 @@ namespace inventory.Controllers
             if (string.IsNullOrEmpty(data))
                 return View(SmartphoneRepository.RetrieveAll());
 
-
-            return View(SmartphoneRepository.RetrieveAll());
+            var result = SmartphoneRepository.SearchSmartphone(data);
+            return View(result);
         }
     }
 }

@@ -44,9 +44,10 @@ namespace inventory.Controllers
             }
             catch (Exception err)
             {
-                TempData["error"] = err.Message;
+                var message = err.Message.Split('.');
+                TempData["error"] = message[0];
                 return Redirect("/Home");
-            }           
+            }
         }
     }
 }

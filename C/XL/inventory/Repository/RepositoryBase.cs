@@ -1,5 +1,6 @@
 ﻿using inventory.Config;
 using NHibernate;
+using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
 
@@ -93,6 +94,33 @@ namespace inventory.Repository
                     RollbackTransaction();
 
                 throw new Exception($"Error on retrieve data, {ex.Message}");
+            }
+        }
+
+        public IList<T> SearchSmartphone(string data)
+        {
+            BeginTransaction();
+
+            try
+            {
+                var manufacturer = Restrictions.Like("manufacturer", data, MatchMode.Anywhere);
+                var model = Restrictions.Like("model", data, MatchMode.Anywhere);
+                var carrier = Restrictions.Like("carrier_plan_type", data, MatchMode.Anywhere);
+
+                Disjunction disjunction = Restrictions.Disjunction();
+                disjunction.Add(manufacturer);
+                disjunction.Add(model);
+                disjunction.Add(carrier);
+
+                return Session.CreateCriteria<T>().Add(disjunction).List<T>();
+
+            }
+            catch (Exception err)
+            {
+                if (!Transaction.WasCommitted)
+                    RollbackTransaction();
+
+                throw new Exception($"Error searching data, {err.Message}");
             }
         }
 
