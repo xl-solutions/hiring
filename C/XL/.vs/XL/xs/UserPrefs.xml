@@ -5,11 +5,7 @@
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="XL" expanded="True">
-            <Node name="inventory" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="UploadController.cs" selected="True" />
-              </Node>
-            </Node>
+            <Node name="inventory" expanded="True" />
           </Node>
         </State>
       </Pad>
