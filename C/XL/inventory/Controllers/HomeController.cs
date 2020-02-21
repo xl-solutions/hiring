@@ -20,18 +20,14 @@ namespace inventory.Controllers
             return View(SmartphoneRepository.RetrieveAll());
         }
 
-        public IActionResult Index(IList<SmartphoneModel> smartphones)
-        {
-            return View(smartphones);
-        }
-
-        [HttpGet]
-        public IActionResult Search ([FromQuery]string data)
+        [HttpPost]
+        public IActionResult Index(string data)
         {
             if (string.IsNullOrEmpty(data))
-                return null;
-            
-           return RedirectToAction("Index", "Home", SmartphoneRepository.RetrieveAll());
+                return View(SmartphoneRepository.RetrieveAll());
+
+
+            return View(SmartphoneRepository.RetrieveAll());
         }
     }
 }
