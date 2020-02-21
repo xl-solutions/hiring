@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SmartphoneModel>;
+
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">        
+        <div class="col-md-6"></div>
+        <div class="col-md-6">            
+            <div class="input-group">
+                <form method="GET" action="/Home/Search" id="searchForm">
+                    <input type="text" id="searchbox" name="data" class="form-control" placeholder="search..." />
+                    <span class="input-group-btn">
+                        <button type="submit" form="searchForm" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </form>
+            </div>            
+        </div>
+        
+        <div class="form-group">
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th><strong>Manufacturer</strong></th>
+                        <th><strong>Model</strong></th>
+                        <th><strong>Color</strong></th>
+                        <th><strong>Carrier plan type</strong></th>
+                        <th><strong>Quantity</strong></th>
+                        <th><strong>Price</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.manufacturer</td>
+                            <td>@item.model</td>
+                            <td>@item.color</td>
+                            <td>
+                                <div class="label label-info">
+                                    @item.carrier_plan_type
+                                </div>
+                            </td>
+                            <td>
+                                <div class="badge">
+                                    @item.quantity
+                                </div>
+                            </td>
+                            <td>$ @item.price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
