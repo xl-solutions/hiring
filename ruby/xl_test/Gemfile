@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'activerecord-import'
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails'
 gem 'ransack'
 
 # Reduces boot times through caching; required in config/boot.rb

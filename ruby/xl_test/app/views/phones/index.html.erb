@@ -1,5 +1,13 @@
 <%= flash[:notice] %>
 
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Phones</span>
+</nav>
+
+<br>
+
+
+<div <div class="d-flex justify-content-center">
 <%= search_form_for @q do |f| %>
   <%= f.label :manufacturer %>
   <%= f.search_field :manufacturer_cont %>
@@ -11,31 +19,44 @@
   <%= f.search_field :carrier_plan_type_cont %>
   <%= f.submit %>
 <% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Manufacturer</th>
-      <th>Model</th>
-      <th>Color</th>
-      <th>Carrier Plan Type</th>
-      <th>Quantity</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @phones.each do |phone| %>
-      <tr>
-        <td><%= phone.manufacturer %></td>
-        <td><%= phone.model %></td>
-        <td><%= phone.color %></td>
-        <td><%= phone.carrier_plan_type %></td>
-        <td><%= phone.quantity %></td>
-        <td><%= phone.price %></td>
-      </tr>
+<br>
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-end"">
+    <%= link_to new_phone_path, class: 'btn btn-primary btn-sm' do %>
+      Import Data
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
-<%= link_to 'Import Data', new_phone_url %>
+<br>
+<div class="container-fluid">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Manufacturer</th>
+        <th scope="col">Model</th>
+        <th scope="col">Color</th>
+        <th scope="col">Carrier Plan Type</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @phones.each do |phone| %>
+        <tr>
+          <td><%= phone.manufacturer %></td>
+          <td><%= phone.model %></td>
+          <td><%= phone.color %></td>
+          <td><%= phone.carrier_plan_type %></td>
+          <td><%= phone.quantity %></td>
+          <td><%= phone.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 

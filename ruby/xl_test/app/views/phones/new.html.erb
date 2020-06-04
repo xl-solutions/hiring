@@ -1,4 +1,10 @@
-<div>
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Import New Data</span>
+</nav>
+
+<br>
+
+<div class="container-fluid">
   <%= form_tag import_phones_path, multipart: true do %>
     <%= file_field_tag :file %>
     <%= submit_tag "Import Data" %>
