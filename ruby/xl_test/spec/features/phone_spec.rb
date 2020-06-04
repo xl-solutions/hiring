@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Phone do
 
@@ -6,7 +6,7 @@ RSpec.describe Phone do
     scenario 'success' do
       visit root_url
       click_link 'Import Data'
-      page.attach_file("file", Rails.root.join("spec", "fixtures", "files", "input_valid.csv"))
+      page.attach_file("file", Rails.root.join('spec', 'fixtures', 'files', 'input_valid.csv'))
       click_button 'Import Data'
       expect(page).to have_content('Data was succesfully imported.')           
     end
@@ -14,7 +14,7 @@ RSpec.describe Phone do
     scenario 'fail' do
       visit root_url
       click_link 'Import Data'
-      page.attach_file("file", Rails.root.join("spec", "fixtures", "files", "input_invalid.csv"))
+      page.attach_file("file", Rails.root.join('spec', 'fixtures', 'files', 'input_invalid.csv'))
       click_button 'Import Data'
       expect(page).to have_content('Could not import data.')
     end
