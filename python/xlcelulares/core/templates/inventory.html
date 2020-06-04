@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<div class="container">
+    {% if error %}
+        <h3>Error</h3>
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% elif phones or none_found %}
+        <h3>Phone inventory</h3>
+        <br>
+        <label for="#search-form">Search phones</label>
+        <form id="search-form" action="{% url 'search' %}" method="GET" name="search_form">
+            <div class="form-row mt-2">
+                <div class="col">
+                    <label for="#select-manufacturer">Manufacturer</label>
+                    <select name="manufacturer" id="select-manufacturer" class="custom-select mr-sm-2">
+                        <option value="">Choose</option>
+                        {% for manufacturer in manufacturers %}
+                            <option value="{{ manufacturer }}">{{ manufacturer }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="#model-input">Model</label>
+                    <input type="text" id="model-input" name="model" placeholder="Insert model" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="select-carrier-type">Carrier plan type</label>
+                    <select name="carrier_plan_type" id="select-carrier-type" class="custom-select mr-sm-2">
+                        <option value="">Choose</option>
+                        <option value="pre">pre</option>
+                        <option value="pos">pos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row mt-2">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <br>
+        {% if from_search %}
+        <a href="{% url 'inventory' %}">Back to all results</a>
+        {% endif %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Manufacturer</th>
+                    <th>Model</th>
+                    <th>Color</th>
+                    <th>Carrier plan type</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            {% for phone in phones %}
+                <tbody>
+                    <tr>
+                        <td>{{ phone.manufacturer }}</td>
+                        <td>{{ phone.model }}</td>
+                        <td>{{ phone.color }}</td>
+                        <td>{{ phone.carrier_plan_type }}</td>
+                        <td>{{ phone.quantity }}</td>
+                        <td>{{ phone.price }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+        {% if none_found %}
+            <p>No records found.</p>
+        {% endif %}
+    {% endif %}
+</div>
+<br>
+<br>
+{% endblock body %}

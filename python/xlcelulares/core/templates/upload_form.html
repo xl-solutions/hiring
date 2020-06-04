@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br>
+<div class="container">
+    <h3>Submit phone inventory file</h3>
+    <hr>
+    <form id="fileform" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ file_form.as_p }}
+        <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+</div>
+<br>
+{% endblock body %}
