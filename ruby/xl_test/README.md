@@ -1,24 +1,33 @@
-# README
+## Using
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ruby '2.6.4'
+rails '6.0.2'
 
-Things you may want to cover:
+Como rodar a aplicação XL Test
 
-* Ruby version
+Depois de clonar, navegar até a paste onde se encontra o app.
 
-* System dependencies
+```sh
+cd xl_test
+```
 
-* Configuration
+```sh
+bundle install
+```
 
-* Database creation
+```sh
+rake db:create db:migrate
+```
 
-* Database initialization
+Nesse ponto, não haverá nada no banco de dados, então é preciso iniciar o servidor e fazer upload dos arquivos csv.
 
-* How to run the test suite
+```sh
+rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Para rodar os testes da aplicação, basta rodar o comando
 
-* Deployment instructions
+```sh
+bundle exec rspec spec
+```
 
-* ...
