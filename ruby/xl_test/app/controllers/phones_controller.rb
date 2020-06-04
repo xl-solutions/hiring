@@ -9,8 +9,8 @@ class PhonesController < ApplicationController
     Phone.import(params[:file]) 
       redirect_to root_url, notice: "Data was succesfully imported."
   rescue StandardError => exception
-      flash[:error] = "Could not import data"
-      redirect_to(root_url)
+    redirect_to root_url, notice: "Could not import data."
+      
   
   end
 
