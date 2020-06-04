@@ -1,0 +1,6 @@
+<div>
+  <%= form_tag import_phones_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import Data" %>
+  <% end %>  
+</div>

@@ -1,0 +1,29 @@
+<%= flash[:notice] %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Manufacturer</th>
+      <th>Model</th>
+      <th>Color</th>
+      <th>Carrier Plan Type</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @phones.each do |phone| %>
+      <tr>
+        <td><%= phone.manufacturer %></td>
+        <td><%= phone.model %></td>
+        <td><%= phone.color %></td>
+        <td><%= phone.carrier_plan_type %></td>
+        <td><%= phone.quantity %></td>
+        <td><%= phone.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Import Data', new_phone_url %>
+
