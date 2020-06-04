@@ -1,5 +1,17 @@
 <%= flash[:notice] %>
 
+<%= search_form_for @q do |f| %>
+  <%= f.label :manufacturer %>
+  <%= f.search_field :manufacturer_cont %>
+
+  <%= f.label :model %>
+  <%= f.search_field :model_cont %>
+
+  <%= f.label :carrier_plan_type %>
+  <%= f.search_field :carrier_plan_type_cont %>
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

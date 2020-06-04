@@ -2,7 +2,8 @@ class PhonesController < ApplicationController
   before_action :ensure_csv_file, only: :import
 
   def index
-    @phones = Phone.all
+    @q = Phone.ransack(params[:q])
+    @phones = @q.result
   end
 
   def import
@@ -21,7 +22,7 @@ class PhonesController < ApplicationController
       flash[:error] = 'No File Uploaded'
       redirect_to(root_url)
     elsif params[:file].content_type != 'text/csv'
-      flash[:error] = 'File type must be csv: #{params[:file].original_filename}
+      flash[:error] = 'File type must be csv: #{params[:file].original_filename}'
       redirect_to(root_url)
     end
   end
