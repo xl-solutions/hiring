@@ -13,3 +13,7 @@ admin.init_app(app)
 def create_db():
     with db:
         db.create_tables([Product, ])
+
+
+if __name__ == "__main__":
+    create_db()
