@@ -107,12 +107,12 @@ class BulkStock:
         """Update database stock with the stock uploaded."""
         self.is_safe_to_save()
         with db.atomic() as transaction:
-            Product(db).truncate_table()
+            Product().truncate_table()
 
             try:
                 reader = DictReader(StringIO(self.file.read().decode("utf-8")))
                 for row in reader:
-                    product = Product(db)
+                    product = Product()
 
                     product.manufacturer = row['manufacturer']
                     product.model = row['model']

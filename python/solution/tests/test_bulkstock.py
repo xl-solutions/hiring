@@ -77,13 +77,15 @@ class TestBulkStock:
 
     def test_update_stock_db_with_valid_stock(self):
         self.test_is_valid_file_with_valid_stock_file()
+        assert Product().select().count() == 0
         assert self.bulk_stock.update_stock_db(self.db) is True
-        assert Product(self.db).select().count() == 12
+        assert Product().select().count() == 12
 
     def test_update_stock_db_with_invalid_stock(self):
         self.test_is_valid_file_with_invalid_stock_file()
+        assert Product().select().count() == 0
         assert self.bulk_stock.update_stock_db(self.db) is False
-        assert Product(self.db).select().count() == 0
+        assert Product().select().count() == 0
 
     @classmethod
     def get_file_stream(cls, filename):
