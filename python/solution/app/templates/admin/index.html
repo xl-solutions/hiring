@@ -1,0 +1,9 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+  <p>Stock Admin Panel</p>
+  <br>
+  <p>Go to the <a href="{{ url_for('product.index_view') }}">Products Panel</a></p>
+  <br>
+  <p>Go to the <a href="{{ url_for('bulk_upload.index_view') }}">Bulk Upload Panel</a></p>
+{% endblock %}

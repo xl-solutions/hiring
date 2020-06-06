@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pep8 = "*"
+pylint = "*"
+flake8 = "*"
+mypy = "*"
+
+[packages]
+flask = "==1.*"
+flask-admin = "==1.*"
+pytest = "==5.*"
+python-dotenv = "==0.*"
+peewee = "==3.*"
+wtf-peewee = "==3.*"
+
+[requires]
+python_version = "3.8"
