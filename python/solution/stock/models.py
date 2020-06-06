@@ -1,16 +1,11 @@
 
 from peewee import (
-    Model, CharField, IntegerField, DecimalField
+    CharField, IntegerField, DecimalField
 )
-from app.app import db
+from app.app import db_wrapper
 
 
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-
-class Product(BaseModel):
+class Product(db_wrapper.Model):
     manufacturer = CharField(max_length=50)
     model = CharField(max_length=80)
     color = CharField(max_length=10)

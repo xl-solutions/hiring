@@ -1,8 +1,12 @@
 
+import os
 import pytest
+import tempfile
+from app import utils, app as flaskr
 from pathlib import Path
 from werkzeug.datastructures import FileStorage
 from stock.views import BulkStock
+from stock.models import Product
 
 VALID_FILENAME = 'var/file.csv'
 INVALID_FILENAME = 'var/.  .csv'
@@ -11,6 +15,19 @@ INVALID_STOCK_FILE = 'var/input_invalid.csv'
 
 
 class TestBulkStock:
+
+    def setup(self):
+        # @FIXME: Fix this ugly code
+        self.db_fd, self.database_path = tempfile.mkstemp()
+        flaskr.app.config['DATABASE'] = 'sqlite:///' + self.database_path
+        flaskr.app.config['TESTING'] = True
+        flaskr.db_wrapper.init_app(flaskr.app)
+        self.db = flaskr.db_wrapper.database
+        utils.create_db(self.db)
+
+    def teardown(self):
+        os.close(self.db_fd)
+        os.unlink(self.database_path)
 
     def test_is_valid_file_with_valid_filename(self):
         self.bulk_stock = BulkStock(self.get_file_stream(VALID_FILENAME))
@@ -52,6 +69,21 @@ class TestBulkStock:
         self.test_is_valid_file_with_invalid_stock_file()
         assert self.bulk_stock.is_safe_to_save() is True
         self.bulk_stock.save_file('var/tmp/')
+
+    def test_is_allowed_file(self):
+        assert BulkStock.is_allowed_file('a.csv') is True
+        assert BulkStock.is_allowed_file('a.txt') is False
+        assert BulkStock.is_allowed_file('a.b/csv') is False
+
+    def test_update_stock_db_with_valid_stock(self):
+        self.test_is_valid_file_with_valid_stock_file()
+        assert self.bulk_stock.update_stock_db(self.db) is True
+        assert Product(self.db).select().count() == 12
+
+    def test_update_stock_db_with_invalid_stock(self):
+        self.test_is_valid_file_with_invalid_stock_file()
+        assert self.bulk_stock.update_stock_db(self.db) is False
+        assert Product(self.db).select().count() == 0
 
     @classmethod
     def get_file_stream(cls, filename):

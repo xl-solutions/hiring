@@ -1,5 +1,5 @@
 
-from app.app import app, db
+from app.app import app, db_wrapper
 from typing import List
 from pathlib import Path
 from flask import flash, request, redirect, url_for
@@ -34,7 +34,7 @@ def upload_file():
     # bulk_stock.save_file(app.config['UPLOAD_FOLDER'])
     # flash('File saved.', 'info')
 
-    if not bulk_stock.update_stock_db():
+    if not bulk_stock.update_stock_db(db_wrapper.database):
         for error in bulk_stock.get_error_messages():
             flash(error, 'error')
         return redirect(request.url)
@@ -103,16 +103,16 @@ class BulkStock:
             "Verify file with .is_valid_file() beforehand"
         return True
 
-    def update_stock_db(self):
+    def update_stock_db(self, db):
         """Update database stock with the stock uploaded."""
         self.is_safe_to_save()
         with db.atomic() as transaction:
-            Product.truncate_table()
+            Product(db).truncate_table()
 
             try:
                 reader = DictReader(StringIO(self.file.read().decode("utf-8")))
                 for row in reader:
-                    product = Product()
+                    product = Product(db)
 
                     product.manufacturer = row['manufacturer']
                     product.model = row['model']
