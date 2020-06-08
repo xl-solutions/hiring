@@ -1,5 +1,6 @@
 
 from app.app import app, db_wrapper
+from flask import Blueprint
 from typing import List
 from pathlib import Path
 from flask import flash, request, redirect, url_for
@@ -10,18 +11,20 @@ from csv import DictReader
 from io import StringIO
 import peewee
 
+stock_endpoints = Blueprint('stock', __name__, template_folder="templates")
 
-@app.route('/')
+
+@stock_endpoints.route('/')
 def index():
     return redirect(url_for('admin.index'))
 
 
-@app.route('/upload/', methods=['GET'])
+@stock_endpoints.route('/upload/', methods=['GET'])
 def upload_view():
     return redirect(url_for('bulk_upload.index_view'))
 
 
-@app.route('/upload/', methods=['POST'])
+@stock_endpoints.route('/upload/', methods=['POST'])
 def upload_file():
     bulk_stock = BulkStock(request.files['the_file'])
 

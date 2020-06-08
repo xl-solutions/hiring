@@ -46,7 +46,7 @@ Here are a listing of improvements this project needs (unordered):
 - Change the database system for one production-ready, with more features and more robust, like PostgreSQL;
 - Fix the [Data Modeling](#data-modeling), spliting the `Product Model` in more entities (i.e. Manufacturer could be its own entity, as well as Carrier Plan Type);
 - Improve error handling on `BulkStock.update_stock_db()` method (actually improve the entire method);
-- Continue developing tests and start acceptances tests
+- Continue developing tests including acceptances tests
 
 [pipenv installation]: https://github.com/pypa/pipenv#installation
 [Pipenv]: https://github.com/pypa/pipenv

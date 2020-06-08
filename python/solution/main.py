@@ -1,11 +1,11 @@
 
-# @FIXME: At this point, flake8 will be crazy: importing lazyloaded views
 from app.app import app, db_wrapper
 from stock import views, models
 from admin.endpoints import admin
 
 db_wrapper.init_app(app)
 admin.init_app(app)
+app.register_blueprint(views.stock_endpoints)
 
 # pipenv run flask run
 
