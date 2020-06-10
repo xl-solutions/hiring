@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html>
+    <title>
+        Invetário
+    </title>
+
+    <body>
+
+        <form class="" action="apagar" method="post">
+            <input style="position: absolute; top: 1%; left: 5%;" type="submit" name="apagar" value=Deletar>
+        </form>
+
+        <form class="" action="voltar" method="post">
+            <input style="position: absolute; top: 1%; left: 10%;" type="submit" name="voltar" value=Voltar>
+        </form>
+
+        <form class="" action="buscarModelo" method="post">
+            <input style="position: absolute; top: 1%; left: 21%;" type="submit" name="buscarModelo" value=BuscaModelo>
+        </form>
+
+        <form class="" action="buscarFabricante" method="post">
+            <input style="position: absolute; top: 1%; left: 30%;" type="submit" name="buscarFabricante" value=BuscaFabricante>
+        </form>
+
+        <form class="" action="buscarModalidade" method="post">
+            <input style="position: absolute; top: 1%; left: 40%;" type="submit" name="buscarModalidade" value=BuscaModalidade>
+        </form>
+
+
+
+        <br>
+        <br>
+        {{mensagem}}
+        {{data | safe}}<br>
+    </body>
+</html>
+
