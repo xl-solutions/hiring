@@ -8,9 +8,9 @@ Para a execução da aplicação os seguintes passos devem ser seguidos:
 
 4. Mantenha a tabela "inventario" do banco de dados "cliente_xl" aberta. 
 
-4. Coloque a pasta XL na area de trabalho (ou outro lugar).
+4. Coloque a pasta Caio na area de trabalho (ou outro lugar).
 
-5. Abra um Editor de Código (ou entre no diretório XL via CMD) e execute o arquivo "app.py".
+5. Abra um Editor de Código (ou entre no diretório Caio via CMD) e execute o arquivo "app.py".
 
 6. Quando aparecer: Running on http://127.0.0.1:5000/ ... Abra o navegador e entre nessa URL.
 
