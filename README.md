@@ -1,59 +1,38 @@
-# Background
+# Descrição
 
-Uma corretora de ações está desenvolvendo um sistema para permitir que pequenos investidores possam tomar decisões melhores sobre seu portfólio. Uma das funcionalidades importantes é a de verificar o desempenho de uma ação em cinco cenários:
+Nesse teste foi implementado o backend em NodeJs e o frontend em ReactJs.
 
-   - Preço atual;
-   - Preço histórico;
-   - Preço atual em comparação a outras ações;
-   - Projeção de ganhos com compra em data específica.
-   
-Para isso, a equipe de software da empresa optou por desenvolver duas aplicações: um serviço de backend especializado nesses requisitos (que permitirá que essas funcionalidades sejam reutilizadas em outros produtos da empresa) e um dashboard configurável que dará visibilidade aos dados. Sua missão para este teste é implementar ambas as partes.
 
-# Requisitos técnicos da solução
+### Rodando a aplicação
 
-O serviço deverá ser implementado via HTTP, e o formato de serialização das requisições e respostas será JSON. O backend deverá ser implementado em node.js, seja com `http` puro, seja com framework de sua escolha. O frontend será uma single-page application (SPA), e poderá ser implementado com a solução de sua escolha: Angular, Angular 2/4, Vue.js, React, você decide. Forneça, em conjunto, uma configuração de build com Webpack, rollup, browserify ou outra solução de sua escolha, e um comando único para subir sua aplicação. 
 
-Sua solução deverá ter testes automatizados, tanto no frontend quanto no backend.
+<p>Foi disponibilizado alguns comandos para facilitar a inicialização do projeto: </p>
 
-Para obter dados de ações, você poderá usar o Alpha Vantage (https://www.alphavantage.co). Caso queira utilizar bibliotecas prontas para isso — sinta-se livre para utilizá-las.
+- "npm run test-api": Roda os testes no servidor .
+- "npm run start-api": Roda apenas o servidor (porta 3333).
+- "npm run start-web": Roda apenas a aplicação web (porta 3000).
+- "npm start": Roda tanto o servidor como a aplicação web.
 
-O tratamento de erros não será explicitado nos endpoints. O candidato ou candidata poderá inferir casos que poderão gerar erros ou duplicidades nos dados, e tratá-los de acordo. A ausência de tratamento não desqualifica a proposta; a presença, no entanto, contará pontos a favor.
 
-## Projeção de ganhos
+### Usando a aplicação WEB
 
-A ideia é implementar algo simples, sem preocupações com dividendos, taxas administrativas ou outras incumbências que afetariam o montante total. Em sendo assim, pressuponha que a compradora investiu seu dinheiro numa determinada quantidade de ações de uma empresa em alguma data no passado, e que deseja saber quanto teria ganhado ou perdido caso o fizesse.
+- Após iniciar, ele ja ira fazer uma chamada a api com a ação "PETR4.SA" e exibir a cotaçao atual e seu historico;
+- É possivel fazer a busca de uma ação no campo superior esquerdo.
+- Para simular ganhos, basta colocar a quantidade de açoes e a data de compra da ação na parte inferior, e clicar em "simular"
+- No grafico central, é possivel clicar em um ponto e visualizar as informaçoes da ação na data do ponto.
 
-# Como enviar sua proposta
 
-- Crie um fork deste repositório;
-- Implemente sua solução, fazendo commits da maneira que faria em um projeto profissional;
-- Substitua este README com um específico para sua aplicação, indicando como rodá-la, e como executar os testes (fique à vontade para inserir mais detalhes técnicos, caso deseje);
-- Abra um pull request para este repositório.
+### Usando o servidor ()
 
-# Detalhamento
+Foram implementados 4 endpoints no servidor:
 
-## Frontend
+#### `/stocks/:stock_name/quote` ####
 
-O importante nesta parte do desafio é que saibamos como você lida com os componentes que formam as técnicas contemporâneas de desenvolvimento client-side, no que tange processamento de assets, transpilers, separação de responsabilidades, minificação, armazenamento local, etc. Por isso, estética não é primordial.
+Retorna a cotação mais recente da ação.
 
-As funcionalidades esperadas são:
+Entradas: 
 
-- Incluir ações no portifólio;
-- Ver situação atual das ações (último preço e data e hora da atualização);
-- Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
-- Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
-
-Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Yahoo Finance, ou fazer uma arquitetura master-detail simples.
-
-## Backend
-
-### Endpoints
-
-#### `/stocks/:stock_name/quote` - Retorna a cotação mais recente para a ação ####
-
-Entrada:
-
-- `stock_name` - parâmetro passado na URI indicando o nome da ação (PETR4.SA, VALE5.SA)
+- `stock_name` - string (Nome da ação)
 
 Retorno:
 
@@ -61,25 +40,22 @@ Retorno:
 {
   "name": string,
   "lastPrice": number,
-  "pricedAt": string // data e hora no formato ISO 8601, UTC
+  "pricedAt": string   (data no formato UTC ISO 8601)
 }
 ```
 
-Exemplo de uso:
+#### `/stocks/:stock_name/history?from=<string>&to=<string>`####
 
-```
-$ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/PETR4.SA/quote
-{ "name": "PETR4.SA", "lastPrice": 25.11, "pricedAt": "2017-06-23T14:15:16Z" }
-```
+Retorna o historico da ação no periodo enviado.
 
-#### `/stocks/:stock_name/history?from=<string>&to=<string>` - Retorna preço histórico da ação num intervalo inclusivo ####
 
-Entrada:
+Entradas:
 
-- `stock_name` - parâmetro passado na URI indicando o nome da ação (PETR4.SA, VALE5.SA)
-- `from` - string com data em formato ISO 8601
-- `to` - string com data em format ISO 8601
+- `stock_name` - string (Nome da ação)
+- `from` - string (data no formato UTC ISO 8601)
+- `to` - string (data no formato UTC ISO 8601)
 
+Retorno:
 ```js
 {
   "name": string,
@@ -87,7 +63,7 @@ Entrada:
 }
 ```
 
-O schema de `pricing` segue abaixo:
+O <pricing> é da forma:
 
 ```js
 {
@@ -95,23 +71,18 @@ O schema de `pricing` segue abaixo:
   "low": number,
   "high": number,
   "closing": number,
-  "pricedAt": string // data no formato ISO 8601, UTC
+  "pricedAt": string (data no formato UTC ISO 8601)
 }
 ```
 
-Exemplo de uso:
+#### `/stocks/:stock_name/compare` ####
 
-```
-$ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/PETR4.SA/history?from=2017-04-04&to=2017-04-05
-{ "name": "PETR4.SA", "prices": [{ "opening": 14.67, "low": 14.57, "high": 14.89, "closing": 14.85, "pricedAt": "2017-04-04" }, { "opening": 15.05, "low": 14.50, "high": 15.16, "closing": 14.57, "pricedAt": "2017-04-05" }
-```
+Retorna a cotação atual das açoes enviadas.
 
-#### `/stocks/:stock_name/compare` - Compara uma ação com uma ou mais ações ####
+Entradas:
 
-Entrada:
-
-- `stock_name` - parâmetro passado na URI indicando o nome da ação (PETR4.SA, VALE5.SA)
-- Payload JSON com uma lista de ações:
+- `stock_name` - string (Nome da ação)
+- Payload JSON (lista de ações):
 
 ```js
 {
@@ -127,30 +98,25 @@ Retorno:
 }
 ```
 
-`lastPrice` tem o seguinte schema:
+<lastPrice> é da forma:
 
 ```js
 {
   "name": string,
   "lastPrice": number,
-  "pricedAt": string // data e hora no formato ISO 8601, UTC
+  "pricedAt": string  (data no formato UTC ISO 8601)
 }
 ```
-  
-Exemplo de uso:
 
-```
-$ curl -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "stocks": ["TIMP3.SA", "VIVT4.SA"] }' http://coolfinancialservice.com/stock/OIBR4.SA/compare
-{ "lastPrices": [{ "name": "OIBR4.SA", "lastPrice": 3.41, "pricedAt": "2017-05-18T14:15:16Z" }, { "name": "TIMP3.SA", "lastPrice": 9.93, "pricedAt": "2017-05-18T14:15:16Z" }, { "name": "VIVT4.SA", "lastPrice": 45.92 }]}
-```
-  
-#### `/stocks/:stock_name/gains?purchasedAmount=<number>&purchasedAt=<string>` - Projeta ganhos com compra em uma data específica ####
+#### `/stocks/:stock_name/gains?purchasedAmount=<number>&purchasedAt=<string>`####
+
+Projeta os ganhos de uma açao comprada na data especificada
 
 Entrada:
 
-- `stock_name` - parâmetro passado na URI indicando o nome da ação (PETR4.SA, VALE5.SA)
-- `purchasedAmount` - `number` com o número de ações
-- `purchasedAt` - `string` com data de compra em formato ISO 8601
+- `stock_name` - string (Nome da ação)
+- `purchasedAmount` - `number` (Quantidade de ações)
+- `purchasedAt` - `string` (data no formato UTC ISO 8601)
 
 Retorno:
 
@@ -158,19 +124,9 @@ Retorno:
 {
   "name": string,
   "purchasedAmount": number,
-  "purchasedAt": string, // data em formato ISO 8601,
-  "priceAtDate": number, // preço na data de compra
-  "lastPrice": number,   // preço mais recente
-  "capitalGains": number // ganhos ou perdas com a ação, em reais
+  "purchasedAt": string (data de compra no formato UTC ISO 8601),
+  "priceAtDate": number (preço da ação na data de compra), 
+  "lastPrice": number (ultima cotação da açao),   // Current price
+  "capitalGains": number (Ganho capital)// Gain or losses with the stock
 }
 ```
-
-Exemplo de uso:
-
-```
-$ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5.SA?purchasedAmount=100&purchasedAt=2016-05-31
-{ "name": "USIM5.SA", "purchasedAmount": 100, "purchasedAt": "2016-05-31", "priceAtDate": 3.97, "lastPrice": 4.33, "capitalGains": 36.0 }
-```
-
-
-https://www.alphavantage.co
