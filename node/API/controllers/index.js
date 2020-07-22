@@ -1,8 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-//Este codigo faz a importaçao automatica de todos os arquivos que estao dentro dessa pasta
-
+// faz a importaçao automatica de todos os arquivos que estao dentro dessa pasta
 module.exports = app =>{
  
     fs  
