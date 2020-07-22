@@ -63,7 +63,7 @@ Retorno:
 }
 ```
 
-O <pricing> é da forma:
+O 'pricing' é da forma:
 
 ```js
 {
@@ -98,7 +98,7 @@ Retorno:
 }
 ```
 
-<lastPrice> é da forma:
+'lastPrice' é da forma:
 
 ```js
 {
