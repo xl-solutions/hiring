@@ -29,7 +29,6 @@ class App extends Component {
         selectedChartItem: null
     }
 
-
     componentDidMount() {
         this.handleSearch()
     }

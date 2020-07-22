@@ -1,0 +1,15 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Teste da XL solutions usando nodeJs",
+  "scripts": {
+    "test-api": "cd ./API && npm test",
+    "test-web": "",
+    "start-api": "cd ./API && npm start",
+    "start-web": "cd ./WEB && npm start",
+    "start":" npm run start-api | npm run start-web"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
