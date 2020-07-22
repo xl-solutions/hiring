@@ -172,6 +172,67 @@ router.get('/:stock_name/compare', async (req, res) => {
 
 
 
+router.get('/:stock_name/gains', async (req, res) => {
+
+    try {
+        var { purchasedAmount, purchasedAt } = req.query
+        const { stock_name } = req.params
+
+
+
+        purchasedAmount = parseInt(purchasedAmount);
+
+        if (!purchasedAmount)
+            return res.status(400).send({ erro: "Numero de ações invalido" })
+
+        if (purchasedAmount < 0)
+            return res.status(400).send({ erro: "Numero de ações deve ser maior ou igual a 0" })
+
+        const purchasedAtSplit = purchasedAt.split('-')
+        if (purchasedAtSplit.length != 3 || purchasedAtSplit[0].length != 4 || purchasedAtSplit[1].length != 2 || purchasedAtSplit[2].length != 2)
+            return res.status(400).send({ erro: "Data com formato invalido. Esperado: yyyy-mm-dd" })
+
+
+
+        const data = (await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`)).data['Time Series (Daily)']
+        console.log(data)
+      
+        if (!data)
+            return res.status(404).send({ erro: "Ação não encontrada" })
+
+        if (data.Note)
+            return res.status(404).send({ erro: `Limite de Busca na API alphavantage por minuto atingido` })
+
+        if (data[purchasedAt] == undefined)
+            return res.status(404).send({ erro: `Data de compra não encontrada` })
+
+        var onPurchased = data[purchasedAt]
+        var today = data[Object.keys(data)[0]]
+        var priceAtDate = parseFloat(onPurchased['4. close'])
+        var lastPrice = parseFloat(today['4. close'])
+
+        const response = {
+            name: stock_name,
+            purchasedAmount,
+            purchasedAt,
+            priceAtDate,
+            lastPrice,
+            capitalGains: parseFloat((lastPrice - priceAtDate) * purchasedAmount).toFixed(2)
+        }
+
+        return res.send(response)
+
+    } catch (err) {
+        console.log(err)
+        return res.status(400).send({ erro: err.toString() })
+    }
+
+
+})
+
+
+
+
 
 
 
