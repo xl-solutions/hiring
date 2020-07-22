@@ -47,6 +47,79 @@ router.get("/:stock_name/quote", async (req, res) => {
 
 
 
+router.get('/:stock_name/history', async (req, res) => {
+
+    try {
+        const { from, to } = req.query
+        const { stock_name } = req.params
+       
+        if (!stock_name || stock_name === "" || !from || from === '' || !to || to === '')
+            return res.status(400).send({ erro: "Argumentos invalidos" })
+
+
+        //Verificando formato das datas
+        const fromSplit = from.split('-')
+        if (fromSplit.length != 3 || fromSplit[0].length != 4 || fromSplit[1].length != 2 || fromSplit[2].length != 2)
+            return res.status(400).send({ erro: "Data inicial com formato invalido. Esperado: yyyy-mm-dd" })
+
+        const toSplit = to.split('-')
+        if (toSplit.length != 3 || toSplit[0].length != 4 || toSplit[1].length != 2 || toSplit[2].length != 2)
+            return res.status(400).send({ erro: "Data final com formato invalido. Esperado: yyyy-mm-dd" })
+
+
+
+        //------------------------------
+
+
+
+
+
+        if (new Date(from) > new Date(to))
+            return res.status(400).send({ erro: "Data inicial deve ser menor que a final." })
+
+        const data = (await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`)).data['Time Series (Daily)']
+
+        if (!data)
+            return res.status(404).send({ erro: "Ação não encontrada ou atingiu o limite de Busca na API alphavantage por minuto atingido" })
+
+        if (data.Note)
+            return res.status(404).send({ erro: `Limite de Busca na API alphavantage por minuto atingido` })
+
+        const keys = Object.keys(data)
+
+        var response = {
+            name: stock_name,
+            prices: []
+        }
+
+        var last = ''
+        var first = keys.indexOf(from) == -1 ? 0 : keys.indexOf(from)
+        for (i = first; last != to && i != 0; i--) {
+
+            response.prices.push({
+                opening: parseFloat(data[keys[i]]['1. open']),
+                low: parseFloat(data[keys[i]]['3. low']),
+                high: parseFloat(data[keys[i]]['2. high']),
+                closing: parseFloat(data[keys[i]]['4. close']),
+                pricedAt: keys[i],
+            })
+
+            last = keys[i]
+        }
+
+        return res.send(response)
+
+    } catch (err) {
+        console.log(err)
+        return res.status(400).send({ erro: err.toString() })
+    }
+
+
+
+})
+
+
+
 
 
 
