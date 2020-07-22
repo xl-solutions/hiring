@@ -5,7 +5,9 @@ import { Container } from './styles';
 const Header: React.FC = () => {
   return (
     <Container>
-      <strong>Header</strong>
+      <header>
+        <h1>Finances</h1>
+      </header>
     </Container>
   );
 };
