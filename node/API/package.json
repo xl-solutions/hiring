@@ -2,11 +2,11 @@
   "name": "xlslt_api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon —exec babel-node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "dev": "nodemon src/index.js --ignore __tests__",
+    "test": "jest",
+    "start": "node src/server.js "
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "supertest": "^4.0.2"
+  }
 }

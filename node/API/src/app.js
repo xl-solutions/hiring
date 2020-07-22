@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 
-const PORT = process.env.PORT || 3333
 const app = express();
 
 
@@ -22,7 +21,6 @@ require('./controllers/index.js')(app);
 
 
 //Iniciando o servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}!`);
-});
 
+
+module.exports = app
