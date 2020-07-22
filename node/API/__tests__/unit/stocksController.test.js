@@ -11,6 +11,10 @@ const invalid_to = "asdas2020-07-21"
 
 describe('Testes da rota /quote do arquivo stocksController', () => {
 
+    beforeEach(async () => {
+        await (new Promise(resolve => setTimeout(resolve, 5000)))
+    });
+
     it('Deve retornar um status 200 com todas a propriedes validas', async () => {
 
         const response = await request(app)
@@ -30,13 +34,15 @@ describe('Testes da rota /quote do arquivo stocksController', () => {
         expect(response.status).toBe(404)
         expect(response.body).toHaveProperty("erro");
     })
-   
+
 
 })
 
 describe('Testes da rota /history do arquivo stocksController', () => {
 
-
+    beforeEach(async () => {
+        await (new Promise(resolve => setTimeout(resolve, 5000)))
+    });
 
     it('Deve retornar status 200 e ter as propriedades validas do historico', async () => {
 
@@ -95,4 +101,39 @@ describe('Testes da rota /history do arquivo stocksController', () => {
         expect(response.status).toBe(404)
         expect(response.body).toHaveProperty("erro");
     })
+
 })
+
+describe('Testes da rota /compare do arquivo stocksController', () => {
+    beforeEach(async () => {
+        await (new Promise(resolve => setTimeout(resolve, 5000)))
+    });
+
+    it('Deve retornar status 200', async () => {
+
+        const response = await request(app)
+            .get(`/stocks/${stock_name}/compare`)
+            .send(
+                {
+                    stocks: ["DOL"]
+                });
+       
+        expect(response.status).toBe(200)
+    })
+    it('Deve retornar um status 404 com uma mensagem de erro valida', async () => {
+
+        const response = await request(app)
+            .get(`/stocks/${invalid_stock_name}/compare`)
+            .send({
+                stocks: ["DOL"]
+            });
+
+     
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty("erro");
+    })
+
+})
+
+
+

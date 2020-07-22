@@ -52,7 +52,7 @@ router.get('/:stock_name/history', async (req, res) => {
     try {
         const { from, to } = req.query
         const { stock_name } = req.params
-       
+
         if (!stock_name || stock_name === "" || !from || from === '' || !to || to === '')
             return res.status(400).send({ erro: "Argumentos invalidos" })
 
@@ -65,9 +65,6 @@ router.get('/:stock_name/history', async (req, res) => {
         const toSplit = to.split('-')
         if (toSplit.length != 3 || toSplit[0].length != 4 || toSplit[1].length != 2 || toSplit[2].length != 2)
             return res.status(400).send({ erro: "Data final com formato invalido. Esperado: yyyy-mm-dd" })
-
-
-
         //------------------------------
 
 
@@ -93,7 +90,10 @@ router.get('/:stock_name/history', async (req, res) => {
         }
 
         var last = ''
+
+        //caso a data seja superior a ultima listada na api, ele pega a ultima;
         var first = keys.indexOf(from) == -1 ? 0 : keys.indexOf(from)
+
         for (i = first; last != to && i != 0; i--) {
 
             response.prices.push({
@@ -103,10 +103,8 @@ router.get('/:stock_name/history', async (req, res) => {
                 closing: parseFloat(data[keys[i]]['4. close']),
                 pricedAt: keys[i],
             })
-
             last = keys[i]
         }
-
         return res.send(response)
 
     } catch (err) {
@@ -117,6 +115,61 @@ router.get('/:stock_name/history', async (req, res) => {
 
 
 })
+
+
+router.get('/:stock_name/compare', async (req, res) => {
+
+    try {
+
+        const { stock_name } = req.params
+        const { stocks } = req.body
+        var lastPrices = []
+
+        if (!stock_name || stock_name === "" || !stocks || stocks.length == 0)
+            return res.status(400).send({ erro: "Argumentos invalidos" })
+
+
+
+
+        stocks.push(stock_name)
+
+
+        for (stock of stocks) {
+
+
+            if (stock == "")
+                return res.status(404).send({ erro: `Nome de açao invalido` })
+
+            var data = (await api.get(`/query?function=GLOBAL_QUOTE&symbol=${stock}`)).data
+
+            if (!data)
+                return res.status(404).send({ erro: `Ação ${stock} não encontrada` })
+
+            if (data.Note)
+                return res.status(404).send({ erro: `Limite de Busca na API alphavantage por minuto atingido` })
+
+
+            if (Object.values(data['Global Quote']).length === 0)
+                return res.status(404).send({ erro: `Ação ${stock} não encontrada` })
+
+
+            lastPrices.push({
+                name: stock,
+                lastPrice: parseFloat(data['Global Quote']["05. price"]),
+                pricedAt: data['Global Quote']["07. latest trading day"] // data e hora no formato ISO 8601, UTC
+            })
+        }
+        return res.send(lastPrices)
+
+    } catch (err) {
+        console.log(err)
+        return res.status(400).send({ erro: err.toString() })
+    }
+
+
+
+})
+
 
 
 

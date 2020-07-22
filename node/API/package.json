@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon src/index.js --ignore __tests__",
+    "dev": "nodemon src/server.js --ignore __tests__",
     "test": "jest",
     "start": "node src/server.js "
   },
