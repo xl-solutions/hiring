@@ -4,6 +4,8 @@ import Routes from './routes';
 
 import GlobalStyle from './styles/global';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 const App: React.FC = () => {
   return (
     <>

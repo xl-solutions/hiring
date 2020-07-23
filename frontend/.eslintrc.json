@@ -30,6 +30,8 @@
     "import/no-duplicates": "off",
     "no-restricted-syntax": "off",
     "no-await-in-loop": "off",
+    "camelcase": "off",
+    "react/no-array-index-key": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",

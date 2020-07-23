@@ -11,9 +11,31 @@ export const Container = styled.div`
     padding: 0 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    > div {
+      display: flex;
+    }
+
+    svg {
+      color: #fff;
+      height: 30px;
+      width: 30px;
+    }
 
     h1 {
+      margin-left: 5px;
+      font-size: 30px;
       color: #fff;
+    }
+
+    .back-button {
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        color: #ddd;
+      }
     }
   }
 `;

@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { FiDollarSign, FiArrowLeft } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 
 import { Container } from './styles';
 
-const Header: React.FC = () => {
+interface Props {
+  isHome?: boolean;
+}
+
+const Header: React.FC<Props> = ({ isHome = false }) => {
+  const history = useHistory();
+
+  const handleBackHome = useCallback(() => {
+    history.push('/');
+  }, [history]);
+
   return (
     <Container>
       <header>
-        <h1>Finances</h1>
+        <div>
+          <FiDollarSign />
+          <h1>Finances</h1>
+        </div>
+
+        {!isHome && (
+          <FiArrowLeft className="back-button" onClick={handleBackHome} />
+        )}
       </header>
     </Container>
   );

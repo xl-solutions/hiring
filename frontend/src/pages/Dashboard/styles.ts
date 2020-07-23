@@ -60,6 +60,7 @@ export const StockItem = styled.li`
   position: relative;
   background-color: #eee;
   transition: 0.2s;
+  margin: 5px;
 
   > strong {
     font-size: 20px;
@@ -101,10 +102,6 @@ export const StockItem = styled.li`
         opacity: 0.9;
       }
     }
-  }
-
-  & + li {
-    margin-left: 10px;
   }
 
   > svg {

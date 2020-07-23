@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FiTrendingUp, FiBarChart2, FiX, FiPlus } from 'react-icons/fi';
-import Header from '../../components/Header';
+import { useHistory } from 'react-router-dom';
 
-import { Container, StockList, StockItem, SearchContainer } from './styles';
+import Header from '../../components/Header';
 
 import formatValue from '../../utils/formatValue';
 import formatDate from '../../utils/formatDate';
 
 import api from '../../services/api';
+
+import { Container, StockList, StockItem, SearchContainer } from './styles';
 
 interface StockInfo {
   name: string;
@@ -16,39 +18,40 @@ interface StockInfo {
 }
 
 const Dashboard: React.FC = () => {
-  const [stockNames, setStockNames] = useState<string[]>([]);
+  const history = useHistory();
 
   const [loading, setLoading] = useState(false);
   const [stockText, setStockText] = useState('');
   const [stocks, setStocks] = useState<StockInfo[]>([]);
 
-  useEffect(() => {
-    async function loadStocks(): Promise<void> {
-      const storeStockNames = localStorage.getItem('@Finances:stockNames');
+  const handleUpdateStocks = useCallback(async localStocks => {
+    const updatedStocks: StockInfo[] = [];
 
-      if (storeStockNames) {
-        const parsedStockNames: string[] = JSON.parse(storeStockNames);
-        const localStocks: StockInfo[] = [];
+    for (const localStock of localStocks) {
+      const { data } = await api.get<StockInfo>(
+        `/stocks/${localStock.name}/quote`,
+      );
 
-        for (const stockName of parsedStockNames) {
-          const { data } = await api.get<StockInfo>(
-            `/stocks/${stockName}/quote`,
-          );
-
-          localStocks.push(data);
-        }
-
-        setStocks(localStocks);
-        setStockNames(parsedStockNames);
-      }
+      updatedStocks.push(data);
     }
 
-    loadStocks();
+    setStocks(updatedStocks);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('@Finances:stockNames', JSON.stringify(stockNames));
-  }, [stockNames]);
+    const storeStocks = localStorage.getItem('@Finances:stocks');
+
+    if (storeStocks) {
+      const parsedStocks: StockInfo[] = JSON.parse(storeStocks);
+      setStocks(parsedStocks);
+
+      handleUpdateStocks(parsedStocks);
+    }
+  }, [handleUpdateStocks]);
+
+  useEffect(() => {
+    localStorage.setItem('@Finances:stocks', JSON.stringify(stocks));
+  }, [stocks]);
 
   const handleAddStock = useCallback(
     async e => {
@@ -63,7 +66,6 @@ const Dashboard: React.FC = () => {
           );
 
           setStocks([...stocks, data]);
-          setStockNames([...stockNames, stockText]);
           setStockText('');
         } catch (err) {
           alert('Ops, algo deu errado, verifique o nome da ação');
@@ -72,17 +74,30 @@ const Dashboard: React.FC = () => {
         }
       }
     },
-    [stocks, stockText, stockNames],
+    [stocks, stockText],
   );
 
   const handleRemoveStock = useCallback(stockName => {
     setStocks(state => state.filter(stock => stock.name !== stockName));
-    setStockNames(state => state.filter(stock => stock !== stockName));
   }, []);
+
+  const handleNavigateToHistory = useCallback(
+    stockName => {
+      history.push(`/history/${stockName}`);
+    },
+    [history],
+  );
+
+  const handleNavigateToProjection = useCallback(
+    stockName => {
+      history.push(`/projection/${stockName}`);
+    },
+    [history],
+  );
 
   return (
     <>
-      <Header />
+      <Header isHome />
       <Container>
         <SearchContainer>
           <form onSubmit={handleAddStock}>
@@ -100,8 +115,8 @@ const Dashboard: React.FC = () => {
         </SearchContainer>
 
         <StockList>
-          {stocks.map(stock => (
-            <StockItem key={stock.name}>
+          {stocks.map((stock, index) => (
+            <StockItem key={index}>
               <strong>{stock.name}</strong>
               <p>
                 {formatValue(stock.lastPrice)}
@@ -111,11 +126,17 @@ const Dashboard: React.FC = () => {
               </p>
 
               <div className="action-buttons">
-                <button type="button">
+                <button
+                  type="button"
+                  onClick={() => handleNavigateToHistory(stock.name)}
+                >
                   <FiBarChart2 />
-                  Historico
+                  Histórico
                 </button>
-                <button type="button">
+                <button
+                  type="button"
+                  onClick={() => handleNavigateToProjection(stock.name)}
+                >
                   <FiTrendingUp />
                   Projeção
                 </button>
