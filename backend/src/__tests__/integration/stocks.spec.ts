@@ -102,14 +102,14 @@ describe('Stocks Test Suite', () => {
           low: 122.16,
           high: 124.48,
           closing: 124.01,
-          priceAt: '2020-07-16',
+          pricedAt: '2020-07-16',
         },
         {
           opening: 124.39,
           low: 123.2,
           high: 125.63,
           closing: 125.11,
-          priceAt: '2020-07-17',
+          pricedAt: '2020-07-17',
         },
       ]),
     );

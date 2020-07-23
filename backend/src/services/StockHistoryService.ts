@@ -12,7 +12,7 @@ interface Price {
   low: number;
   high: number;
   closing: number;
-  priceAt: string;
+  pricedAt: string;
 }
 
 interface Response {
@@ -58,7 +58,7 @@ class StockHistoryService {
           low: Number(low),
           high: Number(high),
           closing: Number(closing),
-          priceAt: intervalKey,
+          pricedAt: intervalKey,
         });
       }
     });
