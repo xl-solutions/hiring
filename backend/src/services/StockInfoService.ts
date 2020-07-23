@@ -1,4 +1,5 @@
 import api from '../api/alphaVantage';
+import ServerError from '../errors/ServerError';
 
 interface Request {
   stock_name: string;
@@ -23,6 +24,10 @@ class StockInfoService {
     const {
       'Global Quote': { '01. symbol': name, '05. price': price },
     } = data;
+
+    if (!name && !price) {
+      throw new ServerError('Stock info not found');
+    }
 
     return {
       name,
