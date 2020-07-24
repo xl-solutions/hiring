@@ -3,6 +3,8 @@
   Finances
 </h1>
 
+<img src=".github/finances_1.png" />
+
 ## 🗒️ Sobre
 
 Projeto criado como desafio da XL Solutions.
