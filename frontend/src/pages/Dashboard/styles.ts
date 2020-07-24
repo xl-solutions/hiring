@@ -5,6 +5,10 @@ export const Container = styled.div`
   max-width: 1120px;
   margin: 0 auto;
   padding: 40px 20px;
+
+  .loading {
+    width: 100%;
+  }
 `;
 
 export const SearchContainer = styled.div`
@@ -55,12 +59,12 @@ export const StockList = styled.ul`
 
 export const StockItem = styled.li`
   padding: 15px;
-  border: 0.5px solid #333;
-  border-radius: 10px;
+  border-radius: 5px;
   position: relative;
-  background-color: #eee;
+  background-color: #fff;
   transition: 0.2s;
   margin: 5px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 
   > strong {
     font-size: 20px;

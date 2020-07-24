@@ -6,9 +6,10 @@ import { Container } from './styles';
 
 interface Props {
   isHome?: boolean;
+  subtitle?: string;
 }
 
-const Header: React.FC<Props> = ({ isHome = false }) => {
+const Header: React.FC<Props> = ({ isHome = false, subtitle }) => {
   const history = useHistory();
 
   const handleBackHome = useCallback(() => {
@@ -20,7 +21,7 @@ const Header: React.FC<Props> = ({ isHome = false }) => {
       <header>
         <div>
           <FiDollarSign />
-          <h1>Finances</h1>
+          <h1>Finances{subtitle ? ` - ${subtitle}` : ''}</h1>
         </div>
 
         {!isHome && (

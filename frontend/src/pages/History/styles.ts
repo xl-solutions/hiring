@@ -5,11 +5,17 @@ export const Container = styled.div`
   max-width: 1120px;
   margin: 0 auto;
   padding: 40px 20px;
+
+  > strong {
+    font-size: 28px;
+    margin-left: 10px;
+  }
 `;
 
 export const InputContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 10px;
 
   input {
     padding: 12px;
@@ -44,11 +50,6 @@ export const InputContainer = styled.div`
 
 export const TableContainer = styled.div`
   margin-top: 30px;
-
-  > strong {
-    font-size: 22px;
-    margin-left: 10px;
-  }
 
   table {
     width: 100%;

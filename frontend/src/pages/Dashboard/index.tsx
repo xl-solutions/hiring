@@ -10,6 +10,7 @@ import formatDate from '../../utils/formatDate';
 import api from '../../services/api';
 
 import { Container, StockList, StockItem, SearchContainer } from './styles';
+import Loading from '../../components/Loading';
 
 interface StockInfo {
   name: string;
@@ -113,6 +114,8 @@ const Dashboard: React.FC = () => {
             </button>
           </form>
         </SearchContainer>
+
+        {loading && <Loading />}
 
         <StockList>
           {stocks.map((stock, index) => (

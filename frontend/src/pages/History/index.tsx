@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { startOfMonth, endOfMonth, formatISO, parseISO } from 'date-fns';
+import {
+  startOfMonth,
+  endOfMonth,
+  formatISO,
+  parseISO,
+  isBefore,
+} from 'date-fns';
 import { FiEdit } from 'react-icons/fi';
 import DatePicker from 'react-datepicker';
 
@@ -11,6 +17,7 @@ import api from '../../services/api';
 
 import formatValue from '../../utils/formatValue';
 import formatDate from '../../utils/formatDate';
+import Loading from '../../components/Loading';
 
 interface RouteParams {
   stock_name: string;
@@ -47,8 +54,8 @@ const History: React.FC = () => {
 
         const { data } = await api.get(`/stocks/${stock_name}/history`, {
           params: {
-            from: formatISO(from),
-            to: formatISO(to),
+            from: formatISO(from, { representation: 'date' }),
+            to: formatISO(to, { representation: 'date' }),
           },
         });
 
@@ -65,14 +72,19 @@ const History: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <button type="button">Voltar</button>
-      </Header>
+      <Header subtitle="Histórico" />
       <Container>
+        <strong>{stock_name}</strong>
+
         <InputContainer>
           <DatePicker
             onChange={date => {
               if (date) {
+                if (!isBefore(date, to)) {
+                  alert('Intervalo inválido');
+                  return;
+                }
+
                 setFrom(date);
               }
             }}
@@ -83,6 +95,11 @@ const History: React.FC = () => {
           <DatePicker
             onChange={date => {
               if (date) {
+                if (!isBefore(from, date)) {
+                  alert('Intervalo inválido');
+                  return;
+                }
+
                 setTo(date);
               }
             }}
@@ -90,37 +107,41 @@ const History: React.FC = () => {
             dateFormat="dd/MM/yyyy"
           />
 
-          <button type="button">
+          <button type="button" disabled={loading}>
             <FiEdit />
             Alterar
           </button>
         </InputContainer>
-        <TableContainer>
-          <strong>{stock_name}</strong>
 
-          <table>
-            <thead>
-              <tr>
-                <th>Opening</th>
-                <th>Low</th>
-                <th>High</th>
-                <th>Closing</th>
-                <th>Atualizado em</th>
-              </tr>
-            </thead>
-            <tbody>
-              {stockHistory.prices &&
-                stockHistory.prices.map((price, index) => (
-                  <tr key={index}>
-                    <td>{formatValue(price.opening)}</td>
-                    <td>{formatValue(price.low)}</td>
-                    <td>{formatValue(price.high)}</td>
-                    <td>{formatValue(price.closing)}</td>
-                    <td>{formatDate(parseISO(price.pricedAt))}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+        <TableContainer>
+          {loading && <Loading />}
+
+          {!loading && (
+            <table>
+              <thead>
+                <tr>
+                  <th>Opening</th>
+                  <th>Low</th>
+                  <th>High</th>
+                  <th>Closing</th>
+                  <th>Atualizado em</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {stockHistory.prices &&
+                  stockHistory.prices.map((price, index) => (
+                    <tr key={index}>
+                      <td>{formatValue(price.opening)}</td>
+                      <td>{formatValue(price.low)}</td>
+                      <td>{formatValue(price.high)}</td>
+                      <td>{formatValue(price.closing)}</td>
+                      <td>{formatDate(parseISO(price.pricedAt))}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          )}
         </TableContainer>
       </Container>
     </>
