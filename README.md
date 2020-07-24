@@ -12,8 +12,8 @@ Projeto criado como desafio da XL Solutions.
 ## 🚀️ O que o projeto faz?
 
 O Finances possibilita o usuário:
-- Consulta preço atual das ações adicionado ao seu portifolio
-- Listar o histórico da ação selecionada, informando o periodo.
+- Consultar os preço atuais das ações adicionando ao seu portifólio.
+- Listar o histórico da ação selecionada, informando o periódo.
 - Simular os ganhos a partir de uma quantidade comprada e a data selecionada.
 
 ---
@@ -96,7 +96,7 @@ SKIP_PREFLIGHT_CHECK=true
 ```
 Inicie o servidor com esse comandos:
 ```bash
-# Rodando o projeto na porta 300
+# Rodando o projeto na porta 3000
 # Com Yarn
 $ yarn start
 
