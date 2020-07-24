@@ -41,7 +41,7 @@ $ git clone https://github.com/marcosvcorsi/hiring.git
 # Acessando o repository
 $ cd hiring
 ```
-### Backend
+## ⬇️ Backend:
 ```bash
 # Acessando o backend
 $ cd backend
@@ -54,12 +54,13 @@ $ yarn
 $ npm install
 ```
 Crie um arquivo .env, com base no arquivo .env.example contendo as seguintes variavéis
+```
 ALPHA_VANTAGE_URL=https://www.alphavantage.co
 ALPHA_VANTAGE_APIKEY=SUA_KEY_AQUI
 
 PORT=3333
-
-Inicie o servidor com esse comandos:
+```
+Inicie o servidor com esse comandos
 ```bash
 # Rodando o projeto na porta 3333
 # Com Yarn
@@ -76,7 +77,7 @@ yarn test
 npm run test
 ```
 
-### Frontend
+## ⬇️ Frontend:
 ```bash
 # Acessando o frontend
 $ cd frontend
@@ -89,9 +90,10 @@ $ yarn
 $ npm install
 ```
 Crie um arquivo .env, com base no arquivo .env.example contendo as seguintes variavéis
+```
 REACT_APP_API_URL=http://localhost:3333
 SKIP_PREFLIGHT_CHECK=true
-
+```
 Inicie o servidor com esse comandos:
 ```bash
 # Rodando o projeto na porta 300
