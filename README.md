@@ -3,8 +3,13 @@
   Finances
 </h1>
 
+### Dashboard
 <img src=".github/finances_1.png" />
+
+### Histórico
 <img src=".github/finances_2.png" />
+
+### Projeção 
 <img src=".github/finances_3.png" />
 
 ## 🗒️ Sobre
