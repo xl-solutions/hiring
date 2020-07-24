@@ -4,6 +4,8 @@
 </h1>
 
 <img src=".github/finances_1.png" />
+<img src=".github/finances_2.png" />
+<img src=".github/finances_3.png" />
 
 ## 🗒️ Sobre
 
