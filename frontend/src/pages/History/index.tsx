@@ -7,7 +7,7 @@ import {
   parseISO,
   isBefore,
 } from 'date-fns';
-import { FiEdit } from 'react-icons/fi';
+
 import DatePicker from 'react-datepicker';
 
 import { Container, InputContainer, TableContainer } from './styles';
@@ -106,11 +106,6 @@ const History: React.FC = () => {
             selected={to}
             dateFormat="dd/MM/yyyy"
           />
-
-          <button type="button" disabled={loading}>
-            <FiEdit />
-            Alterar
-          </button>
         </InputContainer>
 
         <TableContainer>

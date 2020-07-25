@@ -25,27 +25,6 @@ export const InputContainer = styled.div`
     width: 180px;
     margin-right: 10px;
   }
-
-  button {
-    padding: 10px;
-    margin: 3px;
-    outline: 0;
-    border: 0;
-    display: flex;
-    align-items: center;
-    background-color: #6001d2;
-    color: #fff;
-    border-radius: 5px;
-    transition: 0.2s;
-
-    svg {
-      margin-right: 5px;
-    }
-
-    &:hover {
-      opacity: 0.9;
-    }
-  }
 `;
 
 export const TableContainer = styled.div`
