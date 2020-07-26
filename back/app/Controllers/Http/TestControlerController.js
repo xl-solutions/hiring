@@ -67,7 +67,35 @@ class TestControlerController {
     }
     
     async compare({request, response}) {
-        return response.send('OK comparece');
+        const stockPrimary = request.params.stock_name;
+        const stocks = request.body.stocks;
+        let stocksArrray = Object.values(stocks);
+        let result = [];
+
+        stocksArrray.push(stockPrimary);
+
+        for (let i = 0; i < stocksArrray.length; i++) {
+            await axios.get(Env.get('ALPHAVANTAGE_URL'), {
+                params: {
+                    'apikey': Env.get('ALPHAVANTAGE_KEY'),
+                    'function': 'GLOBAL_QUOTE',
+                    'symbol': stocksArrray[i],
+                },
+
+                timeout: 300000,
+
+            }).then(({data}) => {
+                const temp = data['Global Quote'];
+
+                result.push({
+                    name: temp['01. symbol'],
+                    lastPrice: temp['01. symbol'],
+                    pricedAt: temp['05. price']
+                });
+            });            
+        }
+        
+        return response.send(result);
     }
 
     async gains({request, response}) {
