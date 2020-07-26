@@ -28,76 +28,50 @@ class TestControlerController {
         return response.send(stock);
     }
 
-    async index({request}) {
+    async history({request, response}) {
+        const stockName = request.params.stock_name;
+        const from = new Date(request.get().from);
+        const to = new Date(request.get().to);
+        let history = [];
 
         await axios.get(Env.get('ALPHAVANTAGE_URL'), {
             params: {
                 'function': 'TIME_SERIES_DAILY',
                 'apikey': Env.get('ALPHAVANTAGE_KEY'),
-                'symbol': 'VVAR3.SAO',
-                'outputsize': 'full'
+                'symbol': stockName,
+                'outputsize': 'Compact'
             }
-        }).then((response) => {
-            console.log(response);
-        });
-    }
+        }).then(({ data }) => {   
+            const tmp = data['Time Series (Daily)'];
 
-    async value({request, response}) {
-        const name = request.get().name;
+            const daysSelected = Object.keys(tmp).filter(day => {
+                const date = new Date(day);
+                
+                return from <= date && date <= to;
+            });
 
-        await axios.get(Env.get('ALPHAVANTAGE_URL'), {
-            params: {
-                'apikey': Env.get('ALPHAVANTAGE_KEY'),
-                'function': 'GLOBAL_QUOTE',
-                'symbol': name,
-            }
-        }).then(({data}) => {
-            const action = data['Global Quote'];
+            daysSelected.forEach(element => {
+                let sub = tmp[element];
 
-            return response.send(action['05. price']);
-        }).catch(() => {
-            console.log('DEU RUIM');
-        });
-    }
-
-    async values({request, response}) {
-        const sao = '.SAO';
-        const nameRemove = request.get().name;
-        const nameWithoutSao = nameRemove.replace(sao, '');
-        let res = [];
-
-        const newB3 = b3.filter((element) => {
-            return element != nameWithoutSao;
-        });
-
-        newB3.forEach(element => {
-            let value = 0.00;
-
-            axios.get(Env.get('ALPHAVANTAGE_URL'), {
-                params: {
-                    'apikey': Env.get('ALPHAVANTAGE_KEY'),
-                    'function': 'GLOBAL_QUOTE',
-                    'symbol': element.concat(sao),
-                }
-            }).then(({data}) => {
-                const action = data['Global Quote'];
-
-                value = action['05. price'];
-            }).catch(() => {});
-
-            res.push({
-                name: element,
-                value: value
+                history.push({
+                     opening: sub['1. open'],
+                     low: sub['3. low'],
+                     high: sub['2. high'],
+                     closing: sub['4. close'],
+                     pricedAt: element
+                 });
             });
         });
 
-        return response.send(res);
+        return response.send(history);
+    }
+    
+    async compare({request, response}) {
+        return response.send('OK comparece');
     }
 
-    async historic({request, response}) {
-        const name = request.get().name;
-
-        return response.send('AQUI');
+    async gains({request, response}) {
+        return response.send('OK gains');
     }
 }
 
