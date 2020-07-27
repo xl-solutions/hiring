@@ -94,12 +94,75 @@ class TestControlerController {
                 });
             });            
         }
-        
+
         return response.send(result);
     }
 
     async gains({request, response}) {
-        return response.send('OK gains');
+        const stock = request.params.stock_name;
+        const purchasedAmount = parseInt(request.all().purchasedAmount);
+        const purchasedAt = request.all().purchasedAt;
+        let result = null;
+
+        await axios.get(Env.get('ALPHAVANTAGE_URL'), {
+            params: {
+                'function': 'TIME_SERIES_DAILY',
+                'apikey': Env.get('ALPHAVANTAGE_KEY'),
+                'symbol': stock,
+                'outputsize': 'full'
+            },
+            timeout: 300000,
+        }).then(({ data }) => {
+            const tmp = data['Time Series (Daily)'];
+            const days = Object.keys(tmp);
+
+            const day = days.find(element => element <= purchasedAt);
+            const valuesInDay = tmp[day];
+
+            const average = (parseFloat(valuesInDay['2. high']) + parseFloat(valuesInDay['3. low']))/2;
+
+            const lastDay = days.shift();
+            const lastValues = tmp[lastDay];
+            const lastValue = parseFloat(lastValues['4. close']);
+
+            const gains = (lastValue * purchasedAmount) - (average * purchasedAmount);
+
+            result = {
+                name: stock,
+                purchasedAmount: purchasedAmount,
+                purchasedAt: purchasedAt,
+                priceAtDate: average,
+                lastPrice: lastValue,
+                capitalGains: gains, // ganhos ou perdas com a ação, em reais
+            };
+        });
+
+        return response.send(result);
+    }
+
+    async search({request, response}) {
+        const keyword = request.all().keyword;
+        let result =  [];
+
+        await axios.get(Env.get('ALPHAVANTAGE_URL'), {
+            params: {
+                'apikey': Env.get('ALPHAVANTAGE_KEY'),
+                'function': 'SYMBOL_SEARCH',
+                'keywords': keyword,
+            }
+        }).then(({data}) => {
+            let tmp = data['bestMatches'];
+
+            tmp.forEach(element => {
+
+                result.push({
+                    initials: element['1. symbol'],
+                    name: element['2. name'],
+                })
+            });
+        });
+
+        return response.send(result);
     }
 }
 

@@ -14,4 +14,6 @@ Route.group(() => {
 
     Route.get('/:stock_name/gains', 'TestControlerController.gains');
 
+    Route.get('/search', 'TestControlerController.search');
+
 }).prefix('/stocks')
