@@ -76,7 +76,7 @@ Inicie o servidor com esse comandos
 $ yarn dev
 
 # Com NPM
-$ npm run start
+$ npm run dev
 
 # Executando os testes
 # Com Yarn
