@@ -1,9 +1,34 @@
 <template>
   <v-app>
     <v-main>
-      <input v-model="action" placeholder="Ação">
+      <v-form v-model="valid">
+        <v-container>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="action" :rules="nameRules" label="Ação" :counter="9" required />
 
-      <button @click="search">Adiciona 1</button>
+              <v-btn :disabled="!valid" color="success" class="mr-4" @click="quote">
+                Pesquisar
+              </v-btn>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-alert v-if="error" type="error">Houve um erro inesperado.</v-alert>
+          </v-row>
+        </v-container>        
+      </v-form>
+
+      <div>
+        <v-card v-if="actionSelected.name" max-width="400" class="mx-auto">
+          <v-card-title class="v-date-picker-title" v-if="actionSelected.name">
+            {{ this.actionSelected.name }}
+          </v-card-title>
+          
+          <v-card-text v-if="actionSelected.price" style="font-size: 1.2em" >
+            {{ this.actionSelected.price | money }}
+          </v-card-text>
+        </v-card>
+      </div>
     </v-main>
   </v-app>
 </template>
@@ -18,7 +43,15 @@ export default {
   },
 
   data: () => ({
+    error: false,
+
+    valid: false,
     action: 'PETR4.SAO',
+
+    actionSelected: {
+      name: null,
+      price: null,
+    },
 
     from: '2020-07-20',
     to: '2020-07-23',
@@ -33,57 +66,68 @@ export default {
 
     purchasedAmount: 100,
     purchasedAt: '2015-07-23',
+
+    nameRules: [
+      v => !!v || 'Ação deve ser informada',
+      v => v.length === 9 || 'O código da ação deve conter 10 digitos, ex: PETR4.SAO',
+    ],
   }),
 
+  filters: {
+    money: (value) => {
+      if (value) {
+        return value.replace('.', ',').substring(-2, value.length - 2);
+      }
+    }
+  },
+
   methods: {
-    async search() {
-
-      this.quote();
-
-    },
+    // async search() {
+    //   console.log(this.action);
+    // },
 
     async quote() {
-
-      await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/quote`)
-      .then(({ data }) => {
-
-        console.log('quote', data);
-
+      await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/quote`).then(({ data }) => {
+        this.error = false;
+        this.actionSelected.name = data.name;
+        this.actionSelected.price = data.pricedAt;
+      }).catch(() => {
+        this.error = true;
       });
     },
 
-    async periud() {
+    // async periud() {
 
-      await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/history?from=${this.form}&to=${this.to}`)
-      .then(({ data }) => {
+    //   await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/history?from=${this.form}&to=${this.to}`)
+    //   .then(({ data }) => {
 
-        console.log('periud', data);
+    //     console.log('periud', data);
 
-      });
-    },
+    //   });
+    // },
 
-    async compare() {
+    // async compare() {
 
-      await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/compare`, {
-        data: {
-          'stocks': this.compare,
-        },
-      }).then(({ data }) => {
+    //   await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/compare`, {
+    //     data: {
+    //       'stocks': this.compare,
+    //     },
+    //   }).then(({ data }) => {
 
-        console.log('compare', data);
+    //     console.log('compare', data);
 
-      });
-    },
+    //   });
+    // },
 
-    async gains() {
+    // async gains() {
 
-      await axios.get(`https://localhost:3333/stocks/${this.action}/gains?purchasedAmount=${this.purchasedAmount}&purchasedAt=${this.purchasedAt}`)
-      .then(({ data }) => {
+    //   await axios.get(`https://localhost:3333/stocks/${this.action}/gains?purchasedAmount=${this.purchasedAmount}&purchasedAt=${this.purchasedAt}`)
+    //   .then(({ data }) => {
 
-        console.log('gains', data);
+    //     console.log('gains', data);
 
-      });
-    },
+    //   });
+    // },
   }
 };
 </script>

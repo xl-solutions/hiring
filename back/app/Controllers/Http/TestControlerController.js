@@ -5,7 +5,7 @@ const axios = use('axios');
 
 class TestControlerController {
 
-    async quote({request, response}) {
+    async quote({ request, response }) {
         const stockName = request.params.stock_name;
         let stock = {};
 
