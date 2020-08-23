@@ -4,6 +4,8 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
+Route.get('/probe', 'ProbeController.probe');
+
 Route.group(() => {
 
     Route.get('/:stock_name/quote', 'TestControlerController.quote');
