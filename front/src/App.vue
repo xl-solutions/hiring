@@ -2,60 +2,45 @@
   <v-app>
     <v-main>
       <CurrentQuote></CurrentQuote>
+      <QuotationByPeriod></QuotationByPeriod>      
     </v-main>
   </v-app>
 </template>
 
 <script>
-import axios from 'axios';
-import CurrentQuote from './components/CurrentQuote';
+import axios from "axios";
+import CurrentQuote from "./components/CurrentQuote";
+import QuotationByPeriod from "./components/QuotationByPeriod";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     CurrentQuote,
+    QuotationByPeriod,
   },
 
   data: () => ({
-    from: '2020-07-20',
-    to: '2020-07-23',
+    action: "PETR4.SAO",
 
-    compare: [
-      'VVAR3.SAO',
-      'AZUL4.SAO',
-      'VALE3.SAO',
-      'VVAR3.SAO',
-      'ITSA4.SAO',  
-    ],
+    compares: ["VVAR3.SAO", "AZUL4.SAO", "VALE3.SAO", "VVAR3.SAO", "ITSA4.SAO"],
 
     purchasedAmount: 100,
-    purchasedAt: '2015-07-23',
+    purchasedAt: "2015-07-23",
   }),
 
   methods: {
-    async periud() {
+    async compare() {
+      await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/compare`, {
+        data: {
+          'stocks': this.compares,
+        },
+      }).then(({ data }) => {
 
-      await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/history?from=${this.form}&to=${this.to}`)
-      .then(({ data }) => {
-
-        console.log('periud', data);
+        console.log('compare', data);
 
       });
     },
-
-    // async compare() {
-
-    //   await axios.get(`http://127.0.0.1:3333/stocks/${this.action}/compare`, {
-    //     data: {
-    //       'stocks': this.compare,
-    //     },
-    //   }).then(({ data }) => {
-
-    //     console.log('compare', data);
-
-    //   });
-    // },
 
     // async gains() {
 
@@ -66,7 +51,7 @@ export default {
 
     //   });
     // },
-  }
+  },
 };
 </script>
 
@@ -79,9 +64,4 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
-input {
-  border-style: outset;
-}
-
 </style>
