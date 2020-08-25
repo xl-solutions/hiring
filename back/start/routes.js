@@ -1,21 +1,21 @@
-'use strict'
 
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| Http routes are entry points to your web application. You can create
-| routes for different URLs and bind Controller actions to them.
-|
-| A complete guide on routing is available here.
-| http://adonisjs.com/docs/4.1/routing
-|
-*/
+'use strict'
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.get('/probe', 'ProbeController.probe');
+
+Route.group(() => {
+
+    Route.get('/:stock_name/quote', 'TestControlerController.quote');
+
+    Route.get('/:stock_name/history', 'TestControlerController.history');
+
+    Route.get('/:stock_name/compare', 'TestControlerController.compare');
+
+    Route.get('/:stock_name/gains', 'TestControlerController.gains');
+
+    Route.get('/search', 'TestControlerController.search');
+
+}).prefix('/stocks')
