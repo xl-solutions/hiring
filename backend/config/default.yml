@@ -1,0 +1,13 @@
+config:
+  server:
+    port: 3001
+
+  stockApi:
+    url: https://www.alphavantage.co
+    apiKey: NNATD2QMBD6PYKE2
+
+  awesomeapi:
+    url: https://economia.awesomeapi.com.br/json/USD-BRL
+
+  cors:
+    origin: '*'
