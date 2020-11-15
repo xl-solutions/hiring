@@ -35,7 +35,10 @@ export class CompareStocksService {
       )
       .toPromise();
 
-    if (!Object.keys(response.data['Global Quote']).length)
+    if (
+      !response.data['Global Quote'] ||
+      !Object.keys(response.data['Global Quote']).length
+    )
       NotFoundException(NOT_FOUND_QUOTE);
 
     return response.data;

@@ -40,17 +40,21 @@ export class StockGainService {
       BadRequestException(INVALID_DATE);
     }
 
+    if (!data[purchasedAt]) {
+      BadRequestException(QUOTATION_NOT_FOUND);
+    }
+
     const lastPrice = Number(data[Object.keys(data)[0]]['4. close']);
     const dolarBRL = await this.getDolarToBRL();
 
-    const oldAmount = purchasedAmount * Number(data[purchasedAt]['4. close']);
+    const oldAmount = purchasedAmount * Number(data[purchasedAt]?.['4. close']);
     const currentAmout = purchasedAmount * lastPrice;
 
     return {
       name: stockName,
       purchasedAmount,
       purchasedAt: purchasedDate.toISOString(),
-      priceAtDate: Number(data[purchasedAt]['4. close']),
+      priceAtDate: Number(data[purchasedAt]?.['4. close']),
       capitalGains: Number(((currentAmout - oldAmount) * dolarBRL).toFixed(2)),
       lastPrice: lastPrice,
     };

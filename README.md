@@ -1,13 +1,48 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+## Description
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+[Challenge](https://github.com/xl-solutions/hiring/) Testes Técnicos XL solutions / Tecnical XL Solutions Test
 
-Choose a language to which you are interested and follow the instructions:
+## Installation And Run
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
+### Backend (NodeJS)
 
+```bash
+$ yarn | npm install
+```
+
+## Running the app
+
+```bash
+# development
+$ yarn start | npm run start
+
+# watch mode
+$ yarn start: dev | npm run start:dev
+
+# production mode
+$ yarn start:prod | npm run start:prod
+```
+
+### Frontend (ReactJS)
+
+```bash
+$ yarn | npm install
+```
+
+## Running the app
+
+### With Docker
+
+```bash
+$ cd compose && docker-compose up --build
+```
+
+### Local (PostgreSQL needed)
+
+```bash
+# development
+$ yarn start | npm run start
+
+# watch mode
+$ yarn start:dev | npm run start:dev
+```

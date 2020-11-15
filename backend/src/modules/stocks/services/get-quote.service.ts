@@ -21,7 +21,10 @@ export class GetQuoteService {
       )
       .toPromise();
 
-    if (!Object.keys(globalQuote.data['Global Quote']).length)
+    if (
+      !globalQuote.data['Global Quote'] ||
+      !Object.keys(globalQuote.data['Global Quote']).length
+    )
       NotFoundException(NOT_FOUND_QUOTE);
 
     const data = globalQuote.data['Global Quote'];
