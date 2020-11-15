@@ -31,18 +31,12 @@ $ yarn | npm install
 
 ## Running the app
 
+```bash
+$ yarn start| npm start
+```
+
 ### With Docker
 
 ```bash
 $ cd compose && docker-compose up --build
-```
-
-### Local (PostgreSQL needed)
-
-```bash
-# development
-$ yarn start | npm run start
-
-# watch mode
-$ yarn start:dev | npm run start:dev
 ```

@@ -2,13 +2,11 @@
 
 Stocks API
 
-## Installation (Backend)
+## Installation and Run (Backend)
 
 ```bash
 $ yarn | npm install
 ```
-
-## Running the Backend
 
 ```bash
 # development
@@ -21,13 +19,11 @@ $ yarn start: dev | npm run start:dev
 $ yarn start:prod | npm run start:prod
 ```
 
-## Installation (Frontend)
+## Installation and Run (Frontend)
 
 ```bash
 $ yarn | npm install
 ```
-
-## Running the Frontend
 
 ```bash
 # development
@@ -37,7 +33,7 @@ $ yarn start | npm run start
 $ yarn build | npm run build
 ```
 
-### With Docker
+## With Docker
 
 ```bash
 $ cd compose && docker-compose up --build
