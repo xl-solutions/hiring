@@ -1,6 +1,6 @@
 ## Description
 
-Stocks API
+Stocks
 
 ## Installation and Run (Backend)
 
@@ -13,7 +13,7 @@ $ yarn | npm install
 $ yarn start | npm run start
 
 # watch mode
-$ yarn start: dev | npm run start:dev
+$ yarn start:dev | npm run start:dev
 
 # production mode
 $ yarn start:prod | npm run start:prod
