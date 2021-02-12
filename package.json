@@ -1,0 +1,15 @@
+{
+    "name": "nodejs",
+    "version": "1.0.0",
+    "description": "Xl Solutions - Hiring",
+    "scripts": {
+      "test-api": "cd ./API && npm test",
+      "test-web": "",
+      "start-api": "cd ./backend && yarn start",
+      "start-web": "cd ./frontend && yarn start",
+      "start":" yarn run start-api | yarn run start-web"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }

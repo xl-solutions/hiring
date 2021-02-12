@@ -1,0 +1,8 @@
+
+#backend NodeModules
+backend\node_modules
+backend\.env
+
+
+#frontend NodeModules
+frontend\node_modules
