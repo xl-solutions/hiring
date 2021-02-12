@@ -1,12 +1,66 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+# :computer: Technologies
+Website that consume REST API,  to store and search information about the stocks quotes and history.
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+### BACKEND
+```
+* [JavaScript]
+* [NodeJs]   
+* [HTML+CSS]   
+```
 
-Choose a language to which you are interested and follow the instructions:
+###### :hammer: Run API Project
+```bash
+# Install Dependencies
+$ yarn install
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
+# Run Aplication
+$ yarn run start-api
+
+```
+Go to http://localhost:3001/ and see the result with the Requests URL.
+
+###### :pager: Request URL
+```bash
+#ENDPOINTS:
+
+*GET| http://localhost:3001/stocks/:stock_name/quote    | ("Return the Stock Quote")
+
+*GET| http://localhost:3001/stocks/:stock_name/history  | ("Return the history of Stocks")
+
+*GET| http://localhost:3001/stocks/:stock_name/compare | ("Compare Stocks")
+JSON: {attributes: [atr1, atr2, atr3]}
+
+*GET| | 
+```
+
+
+---
+
+### FRONTEND
+```
+* [JavaScript]
+* [ReactJs]   
+* [HTML+CSS]   
+```
+
+###### :hammer: Run Web Project
+```bash
+# Install Dependencies
+$ yarn install
+
+# Run Aplication
+$ yarn run start-web
+```
+Go to http://localhost:3000/ and see the result.
+
+
+---
+### TEST
+```bash
+# Run the tests
+$ cd backend/ yarn test
+```
+
+
+
+:closed_book: Released in February 2021
