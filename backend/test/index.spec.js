@@ -30,3 +30,18 @@ const stock_Name = "IBM"
             })
     })
 });
+
+
+describe('Teste de integracao 2 ', (done) => {
+    const stock_Name = "IBM"
+        it('STOCK - GET', () => {
+            chai.request(app)
+                .get(`/stocks/${stock_Name}/history?from='2020-02-10'&to='2021-02-10'`)
+                .end((err, res) => {
+                    chai.expect(err).to.be.null;
+                    chai.expect(res).to.have.status(200);
+                    chai.expect(res.body).to.be.a('object');
+                    done();
+                })
+        })
+    });

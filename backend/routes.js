@@ -11,10 +11,10 @@ routes.get('/stocks/:stock_name/quote', api.getQuoteStock);
 routes.get('/stocks/:stock_name/history', api.getTimeSeriesStock);
 
 // Compare Stocks
-routes.get('/stocks/:stock_name/compare', api.getCompareStocks);
+routes.post('/stocks/:stock_name/compare', api.getCompareStocks);
 
 //Projetar Ganhos
-routes.get('/stocks/:stock_name/gains?purchasedAmount=<number>&purchasedAt=<string>',);
+routes.get('/stocks/:stock_name/gains', api.getGainProjection);
 
 
 module.exports = routes;
