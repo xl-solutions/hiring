@@ -18,4 +18,3 @@ routes.get('/stocks/:stock_name/gains', api.getGainProjection);
 
 
 module.exports = routes;
-
