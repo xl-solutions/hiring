@@ -44,7 +44,25 @@ function App() {
     setDataRow(row)
   }
 
+  function addCompareStocks() {
+    const elements = [];
 
+    for (let i = 0; i <= 2; i++) {
+      const el = (
+        <div className="dataStockWallet">
+          <div >{compareGains[i]?.name}</div>
+          <div >{compareGains[i]?.lastPrice}</div>
+          <div >{compareGains[i]?.pricedAt}</div>
+        </div>
+      );
+      elements.push(el)
+    }
+    return elements;
+  }
+
+
+// Use Effects --
+ 
   useEffect(() => {
     try {
       if (stock_name !== "") {
@@ -109,21 +127,7 @@ function App() {
   }, [history])
 
 
-  function addCompareStocks() {
-    const elements = [];
-
-    for (let i = 0; i <= 2; i++) {
-      const el = (
-        <div className="dataStockWallet">
-          <div >{compareGains[i]?.name}</div>
-          <div >{compareGains[i]?.lastPrice}</div>
-          <div >{compareGains[i]?.pricedAt}</div>
-        </div>
-      );
-      elements.push(el)
-    }
-    return elements;
-  }
+ 
 
   return (
     <div id='App'>

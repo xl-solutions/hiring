@@ -6,7 +6,6 @@ const routes = require('./routes.js')
 api.use(express.json());
 api.use(routes);
 
-
 api.listen(port, ()=> {
     console.log(`Server listen on port ${port}`);
 })

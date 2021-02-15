@@ -32,7 +32,7 @@ const stock_Name = "IBM"
 });
 
 
-describe('Teste de integracao 2 ', (done) => {
+describe('Teste de integracao 2 - History ', (done) => {
     const stock_Name = "IBM"
         it('STOCK - GET', () => {
             chai.request(app)
