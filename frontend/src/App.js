@@ -61,8 +61,8 @@ function App() {
   }
 
 
-// Use Effects --
- 
+  // Use Effects --
+
   useEffect(() => {
     try {
       if (stock_name !== "") {
@@ -127,7 +127,7 @@ function App() {
   }, [history])
 
 
- 
+
 
   return (
     <div id='App'>
@@ -219,17 +219,11 @@ function App() {
                   <div >Capital Gains</div>
                   <div >{projectionGain?.capitalGains}</div>
                 </div>
-
               </div>
-
             </div>
+
           </div>
-
         </div>
-
-
-
-
       </div>
 
     </div>

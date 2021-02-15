@@ -56,7 +56,7 @@ module.exports = {
                 .json(pricing);
 
         } catch (err) {
-            console.log('Nodejs:', err);
+            res.status(400)
         }
     },
 
@@ -64,24 +64,22 @@ module.exports = {
     //Compare Stocks
     async getCompareStocks(req, res) {
         try {
-            const stock_name = req.params.stock_name;
             const { stocks } = req.body;
             const result = [];
 
             for (stock of stocks) {
                 const response = (await axios.get(`query?function=GLOBAL_QUOTE&symbol=${stock}&apikey=${apiKey}`)).data;
-                const letprices = {
+                const arrayPricesStocks = {
                     name: stock,
                     lastPrice: response['Global Quote']['05. price'],
                     pricedAt: response['Global Quote']['07. latest trading day']
                 }
-                result.push(letprices)
+                result.push(arrayPricesStocks)
             }
-            console.log('result', result);
             return res.json(result);
 
         } catch (err) {
-            console.log('Error:', err)
+            res.status(400)
         }
 
     },
@@ -114,7 +112,7 @@ module.exports = {
             return res.status(200)
                 .json(result)
         } catch (err) {
-            console.log('Error:', err)
+            res.status(400)
         }
     }
 }
