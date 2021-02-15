@@ -1,0 +1,245 @@
+#App{
+  background-color: lightgray;
+  color: black;
+}
+
+#nav {
+  background-color: whitesmoke;
+  min-height: 2vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  color: gray;
+}
+
+#nav>h1{
+  margin-right: 5rem;
+  margin-left:2rem;
+}
+
+#stockField{
+  width: 30rem;
+  margin-right: 10rem;
+
+}
+
+#nav .bt-search{
+    width: 7rem;
+    height: 3rem;
+    margin-left: 1rem;
+}
+
+#bodyApp{
+  display: grid;
+  grid-template-columns: repeat(3, 0.5fr);
+  grid-column-gap: 10px;
+  
+}
+
+
+
+#App .dataStock{
+  display: grid;
+  border: 1px solid gray;
+  background-color: white;
+  box-shadow: 0 0 0.5em gray;
+  color: black;
+  width:40rem;
+  height: 6rem;
+  margin: 20px 10px 0 10px;
+  grid-column-gap: 24px;
+  grid-template-columns: repeat(4, 0.8fr);
+  font-size: 2vw;  
+}
+
+#App .stockHistory{
+  border: 1px solid gray;
+  background-color: white;
+  box-shadow: 0 0 0.5em gray;
+  margin: 20px 10px 0 10px;
+  width:40rem;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#App .dataStock .divName{
+  padding-left: 20px;
+  color: blue;
+}
+
+#App .dataStock .divPrice{
+  padding-left: 20px;
+  color: green;
+}
+
+#App .dataStock .divDate{
+  padding-left: 20px;
+  color: darkslategrey;
+}
+
+#App .dataStock > div{
+  align-items: center;
+  justify-content: center;
+  font-size: calc(2px + 2vmin);
+  /* border: 1px solid black; */
+}
+
+#App .dataStock .div-buttons{
+  display:flex;
+  flex-flow: nowrap;
+}
+
+#App .dataStock .div-buttons .bt-search{
+  height:30px;
+
+}
+
+#App .wallet{
+  border: 1px solid black;
+  box-shadow: 0 0 0.5em gray;
+  width: 20rem;
+  margin-top: 20px;
+  padding-top: 0;
+  text-align: center;
+  background-color: whitesmoke;
+}
+
+#App .wallet > h1{
+  background-color: gray;
+  margin-top: 1px;
+}
+
+
+#App .div3{
+  display:grid;
+  grid-template-rows: 0.5fr 0.5fr;
+  width: 30rem;
+  margin: 20px 20px 0 ;
+}
+
+#App .div3 {
+  background-color: none
+}
+
+#App .testStocks{
+  display:flex;
+  flex-direction: column;
+  background-color:none;
+  margin-left: 20px;
+}
+
+
+#App .dataStockWallet{
+  display: grid;
+  grid-template-columns: repeat(3, 0.5fr) 0.3fr;
+  font-size: 15px;
+  border-bottom: 1px solid black;
+  margin: 10px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content:left;
+  text-align:left;
+  padding-left: 5px;
+}
+
+#App .dataStockWallet .divbt{
+  width: 0.5rem;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+#App .dataStockWallet .bt-search{
+  height: 5px;
+  min-width: 30px;
+}
+
+#App .dataStockWallet:hover{
+  background-color:lightgray;
+  border-radius: 8px   ;
+}
+
+
+#App .divCompare{
+  border: 1px solid gray;
+  background-color: white;
+  box-shadow: 0 0 0.5em gray;
+}
+
+
+#App .divCompareGain{
+  display: grid;
+  grid-template-rows: 0.2fr 1fr;
+}
+
+
+#App .divCompareStocks{
+  display: grid;
+  grid-template-columns:  repeat(3, 1fr);
+  grid-column-gap: 2px ;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height:5rem;
+  /* background-color:blue */
+}
+
+#App .divValuesStocks{
+  height:10rem;
+}
+
+#App .divtitle{
+  text-align:center;
+}
+
+#App .divtitle2{
+  text-align:center;
+  height: 20px;
+}
+
+#App .divprojectionGain{
+  display: grid;
+  grid-template-rows: 0.2fr 1fr;
+  border: 1px solid gray;
+  background-color: white;
+  box-shadow: 0 0 0.5em gray;
+  margin-TOP: 10px;
+  height: 15.8rem;
+}
+
+
+#App .divprojectionGain{
+  display: grid;
+  grid-template-rows: 0.3fr 1fr;
+}
+
+
+#App .divprojectionGain .divValuesStocks{
+  display: grid;
+  grid-template-rows: 0.2fr 1fr ;
+}
+
+#App .dataStockProjection{
+  display: grid;
+  grid-template-rows: repeat(5, 0.1fr);
+}
+
+
+#App .dataStockWallet2{
+  display: grid;
+  grid-template-columns: 0.2fr 0.5fr;
+  font-size: 12px;
+  border-bottom: 1px solid black;
+  margin: 7px;
+  margin-top: 2px;
+  align-items: center;
+  justify-content:left;
+  text-align:left;
+  padding-left: 5px;
+}
+
+#App .infoProjectionsStocks{
+  margin-left: 20px;
+  margin-bottom: 25px;
+  width: 50px;
+}
