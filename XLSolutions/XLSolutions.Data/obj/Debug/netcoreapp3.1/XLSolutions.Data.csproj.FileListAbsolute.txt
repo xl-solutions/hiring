@@ -1,0 +1,15 @@
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\bin\Debug\netcoreapp3.1\XLSolutions.Data.deps.json
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\bin\Debug\netcoreapp3.1\XLSolutions.Data.dll
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\bin\Debug\netcoreapp3.1\XLSolutions.Data.pdb
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\bin\Debug\netcoreapp3.1\XLSolutions.Core.dll
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\bin\Debug\netcoreapp3.1\XLSolutions.Core.pdb
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\obj\Debug\netcoreapp3.1\XLSolutions.Data.csprojAssemblyReference.cache
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\obj\Debug\netcoreapp3.1\XLSolutions.Data.AssemblyInfoInputs.cache
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\obj\Debug\netcoreapp3.1\XLSolutions.Data.AssemblyInfo.cs
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\obj\Debug\netcoreapp3.1\XLSolutions.Data.csproj.CoreCompileInputs.cache
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\obj\Debug\netcoreapp3.1\XLSolutions.Data.csproj.CopyComplete
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\obj\Debug\netcoreapp3.1\XLSolutions.Data.dll
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\obj\Debug\netcoreapp3.1\XLSolutions.Data.pdb
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\bin\Debug\netcoreapp3.1\XLSolutions.Data.runtimeconfig.json
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\bin\Debug\netcoreapp3.1\XLSolutions.Data.runtimeconfig.dev.json
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Data\obj\Debug\netcoreapp3.1\XLSolutions.Data.genruntimeconfig.cache

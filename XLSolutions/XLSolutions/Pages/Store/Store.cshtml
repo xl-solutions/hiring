@@ -1,0 +1,30 @@
+﻿@page
+@model XLSolutions.Pages.Store.StoreModel
+@{
+    ViewData["Title"] = "Store";
+}
+
+<h1>Phones Store</h1>
+
+<table class="table table-bordered shadow shadow-lg" border="1">
+
+    @foreach (var p in Model.Phones)
+    {
+        <tr>
+            <td>@p.Brand</td>
+            <td>@p.Model</td>
+            <td>@p.Type</td>
+            @if (p.SubType != null)
+            {
+                <td>@p.SubType</td>
+            }
+            <td>@p.Price.ToString("C", Model.GetNumberFormat())</td>
+            <td class="btn btn-primary flex-lg-wrap">
+                <a asp-page="./Detail" asp-route-phoneId="@p.ID" class="btn btn-default">Info</a>
+            </td>
+            <td class="btn btn-primary flex-lg-wrap">
+                <a asp-page="./Buy" class="btn btn-default">Buy</a>
+            </td>
+        </tr>
+    }
+</table>

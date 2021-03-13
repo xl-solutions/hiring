@@ -1,0 +1,12 @@
+﻿@using XLSolutions.Core
+@model XLSolutions.Core.Client
+@{
+    ViewData["Title"] = "AdminLogin";
+}
+
+<h1>ADMIN</h1>
+@Html.PasswordFor(m => m.Password);
+@Html.PasswordFor(d => d.UserId);
+
+<input id="UserId" name="ID" type="password" value="" />
+<input id="Password" name="Password" type="password" value="" />

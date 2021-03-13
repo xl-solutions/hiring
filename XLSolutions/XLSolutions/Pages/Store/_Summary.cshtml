@@ -1,0 +1,21 @@
+﻿@using XLSolutions.Core
+@model Phone
+
+<div class="container">
+
+    <div class="table table-primary">
+        <tr>
+            <td>@Model.Brand</td>
+            <td>@Model.Model</td>
+            <td>@Model.Type</td>
+            <td>@Model.SubType</td>
+            <td>@Model.Price</td>
+        </tr>
+    </div>
+    <div class="footer">
+        <a class="btn btn-lg" asp-page="./Store" asp-route-phoneId="@Model.ID">
+            <i class="glyphicon glyphicon-zoom-in"></i>
+        </a>
+    </div>
+
+</div>

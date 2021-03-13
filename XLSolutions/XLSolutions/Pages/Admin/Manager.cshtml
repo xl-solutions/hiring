@@ -1,0 +1,26 @@
+﻿@page
+@model XLSolutions.Pages.Admin.ManagerModel
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>Store Manager</h1>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" value="char" name="cvsfile" accept="	text/csv/csv-schema" MAXLENGTH="40" READONLY >
+</form>
+<table class="table table-bordered shadow shadow-lg" border="1">
+
+    @foreach (var p in Model.Phones)
+    {
+        <tr>
+            <td>@p.Brand</td>
+            <td>@p.Model</td>
+            <td>@p.Type</td>
+            @if (p.SubType != null)
+            {
+                <td>@p.SubType</td>
+            }
+            <td>@p.Price.ToString("C", Model.GetNumberFormat())</td>
+        </tr>
+    }
+</table>
