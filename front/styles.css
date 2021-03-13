@@ -1,0 +1,33 @@
+.titulo{
+   border: 5px;
+   border-style: solid; 
+   border-top-left-radius: 20px;
+   border-bottom-left-radius: 20px;
+   border-top-right-radius: 20px;
+   border-bottom-right-radius: 20px;
+   margin: 50px;
+   padding: 60px;
+   align-items: center;
+   background: linear-gradient(45deg, gray 0%, black 70%);
+}
+
+.titulo-string{
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: white;
+}
+
+.dica_user{
+    margin-left: 50px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+}
+
+.user_text{
+    font-size: 15px;
+    width: 1000px;
+    border-radius: 4px;
+}
