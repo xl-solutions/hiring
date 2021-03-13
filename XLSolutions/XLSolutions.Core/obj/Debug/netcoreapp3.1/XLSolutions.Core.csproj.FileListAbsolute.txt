@@ -1,0 +1,9 @@
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\bin\Debug\netcoreapp3.1\XLSolutions.Core.deps.json
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\bin\Debug\netcoreapp3.1\XLSolutions.Core.dll
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\bin\Debug\netcoreapp3.1\XLSolutions.Core.pdb
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\obj\Debug\netcoreapp3.1\XLSolutions.Core.AssemblyInfoInputs.cache
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\obj\Debug\netcoreapp3.1\XLSolutions.Core.AssemblyInfo.cs
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\obj\Debug\netcoreapp3.1\XLSolutions.Core.csproj.CoreCompileInputs.cache
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\obj\Debug\netcoreapp3.1\XLSolutions.Core.dll
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\obj\Debug\netcoreapp3.1\XLSolutions.Core.pdb
+C:\Users\mazze\source\repos\XLSolutions\XLSolutions.Core\obj\Debug\netcoreapp3.1\XLSolutions.Core.csprojAssemblyReference.cache

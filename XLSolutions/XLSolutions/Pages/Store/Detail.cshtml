@@ -1,0 +1,20 @@
+﻿@page "{phoneId:int}"
+@model XLSolutions.Pages.Store.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container">
+    <h1>@Model.Phone.Brand</h1>
+    <h4>@Model.Phone.Model</h4>
+    <h4>
+        <b>@Model.Phone.Type</b>
+        @if (Model.Phone.SubType != null)
+        {
+            <b>@Model.Phone.SubType</b>
+        }
+    </h4>
+    <h4>Price: @Model.Phone.Price.ToString("C", Model.GetNumberFormat())</h4>
+</div>
+
+

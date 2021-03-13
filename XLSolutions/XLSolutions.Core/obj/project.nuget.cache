@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Pvj+EQYJ1IensfA9Kv23JxSGznRX++XCldq2N6lfeLqmVPiki/3inFyJo34SQxhy4ikPr0Rft8NMHcRQFyl+xA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mazze\\source\\repos\\XLSolutions\\XLSolutions.Core\\XLSolutions.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mazze\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\mazze\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
+    "C:\\Users\\mazze\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
