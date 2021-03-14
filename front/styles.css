@@ -29,5 +29,11 @@
 .user_text{
     font-size: 15px;
     width: 1000px;
-    border-radius: 4px;
+    border-radius: 6px;
+}
+
+.bar_buscar{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
 }
