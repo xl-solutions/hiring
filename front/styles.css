@@ -37,3 +37,12 @@
     flex-direction: row;
     margin-left: 50px;
 }
+
+.head_table{
+    background-color:slategrey;
+    color: white;
+}
+
+table{
+    width: 100%;
+}
