@@ -1,17 +1,19 @@
 const nome_usuario = document.getElementById('user_text').value
 const perfil = document.getElementById('perfil')
 const repos = document.getElementById('repos')
+const issue = document.getElementById('issues_result')
 var url =  "https://api.github.com/users/"
 var urlrepos = "https://api.github.com/users/"
 var urlissues = "https://api.github.com/repos/"
 const token = '6e1ddbe52a47aeab7507a6cf03eda9aadf41f6ea'
 var captura = ""
+let issues_texto = ""
 
 async function GetUsuario(usuario){
     const perfilResponse = await fetch(url)
     const Dadosperfil = await perfilResponse.json()
     console.log(Dadosperfil)
-    perfil.innerHTML = '<p>'+Dadosperfil.login+'</p><img src="'+Dadosperfil.avatar_url+'" width="124" height="124"/>'
+    perfil.innerHTML = '<p>Usuário: '+Dadosperfil.login+'</p><img src="'+Dadosperfil.avatar_url+'" width="265" height="265"/>'
 }
 
 async function GetRepos(link){
@@ -29,13 +31,10 @@ repos.addEventListener("click", e =>{
     urlissues += captura
     const clicked = e.target.id;
     urlissues += "/"+clicked+"/issues"
-    const issuesResponse = await fetch(urlissues)
-    const dadosIssues = await issuesResponse.json()
-    console.log(urlissues)
+    localStorage.setItem('chave', urlissues)
     urlissues = "https://api.github.com/repos/"
  
 })
-
 
 function mouseClicked(){
     captura = document.getElementById('user_text').value

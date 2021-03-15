@@ -19,7 +19,7 @@
 }
 
 .dica_user{
-    margin-left: 50px;
+    margin-left: 430px;
     margin-bottom: 30px;
     font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -32,10 +32,10 @@
     border-radius: 6px;
 }
 
-.bar_buscar{
-    display: flex;
-    flex-direction: row;
-    margin-left: 50px;
+.bar_busc{
+    width: 100%;
+    width: 1000px;
+    margin-left: 350px;
 }
 
 .head_table{
@@ -45,4 +45,23 @@
 
 table{
     width: 100%;
+}
+
+.header{
+    margin: 100px;
+}
+
+.titulo1{
+    color: gray;
+}
+
+#perfil{
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin-left: 550px;
+}
+
+.container{
+    background-color:rgb(195, 195, 201);
 }

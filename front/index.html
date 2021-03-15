@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
     <title>GitHub</title>
 </head>
-<body>
+<body class="container">
     <nav class="header">
         <div class="titulo">
             <center><span class="titulo-string">Bem-vindo ao Github Finder</span></center>
@@ -15,9 +15,9 @@
     </nav>
     <section class="navbar">
         <div class="dica_user"><span>Entre com o nome do usuário que deseja pesquisar:</span></div>
-        <div class="bar_buscar"><input type="text" id="user_text">
+        <div class="bar_busc"><input type="text" id="user_text" size="80">
         <input type="submit" onclick="mouseClicked()" value="Pesquisar"></div>
-        <div id="perfil"><p id="perfil2"></p></div>
+        <div id="perfil"></div>
         <div id="repos"></div>
         
     </section>
