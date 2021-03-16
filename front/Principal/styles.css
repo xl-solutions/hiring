@@ -97,4 +97,9 @@ table{
     font-style: italic;
     margin-top: 50px;
     margin-bottom: 50px;
+    margin-left: 80px;
+}
+
+.user_name{
+    margin-top: 30px;
 }

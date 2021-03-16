@@ -2,10 +2,10 @@ const nome_usuario = document.getElementById('user_text').value
 const perfil = document.getElementById('perfil')
 const repos = document.getElementById('repos')
 const issue = document.getElementById('issues_result')
-var url =  "https://api.github.com/users/"
-var urlrepos = "https://api.github.com/users/"
-var urlissues = "https://api.github.com/repos/"
-var captura = ""
+let url =  "https://api.github.com/users/"
+let urlrepos = "https://api.github.com/users/"
+let urlissues = "https://api.github.com/repos/"
+let captura = ""
 let issues_texto = ""
 
 async function GetUsuario(usuario){
@@ -15,7 +15,7 @@ async function GetUsuario(usuario){
         alert("Usuário não encontrado")
     }
     else{
-        perfil.innerHTML = '<p>Usuário: '+Dadosperfil.login+'</p><img src="'+Dadosperfil.avatar_url+'" width="265" height="265" class="img_conf"/>'
+        perfil.innerHTML = '<p class="user_name">Usuário: '+Dadosperfil.login+'</p><img src="'+Dadosperfil.avatar_url+'" width="265" height="265" class="img_conf"/>'
     }    
 }
 
@@ -26,7 +26,7 @@ async function GetRepos(link){
     let saida = '<table class="table-dark table-hover table-striped"><thead><th>Repositórios do Usuário</th>'
     saida +=    '<th>Clonar Repositório</th><th>Link para o Repositório</th></thead><tbody>'
     dadosRepos.forEach(repo =>{
-        saida += ('<tr><td><a href="C:/Users/Andre Santos/Desktop/hiring/front/Issues/issues.html" target="_blank" id="'
+        saida += ('<tr><td><a href="../Issues/issues.html" target="_blank" id="'
                  +repo.name+'">'+repo.name+'</a></td><td>'+repo.clone_url+'</td><td><a href="'
                  +repo.html_url+'" target="_blank">Clique Aqui</td>')
     })    

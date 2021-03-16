@@ -10,12 +10,10 @@ async function GetIssuesDesc(){
         if (element.id == id){
             issues_text = ('<p class="descissue">ID da issue: '+element.id+'</p><p class="descissue">Título da issue: '
                           +element.title+'</p><p class="descissue">Data de Criação: '+element.created_at+'</p><p class="descissue">Descrição do Problema: '
-                          +element.body+'</p>')
+                          +element.body+'</p><p class="descissue">Status: '+element.state+'</p>')
         }
     });
     issues_desc.innerHTML = issues_text
 }
-
-
 
 GetIssuesDesc()
