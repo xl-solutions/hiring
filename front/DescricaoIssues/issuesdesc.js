@@ -8,7 +8,9 @@ async function GetIssuesDesc(){
     let issues_text = ""
     dadosIssues.forEach(element => {
         if (element.id == id){
-            issues_text = '<p>'+element.id+'</p><p>'+element.title+'</p><p>'+element.created_at+'</p><p>'+element.body+'</p>'
+            issues_text = ('<p class="descissue">ID da issue: '+element.id+'</p><p class="descissue">Título da issue: '
+                          +element.title+'</p><p class="descissue">Data de Criação: '+element.created_at+'</p><p class="descissue">Descrição do Problema: '
+                          +element.body+'</p>')
         }
     });
     issues_desc.innerHTML = issues_text

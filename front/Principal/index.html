@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>GitHub</title>
 </head>
 <body class="container">
@@ -13,11 +14,11 @@
             <center><span class="titulo-string">Bem-vindo ao Github Finder</span></center>
         </div>
     </nav>
-    <section class="navbar">
+    <section>
         <div class="dica_user"><span>Entre com o nome do usuário que deseja pesquisar:</span></div>
         <div class="bar_busc"><input type="text" id="user_text" size="80">
-        <input type="submit" onclick="mouseClicked()" value="Pesquisar"></div>
-        <div id="perfil"></div>
+        <input class="sub_type" type="submit" onclick="mouseClicked()" value="Pesquisar"></div>
+        <center><div id="perfil"></div></center>
         <div id="repos"></div>
         
     </section>

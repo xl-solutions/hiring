@@ -5,25 +5,34 @@ const issue = document.getElementById('issues_result')
 var url =  "https://api.github.com/users/"
 var urlrepos = "https://api.github.com/users/"
 var urlissues = "https://api.github.com/repos/"
-const token = '6e1ddbe52a47aeab7507a6cf03eda9aadf41f6ea'
 var captura = ""
 let issues_texto = ""
 
 async function GetUsuario(usuario){
     const perfilResponse = await fetch(url)
     const Dadosperfil = await perfilResponse.json()
-    console.log(Dadosperfil)
-    perfil.innerHTML = '<p>Usuário: '+Dadosperfil.login+'</p><img src="'+Dadosperfil.avatar_url+'" width="265" height="265"/>'
+    if(Dadosperfil.login == undefined){
+        alert("Usuário não encontrado")
+    }
+    else{
+        perfil.innerHTML = '<p>Usuário: '+Dadosperfil.login+'</p><img src="'+Dadosperfil.avatar_url+'" width="265" height="265" class="img_conf"/>'
+    }    
 }
 
 async function GetRepos(link){
     link += "/repos"
     const reposResponse = await fetch(link)
     const dadosRepos = await reposResponse.json()
-    let saida = '<table><thead class="head_table"><th>Repositórios do Usuário</th><th>Clonar Repositório</th><th>Link para o Repositório</th></thead><tbody>'
+    let saida = '<table class="table-dark table-hover table-striped"><thead><th>Repositórios do Usuário</th>'
+    saida +=    '<th>Clonar Repositório</th><th>Link para o Repositório</th></thead><tbody>'
     dadosRepos.forEach(repo =>{
-        saida += '<tr><td><a href="issues.html" target="_blank" id="'+repo.name+'">'+repo.name+'</a></td><td>'+repo.clone_url+'</td><td><a href="'+repo.html_url+'">Clique Aqui</td>'
+        saida += ('<tr><td><a href="C:/Users/Andre Santos/Desktop/hiring/front/Issues/issues.html" target="_blank" id="'
+                 +repo.name+'">'+repo.name+'</a></td><td>'+repo.clone_url+'</td><td><a href="'
+                 +repo.html_url+'" target="_blank">Clique Aqui</td>')
     })    
+    saida += '</tbody></table><center><div class="observacao">Obs: Vale lembrar que nesta tabela nem sempre consta todos os'
+    saida += ' repositórios do usuário, caso tenha interesse nos demais repositórios e quiser ver mais detalhes do repositório,'
+    saida += ' os links estão na tabela acima!</div></center>'
     repos.innerHTML = saida
 }
 
