@@ -1,0 +1,105 @@
+.titulo{
+   display: flexbox;
+   border: 5px;
+   border-style: solid; 
+   border-top-left-radius: 20px;
+   border-bottom-left-radius: 20px;
+   border-top-right-radius: 20px;
+   border-bottom-right-radius: 20px;
+   margin: 50px;
+   padding: 60px;
+   align-items: center;
+   background: linear-gradient(45deg, gray 0%, black 70%);
+}
+
+.titulo-string{
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+}
+
+.dica_user{
+    margin-left: 270px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+}
+
+.user_text{
+    font-size: 15px;
+    width: 1000px;
+    border-radius: 6px;
+}
+
+.bar_busc{
+    width: 100%;
+    width: 1000px;
+    margin-left: 200px;
+}
+
+.bar_busc .sub_type:hover{
+    background-color:#dc3545;
+}
+
+.bar_busc .sub_type{
+    border-radius: 6px;
+}
+.head_table{
+    background-color:rgb(25, 27, 29);
+    color: white;
+}
+
+table{
+    width: 100%;
+}
+
+.header{
+    margin: 100px;
+}
+
+.titulo1{
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-weight: 100;
+    font-style: italic;
+    font-variant: inherit;
+    margin-left: 250px;
+}
+
+#perfil{
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+
+}
+
+.container{
+    background-color:rgb(212, 211, 211);
+}
+
+.descissue{
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin-top: 60px;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.img_conf{
+    margin: 30px;
+}
+
+.observacao{
+    font-size: 15px;
+    font-style: italic;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 80px;
+}
+
+.user_name{
+    margin-top: 30px;
+}
