@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Busca Git</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <!-- Área da busca -->
+        <div class="container mt-5 card p-0">
+            <form class="card-body p-0">
+                <p class="text-center align-middle fw-bolder fs-1 card-header">Busca Git</p>
+                <div class="card-body">
+                    <input type="text" class="form-control" id="searchtext" placeholder="Usuário que deseja buscar" required>
+                    <button type="button" class="btn btn-dark" id="searchbutton">Buscar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Perfil do usuário buscado-->
+        <div id="perfil"></div>
+
+
+
+    </body>
+    <script src="main.js"></script>
+</html>
