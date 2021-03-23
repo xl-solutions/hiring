@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Pedro Takahashi",
+      "email": "email@email.com"
+    },
+    {
+      "id": 2,
+      "name": "Pedro Henrique",
+      "email": "email2@email.com"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "titulo": "post 1",
+      "desc": "Descrição do post 1",
+      "comentario": ""
+    },
+    {
+      "id": 2,
+      "titulo": "post 2",
+      "desc": "Descrição do post 1",
+      "comentario": ""
+    },
+    {
+      "id": 3,
+      "titulo": "post 3",
+      "desc": "Descrição do post 3",
+      "comentario": ""
+    }
+  ],
+  "image": [
+    {
+      "id": 1,
+      "url": "../src/components/assets/images/logo.png"
+    }
+  ]
+}
