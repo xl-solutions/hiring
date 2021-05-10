@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
+/* componentes gerais */
+import About from "./components/About";
+import Header from "./components/Header";
+
+/* componentes módulo álbums */
+import Albums from "./components/albums/Albums";
+import PhotoViewer from "./components/albums/PhotoViewer";
+import UserAlbums from "./components/albums/UserAlbums";
+
+/* componentes módulo posts */
+import Posts from "./components/posts/Posts";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header></Header>
+      <Switch>
+        <Route path="/album" exact>
+          <Albums />
+        </Route>
+        <Route path="/posts" exact>
+          <Posts />
+        </Route>
+        <Route path="/album/:idUser/:idAlbum" render={(props) => <PhotoViewer id={props.match.params.idAlbum} />} />
+        <Route path="/album/:id" render={(props) => <UserAlbums id={props.match.params.id} />} />
+        <Route>
+          <About />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
