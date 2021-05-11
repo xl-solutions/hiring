@@ -28,7 +28,8 @@ export default class Post extends Component {
   render() {
     let commentsBox = null;
     let {postData} = this.state;
-    if (postData === undefined) // caso tenha sido deletado
+    console.log(postData);
+    if (Object.keys(postData).length === 0)  // caso tenha sido deletado
     {
       return null;
     }
