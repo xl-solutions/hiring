@@ -41,21 +41,27 @@ export default class PhotoViewer extends Component {
   handlePhotoClick = idx => this.setState({ curPhotoIndex: idx });
 
   render() {
+    /* vale citar que tem uma inconsistência aqui onde pode-se passar pela url por exemplo algo como /1/11, então
+      ele vai mostrar os dados do usuário de id 1 e os dados do álbum de id 11, apesar do álbum de id 11
+      pertencer a outro usuário
+    */
     let curPhotoObj = null;
     if (this.state.photos.length)
     {
       let curPhoto = this.state.photos[this.state.curPhotoIndex];
-      curPhotoObj = <img src={curPhoto.url} alt={curPhoto.title} />;
+      curPhotoObj = <img src={curPhoto.url} alt={curPhoto.title} className="album-cur-photo" />;
     }
     return (
-      <div className="App">
+      <div>
         <h1>Visualizador de Imagens</h1>
         <h2>Álbum {this.state.albumData.title} <small>por {this.state.userData.name}</small></h2>
         {curPhotoObj}
+        <div className="thumbs">
         {
           this.state.photos
-            .map((photoData, index) => <img key={photoData.id} src={photoData.thumbnailUrl} alt={photoData.title} onClick={() => this.handlePhotoClick(index)}/>)
+            .map((photoData, index) => <img key={photoData.id} src={photoData.thumbnailUrl} alt={photoData.title} onClick={() => this.handlePhotoClick(index)} className="album-thumb" />)
         }
+        </div>
       </div>
     )
   };
