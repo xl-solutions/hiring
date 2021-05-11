@@ -10,6 +10,8 @@
 1. Execute o comando `npm start`.
 2. Após a instalação, abra a página [http://localhost:3000](http://localhost:3000) para visualizar o projeto no navegador (é possível que a própria execução do comando acima abra a página).
 
+Nome do candidato: Luciano Gonçalves Amado dos Santos.
+
 _Observações_
 
 Todo o texto contido abaixo é o texto original do arquivo README.md criado por padrão pelo comando `npx create-react-app`
