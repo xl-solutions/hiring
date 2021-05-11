@@ -74,7 +74,7 @@ export default class Post extends Component {
     )
   };
 
-  toggleCommentsAction = () => this.setState({ commentsVisible: !this.state.isCommentsVisible });
+  toggleCommentsAction = () => this.setState({ isCommentsVisible: !this.state.isCommentsVisible });
 
   editPostButtonAction = () => this.setState({ isEditing: true });
 
