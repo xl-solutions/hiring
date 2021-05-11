@@ -28,7 +28,7 @@ code {
 
 a {
   text-decoration: none;
-  color: #12146e;
+  color: #060881;
 }
 
 /** App.css **/
@@ -60,6 +60,8 @@ a {
 .App-header .header-button {
   padding: 1px 6px;
   margin: 0px 3px;
+  color: #1b613d;
+  font-weight: bold;
 }
 
 .App-header .header-button:first-of-type {
@@ -68,6 +70,7 @@ a {
 
 .App-header .header-button.active {
   background-color: #a1ddb9;
+  color: #0c2e1b;
 }
 
 @keyframes App-logo-spin {
