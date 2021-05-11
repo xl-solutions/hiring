@@ -44,14 +44,15 @@ export default class Post extends Component {
       </div>
     }
 
-    let titleBox = <label>Título: <input type="text" defaultValue={postData.title} onChange={this.titleChange} /></label>;
-    let postBody = <label>Post: <input type="textarea" defaultValue={postData.body} onChange={this.postChange} /></label>;
-    let editPostButton = <button onClick={this.editPostSubmit}>Salvar Edição</button>;
-    if (!this.state.isEditing)
+    let titleBox = <h3>{postData.title}</h3>;
+    let postBody = <p>{postData.body}</p>;
+    let editPostButton = <button onClick={this.editPostButtonAction}>Editar Comentário</button>;
+    if (this.state.isEditing)
     {
-      titleBox = <h3>{postData.title}</h3>;
-      postBody = <p>{postData.body}</p>;
-      editPostButton = <button onClick={this.editPostButtonAction}>Editar Comentário</button>;
+
+      titleBox = <label>Título: <input type="text" defaultValue={postData.title} onChange={this.titleChange} /></label>;
+      postBody = <label>Post: <textarea defaultValue={postData.body} onChange={this.postChange} /></label>;
+      editPostButton = <button onClick={this.editPostSubmit}>Salvar Edição</button>;
     }
     
     return (
