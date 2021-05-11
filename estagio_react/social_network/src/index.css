@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.comment, .post {
+  white-space: pre-line;
+}
+
+.comment {
+  margin-left: 20px;
+}

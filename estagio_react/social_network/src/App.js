@@ -16,6 +16,7 @@ import UserAlbums from "./components/albums/UserAlbums";
 
 /* componentes módulo posts */
 import Posts from "./components/posts/Posts";
+import UserPosts from "./components/posts/UserPosts";
 
 function App() {
   return (
@@ -41,6 +42,12 @@ function App() {
           render=
           {
             (props) => <UserAlbums id={props.match.params.id} />
+          } />
+        <Route
+          path="/posts/:id"
+          render=
+          {
+            (props) => <UserPosts id={props.match.params.id} />
           } />
         <Route>
           <About />
