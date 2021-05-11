@@ -7,7 +7,7 @@ export default class UserAlbums extends Component {
     super(props);
     this.state = {
       userAlbumsList: [],
-      userData: []
+      userData: {}
     };
   }
 
@@ -17,14 +17,14 @@ export default class UserAlbums extends Component {
       url: `https://jsonplaceholder.typicode.com/users/${this.props.id}/albums`,
       method: "GET"
     })
-    .then((response) => this.setState({...this.state, userAlbumsList: response.data}));
+    .then(response => this.setState({ userAlbumsList: response.data }));
     
-    /// TODO usar algo como um service ou react context para criar cache?
+    // TODO https://github.com/LucoEldritch/hiring/issues/6
     axios({
       url: `https://jsonplaceholder.typicode.com/users/${this.props.id}`,
       method: "GET"
     })
-    .then((response) => this.setState({...this.state, userData: response.data}));
+    .then(response => this.setState({ userData: response.data }));
   }
 
   render() {
@@ -36,7 +36,7 @@ export default class UserAlbums extends Component {
           this.state.userAlbumsList
             .map((userAlbumData) => 
             <li>
-              <Link to={`/album/${this.props.id}/${userAlbumData.id}`}>{userAlbumData.title}</Link>
+              <Link to={`/album/${this.props.id}/${userAlbumData.id}`} key={userAlbumData.id}>{userAlbumData.title}</Link>
             </li>)
         }
         </ul>

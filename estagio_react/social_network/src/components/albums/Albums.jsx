@@ -16,7 +16,7 @@ export default class Albums extends Component {
       url: "https://jsonplaceholder.typicode.com/users/",
       method: "GET"
     })
-    .then((response) => this.setState({userList: response.data}));
+    .then((response) => this.setState({ userList: response.data }));
   }
 
   render() {

@@ -28,8 +28,20 @@ function App() {
         <Route path="/posts" exact>
           <Posts />
         </Route>
-        <Route path="/album/:idUser/:idAlbum" render={(props) => <PhotoViewer id={props.match.params.idAlbum} />} />
-        <Route path="/album/:id" render={(props) => <UserAlbums id={props.match.params.id} />} />
+        <Route
+          path="/album/:idUser/:idAlbum"
+          render=
+          {
+            (props) => <PhotoViewer
+              idUser={props.match.params.idUser}
+              id={props.match.params.idAlbum} />
+          } />
+        <Route
+          path="/album/:id"
+          render=
+          {
+            (props) => <UserAlbums id={props.match.params.id} />
+          } />
         <Route>
           <About />
         </Route>
