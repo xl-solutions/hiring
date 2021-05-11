@@ -8,14 +8,13 @@ import {
 /* componentes gerais */
 import About from "./components/About";
 import Header from "./components/Header";
+import UserList from "./components/UserList";
 
 /* componentes módulo álbums */
-import Albums from "./components/albums/Albums";
 import PhotoViewer from "./components/albums/PhotoViewer";
 import UserAlbums from "./components/albums/UserAlbums";
 
 /* componentes módulo posts */
-import Posts from "./components/posts/Posts";
 import UserPosts from "./components/posts/UserPosts";
 
 function App() {
@@ -24,10 +23,10 @@ function App() {
       <Header></Header>
       <Switch>
         <Route path="/album" exact>
-          <Albums />
+          <UserList type="album" title="Álbuns" />
         </Route>
         <Route path="/posts" exact>
-          <Posts />
+          <UserList type="posts" title="Posts" />
         </Route>
         <Route
           path="/album/:idUser/:idAlbum"

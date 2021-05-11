@@ -1,9 +1,9 @@
 import { Component } from "react"
 import axios from "axios";
 
-import UserPostCard from "./UserPostCard"
+import UserCard from "./UserCard"
 
-export default class Posts extends Component {
+export default class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +23,8 @@ export default class Posts extends Component {
   render() {
     return (
       <div>
-        <h1>Visualizar Posts do Usuário</h1>
-        {this.state.userList.map((userData) => <UserPostCard data={userData} key={userData.id}/>)}
+        <h1>Visualizar {this.props.title} do Usuário</h1>
+        {this.state.userList.map((userData) => <UserCard data={userData} type={this.props.type} key={userData.id}/>)}
       </div>
     )
   };
