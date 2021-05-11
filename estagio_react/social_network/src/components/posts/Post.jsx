@@ -7,9 +7,11 @@ export default class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // vou ignorar atualizações das propriedades, já que quero poder editar/excluir sem atualizar a lista externa
       postData: props,
       commentsData: [],
-      commentsVisible: false
+      isCommentsVisible: false,
+      isEditing: false
     };
   }
 
@@ -30,7 +32,7 @@ export default class Post extends Component {
     {
       return null;
     }
-    if (this.state.commentsVisible)
+    if (this.state.isCommentsVisible)
     {
       commentsBox =
       <div>
@@ -42,15 +44,24 @@ export default class Post extends Component {
       </div>
     }
 
+    let titleBox = <label>Título: <input type="text" defaultValue={postData.title} onChange={this.titleChange} /></label>;
+    let postBody = <label>Post: <input type="textarea" defaultValue={postData.body} onChange={this.postChange} /></label>;
+    let editPostButton = <button onClick={this.editPostSubmit}>Salvar Edição</button>;
+    if (!this.state.isEditing)
+    {
+      titleBox = <h3>{postData.title}</h3>;
+      postBody = <p>{postData.body}</p>;
+      editPostButton = <button onClick={this.editPostButtonAction}>Editar Comentário</button>;
+    }
+    
     return (
       <div className="post">
-        <h3>{postData.title}</h3>
-        <p>
-          {postData.body}
-        </p>
-        <button onClick={this.toggleComments}>
+        {titleBox}
+        {postBody}
+        {editPostButton}
+        <button onClick={this.toggleCommentsAction}>
           {
-            this.state.commentsVisible
+            this.state.isCommentsVisible
               ? "Esconder Comentários"
               : "Mostrar Comentários"
           }
@@ -61,24 +72,27 @@ export default class Post extends Component {
     )
   };
 
-  toggleComments = () => this.setState({ commentsVisible: !this.state.commentsVisible });
+  toggleCommentsAction = () => this.setState({ commentsVisible: !this.state.isCommentsVisible });
 
-  // TODO
-  // editPostButton = id => 
+  editPostButtonAction = () => this.setState({ isEditing: true });
 
-  editPostSubmit = (title, text) => axios({
+  titleChange = e => this.setState({ inputTitle: e.target.value });
+
+  postChange = e => this.setState({ inputText: e.target.value });
+
+  editPostSubmit = () => axios({
     url: `https://jsonplaceholder.typicode.com/posts/${this.props.id}/`,
     method: "PATCH",
-    body: {
-      title: title,
-      body: text
+    data: {
+      title: this.state.inputTitle,
+      body: this.state.inputText
     }
   })
-  .then(response => this.setState({ postData: response.Data }));
+  .then(response => this.setState({ postData: response.data, isEditing: false }));
 
   deletePostSubmit = () => axios({
     url: `https://jsonplaceholder.typicode.com/posts/${this.props.id}/`,
     method: "DELETE"
   })
-  .then(response => this.setState({ postData: response.Data }));
+  .then(response => this.setState({ postData: response.data }));
 };
