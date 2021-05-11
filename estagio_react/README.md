@@ -1,6 +1,5 @@
 # Teste para vaga de estagiário
 
-
 # Como enviar sua proposta
 
 - Crie um fork deste repositório;
@@ -30,7 +29,6 @@ As funcionalidades esperadas são:
 - URL: https://jsonplaceholder.typicode.com/guide/
 - Para fazer as requisições HTTP recomendamos o uso da biblioteca [axios](https://github.com/axios/axios).
 - Exemplo de chamada para buscar os álbuns de um usuário: https://jsonplaceholder.typicode.com/users/1/albums
-
 
 ## Desafio II
 

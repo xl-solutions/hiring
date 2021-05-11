@@ -1,0 +1,121 @@
+body {
+  margin: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  white-space: pre-line;
+}
+
+#root {
+  margin-bottom: -64px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.album-cur-photo {
+  display: block;
+  margin: 12px auto;
+  margin-right: auto;
+  width: 50%;
+}
+.album-thumb {
+  margin: 6px 8px;
+}
+
+.post {
+  margin-left: 16px;
+}
+
+.comment {
+  margin-left: 20px;
+}
+
+.comment h5 {
+  margin-block-end: 0.33em;
+}
+
+.comment p {
+  margin-block-start: 0.67em;
+}
+
+h1, h2 {
+  margin-left: 12px;
+}
+
+.thumbs {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+a {
+  text-decoration: none;
+  color: #060881;
+}
+
+/* formulário de editar post */
+.post label, .post input, .post textarea {
+  display: block;
+}
+.post input {
+  min-width: 400px;
+}
+.post textarea {
+  min-width: 400px;
+  min-height: 80px;
+}
+
+/** App.css **/
+.about {
+  text-align: center;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  margin: 0px;
+  margin-top: -42px;
+  background-color: #c7f7d9;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-header .header-button {
+  padding: 1px 6px;
+  margin: 0px 3px;
+  color: #1b613d;
+  font-weight: bold;
+}
+
+.App-header .header-button:first-of-type {
+  margin-left: 40px;
+}
+
+.App-header .header-button.active {
+  background-color: #a1ddb9;
+  color: #0c2e1b;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
