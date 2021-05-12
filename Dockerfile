@@ -10,6 +10,8 @@ COPY . .
 
 EXPOSE 5000
 
-ENTRYPOINT [ "python" ]
+ENV FLASK_APP=app/app.py
 
-CMD ["app/app.py"]
+ENV FLASK_ENV=development
+
+CMD ["flask", "run", "--host=0.0.0.0"]

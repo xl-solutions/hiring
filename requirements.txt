@@ -1,3 +1,5 @@
 flask
-flask-sqlalchemy
-sqlalchemy
+dynaconf
+flask_sqlalchemy
+flask_migrate
+psycopg2

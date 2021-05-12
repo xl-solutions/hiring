@@ -1,0 +1,6 @@
+[default]
+SQLALCHEMY_DATABASE_URI = ''
+SQLALCHEMY_TRACK_MODIFICATIONS = false
+EXTENSIONS = [
+    'app.resources:init_app'
+]
