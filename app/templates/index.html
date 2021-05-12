@@ -1,1 +1,47 @@
-<h1>XL Solution</h1>
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="table-container">
+    <div class="header">
+        <form action="/admin" method="GET">
+            <input
+                type="text"
+                name="filter"
+                placeholder="Filtrar por Nome"
+                value="{{filter}}">
+                <button type="submit" class="button">Filtrar</button>
+        </form>
+        <a class="button">Importar</a>
+    </div>
+
+    <table id="tbClient">
+        <thead>
+            <tr>
+                <th>Fabricante</th>
+                <th>Modelo</th>
+                <th>Cor</th>
+                <th>Tipo de plano</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+         
+                <tr>
+                    <td>
+                        cliente.nome
+                    </td>
+                    <td>
+                        cliente.cpf
+                    </td>
+                    <td>
+                        <span>cliente.email</span>
+                    </td>
+                    
+                </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+/* Estilizações globais */
+:root{
+    --primary-color: #6558c3;
+    --warning-color: #DC4747
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header{
+    background-color: black;
+}
+
+header div:nth-child(1) a{
+    color: #999999;
+}
+
+header div:nth-child(1) a:hover, header div:nth-child(1) a.active{
+    color: white;
+}
+
+header div{
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+a{
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input[type="button"]{
+    padding: 0;
+    border: none;
+    background-color: white;
+    width: initial;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+button:focus, input[type="button"]{
+    outline: thin;
+}
+
+form input, textarea, select{
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('/static/img/keyboard_arrow_down-black-18dp.svg');
+    background-repeat: no-repeat;
+    background-position: right .7em top 50%, 0 0;
+}
+
+select:invalid {
+    color: gray;
+  }
+
+textarea {
+    resize: none;
+    line-height: 24px;
+    width: 100%;
+    height: 200px;
+    text-align: justify;
+    text-indent: initial
+}
+
+form .item{
+    margin-bottom: 30px;
+}
+
+.button{
+    text-decoration: none;
+    background-color: #6558C3;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 120px;
+    padding: 8px 0;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+}
+
+.button-delete{
+    background-color: var(--warning-color);
+}
+
+.button-disabled{
+    background-color: gray;
+    cursor: initial;
+}
+
+.cards{
+    display:  grid;
+    gap: 5px;
+    row-gap: 30px;
+    margin-bottom: 80px;
+}
+
+.card{
+    display: flex;
+}
+
+.card-details{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.card-details  div{
+    padding: 0px 4px 10px;
+    line-height: 18px;
+}
+
+.card-details  div:first-child{
+    font-size: 18px;
+}
+
+.card-details  div:nth-child(2){
+    font-size: 14px;
+    color: #777777;
+}
+
+.container{
+    margin: 50px auto;
+    width: 100%;  
+}
+
+.table-container .header{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 30px;
+    width: 95%;
+    align-items: center;
+}
+
+.table-container .header form{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.table-container .header form input{
+    border: 1px solid #eee;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+.table-container .header form button{
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    border-radius: 8px;
+    display: block;
+}
+
+.table-container .header a img{
+    width: 200px;
+}
+
+.table-container .header a{
+    width: 100px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    border-radius: 8px;
+    display: block;
+}
+
+.table-container table{
+    width: 95%;
+    margin: 0 auto;
+    border-spacing: 0;
+}
+
+.table-container table thead{
+    text-align: left;
+}
+
+
+.table-container table thead tr th {
+    font-weight: 500;
+}
+
+.table-container table thead tr th:first-child{
+    width: 40%;
+}
+
+.table-container table thead tr th:last-child{
+    text-align: center;
+}
+
+
+.table-container table thead tr th{
+    padding: 16px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+th{
+    text-transform: uppercase;
+    color: #777777;
+    font-size: 14px;
+}
+
+tbody tr:last-child td{
+    border-bottom: none;
+}
+
+tbody tr td:first-child {
+    width: 48px;
+    height: 48px;
+}
+
+
+tbody tr td:nth-child(5){
+    text-align: center;
+}
+
+tbody tr td:last-child{
+    width: 100px;
+    margin: 0 auto;
+}
+
+tbody tr td:last-child a{
+    width: 100px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    border-radius: 8px;
+    display: block;
+}
+
+
+footer{
+    text-align: center;
+    padding: 1.5% 0;
+    font-size: 14px;
+    color: #999999;
+    margin-top: auto;
+    background-color: black;
+    color: white;
+}
+
