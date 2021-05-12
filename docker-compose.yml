@@ -9,8 +9,8 @@ services:
             - 5432:5432
         environment: 
             - POSTGRES_USER=docker
-            - POSTGRES_PASSWORD=hiring
-            - POSTGRES_DB=hiring
+            - POSTGRES_PASSWORD=xlsolution
+            - POSTGRES_DB=xlsolution
         volumes:
             - pgdata:/data/postgres
     app:
