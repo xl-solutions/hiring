@@ -24,7 +24,7 @@ services:
             - database
         depends_on:
             - database
-
+        entrypoint: /usr/app/entrypoint.sh
 
 volumes:
     pgdata:

@@ -14,4 +14,4 @@ ENV FLASK_APP=app/app.py
 
 ENV FLASK_ENV=development
 
-CMD ["flask", "run", "--host=0.0.0.0"]
+ENTRYPOINT ["./entrypoint.sh"]

@@ -1,6 +1,8 @@
 [default]
-SQLALCHEMY_DATABASE_URI = 'postgresql://docker:xlsolution@localhost/xlsolution'
+SECRET_KEY = 'Desenvolvedor Python'
+SQLALCHEMY_DATABASE_URI = 'postgresql://docker:xlsolution@database/xlsolution'
 SQLALCHEMY_TRACK_MODIFICATIONS = false
 EXTENSIONS = [
-    'app.resources:init_app'
+    'app.resources:init_app',
+    'app.db:init_app'
 ]

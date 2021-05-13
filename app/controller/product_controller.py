@@ -1,5 +1,7 @@
-
+from app.dao import product_dao
 
 
 def list():
-    pass
+    products = product_dao.list()
+    
+    return products
