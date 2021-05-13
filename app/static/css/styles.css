@@ -202,6 +202,8 @@ form .item{
     letter-spacing: 0.1em;
     border-radius: 8px;
     display: block;
+    text-decoration: none;
+    color: white;
 }
 
 .table-container table{

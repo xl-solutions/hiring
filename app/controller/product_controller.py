@@ -12,9 +12,6 @@ def import_product(file):
     upload_file = file['upload_csv']
     products = []
     
-    if upload_file.filename == '':
-        pass
-    
     csvfile = csv.reader(open(upload_file.filename), delimiter=',')
     
     next(csvfile, None)
