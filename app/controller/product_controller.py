@@ -8,6 +8,12 @@ def list():
     return products
 
 
+def search(filter, data_search):
+    products = product_dao.search(filter, data_search)
+    
+    return products
+
+
 def import_product(file):
     upload_file = file['upload_csv']
     products = []
@@ -30,8 +36,4 @@ def import_product(file):
     
     for product in products:
         product_dao.save(product)
-    
-
-    
-    
     

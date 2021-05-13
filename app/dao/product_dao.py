@@ -26,3 +26,24 @@ def save(product_csv):
     
     db.session.add(product)
     db.session.commit()
+    
+
+def search(filter, data_search):
+    search = '%{}%'.format(data_search)
+    
+    sql_str = f"""
+        select * 
+        from products
+        where {filter} like :search
+    """
+    
+    sql = db.text(sql_str)
+    
+    with db.engine.connect().begin():
+        result = db.engine.execute(
+            sql,
+            search=search
+        ).fetchall()
+        
+        return result
+    

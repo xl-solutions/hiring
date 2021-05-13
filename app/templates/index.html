@@ -18,11 +18,18 @@
 
 <div class="table-container">
     <div class="header">
-        <form action="/admin" method="GET">
+        <form action="/search" method="GET">
+            <select name="filter" id="" required>
+                <option value="0" selected disabled>Selecione o tipo de filtro</option>
+                <option value="manufacturer">Fabricante</option>
+                <option value="model">Modelo</option>
+                <option value="carrier_plan_type">Tipo de plano</option>
+            </select>
             <input
                 type="text"
-                name="filter"
-                placeholder="Filtrar por Nome"
+                name="data"
+                placeholder="Digite o que você busca"
+                required
                 value="{{filter}}">
                 <button type="submit" class="button">Filtrar</button>
         </form>

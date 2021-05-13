@@ -65,10 +65,9 @@ button:focus, input[type="button"]{
 
 form input, textarea, select{
     padding: 15px;
-    margin-top: 10px;
+    margin: auto;
     border: 1px solid #DDD;
     border-radius: 4px;
-    width: 100%;
     box-sizing: border-box;
     background-color: white;
 }
@@ -163,7 +162,6 @@ form .item{
 
 .table-container .header{
     display: flex;
-    margin: 0 auto;
     flex-direction: row;
     align-content: center;
     justify-content: flex-end;
@@ -183,7 +181,6 @@ form .item{
 
 .table-container .header form input{
     border: 1px solid #eee;
-    padding: 12px;
     box-sizing: border-box;
     margin-right: 10px;
 }
@@ -296,4 +293,9 @@ fieldset div:nth-child(2) a{
 fieldset div:nth-child(2) a:hover{
     color: white;
     text-decoration: none;
+}
+
+.container .table-container .header select{
+    width: 49%;
+    margin-right: 50px;
 }
