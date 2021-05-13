@@ -27,6 +27,6 @@ def import_file():
             
             return redirect(url_for('main.index'))
     except Exception:
-        flash('Arquivo com formato inválido. Tente novamente', 'danger')
+        flash('Arquivo não encontrado ou com formato inválido. Tente novamente!', 'danger')
         
     return render_template('import.html', form=form)
