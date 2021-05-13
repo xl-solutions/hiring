@@ -1,56 +1,42 @@
-# Teste para vaga de estagiário
+<h1 align="center">
+  <br>
+  <img src="https://cdn.pixabay.com/photo/2021/05/13/10/26/10-26-56-190_960_720.png" alt="Chão de Vento Logomarca" width="200">
+  <br>
+  Chão de vento
+  <br>
+  <h3>A expansão é buscar o ínicio das coisas!</h3>
+</h1>
+
+## 💻 Sobre o Chão de Vento
+
+Chão de vento é um projeto de criação de uma <a href="https://neilpatel.com/br/blog/thumbnail-o-que-e/">thumbnail<a>, é um projeto que rega os sonhos de quem quer se relembrar de momentos, o lema é `que se busque a expansão no início das coisas`.
+
+## 🧪 Stacks - Front-End
+
+- [ReactJS](https://reactjs.org/)
+- [NextJS](https://nextjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [FramerMotion](https://www.framer.com/motion/)
+
+## 🚀 Instruções
+
+```bash
+# Clonar este repositório
+$ git clone https://github.com/marcoscelio/my-market-portal.git
 
 
-# Como enviar sua proposta
+# Install dependencies
+$ npm install
+$ yarn i
 
-- Crie um fork deste repositório;
-- Implemente sua solução, fazendo commits da maneira que faria em um projeto profissional;
-- Substitua este README com um específico para sua aplicação, indicando como rodá-la, e como executar os testes (fique à vontade para inserir mais detalhes técnicos, caso deseje);
-- Abra um pull request para este repositório.
+# Comando para rodar o app em modo desenvolvimento
+$ yarn dev
+# ou
+$ npm run dev
 
-# Detalhamento
+# Comando para transpilar o projeto para javascript e construir o build do projeto que será executado por via do index.js
+$ yarn build
+#ou
+$npm run build
 
-## Exercício de front-end
-
-## Desafio I
-
-O objetivo é fazer uma aplicação em React para visualização de álbuns e fotos dos usuários. A aplicação deverá conter uma tela em que o usuário verá uma lista de usuários. Ao selecionar um usuário, deverá ser exibido os álbuns de fotos pertencentes ao mesmo. Cada álbum selecionado deverá exibir as fotos no formato de thumbnail. Use sua criativade para exibir a navegação da melhor forma possível para o usuário.
-
-O importante nesta parte do desafio é que saibamos como você lida com os componentes que formam as técnicas contemporâneas de desenvolvimento client-side, no que tange separação de responsabilidades, indentação de código, etc.
-
-As funcionalidades esperadas são:
-
-- Listar usuários;
-- Listar álbuns de cada usuário;
-- Visualizar as fotos de cada álbum no formato de thumbnail;
-
-## Documentação da API
-
-- API RESTful
-- URL: https://jsonplaceholder.typicode.com/guide/
-- Para fazer as requisições HTTP recomendamos o uso da biblioteca [axios](https://github.com/axios/axios).
-- Exemplo de chamada para buscar os álbuns de um usuário: https://jsonplaceholder.typicode.com/users/1/albums
-
-
-## Desafio II
-
-O objetivo é fazer uma tela em que o usuário verá uma lista de postagens.
-Cada postagem terá uma lista com seus referentes comentários.
-Um post pode ter ou não comentário, dependendo do que vier da API.
-O Usuário poderá editar e deletar um post.
-
-O importante nesta parte do desafio é que saibamos como você lida com os componentes que formam as técnicas contemporâneas de desenvolvimento client-side, no que tange separação de responsabilidades, indentação de código, etc.
-
-As funcionalidades esperadas são:
-
-- Listar postagens;
-- Listar comentários de cada postagem;
-- Edição e remoção de uma postagem;
-
-Obs: Pode utilizar apenas o usuário 1 para a implementação. Exemplo: https://jsonplaceholder.typicode.com/users/1/posts
-
-## Documentação da API
-
-- API RESTful
-- URL: https://jsonplaceholder.typicode.com/guide/
-- Para fazer as requisições HTTP recomendamos o uso da biblioteca [axios](https://github.com/axios/axios).
+```
