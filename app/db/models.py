@@ -11,3 +11,4 @@ class Product(db.Model):
     carrier_plan_type = db.Column('carrier_plan_type', db.String(100), nullable=False)
     quantity = db.Column('quantity', db.Integer, nullable=False)
     price = db.Column('price', db.Numeric(10,2))
+    created_at = db.Column('created_at', db.DateTime, default=datetime.utcnow)

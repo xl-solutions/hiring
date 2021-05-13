@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-header">
+    <h2>Importar arquivo</h2>
+</div>
+<form action="/import" method="post" enctype="multipart/form-data">
+    <div>
+        <fieldset>
+            <div class="item">
+                {{form.upload_csv(accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel")}}
+            </div>
+            <button class="button" type="submit">Enviar</button>
+        </fieldset>
+    </div>
+        
+    
+</form>
+{% endblock content %}

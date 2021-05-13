@@ -11,7 +11,7 @@
                 value="{{filter}}">
                 <button type="submit" class="button">Filtrar</button>
         </form>
-        <a class="button">Importar</a>
+        <a class="button" href="{{url_for('main.import_file')}}">Importar</a>
     </div>
 
     <table id="tbClient">
@@ -26,20 +26,28 @@
             </tr>
         </thead>
         <tbody>
-         
+         {% for product in products %}
                 <tr>
                     <td>
-                        cliente.nome
+                        {{product.manufacturer}}
                     </td>
                     <td>
-                        cliente.cpf
+                        {{product.model}}
                     </td>
                     <td>
-                        <span>cliente.email</span>
+                        {{product.color}}
                     </td>
-                    
+                    <td>
+                        {{product.carrier_plan_type}}
+                    </td>
+                    <td>
+                        {{product.quantity}}
+                    </td>
+                    <td>
+                        {{product.price}}
+                    </td>                   
                 </tr>
-            
+        {% endfor%}
         </tbody>
     </table>
 </div>
