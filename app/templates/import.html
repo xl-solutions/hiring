@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+
+
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<div class="content-header">
+    <h2>Importar arquivo</h2>
+</div>
+<form action="/import" method="post" enctype="multipart/form-data">
+    <div>
+        <fieldset>
+            <div class="item">
+                {{form.upload_csv(accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel")}}
+            </div>
+            <div>
+                <button class="button" type="submit">Enviar</button>
+                <a href="/" class="button">Voltar</a>
+            </div>
+            
+        </fieldset>
+    </div>
+        
+    
+</form>
+{% endblock content %}

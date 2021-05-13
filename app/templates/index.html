@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+
+
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div class="table-container">
+    <div class="header">
+        <form action="/search" method="GET">
+            <select name="filter" id="" required>
+                <option value="0" selected disabled>Selecione o tipo de filtro</option>
+                <option value="manufacturer">Fabricante</option>
+                <option value="model">Modelo</option>
+                <option value="carrier_plan_type">Tipo de plano</option>
+            </select>
+            <input
+                type="text"
+                name="data"
+                placeholder="Digite o que você busca"
+                required
+                value="{{filter}}">
+                <button type="submit" class="button">Filtrar</button>
+        </form>
+        <a class="button" href="{{url_for('main.import_file')}}">Importar</a>
+    </div>
+
+    <table id="tbClient">
+        <thead>
+            <tr>
+                <th>Fabricante</th>
+                <th>Modelo</th>
+                <th>Cor</th>
+                <th>Tipo de plano</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for product in products %}
+                <tr>
+                    <td>
+                        {{product.manufacturer}}
+                    </td>
+                    <td>
+                        {{product.model}}
+                    </td>
+                    <td>
+                        {{product.color}}
+                    </td>
+                    <td>
+                        {{product.carrier_plan_type}}
+                    </td>
+                    <td>
+                        {{product.quantity}}
+                    </td>
+                    <td>
+                        {{product.price}}
+                    </td>                   
+                </tr>
+        {% endfor%}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
