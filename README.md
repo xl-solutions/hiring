@@ -45,7 +45,7 @@ It is also possible to execute this project using [virtual development environme
 
 ### Database
 
-Required has the most updated version of [postgres] (https://www.postgresql.org/). Change the `SQLALCHEMY_DATABASE_URI` variable in the `settings.toml` configuration file
+Required has the most updated version of [postgres](https://www.postgresql.org/). Change the `SQLALCHEMY_DATABASE_URI` variable in the `settings.toml` configuration file
 
 ```toml
 SQLALCHEMY_DATABASE_URI = 'postgresql://docker:xlsolution@database/xlsolution'
