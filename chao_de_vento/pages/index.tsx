@@ -2,49 +2,47 @@ import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
-import Link from 'next/link'
-import Date from '../components/date'
+import { MainGrid, UserCard } from '../components'
+import { UserFileContext, UserFileProvider } from '../components/contexts/index'
+import { useContext, useEffect } from 'react'
 
-interface Posts {
-  allPostsData: [
-    {
-      id: number
-      date: string
-      title: string
-    }
-  ]
-}
+export default function Home() {
+  const { selectedEnum } = useContext(UserFileContext)
 
-export default function Home({ allPostsData }: Posts) {
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Layout>
+    <UserFileProvider>
+      <Layout home>
+        <Head>
+          <title>{siteTitle}</title>
+        </Head>
+        <section className={utilStyles.headingMd}>
+          <p>Chão de Vento</p>
+          <p>
+            Ajude-nos a contar a sua história à partir de fotos{' '}
+            <a href="https://github.com/gusdecante" target="_blank">
+              procure-nos no github
+            </a>
+            .
+          </p>
+        </section>
+        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+          {selectedEnum === 'users' && (
+            <h2 className={utilStyles.headingLg}>Usuários</h2>
+          )}
+          {selectedEnum === 'albums' && (
+            <h2 className={utilStyles.headingLg}>Albums</h2>
+          )}
+          {selectedEnum === 'photos' && (
+            <h2 className={utilStyles.headingLg}>Fotos</h2>
+          )}
+          <MainGrid>
+            <UserCard />
+            {/* {JSON.stringify(users, null, 2)} */}
+          </MainGrid>
+        </section>
+      </Layout>
+    </UserFileProvider>
+    //Dispatch<SetStateAction<undefined>>
   )
 }
 

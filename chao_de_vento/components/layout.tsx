@@ -17,6 +17,7 @@ export default function Layout({ children, home }: ChildrenProviderProps) {
   return (
     <div className={styles.container}>
       <Head>
+        <link rel="stylesheet" href="" />
         <link rel="icon" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
