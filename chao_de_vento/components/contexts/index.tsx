@@ -17,12 +17,17 @@ export function UserFileProvider({ children }: ChildrenProviderProps) {
   const [users, setUsers] = useState<[User]>()
   const [albuns, setAlbuns] = useState<[Album]>()
   const [photos, setPhotos] = useState<[Photo]>()
-  const [posts, setPosts] = useState<[Post]>()
+  const [posts, setPosts] = useState<[Post] | undefined>()
   const [comments, setComments] = useState<[Comment]>()
   const [selectedEnum, setSelectedEnum] = useState('users')
 
   async function deletePost(id: number) {
     const { status } = await axios.delete(`${api}/posts/${id}`)
+    if (posts) {
+      const newPost = posts.filter((post) => post.id !== id)
+      console.log(newPost)
+      setPosts(newPost)
+    }
     return status
     // console.log(data)
   }

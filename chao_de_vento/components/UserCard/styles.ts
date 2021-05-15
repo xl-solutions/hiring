@@ -3,7 +3,7 @@ import { colors } from '../../styles'
 
 export const ContainerCard = styled.div`
   width: 250px;
-  height: 500px;
+  height: 550px;
   padding: 0.5em;
   background: ${colors.firstBlue};
   cursor: pointer;

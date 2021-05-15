@@ -1,11 +1,21 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserFileContext } from '../contexts'
 import { ButtonAlbums, ContainerCard } from './styles'
 import { User } from '../../@types/types'
-import { AiOutlineCamera } from 'react-icons/ai'
+import {
+  AiOutlineEdit,
+  AiOutlineDelete,
+  AiOutlineComment,
+} from 'react-icons/ai'
+import { BsReverseLayoutTextSidebarReverse } from 'react-icons/bs'
 import { HiOutlinePhotograph } from 'react-icons/hi'
+import Carousel, { ModalGateway, Modal } from 'react-images'
 
 const UserCard = () => {
+  const [viewer, setViewer] = useState({
+    selected: 0,
+    visible: false,
+  })
   const {
     users,
     photos,
@@ -19,6 +29,10 @@ const UserCard = () => {
     callComments,
     deletePost,
   } = useContext(UserFileContext)
+  const files = []
+
+  const handleViewer = (selected: any) =>
+    setViewer({ selected, visible: !viewer.visible })
 
   return (
     <>
@@ -36,11 +50,11 @@ const UserCard = () => {
             <span>{`Nickname: ${user.website}`}</span>
             <div>
               <ButtonAlbums onClick={() => callAlbuns(user.id)}>
-                <AiOutlineCamera />
+                <HiOutlinePhotograph />
                 <span>Albuns</span>
               </ButtonAlbums>
               <ButtonAlbums onClick={() => callPosts(user.id)}>
-                <HiOutlinePhotograph />
+                <BsReverseLayoutTextSidebarReverse />
                 <span>Posts</span>
               </ButtonAlbums>
             </div>
@@ -63,14 +77,30 @@ const UserCard = () => {
         ))}
       {selectedEnum === 'photos' &&
         photos &&
-        photos.map((photo) => (
-          <ContainerCard key={`cv-${photo.albumId}-${photo.title}`}>
+        photos.map((photo, index) => (
+          <ContainerCard
+            key={`cv-${photo.albumId}-${photo.title}`}
+            onClick={(e) => {
+              e.preventDefault()
+              handleViewer(index)
+              // console.log(index)
+            }}
+          >
             <img src={photo.thumbnailUrl} alt="" />
             <span>{`ID: ${photo.id}`}</span>
             <span>{`Título: ${photo.title}`}</span>
+            {files.push({ source: photo.url, id: index })}
           </ContainerCard>
-          // <p>{photo.thumbnailUrl}</p>
         ))}
+      {files && (
+        <ModalGateway>
+          {viewer.visible && (
+            <Modal onClose={handleViewer}>
+              <Carousel views={files} currentIndex={viewer.selected} />
+            </Modal>
+          )}
+        </ModalGateway>
+      )}
       {selectedEnum === 'posts' &&
         posts &&
         posts.map((post) => (
@@ -80,15 +110,15 @@ const UserCard = () => {
             <span>{`Corpo: ${post.body}`}</span>
             <div>
               <ButtonAlbums onClick={() => deletePost(post.id)}>
-                <HiOutlinePhotograph />
+                <AiOutlineDelete />
                 <span>Remover</span>
               </ButtonAlbums>
               <ButtonAlbums>
-                <HiOutlinePhotograph />
+                <AiOutlineEdit />
                 <span>Editar</span>
               </ButtonAlbums>
               <ButtonAlbums onClick={() => callComments(post.id)}>
-                <HiOutlinePhotograph />
+                <AiOutlineComment />
                 <span>Comentários</span>
               </ButtonAlbums>
             </div>

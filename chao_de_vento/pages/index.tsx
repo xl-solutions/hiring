@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
-import { MainGrid, UserCard } from '../components'
+import { Footer, MainGrid, UserCard } from '../components'
 import { UserFileContext, UserFileProvider } from '../components/contexts/index'
 import { useContext, useEffect } from 'react'
 
@@ -41,6 +41,7 @@ export default function Home() {
           </MainGrid>
         </section>
       </Layout>
+      <Footer />
     </UserFileProvider>
     //Dispatch<SetStateAction<undefined>>
   )
