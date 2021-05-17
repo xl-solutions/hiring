@@ -17,6 +17,7 @@ const AlbumDetails = (props) => {
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
     const [photos, setPhotos] = useState();
+    const [albumTitle, setAlbumTitle] = useState('');
 
     const openLightbox = useCallback((event, { photo, index }) => {
         setCurrentImage(index);
@@ -36,7 +37,15 @@ const AlbumDetails = (props) => {
             })
             setPhotos(photos.data);
         }
+        async function getAlbumTitle(){
+            const title = await request({
+                url: `/albums/${props.match.params.album}`,
+                method: 'GET',
+            })
+            setAlbumTitle(title.data.title);
+        }
         getPhotos();
+        getAlbumTitle();
     }, []);
 
     var newPhotos = [];
@@ -47,7 +56,7 @@ const AlbumDetails = (props) => {
     return(
         <>
         <main className="main-content" id="list">
-            <h1 className="title">Thumbs</h1>
+            <h1 className="title">{albumTitle}</h1>
 
             <section>
                 <div>
