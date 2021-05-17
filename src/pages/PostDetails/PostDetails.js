@@ -54,7 +54,7 @@ const PostDetails = (props) => {
 
     const deletePost = () => {
         async function delPost(){
-            const att = await request({
+            await request({
                 url: `/posts/${props.match.params.post}`,
                 method: 'DELETE',
             })
@@ -80,7 +80,7 @@ const PostDetails = (props) => {
     
     var inputTitle,inputBody,button;
 
-    if(isEditing == true){
+    if(isEditing === true){
         inputTitle = <input 
                     type="text" 
                     defaultValue={post.title} 
@@ -122,7 +122,7 @@ const PostDetails = (props) => {
             <div className={styles['post-comments']}>
                 <ul>
                 {
-                    comments != undefined 
+                    comments !== undefined 
                     ?
                     comments.map(comment => (
                         <CommentItem item={comment} key={comment.id} />
