@@ -1,3 +1,39 @@
+@import "../../theme/_theme"
+
 .main-header
-    .header-nav
-        .nav-button
+    background-color: $header-bgc
+    padding: map-get($spacing, "m") map-get($spacing, "lm")
+    display: flex
+    justify-content: space-between
+    align-items: center
+    box-shadow: 0px 1px 1px 0px $shadow
+    z-index: 999
+    @media screen and (min-width: 1200px)
+        // max-width: 1080px
+        // margin: auto
+
+    .logo
+        width: 122px
+        height: 80px
+
+    nav
+        flex-grow: 1
+        margin-left: map-get($spacing, "m")
+        a
+            padding: map-get($spacing, "m")
+            transition: 300ms all
+            font: 15px
+            &:hover
+                color: $blue
+
+    .person-info
+        font-size: 12px
+    @media screen and ( min-width: 768px )
+        display: flex
+        gap: map-get($spacing, "s")
+    span
+        display: block
+        text-align: right
+        padding-bottom: map-get($spacing,"s")
+    .bold
+        font-weight: 700
