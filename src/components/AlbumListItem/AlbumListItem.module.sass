@@ -1,0 +1,15 @@
+@import "../../theme/_theme"
+
+.album-list-item
+    display: flex
+    align-items: center
+    justify-content: start
+    border-bottom: 1px solid $shadow
+    
+    a
+        flex-grow: 1
+        padding: map-get($spacing, "m")
+        transition: 300ms all
+        font: 15px
+        &:hover
+            color: $blue
