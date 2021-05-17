@@ -81,7 +81,7 @@ export interface UserFileContextData {
   users?: [User]
   albuns?: [Album]
   photos?: [Photo]
-  posts?: [Post]
+  posts?: Post[]
   comments?: [Comment]
   selectedEnum: string
 }

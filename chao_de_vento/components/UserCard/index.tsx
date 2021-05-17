@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { UserFileContext } from '../contexts'
 import { ButtonAlbums, ContainerCard, InputTitle, InputBody } from './styles'
 import { User } from '../../@types/types'
@@ -10,7 +10,6 @@ import {
 } from 'react-icons/ai'
 import { BsReverseLayoutTextSidebarReverse } from 'react-icons/bs'
 import { HiOutlinePhotograph } from 'react-icons/hi'
-import Carousel, { ModalGateway, Modal } from 'react-images'
 
 const UserCard = () => {
   const [edit, setEdit] = useState(false)
@@ -31,7 +30,6 @@ const UserCard = () => {
     callComments,
     deletePost,
   } = useContext(UserFileContext)
-  const files = []
 
   const handleViewer = (selected: any) =>
     setViewer({ selected, visible: !viewer.visible })
@@ -91,18 +89,8 @@ const UserCard = () => {
             <img src={photo.thumbnailUrl} alt="" />
             <span>{`ID: ${photo.id}`}</span>
             <span>{`Título: ${photo.title}`}</span>
-            {files.push({ source: photo.url, id: index })}
           </ContainerCard>
         ))}
-      {files && (
-        <ModalGateway>
-          {viewer.visible && (
-            <Modal onClose={handleViewer}>
-              <Carousel views={files} currentIndex={viewer.selected} />
-            </Modal>
-          )}
-        </ModalGateway>
-      )}
       {selectedEnum === 'posts' &&
         posts &&
         posts.map((post) => (
