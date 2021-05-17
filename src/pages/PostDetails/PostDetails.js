@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './PostDetails.module.sass';
 
 import request from '../../utils/request';
-import CommentItem from '../../components/CommentItem';
-import { Redirect } from 'react-router';
+import { CommentItem } from '../../components/CommentItem';
+
 
 const PostDetails = (props) => {
     // this.props.match.params.user;
@@ -120,6 +120,7 @@ const PostDetails = (props) => {
                 {button}
             </section>
             <div className={styles['post-comments']}>
+                <h3>Comentários:</h3>
                 <ul>
                 {
                     comments !== undefined 
