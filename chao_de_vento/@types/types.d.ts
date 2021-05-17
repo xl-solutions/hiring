@@ -77,6 +77,7 @@ export interface UserFileContextData {
   callPosts: (id: number) => Promise<void>
   callComments: (id: number) => Promise<void>
   deletePost: (id: number) => Promise<number>
+  callSelectedEnum: (enumSelected: string) => void
   users?: [User]
   albuns?: [Album]
   photos?: [Photo]

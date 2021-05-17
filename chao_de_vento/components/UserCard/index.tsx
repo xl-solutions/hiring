@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserFileContext } from '../contexts'
-import { ButtonAlbums, ContainerCard } from './styles'
+import { ButtonAlbums, ContainerCard, InputTitle, InputBody } from './styles'
 import { User } from '../../@types/types'
 import {
   AiOutlineEdit,
   AiOutlineDelete,
   AiOutlineComment,
+  AiOutlineSave,
 } from 'react-icons/ai'
 import { BsReverseLayoutTextSidebarReverse } from 'react-icons/bs'
 import { HiOutlinePhotograph } from 'react-icons/hi'
 import Carousel, { ModalGateway, Modal } from 'react-images'
 
 const UserCard = () => {
+  const [edit, setEdit] = useState(false)
   const [viewer, setViewer] = useState({
     selected: 0,
     visible: false,
@@ -60,7 +62,7 @@ const UserCard = () => {
             </div>
           </ContainerCard>
         ))}
-      {selectedEnum === 'albuns' &&
+      {selectedEnum === 'albums' &&
         albuns &&
         albuns.map((album) => (
           <ContainerCard key={`cv-${album.id}-${album.title}`}>
@@ -106,17 +108,27 @@ const UserCard = () => {
         posts.map((post) => (
           <ContainerCard key={`cv-${post.id}-${post.title}`}>
             <span>{`ID: ${post.id}`}</span>
-            <span>{`Título${post.title}`}</span>
-            <span>{`Corpo: ${post.body}`}</span>
+            {!edit && <span>{`Título${post.title}`}</span>}
+            {!edit && <span>{`Corpo: ${post.body}`}</span>}
+            {edit && <InputTitle value={post.title}></InputTitle>}
+            {edit && <InputBody value={post.body}></InputBody>}
             <div>
               <ButtonAlbums onClick={() => deletePost(post.id)}>
                 <AiOutlineDelete />
                 <span>Remover</span>
               </ButtonAlbums>
-              <ButtonAlbums>
-                <AiOutlineEdit />
-                <span>Editar</span>
-              </ButtonAlbums>
+              {!edit && (
+                <ButtonAlbums onClick={() => setEdit(true)}>
+                  <AiOutlineEdit />
+                  <span>Editar</span>
+                </ButtonAlbums>
+              )}
+              {edit && (
+                <ButtonAlbums onClick={() => setEdit(false)}>
+                  <AiOutlineSave />
+                  <span>Salvar</span>
+                </ButtonAlbums>
+              )}
               <ButtonAlbums onClick={() => callComments(post.id)}>
                 <AiOutlineComment />
                 <span>Comentários</span>

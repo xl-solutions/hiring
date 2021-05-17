@@ -21,6 +21,16 @@ export function UserFileProvider({ children }: ChildrenProviderProps) {
   const [comments, setComments] = useState<[Comment]>()
   const [selectedEnum, setSelectedEnum] = useState('users')
 
+  function callSelectedEnum(enumSelected: string = 'users') {
+    setSelectedEnum(enumSelected)
+  }
+
+  async function editPost(id: number) {
+    const { data } = await axios.put(`${api}/posts/${id}`, {})
+    // console.log()
+    // setPosts(data)
+  }
+
   async function deletePost(id: number) {
     const { status } = await axios.delete(`${api}/posts/${id}`)
     if (posts) {
@@ -54,7 +64,7 @@ export function UserFileProvider({ children }: ChildrenProviderProps) {
   async function callAlbuns(id: number) {
     const { data } = await axios.get(`${api}/users/${id}/albums`)
     setAlbuns(data)
-    setSelectedEnum('albuns')
+    setSelectedEnum('albums')
   }
 
   async function callUsers() {
@@ -82,6 +92,7 @@ export function UserFileProvider({ children }: ChildrenProviderProps) {
         comments,
         callComments,
         deletePost,
+        callSelectedEnum,
       }}
     >
       {children}

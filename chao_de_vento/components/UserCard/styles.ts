@@ -33,3 +33,11 @@ export const ButtonAlbums = styled.button`
   background: ${colors.pink};
   cursor: pointer;
 `
+export const InputTitle = styled.textarea`
+  width: 100%;
+  height: 10%;
+`
+export const InputBody = styled.textarea`
+  width: 100%;
+  height: 40%;
+`

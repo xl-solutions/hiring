@@ -2,13 +2,10 @@ import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
-import { Footer, MainGrid, UserCard } from '../components'
-import { UserFileContext, UserFileProvider } from '../components/contexts/index'
-import { useContext, useEffect } from 'react'
+import { Footer, MainGrid, UserCard, Title } from '../components'
+import { UserFileProvider } from '../components/contexts/index'
 
 export default function Home() {
-  const { selectedEnum } = useContext(UserFileContext)
-
   return (
     <UserFileProvider>
       <Layout home>
@@ -26,15 +23,7 @@ export default function Home() {
           </p>
         </section>
         <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-          {selectedEnum === 'users' && (
-            <h2 className={utilStyles.headingLg}>Usuários</h2>
-          )}
-          {selectedEnum === 'albums' && (
-            <h2 className={utilStyles.headingLg}>Albums</h2>
-          )}
-          {selectedEnum === 'photos' && (
-            <h2 className={utilStyles.headingLg}>Fotos</h2>
-          )}
+          <Title />
           <MainGrid>
             <UserCard />
             {/* {JSON.stringify(users, null, 2)} */}
