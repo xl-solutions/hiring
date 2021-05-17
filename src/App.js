@@ -8,6 +8,8 @@ import { Header } from './components/Header';
 import { UserList } from './pages/UserList';
 import { AlbumList } from './pages/AlbumList';
 import { AlbumDetails } from './pages/AlbumDetails';
+import { PostList } from './pages/PostList';
+import { PostDetails } from './pages/PostDetails';
 
 const App = () => {
   return(
@@ -22,6 +24,12 @@ const App = () => {
         </Route>
 
         <Route exact path="/albums/:user/:album" component={(props) => (<AlbumDetails {...props} />)}>
+        </Route>
+
+        <Route exact path="/posts/:id" component={PostList}>
+        </Route>
+
+        <Route exact path="/posts/:user/:post" component={(props) => (<PostDetails {...props} />)}>
         </Route>
 
         <Redirect to="/" />
