@@ -1,56 +1,31 @@
-# Teste para vaga de estagiário
+# Teste Vaga Front-End React
 
+## Como rodar
 
-# Como enviar sua proposta
+`npm install`
 
-- Crie um fork deste repositório;
-- Implemente sua solução, fazendo commits da maneira que faria em um projeto profissional;
-- Substitua este README com um específico para sua aplicação, indicando como rodá-la, e como executar os testes (fique à vontade para inserir mais detalhes técnicos, caso deseje);
-- Abra um pull request para este repositório.
+Insira este comando no terminal para instalar as dependencias do projeto. É necessário ter o npm instalado em sua máquina.
+
+`npm start`
+
+Logo depois, insira este comando para rodar a aplicação em modo de desenvolvimento.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 # Detalhamento
 
-## Exercício de front-end
+## Desafio I e II
 
-## Desafio I
+A parte do desafio I consistia em:
 
-O objetivo é fazer uma aplicação em React para visualização de álbuns e fotos dos usuários. A aplicação deverá conter uma tela em que o usuário verá uma lista de usuários. Ao selecionar um usuário, deverá ser exibido os álbuns de fotos pertencentes ao mesmo. Cada álbum selecionado deverá exibir as fotos no formato de thumbnail. Use sua criativade para exibir a navegação da melhor forma possível para o usuário.
+- Listar usuários; (1)
+- Listar álbuns de cada usuário; (2)
+- Visualizar as fotos de cada álbum no formato de thumbnail; (3)
 
-O importante nesta parte do desafio é que saibamos como você lida com os componentes que formam as técnicas contemporâneas de desenvolvimento client-side, no que tange separação de responsabilidades, indentação de código, etc.
+A parte do desafio II consistia em:
 
-As funcionalidades esperadas são:
+- Listar postagens; (4)
+- Listar comentários de cada postagem; (5)
+- Edição e remoção de uma postagem; (6)
 
-- Listar usuários;
-- Listar álbuns de cada usuário;
-- Visualizar as fotos de cada álbum no formato de thumbnail;
+A listagem de usuário(1) foi desenvolvida na home page da aplicação, onde se tem a opção de escolher os albums(2) ou posts(4) de cada usuário. Ao escolher albums, irá para uma página onde os albums vinculados aquele usuário serão listados (2), ao escolher algum dos albums, irá para uma página onde será exibido as fotos do album (3). Se escolher os posts na home page, irá para uma página de listagem dos posts do usuário(4), e ao adentrar em algum post, irá para página de post, onde poderá editar/remover(5) o post e ver os comentários(6).
 
-## Documentação da API
-
-- API RESTful
-- URL: https://jsonplaceholder.typicode.com/guide/
-- Para fazer as requisições HTTP recomendamos o uso da biblioteca [axios](https://github.com/axios/axios).
-- Exemplo de chamada para buscar os álbuns de um usuário: https://jsonplaceholder.typicode.com/users/1/albums
-
-
-## Desafio II
-
-O objetivo é fazer uma tela em que o usuário verá uma lista de postagens.
-Cada postagem terá uma lista com seus referentes comentários.
-Um post pode ter ou não comentário, dependendo do que vier da API.
-O Usuário poderá editar e deletar um post.
-
-O importante nesta parte do desafio é que saibamos como você lida com os componentes que formam as técnicas contemporâneas de desenvolvimento client-side, no que tange separação de responsabilidades, indentação de código, etc.
-
-As funcionalidades esperadas são:
-
-- Listar postagens;
-- Listar comentários de cada postagem;
-- Edição e remoção de uma postagem;
-
-Obs: Pode utilizar apenas o usuário 1 para a implementação. Exemplo: https://jsonplaceholder.typicode.com/users/1/posts
-
-## Documentação da API
-
-- API RESTful
-- URL: https://jsonplaceholder.typicode.com/guide/
-- Para fazer as requisições HTTP recomendamos o uso da biblioteca [axios](https://github.com/axios/axios).
