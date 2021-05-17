@@ -19,8 +19,6 @@ class UserList extends Component {
             method: 'GET',
         })
 
-        console.log(response.data);
-
         this.setState({users: response.data});
     };
 

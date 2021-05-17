@@ -19,8 +19,6 @@ class AlbumList extends Component {
             method: 'GET',
         })
 
-        console.log(response.data);
-
         this.setState({albums: response.data});
     };
 
@@ -29,7 +27,7 @@ class AlbumList extends Component {
         return(
             <>
             <main className="main-content" id="list">
-                <h1 className="title">Lista de Usuários</h1>
+                <h1 className="title">Lista de Albums</h1>
 
                 <section>
                     <ul className={styles['album-list']}>

@@ -19,8 +19,6 @@ class PostList extends Component {
             method: 'GET',
         })
 
-        console.log(response.data);
-
         this.setState({posts: response.data});
     };
 
@@ -29,7 +27,7 @@ class PostList extends Component {
         return(
             <>
             <main className="main-content" id="list">
-                <h1 className="title">Posts</h1>
+                <h1 className="title">Lista de Posts</h1>
 
                 <section>
                     <ul className={styles['post-list']}>

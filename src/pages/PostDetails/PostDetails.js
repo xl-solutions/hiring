@@ -36,7 +36,6 @@ const PostDetails = (props) => {
     }
 
     const editPostSubmit = () => {
-        console.log(titleText);
         async function attPost(){
             const att = await request({
                 url: `/posts/${props.match.params.post}`,
