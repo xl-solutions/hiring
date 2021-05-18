@@ -93,7 +93,7 @@ const UserCard = () => {
         ))}
       {selectedEnum === 'posts' &&
         posts &&
-        posts.map((post) => (
+        posts.map((post, index) => (
           <ContainerCard key={`cv-${post.id}-${post.title}`}>
             <span>{`ID: ${post.id}`}</span>
             {!edit && <span>{`Título${post.title}`}</span>}
