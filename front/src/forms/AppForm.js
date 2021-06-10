@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Formik, Form as FormikForm } from 'formik'
+import { Formik, Form as FormikForm, ErrorMessage } from 'formik'
 
 class AppForm extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class AppForm extends Component {
       <Formik
         initialValues={this.props.initialValues}
         onSubmit={this.props.handleSubmit}
+        validationSchema={this.props.validationSchema}
       >
         {() => <FormikForm>{this.props.children}</FormikForm>}
       </Formik>
