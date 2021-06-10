@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+  background-color: rgb(231, 231, 231);
+  height: '100vh';
+  min-height: '100vh';
+}
+
+body,
+html {
+  background-color: rgb(231, 231, 231);
+  height: '100vh';
+  margin: 0;
+}
+
+.textInput {
+  width: 80%;
+  background-color: rgb(233, 233, 233);
+  border-radius: 8px;
+  float: left;
+  align-items: center;
+}
