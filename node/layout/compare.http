@@ -1,0 +1,12 @@
+### Local
+@host = http://localhost:8080
+
+@stock = IBM
+
+### Run
+POST {{host}}/stocks/{{stock}}/compare
+Content-Type: application/json
+
+{
+    "stocks":["IBM","TTT"]
+}
