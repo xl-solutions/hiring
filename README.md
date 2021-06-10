@@ -50,4 +50,6 @@ Payload:
 
 If you prefer, there is a folder inside the `node` folder called `layout`, which using the `Visual Stdio Code REST client extension`, it is possible to test the API endpoints if it is running.
 
+If you prefer to change the ports, both can be changed in the `.env` in their respective folders, but don't forget to change the `config.json` file in the `front/src/` folder where the API is consumed.
+
 # Detalhamento
