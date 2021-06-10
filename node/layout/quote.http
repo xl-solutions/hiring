@@ -1,5 +1,5 @@
 ### Local
-@host = http://localhost:8080
+@host = http://localhost:3002
 
 @stock = IBM
 ### Run
