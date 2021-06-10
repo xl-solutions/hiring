@@ -20,15 +20,15 @@ To run the `front-end` only, run the `npm start-app` command in the root folder
 
 # Tests
 
-There are tests for both the frontend and the backend, and to run them just run the command `npm test`
+There are tests for both the frontend and the backend, and to run them just run the commands bellow
 
 ## Back-end
 
-To run the `back-end` tests only, run the `npm test-api` command in the root folder
+To run the `back-end` tests, run the `npm run test-api` command in the root folder
 
 ## Front-end
 
-To run the `front-end` test only, run the `npm test-app` command in the root folder
+To run the `front-end` test, run the `npm run test-app` command in the root folder
 
 # Available endpoints (API)
 

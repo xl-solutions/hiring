@@ -6,8 +6,8 @@
     "scripts": {
         "start-api": "cd ./node && npm install && npm start",
         "start-app": "cd ./front && npm install && npm start",
-        "test-api": "cd ./node && npm install && npm start",
-        "test-app": "cd ./front && npm install && npm start",
+        "test-api": "cd ./node && npm install && npm test",
+        "test-app": "cd ./front && npm install && npm test",
         "start": "npm install concurrently && concurrently \"npm run start-api\" \"npm run start-app\""
     },
     "author": "Marco Antonio",
