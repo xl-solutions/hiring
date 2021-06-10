@@ -1,13 +1,53 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+# System Requirements
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+You must be able to run `npm` commands on the machine.
+In both applications(front and node), you need to create a `.env` file, which should be based on `env-sample.env` available in both the `front` and `node` folders.
 
-Choose a language to which you are interested and follow the instructions:
+# How to run
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
-- [HTML/CSS/JS](front/README.md) [(English Version)](front/README_ENGLISH.md)
+Run the `npm start` command on the root to launch both applications. This command will install some project dependencies, which may take a while.
+By default, the ports are as follows:
+Front-end: `localhost:3001`
+Back-end: `localhost:3002`
+
+## Back-end
+
+To run the `back-end` only, run the `npm start-api` command in the root folder
+
+## Front-end
+
+To run the `front-end` only, run the `npm start-app` command in the root folder
+
+# Tests
+
+There are tests for both the frontend and the backend, and to run them just run the command `npm test`
+
+## Back-end
+
+To run the `back-end` tests only, run the `npm test-api` command in the root folder
+
+## Front-end
+
+To run the `front-end` test only, run the `npm test-app` command in the root folder
+
+# Available endpoints (API)
+
+`GET /stocks/:stock_name/quote` - GET the most recent Quote for a given stock
+
+`GET /stocks/:stock_name/history?from=<string>&to=<string>` - GET the price History for a given stock and date interval
+
+`POST /stocks/:stock_name/compare` - POST to compare the principal stock with one or more stocks
+
+Payload:
+
+```js
+{
+  "stocks": [<string>, <string>, ...]
+}
+```
+
+# Extras
+
+If you prefer, there is a folder inside the `node` folder called `layout`, which using the `Visual Stdio Code REST client extension`, it is possible to test the API endpoints if it is running.
+
+# Detalhamento

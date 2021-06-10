@@ -390,9 +390,6 @@ class App extends Component {
     let ret
     this.setState({ spinner: true })
     try {
-      console.log(
-        `/stocks/${this.state.stockGains}/gains?purchasedAmount=${values.quantity}&purchasedAt=${values.purchasedAt}`
-      )
       ret = await http.get(
         `/stocks/${this.state.stockGains}/gains?purchasedAmount=${values.quantity}&purchasedAt=${values.purchasedAt}`
       )
@@ -413,9 +410,7 @@ class App extends Component {
 
       this.setState({ gains })
       this.setState({ showGains: false, history: [] })
-      console.log(ret.data)
     } catch (e) {
-      console.log(e)
       console.log('Problem changing gains projection')
     }
     this.setState({ spinner: false })

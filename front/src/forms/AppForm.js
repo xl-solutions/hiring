@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Formik, Form as FormikForm, ErrorMessage } from 'formik'
+import { Formik, Form as FormikForm } from 'formik'
 
 class AppForm extends Component {
   constructor(props) {
