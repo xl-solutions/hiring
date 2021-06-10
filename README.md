@@ -1,7 +1,7 @@
 # System Requirements
 
 You must be able to run `npm` commands on the machine.
-In both applications(front and node), you need to create a `.env` file, which should be based on `env-sample.env` available in both the `front` and `node` folders.
+In both folders (front and node), you need to create a `.env` file, which should be based on `env-sample.env` available in both the `front` and `node` folders.
 
 # How to run
 
