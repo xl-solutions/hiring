@@ -1,0 +1,18 @@
+{
+    "name": "stock-consulter",
+    "version": "1.0.0",
+    "description": "Combination of front-end with back-end to query stocks",
+    "main": "index.js",
+    "scripts": {
+        "start-api": "cd ./node && npm install && npm start",
+        "start-app": "cd ./front && npm install && npm start",
+        "test-api": "cd ./node && npm install && npm test",
+        "test-app": "cd ./front && npm install && npm test",
+        "start": "npm install concurrently && concurrently \"npm run start-api\" \"npm run start-app\"",
+        "build":"cd ./front && npm run build"
+    },
+    "author": "Marco Antonio",
+    "dependencies": {
+        "concurrently": "^6.2.0"
+    }
+}

@@ -1,0 +1,9 @@
+### Local
+@host = http://localhost:3002
+
+@stock = IBM
+@init = 2021-05-05
+@fim = 2021-05-10
+### Run
+GET {{host}}/stocks/{{stock}}/history?from={{init}}&to={{fim}}
+Content-Type: application/json

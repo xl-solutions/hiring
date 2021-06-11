@@ -1,0 +1,36 @@
+{
+	"env": {
+		"es6": true,
+		"node": true
+	},
+	"parserOptions": {
+        "ecmaVersion": 8,
+        "ecmaFeatures": {
+          "experimentalObjectRestSpread": true
+        }
+	},
+	"rules": {
+		"object-shorthand": [
+			"warn"
+		],
+		"quotes": [
+			"warn",
+			"single"
+		],
+		"no-console": [
+			"error"
+		],
+        "indent": [
+            "error",
+            4
+        ],
+		"linebreak-style": [
+			0
+		],
+		"max-len": [
+			0,
+			120,
+			4
+		]
+	}
+}

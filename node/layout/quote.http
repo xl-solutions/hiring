@@ -1,0 +1,7 @@
+### Local
+@host = http://localhost:3002
+
+@stock = IBM
+### Run
+GET {{host}}/stocks/{{stock}}/quote
+Content-Type: application/json

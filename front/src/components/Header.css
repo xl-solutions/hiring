@@ -1,0 +1,16 @@
+.app-logo {
+  width: 100%;
+  height: 200px;
+}
+
+.headerBackground {
+  background-color: rgb(34, 61, 83);
+  height: 140px;
+}
+
+.headerTitle {
+  float: left;
+  padding-left: 40px;
+  padding-top: 30px;
+  color: rgb(255, 255, 255);
+}

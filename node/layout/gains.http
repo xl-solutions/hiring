@@ -1,0 +1,9 @@
+### Local
+@host = http://localhost:3002
+
+@stock = IBM
+@amount = 5
+@fim = 2020-05-12
+### Run
+GET {{host}}/stocks/{{stock}}/gains?purchasedAmount={{amount}}&purchasedAt={{fim}}
+Content-Type: application/json
