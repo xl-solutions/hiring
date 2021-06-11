@@ -2,9 +2,11 @@
 
 You must be able to run `npm` commands on the machine.
 In both folders (front and node), you need to create a `.env` file, which should be based on `env-sample.env` available in both the `front` and `node` folders.
+Read extras!!
 
 # How to run
 
+Run `npm install`
 Run the `npm start` command on the root to launch both applications. This command will install some project dependencies, which may take a while.
 By default, the ports are as follows:
 Front-end: `localhost:3001`
@@ -52,4 +54,5 @@ If you prefer, there is a folder inside the `node` folder called `layout`, which
 
 If you prefer to change the ports, both can be changed in the `.env` in their respective folders, but don't forget to change the `config.json` file in the `front/src/` folder where the API is consumed.
 
-# Detalhamento
+Due to some Alpha API limitations, the API key have a limit of 500 queries each day, so, in case of overuse of the API, please consider creating your own API key on the site bellow:
+`https://www.alphavantage.co/` and change on the ./node/.env
