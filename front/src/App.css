@@ -19,3 +19,9 @@ html {
   float: left;
   align-items: center;
 }
+
+.borda {
+  border: 2px solid;
+  padding-top: 10px;
+  border-color: rgb(56, 52, 61);
+}

@@ -495,7 +495,7 @@ class App extends Component {
           color='primary'
         />
         {this.state.theme == 'dark' ? <FaMoon /> : <FaSun />}
-        <Container>
+        <Container className='borda'>
           {this.AppAlert()}
 
           <AppForm
