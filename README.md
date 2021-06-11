@@ -7,7 +7,7 @@ Read extras!!
 # How to run
 
 Run `npm install`
-Run the `npm start` command on the root to launch both applications. This command will install some project dependencies, which may take a while.
+Run the `npm run start` command on the root to launch both applications. This command will install some project dependencies, which may take a while.
 By default, the ports are as follows:
 Front-end: `localhost:3001`
 Back-end: `localhost:3002`
