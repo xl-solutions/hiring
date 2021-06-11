@@ -32,6 +32,10 @@ To run the `back-end` tests, run the `npm run test-api` command in the root fold
 
 To run the `front-end` test, run the `npm run test-app` command in the root folder
 
+# How to build
+
+To build, run `run npm build` on the root folder, than you can publish the application using que `./front/build` folder
+
 # Available endpoints (API)
 
 `GET /stocks/:stock_name/quote` - GET the most recent Quote for a given stock
