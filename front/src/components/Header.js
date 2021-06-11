@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import logo from '../stocks.jpg'
 import './Header.css'
