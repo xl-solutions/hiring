@@ -1,4 +1,4 @@
-export const transformSymbolSearch = data => {
+export const transformSymbolSearch = (data = {}) => {
   return Array.isArray(data)
     ? data.map(element => {
         return {
@@ -18,22 +18,23 @@ export const transformSymbolSearch = data => {
       };
 };
 
-export const transformGlobalQuote = data => ({
-  symbol: data['01. symbol'],
-  open: data['02. open'],
-  high: data['03. high'],
-  low: data['04. low'],
-  price: data['05. price'],
-  volume: data['06. volume'],
-  latestTradingDay: data['07. latest trading day'],
-  previousClose: data['08. previous close'],
-  change: data['09. change'],
-  changePercent: data['10. change percent'],
-});
+export const transformGlobalQuote = (data = {}) => {
+  return {
+    symbol: data['01. symbol'],
+    open: data['02. open'],
+    high: data['03. high'],
+    low: data['04. low'],
+    price: data['05. price'],
+    volume: data['06. volume'],
+    latestTradingDay: data['07. latest trading day'],
+    previousClose: data['08. previous close'],
+    change: data['09. change'],
+    changePercent: data['10. change percent'],
+  };
+};
 
-export const transformSeries = data => {
-  console.log('transform', data);
-  return Object.keys(data).map(element => {
+export const transformSeries = (data = {}) => {
+  let transformedData = Object.keys(data).map(element => {
     return {
       date: element,
       open: data[element]['1. open'],
@@ -43,4 +44,19 @@ export const transformSeries = data => {
       volume: data[element]['5. volume'],
     };
   });
+  return transformedData;
+};
+
+export const transformDailyAdjustedSeries = (data = {}) => {
+  let transformedData = Object.keys(data).map(element => {
+    return {
+      date: element,
+      open: data[element]['1. open'],
+      high: data[element]['2. high'],
+      low: data[element]['3. low'],
+      close: data[element]['4. close'],
+      volume: data[element]['6. volume'],
+    };
+  });
+  return transformedData;
 };

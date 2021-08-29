@@ -3,6 +3,7 @@ import {
   transformGlobalQuote,
   transformSeries,
   transformSymbolSearch,
+  transformDailyAdjustedSeries,
 } from '../utils/transformer';
 import config from '../config/config.json';
 
@@ -37,11 +38,27 @@ export const getIntradaySeries = async symbol => {
       interval: '5min',
     },
   });
-  console.log(request);
   if (request.data['Error Message'] !== undefined) {
     return {errorMessage: 'This stock has no intraday data...'};
   } else {
     return transformSeries(request.data['Time Series (5min)']);
+  }
+};
+
+export const getDailyAdjustedSeries = async symbol => {
+  let request = await axios.get(config.apiUrl, {
+    params: {
+      function: 'TIME_SERIES_DAILY_ADJUSTED',
+      symbol,
+      apikey: config.apiKey,
+      outputsize: 'full',
+    },
+  });
+
+  if (request.data['Error Message'] !== undefined) {
+    return {errorMessage: 'This stock has no daily adjusted data...'};
+  } else {
+    return transformDailyAdjustedSeries(request.data['Time Series (Daily)']);
   }
 };
 

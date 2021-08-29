@@ -5,13 +5,18 @@ import {
   View,
   TouchableOpacity,
   FlatList,
+  ToastAndroid,
 } from 'react-native';
 
 import {getLastQuote, searchStock} from '../wrapper/api';
-import {Card, Input} from 'react-native-elements';
+import {Button, Input, Divider} from 'react-native-elements';
 import StockInformationDashboard from '../components/StockInformationDashboard';
+import {PortfolioContext} from '../services/portfolioContext';
+import styles from './styles';
 
 export class Dashboard extends Component {
+  static contextType = PortfolioContext;
+
   state = {
     stockSelected: undefined,
     searchText: '',
@@ -44,19 +49,16 @@ export class Dashboard extends Component {
       isFetchingQuoteInformation: true,
     });
     let quoteData = await getLastQuote(stock.symbol);
-    console.log('quoteData', quoteData);
     this.setState({
       isFetchingQuoteInformation: false,
       quoteInformation: quoteData,
     });
-
-    console.log(quoteData);
   };
 
   renderListItem = ({item}) => (
     <TouchableOpacity
       key={item.name}
-      style={{margin: 5}}
+      style={styles.touchableListItem}
       onPress={() => {
         this.setState({
           searchableStocks: [],
@@ -65,9 +67,9 @@ export class Dashboard extends Component {
         });
         this.getStockInformation(item);
       }}>
-      <View style={{flexDirection: 'row'}}>
-        <Text style={{fontWeight: 'bold', marginBottom: 2}}>{item.symbol}</Text>
-        <Text style={{fontStyle: 'italic', marginBottom: 2}}>
+      <View style={styles.directionRow}>
+        <Text style={styles.detailSearchBold}>{item.symbol}</Text>
+        <Text style={styles.detailSearchItalic}>
           {` - Currency: ${item.currency} `}
         </Text>
       </View>
@@ -78,7 +80,7 @@ export class Dashboard extends Component {
 
   render() {
     return (
-      <View style={{marginHorizontal: 5, marginVertical: 10}}>
+      <View style={styles.container}>
         <Input
           value={this.state.searchText}
           onChangeText={text => {
@@ -88,28 +90,28 @@ export class Dashboard extends Component {
           }}
           placeholder={'Search a stock'}
         />
-        <View style={{position: 'absolute'}}>
+        <View style={styles.dropdownMainView}>
           {this.state.loading ? (
             <ActivityIndicator size={16} color={'blue'} />
           ) : this.state.searchableStocks.length > 0 ? (
-            <FlatList
-              data={this.state.searchableStocks}
-              renderItem={this.renderListItem}
-              keyExtractor={item => item.id}
-              style={{
-                height: 200,
-                flexGrow: 0,
-                zIndex: 2,
-              }}
-            />
+            <View style={styles.dropdownInnerView}>
+              <FlatList
+                data={this.state.searchableStocks}
+                renderItem={this.renderListItem}
+                keyExtractor={item => item.symbol}
+                style={styles.flatListStyle}
+              />
+            </View>
           ) : undefined}
         </View>
         {this.state.isFetchingQuoteInformation ? (
           <ActivityIndicator size={24} color={'blue'} />
         ) : this.state.quoteInformation !== undefined ? (
-          <View style={{zIndex: 1}}>
-            <View style={{backgroundColor: 'white'}}>
-              <Card.Title>{this.state.quoteInformation.symbol}</Card.Title>
+          <View style={styles.zIndex1}>
+            <Text style={styles.separatorInformations}>Informations</Text>
+            <Divider style={styles.dividerMargin} />
+            <View style={styles.viewCard}>
+              <Text>Symbol: {this.state.quoteInformation.symbol}</Text>
               <Text>Open: {this.state.quoteInformation.open}</Text>
               <Text>High: {this.state.quoteInformation.high}</Text>
               <Text>Low: {this.state.quoteInformation.low}</Text>
@@ -129,6 +131,38 @@ export class Dashboard extends Component {
             </View>
             <StockInformationDashboard
               stock={this.state.quoteInformation.symbol}
+            />
+            <Button
+              title="Add Stock To Portfolio"
+              buttonStyle={styles.addStockBtn}
+              onPress={() => {
+                let [portfolio, setPortfolio] = this.context;
+                if (
+                  portfolio.findIndex(
+                    element =>
+                      element.symbol === this.state.quoteInformation.symbol,
+                  ) === -1
+                ) {
+                  setPortfolio(prevPortfolio => [
+                    ...prevPortfolio,
+                    {
+                      symbol: this.state.quoteInformation.symbol,
+                      price: this.state.quoteInformation.price,
+                      latestTradingDay:
+                        this.state.quoteInformation.latestTradingDay,
+                    },
+                  ]);
+                  ToastAndroid.show(
+                    'Stock added succesfully',
+                    ToastAndroid.LONG,
+                  );
+                } else {
+                  ToastAndroid.show(
+                    'This stock already in your portfolio',
+                    ToastAndroid.LONG,
+                  );
+                }
+              }}
             />
           </View>
         ) : undefined}

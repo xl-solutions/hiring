@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import Dashboard from './pages/Dashboard';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Portfolio from './pages/Portfolio';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {PortfolioProvider} from './services/portfolioContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,10 +13,12 @@ export class App extends Component {
     return (
       <SafeAreaProvider>
         <NavigationContainer>
-          <Tab.Navigator initialRouteName="Dashboard">
-            <Tab.Screen name="Dashboard" component={Dashboard} />
-            <Tab.Screen name="Portfolio" component={Portfolio} />
-          </Tab.Navigator>
+          <PortfolioProvider>
+            <Tab.Navigator initialRouteName="Dashboard">
+              <Tab.Screen name="Dashboard" component={Dashboard} />
+              <Tab.Screen name="Portfolio" component={Portfolio} />
+            </Tab.Navigator>
+          </PortfolioProvider>
         </NavigationContainer>
       </SafeAreaProvider>
     );
