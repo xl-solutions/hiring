@@ -15,6 +15,7 @@ export const searchStock = async keywords => {
       apikey: config.apiKey,
     },
   });
+  console.log(request);
   return transformSymbolSearch(request.data.bestMatches);
 };
 
