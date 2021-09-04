@@ -84,10 +84,10 @@ const neutralColors = {
  };
  
 const fonts = {
-   IBM_Regular: 'IBMPlexSans_400Regular',
-   IBM_Medium: 'IBMPlexSans_500Medium',
-   IBM_SemiBold: 'IBMPlexSans_600SemiBold',
-   IBM_Bold: 'IBMPlexSans_700Bold',
+   Regular: 'IBMPlexSans_400Regular',
+   Medium: 'IBMPlexSans_500Medium',
+   SemiBold: 'IBMPlexSans_600SemiBold',
+   Bold: 'IBMPlexSans_700Bold',
 };
  
 const fontScale = {
