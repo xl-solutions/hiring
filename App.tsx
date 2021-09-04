@@ -2,8 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './src/global/theme';
 import AppLoading from 'expo-app-loading';
-
-import { Dashboard } from './src/screens/Dashboard';
+import { Routes } from './src/routes';
 
 import {
   useFonts,
@@ -27,7 +26,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <Routes />
     </ThemeProvider>
   );
 }
