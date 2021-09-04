@@ -1,6 +1,9 @@
 import React from 'react';
-
+import { ThemeProvider } from 'styled-components';
+import { theme } from './src/global/theme';
 import AppLoading from 'expo-app-loading';
+
+import { Dashboard } from './src/screens/Dashboard';
 
 import {
   useFonts,
@@ -23,9 +26,9 @@ function App() {
   }
 
   return (
-    <Container>
-
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Dashboard />
+    </ThemeProvider>
   );
 }
 
