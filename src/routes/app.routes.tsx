@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 function AppRoutes() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Dashboard">
       <Stack.Screen
         name="Dashboard"
         options={{ headerShown: false }}

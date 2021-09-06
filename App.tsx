@@ -1,9 +1,10 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './src/global/theme';
 import AppLoading from 'expo-app-loading';
 import { Routes } from './src/routes';
-
+import { FetchLoadProvider } from './src/hooks/search';
 import {
   useFonts,
   IBMPlexSans_400Regular,
@@ -26,7 +27,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <FetchLoadProvider>
+        <Routes />
+      </FetchLoadProvider>
     </ThemeProvider>
   );
 }
