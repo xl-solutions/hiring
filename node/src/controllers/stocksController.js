@@ -92,9 +92,55 @@ async function getStockHistory(request, response) {
 
     return response.send(stock);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return response.status(400).send({ erro: error.toString() });
   }
 }
 
-module.exports = { getStockQuote, getStockHistory };
+async function getStockComparison(request, response) {
+  try {
+    const { stock_name } = request.params;
+    const { stocks } = request.body;
+
+    let lastPrices = [];
+
+    if (!stock_name || stock_name === "" || !stocks || stocks.length == 0) {
+      return response.status(400).send({ erro: "Argumentos invalidos" });
+    }
+
+    stocks.push(stock_name);
+
+    stocks.forEach((stock) => {
+      if (stock == "") {
+        return response.status(404).send({ erro: `Nome de açao invalido` });
+      }
+
+      let { data } = await api.get(`/query?function=GLOBAL_QUOTE&symbol=${stock}`);
+
+      if (!data) {
+        return response.status(404).send({ erro: `Ação ${stock} não encontrada` });
+      }
+
+      if (data.Note) {
+        return response.status(404).send({ erro: `Limite de Busca na API alphavantage por minuto atingido` });
+      }
+
+      if (Object.values(data["Global Quote"]).length === 0) {
+        return response.status(404).send({ erro: `Ação ${stock} não encontrada` });
+      }
+
+      lastPrices.push({
+        name: stock,
+        lastPrice: parseFloat(data["Global Quote"]["05. price"]),
+        pricedAt: data["Global Quote"]["07. latest trading day"], // data e hora no formato ISO 8601, UTC
+      });
+    });
+
+    return response.send(lastPrices);
+  } catch (error) {
+    console.error(error);
+    return response.status(400).send({ erro: error.toString() });
+  }
+}
+
+module.exports = { getStockQuote, getStockHistory, getStockComparison };
