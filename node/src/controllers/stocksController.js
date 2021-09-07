@@ -110,7 +110,7 @@ async function getStockComparison(request, response) {
 
     stocks.push(stock_name);
 
-    stocks.forEach((stock) => {
+    for (stock in stocks) {
       if (stock == "") {
         return response.status(404).send({ erro: `Nome de açao invalido` });
       }
@@ -134,7 +134,7 @@ async function getStockComparison(request, response) {
         lastPrice: parseFloat(data["Global Quote"]["05. price"]),
         pricedAt: data["Global Quote"]["07. latest trading day"], // data e hora no formato ISO 8601, UTC
       });
-    });
+    }
 
     return response.send(lastPrices);
   } catch (error) {
@@ -143,4 +143,66 @@ async function getStockComparison(request, response) {
   }
 }
 
-module.exports = { getStockQuote, getStockHistory, getStockComparison };
+async function getStockProgection(request, response) {
+  try {
+    let { purchasedAmount, purchasedAt } = request.query;
+    const { stock_name } = request.params;
+    const purchasedAtSplit = purchasedAt.split("-");
+
+    purchasedAmount = parseInt(purchasedAmount);
+
+    if (!purchasedAmount) {
+      return response.status(400).send({ erro: "Numero de ações invalido" });
+    }
+
+    if (purchasedAmount < 0) {
+      return response.status(400).send({ erro: "Numero de ações deve ser maior ou igual a 0" });
+    }
+
+    if (
+      purchasedAtSplit.length != 3 ||
+      purchasedAtSplit[0].length != 4 ||
+      purchasedAtSplit[1].length != 2 ||
+      purchasedAtSplit[2].length != 2
+    ) {
+      return response.status(400).send({ erro: "Data com formato invalido. Esperado: yyyy-mm-dd" });
+    }
+
+    const { data } = await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`)[
+      "Time Series (Daily)"
+    ];
+
+    if (!data) {
+      return response.status(404).send({ erro: "Ação não encontrada ou não existe" });
+    }
+
+    if (data.Note) {
+      return response.status(400).send({ erro: "Limite de buscas por minuto atingido" });
+    }
+
+    if (data[purchasedAt] == undefined) {
+      return response.status(404).send({ erro: "Data de compra não encontrada" });
+    }
+
+    let onPurchase = data[purchasedAt];
+    let today = data[Object.keys(data)[0]];
+    let priceAtDate = parseFloat(onPurchase["4. close"]);
+    let lastPrice = parseFloat(today["4. close"]);
+
+    const progectionResponse = {
+      name: stock_name,
+      purchasedAmount,
+      purchasedAt,
+      priceAtDate,
+      lastPrice,
+      capitalGains: parseFloat((lastPrice - priceAtDate) * purchasedAmount).toFixed(2),
+    };
+
+    return response.send(progectionResponse);
+  } catch (error) {
+    console.error(error);
+    return response.status(400).send({ erro: error.toString() });
+  }
+}
+
+module.exports = { getStockQuote, getStockHistory, getStockComparison, getStockProgection };
