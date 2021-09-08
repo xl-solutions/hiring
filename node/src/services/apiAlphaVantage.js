@@ -6,8 +6,8 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(async (config) => {
-  let apiUrl = `${config.url}&apikey=${API_KEY}`;
-  return apiUrl;
+  config.url += `&apikey=${API_KEY}`;
+  return config;
 });
 
 module.exports = api;

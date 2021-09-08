@@ -9,7 +9,7 @@ async function getStockQuote(request, response) {
       return response.status(400).send({ erro: "O nome da ação está incorreto ou não existe" });
     }
 
-    const { data } = await api.get(`/query/funciton=GLOBAL_QUOTE&synbol=${stock_name}`);
+    const { data } = await api.get(`/query?function=GLOBAL_QUOTE&symbol=${stock_name}`);
 
     if (!data || Object.values(data["Global Quote"]).length === 0) {
       return response.status(404).send({ erro: `Ação ${stock_name} não encontrada` });
@@ -25,7 +25,7 @@ async function getStockQuote(request, response) {
       pricedAt: data["Global Quote"]["07. latest trading day"],
     };
 
-    return stock.status(200).send(stock);
+    return response.status(200).send(stock);
   } catch (error) {
     console.error(error);
     return response.status(400).send({ erro: error.toString() });
@@ -90,7 +90,7 @@ async function getStockHistory(request, response) {
       last = dataKeys[i];
     }
 
-    return response.send(stock);
+    return response.status(200).send(stock);
   } catch (error) {
     console.error(error);
     return response.status(400).send({ erro: error.toString() });
@@ -136,7 +136,7 @@ async function getStockComparison(request, response) {
       });
     }
 
-    return response.send(lastPrices);
+    return response.status(200).send(lastPrices);
   } catch (error) {
     console.error(error);
     return response.status(400).send({ erro: error.toString() });
@@ -198,7 +198,7 @@ async function getStockProgection(request, response) {
       capitalGains: parseFloat((lastPrice - priceAtDate) * purchasedAmount).toFixed(2),
     };
 
-    return response.send(progectionResponse);
+    return response.status(200).send(progectionResponse);
   } catch (error) {
     console.error(error);
     return response.status(400).send({ erro: error.toString() });
