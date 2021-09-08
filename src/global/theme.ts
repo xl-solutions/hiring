@@ -115,6 +115,7 @@ export const theme = {
     borderRadiusSmall: componentScale['radius-small'],
     borderRadiusLarge: componentScale['radius-large'],
 
+    backgroundDefault: uiColors['white-default'],
     backgroundDanger: uiColors['danger-default'],
     backgroundDangerLighter: uiColors['danger-lighter'],
 

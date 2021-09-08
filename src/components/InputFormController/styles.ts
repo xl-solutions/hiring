@@ -14,7 +14,7 @@ type IconProps = {
 export const Container = styled.View`
   padding: 0;
   padding-bottom: ${RFValue(16)}px;
-  background-color: antiquewhite;
+  background-color: transparent;
 `;
 
 export const FieldContainer = styled.View<InputProps>`
@@ -36,6 +36,15 @@ export const FieldContainer = styled.View<InputProps>`
     css`
       border-width: ${RFValue(2)}px;
       border-color: ${({ theme }) => theme.uiColors['danger-default']};
+    `}
+
+  ${({ isFocused, error }) =>
+    isFocused &&
+    !error &&
+    css`
+      border-width: ${RFValue(2)}px;
+      border-color: ${({ theme }) => theme.uiColors['info-default']};
+      background-color: ${({ theme }) => theme.uiColors['info-lighter']};
     `}
 `;
 

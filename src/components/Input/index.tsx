@@ -6,7 +6,7 @@ import { Container } from './styles';
 type Props = TextInputProps;
 
 function Input({ ...rest }: Props) {
-  return <Container {...rest} selectionColor="#5F2EE2" />;
+  return <Container {...rest} selectionColor="rgba(114, 114, 133, 1)" />;
 }
 
 export { Input };

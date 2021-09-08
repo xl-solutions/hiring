@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './src/global/theme';
 import AppLoading from 'expo-app-loading';
 import { Routes } from './src/routes';
-import { FetchLoadProvider } from './src/hooks/search';
+import { FetchDataProvider } from './src/hooks/fetchData';
 import {
   useFonts,
   IBMPlexSans_400Regular,
@@ -27,9 +27,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <FetchLoadProvider>
+      <FetchDataProvider>
         <Routes />
-      </FetchLoadProvider>
+      </FetchDataProvider>
     </ThemeProvider>
   );
 }

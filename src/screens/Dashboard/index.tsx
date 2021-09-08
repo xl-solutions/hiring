@@ -1,35 +1,67 @@
-import React, { useCallback, useState } from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import React, { useState } from 'react';
 import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
+  View,
 } from 'react-native';
 import { useTheme } from 'styled-components/native';
+import { ActionItem } from '../../components/ActionItem';
+import { HeaderBase } from '../../components/HeaderBase';
 import { InputFormController } from '../../components/InputFormController';
+import { LoadButton } from '../../components/Loading/LoadButton';
 import { StatusBarBase } from '../../components/StatusBarBase';
-import { useFetch } from '../../hooks/search';
+import { useFetch } from '../../hooks/fetchData';
 
 import { Container, LitActionsMercado, Title } from './styles';
 
+let timeOuId: any;
+
 function Dashboard() {
-  const { search } = useFetch();
-  const { statusBar } = useTheme();
+  const { search, bestMatchesActions, loading } = useFetch();
+  const { statusBar, neutralColors } = useTheme();
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [searchText, setSearchText] = useState<string>();
 
-  const loadingSearch = useCallback(
-    async (event: string): Promise<Function> => {
-      const handler = setTimeout(async () => {
-        await search(event);
-      }, 600);
+  const debounce = (func: Function, delay: number) => {
+    return (...args: any[]) => {
+      if (timeOuId) {
+        clearTimeout(timeOuId);
+      }
 
-      return () => {
-        clearImmediate(handler);
-      };
-    },
-    [search],
-  );
+      timeOuId = setTimeout(() => func.apply(null, args), delay);
+    };
+  };
+
+  async function fetchSearch(value: string) {
+    await search(value);
+  }
+
+  const debounceSearch = debounce(fetchSearch, 600);
+
+  const handleOnChange = (text: string) => {
+    setSearchText(text);
+    debounceSearch(searchText);
+  };
+
+  function listHeaderComponent() {
+    return (
+      <View style={{ flexDirection: 'row', marginBottom: 20 }}>
+        <Title>Ações encontradas</Title>
+        {loading ? (
+          <LoadButton color={neutralColors.dark['dark-light']} size={20} />
+        ) : (
+          <Title style={{ marginLeft: 20 }}>
+            {' '}
+            {bestMatchesActions?.length}
+          </Title>
+        )}
+      </View>
+    );
+  }
 
   return (
     <>
@@ -44,17 +76,25 @@ function Dashboard() {
         />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
+            <HeaderBase title="Google Finances" icon={false} />
+
             <InputFormController
-              placeholder="buscar"
+              placeholder="Pesquisar ações, ETFs e outros para comprar"
               name="search"
               isFocused={isFocused}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               iconName="search"
-              onChangeText={text => loadingSearch(text)}
+              // onChangeText={text => loadingSearch(text)}
+              onChange={event => handleOnChange(event.nativeEvent.text)}
             />
-            <Title>Dashboard</Title>
-            {/* <LitActionsMercado /> */}
+
+            <LitActionsMercado
+              data={bestMatchesActions}
+              ListHeaderComponent={listHeaderComponent}
+              keyExtractor={item => String(item['1. symbol'])}
+              renderItem={({ item }) => <ActionItem item={item} />}
+            />
           </Container>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

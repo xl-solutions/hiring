@@ -1,17 +1,25 @@
 import React, { createContext, useContext, ReactNode, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../services/api';
+import { formattedData } from '../utils/fetchDataFormatted';
 
 const { SERIES_INTRADAY } = process.env;
 const { SYMBOL_SEARCH } = process.env;
+const { SYMBOL_GLOBAL_QUOTE } = process.env;
 
-type FetchLoadProviderProps = {
+type FetchDataProviderProps = {
   children: ReactNode;
 };
 
 type FetchLoadContextData = {
   search(params?: string): Promise<void>;
   loadingIntraday(params: string): Promise<void>;
+  loadingGlobalQuote(params: string): Promise<void>;
+  saveAsyncStorage(key: string, data: any): Promise<void>;
+  getAsyncStorage(key: string): Promise<any | null>;
+  loading: boolean;
+  bestMatchesActions: BestMatches[];
+  detailsAction: DetailsActionProps;
 };
 
 type IntraDayData = {
@@ -48,6 +56,10 @@ type RequestSearch = {
   bestMatches: BestMatches[];
 };
 
+type RequestDetailsActions = {
+  'Global Quote': DetailsActionAttributions;
+};
+
 type BestMatches = {
   [key in BestMatchesAttributions]: string;
 };
@@ -63,15 +75,34 @@ type BestMatchesAttributions =
   | '8. currency'
   | '9. matchScore';
 
+type DetailsActionProps = {
+  [key in DetailsActionAttributions]: string;
+};
+
+type DetailsActionAttributions =
+  | '01. symbol'
+  | '02. open'
+  | '03. high'
+  | '04. low'
+  | '05. price'
+  | '06. volume'
+  | '07. latest trading day'
+  | '08. previous close'
+  | '09. change'
+  | '10. change percent';
+
 const FetchLoadContext = createContext<FetchLoadContextData>(
   {} as FetchLoadContextData,
 );
 
-function FetchLoadProvider({ children }: FetchLoadProviderProps) {
+function FetchDataProvider({ children }: FetchDataProviderProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [series, setSeries] = useState<IntraDayData>();
   const [bestMatchesActions, setBestMatchesActions] = useState<BestMatches[]>(
     [],
+  );
+  const [detailsAction, setDetailsAction] = useState<DetailsActionProps>(
+    {} as DetailsActionProps,
   );
 
   async function search(keywords: string = ''): Promise<void> {
@@ -86,12 +117,17 @@ function FetchLoadProvider({ children }: FetchLoadProviderProps) {
 
       const { bestMatches } = response.data as RequestSearch;
 
-      console.log('bestMatches :', bestMatches);
       setBestMatchesActions(bestMatches);
+      /**
+       * Esta function realiza a formatação do response.data, entretanto até o momento
+       * não houve ncessidade de utilizar no projeto
+       */
+      // formattedData(bestMatches);
       setLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       console.log(error);
+      throw new Error(error);
     }
   }
 
@@ -106,15 +142,41 @@ function FetchLoadProvider({ children }: FetchLoadProviderProps) {
       });
 
       console.log(response);
-    } catch (error) {
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
       console.log(error);
+      throw new Error(error);
+    }
+  }
+
+  async function loadingGlobalQuote(symbol: string): Promise<void> {
+    try {
+      setLoading(true);
+      const response = await api.get('', {
+        params: {
+          symbol,
+          function: SYMBOL_GLOBAL_QUOTE,
+        },
+      });
+
+      console.log(response.data);
+      const data = response.data as RequestDetailsActions;
+
+      setDetailsAction(data['Global Quote']);
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      console.log(error);
+      throw new Error(error);
     }
   }
 
   async function saveAsyncStorage(key: string, data: any): Promise<void> {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(data));
-    } catch (error) {
+      console.log(await getAsyncStorage(key));
+    } catch (error: any) {
       throw new Error(error);
     }
   }
@@ -129,7 +191,17 @@ function FetchLoadProvider({ children }: FetchLoadProviderProps) {
   }
 
   return (
-    <FetchLoadContext.Provider value={{ loadingIntraday, search }}>
+    <FetchLoadContext.Provider
+      value={{
+        loadingIntraday,
+        search,
+        loadingGlobalQuote,
+        saveAsyncStorage,
+        getAsyncStorage,
+        bestMatchesActions,
+        loading,
+        detailsAction,
+      }}>
       {children}
     </FetchLoadContext.Provider>
   );
@@ -139,10 +211,10 @@ function useFetch(): FetchLoadContextData {
   const context = useContext(FetchLoadContext);
 
   if (!context) {
-    throw Error('userAuth must be used within an FetchLoadProvider');
+    throw Error('userAuth must be used within an FetchDataProvider');
   }
 
   return context;
 }
 
-export { FetchLoadProvider, useFetch };
+export { FetchDataProvider, useFetch };
