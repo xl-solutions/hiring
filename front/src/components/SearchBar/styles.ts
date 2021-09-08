@@ -13,8 +13,11 @@ export const useSearchBarStyles = makeStyles((theme) =>
       padding: 10,
       margin: "0 10px",
     },
-    select: {
-      width: "40%",
+    datePicker: {
+      margin: 16,
+    },
+    searchStock: {
+      margin: 16,
     },
   })
 );

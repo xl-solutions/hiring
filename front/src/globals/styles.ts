@@ -27,4 +27,7 @@ export const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     flexDirection: "column",
   },
+  customGrid: {
+    width: 1200,
+  },
 }));

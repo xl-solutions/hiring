@@ -1,4 +1,6 @@
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { CustomContainer } from "../../components/CustomContainer";
+import DateFnsUtils from "@date-io/date-fns";
 import { useStyles } from "../../globals/styles";
 
 export function Layout({ children }: any) {
@@ -6,7 +8,9 @@ export function Layout({ children }: any) {
 
   return (
     <div className={root}>
-      <CustomContainer>{children}</CustomContainer>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <CustomContainer>{children}</CustomContainer>
+      </MuiPickersUtilsProvider>
     </div>
   );
 }

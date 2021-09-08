@@ -56,9 +56,7 @@ async function getStockHistory(request, response) {
       return response.status(400).send({ erro: "Data inicial deve ser menor que a final." });
     }
 
-    const { data } = await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`)[
-      "Time Series (Daily)"
-    ];
+    const { data } = await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`);
 
     if (!data) {
       return response.status(404).send({ erro: `Ação ${stock_name} não encontrada` });
@@ -68,7 +66,7 @@ async function getStockHistory(request, response) {
       return response.status(400).send({ erro: `Limite de Busca na API alphavantage por minuto atingido` });
     }
 
-    const dataKeys = Object.keys(data);
+    const dataKeys = Object.keys(data["Time Series (Daily)"]);
 
     let stock = {
       name: stock_name,
@@ -77,9 +75,9 @@ async function getStockHistory(request, response) {
 
     let last = "";
 
-    let first = dataKeys.indexOf(from) == -1 ? 0 : dataKeys.indexOf(from);
+    let first = dataKeys.indexOf(from) === -1 ? 0 : dataKeys.indexOf(from);
 
-    for (i = first; last != to && i != 0; i--) {
+    for (i = first; last !== to && i !== 0; i--) {
       stock.prices.push({
         opening: parseFloat(data[dataKeys[i]]["1. open"]),
         low: parseFloat(data[dataKeys[i]]["3. low"]),
@@ -88,6 +86,7 @@ async function getStockHistory(request, response) {
         pricedAt: dataKeys[i],
       });
       last = dataKeys[i];
+      console.log(stock);
     }
 
     return response.status(200).send(stock);
