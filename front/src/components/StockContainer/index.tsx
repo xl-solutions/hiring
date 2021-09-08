@@ -10,10 +10,11 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
+import { IGetHistoryResponse, IStockPriceHistory } from "../../services/stocks";
 import { useStyles } from "./styles";
 
 export interface IStockContainerProps {
-  stock: any;
+  stock: IGetHistoryResponse;
 }
 
 export function StockContainer({ stock }: IStockContainerProps) {
@@ -22,31 +23,43 @@ export function StockContainer({ stock }: IStockContainerProps) {
     <Paper className={contentPaper}>
       <Grid container direction="row">
         <Grid item lg={12} md={12} xs={12} className={stockGrid}>
-          <Typography variant="h3" className={stockTitle}>
-            {`${stock.name}`}
+          <Typography variant="h4" className={stockTitle}>
+            {`${stock.name} - Último Preço: R$ ${stock.lastPrice} - Data: ${stock.pricedAt}`}
           </Typography>
         </Grid>
-        <Grid item lg={3} md={4} xs={6} className={stockHistoryGrid}>
+        <Grid item lg={12} md={12} xs={12} className={stockHistoryGrid}>
           <TableContainer component={Paper}>
             <Table className={customTable} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Data</TableCell>
-                  <TableCell align="right">Abertura</TableCell>
-                  <TableCell align="right">Alta</TableCell>
-                  <TableCell align="right">Baixa</TableCell>
-                  <TableCell align="right">Fechamento</TableCell>
-                  <TableCell align="right">Fechamento</TableCell>
+                  <TableCell align="center">Data</TableCell>
+                  <TableCell align="center">Abertura</TableCell>
+                  <TableCell align="center">Alta</TableCell>
+                  <TableCell align="center">Baixa</TableCell>
+                  <TableCell align="center">Fechamento</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {/* {stock.prices.map((row: any) => (
-                  <TableRow key={row.name}>
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                  </TableRow>
-                ))} */}
+                {stock &&
+                  stock.prices.map((stock: IStockPriceHistory, index) => (
+                    <TableRow key={index}>
+                      <TableCell align='center' component="th" scope="row">
+                        {stock.pricedAt}
+                      </TableCell>
+                      <TableCell align='center' component="th" scope="row">
+                        {stock.opening}
+                      </TableCell>
+                      <TableCell align='center' component="th" scope="row">
+                        {stock.high}
+                      </TableCell>
+                      <TableCell align='center' component="th" scope="row">
+                        {stock.low}
+                      </TableCell>
+                      <TableCell align='center' component="th" scope="row">
+                        {stock.closing}
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>

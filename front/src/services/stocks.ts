@@ -1,18 +1,14 @@
 import { api } from "./api";
 
-export interface IGetStockResponse {
+export interface IGetHistoryResponse {
   name: string;
   lastPrice: number;
   pricedAt: Date | string;
+  prices: Array<IStockPriceHistory>;
   erro?: string;
 }
 
-export interface IGetHistoryResponse {
-  name: string;
-  prices: Array<IStockPriceHistory>;
-}
-
-interface IStockPriceHistory {
+export interface IStockPriceHistory {
   opening: number;
   low: number;
   high: number;
