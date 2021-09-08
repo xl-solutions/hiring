@@ -92,7 +92,6 @@ async function getStockHistory(request, response) {
 
     return response.status(200).send(stock);
   } catch (error) {
-    console.error(error);
     return response.status(400).send({ erro: error.toString() });
   }
 }
@@ -138,7 +137,6 @@ async function getStockComparison(request, response) {
 
     return response.status(200).send(lastPrices);
   } catch (error) {
-    console.error(error);
     return response.status(400).send({ erro: error.toString() });
   }
 }
@@ -200,7 +198,6 @@ async function getStockProgection(request, response) {
 
     return response.status(200).send(progectionResponse);
   } catch (error) {
-    console.error(error);
     return response.status(400).send({ erro: error.toString() });
   }
 }

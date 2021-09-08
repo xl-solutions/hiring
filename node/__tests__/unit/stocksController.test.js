@@ -26,7 +26,7 @@ beforeEach(async () => {
 
 describe("Testes da rota '/quote' do controller stocksController", () => {
   it("Precisa que retorne status 200 com todas as opções válidas", async () => {
-    const response = await request(app).get(`/stocks/${stock_name}/quote`);
+    const response = await request(app).get(`/${stock_name}/quote`);
 
     expect(response.status).toBe(200);
 
@@ -38,7 +38,7 @@ describe("Testes da rota '/quote' do controller stocksController", () => {
   });
 
   it("Precisa que retorne status 404 e um erro válido", async () => {
-    const response = await request(app).get(`/stocks/${invalid_stock_name}/quote`);
+    const response = await request(app).get(`/${invalid_stock_name}/quote`);
 
     expect(response.status).toBe(404);
 
@@ -48,7 +48,7 @@ describe("Testes da rota '/quote' do controller stocksController", () => {
 
 describe("Testes da rota /history do controller stocksController", () => {
   it("Código de status deve ser 200 e ter opções válidas", async () => {
-    const response = await request(app).get(`/stocks/${stock_name}/history?from=${from}&to=${to}`);
+    const response = await request(app).get(`/${stock_name}/history?from=${from}&to=${to}`);
 
     expect(response.status).toBe(200);
 
@@ -58,7 +58,7 @@ describe("Testes da rota /history do controller stocksController", () => {
   });
 
   it("Código de status deve ser 400 com um erro válido (argumento incorreto - to)", async () => {
-    const response = await request(app).get(`/stocks/${stock_name}/history?from=${invalid_from}&to=`);
+    const response = await request(app).get(`/${stock_name}/history?from=${invalid_from}&to=`);
 
     expect(response.status).toBe(400);
 
@@ -66,7 +66,7 @@ describe("Testes da rota /history do controller stocksController", () => {
   });
 
   it("Código de status deve ser 400 com um erro válido (argumento incorreto - from)", async () => {
-    const response = await request(app).get(`/stocks/${stock_name}/history?from=&to=${invalid_to}`);
+    const response = await request(app).get(`/${stock_name}/history?from=&to=${invalid_to}`);
 
     expect(response.status).toBe(400);
 
@@ -74,7 +74,7 @@ describe("Testes da rota /history do controller stocksController", () => {
   });
 
   it("Código de status deve ser 400 com um erro válido (formato de data invalido - from)", async () => {
-    const response = await request(app).get(`/stocks/${stock_name}/history?from=${invalid_from}&to=${to}`);
+    const response = await request(app).get(`/${stock_name}/history?from=${invalid_from}&to=${to}`);
 
     expect(response.status).toBe(400);
 
@@ -82,7 +82,7 @@ describe("Testes da rota /history do controller stocksController", () => {
   });
 
   it("Código de status deve ser 400 com um erro válido (formato de data invalido - to)", async () => {
-    const response = await request(app).get(`/stocks/${stock_name}/history?from=${from}&to=${invalid_to}`);
+    const response = await request(app).get(`/${stock_name}/history?from=${from}&to=${invalid_to}`);
 
     expect(response.status).toBe(400);
 
@@ -90,7 +90,7 @@ describe("Testes da rota /history do controller stocksController", () => {
   });
 
   it("Código de status deve ser 400 com um erro válido (data inicial maior que final)", async () => {
-    const response = await request(app).get(`/stocks/${stock_name}/history?from=${to}&to=${from}`);
+    const response = await request(app).get(`/${stock_name}/history?from=${to}&to=${from}`);
 
     expect(response.status).toBe(400);
 
@@ -98,7 +98,7 @@ describe("Testes da rota /history do controller stocksController", () => {
   });
 
   it("Código de status deve ser 404 com um erro válido ", async () => {
-    const response = await request(app).get(`/stocks/${invalid_stock_name}/history?from=${from}&to=${to}`);
+    const response = await request(app).get(`/${invalid_stock_name}/history?from=${from}&to=${to}`);
 
     expect(response.status).toBe(404);
 
@@ -109,7 +109,7 @@ describe("Testes da rota /history do controller stocksController", () => {
 describe("Testes da rota /compare do controller stocksController", () => {
   it("Código de status deve ser 200", async () => {
     const response = await request(app)
-      .get(`/stocks/${stock_name}/compare`)
+      .get(`/${stock_name}/compare`)
       .send({
         stocks: [""],
       });
@@ -119,7 +119,7 @@ describe("Testes da rota /compare do controller stocksController", () => {
 
   it("Código de status 404 com uma mensagem de erro valida", async () => {
     const response = await request(app)
-      .get(`/stocks/${invalid_stock_name}/compare`)
+      .get(`/${invalid_stock_name}/compare`)
       .send({
         stocks: ["DOL"],
       });
@@ -133,14 +133,14 @@ describe("Testes da rota /compare do controller stocksController", () => {
 describe("Testes da rota /gains do controller stocksController", () => {
   it("Código de status deve ser 200 com todas opções válidas", async () => {
     const response = await request(app).get(
-      `/stocks/${stock_name}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${from}`
+      `/${stock_name}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${from}`
     );
 
     expect(response.status).toBe(200);
   });
 
   it("Código de status 400 com um erro válido (Numero de açoes invalido)", async () => {
-    const response = await request(app).get(`/stocks/${stock_name}/gains?purchasedAmount=&purchasedAt=${from}`);
+    const response = await request(app).get(`/${stock_name}/gains?purchasedAmount=&purchasedAt=${from}`);
 
     expect(response.status).toBe(400);
 
@@ -149,7 +149,7 @@ describe("Testes da rota /gains do controller stocksController", () => {
 
   it("Código de status 400 com um erro válido (Numero de açoes negativo)", async () => {
     const response = await request(app).get(
-      `/stocks/${stock_name}/gains?purchasedAmount=${invalid_purchasedAmount}&purchasedAt=${from}`
+      `/${stock_name}/gains?purchasedAmount=${invalid_purchasedAmount}&purchasedAt=${from}`
     );
 
     expect(response.status).toBe(400);
@@ -159,7 +159,7 @@ describe("Testes da rota /gains do controller stocksController", () => {
 
   it("Código de status 400 com um erro válido (Data com formato invalido)", async () => {
     const response = await request(app).get(
-      `/stocks/${stock_name}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${invalid_from}`
+      `/${stock_name}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${invalid_from}`
     );
 
     expect(response.status).toBe(400);
@@ -169,7 +169,7 @@ describe("Testes da rota /gains do controller stocksController", () => {
 
   it("Código de status 404 com um erro válido (stock_name invalido)", async () => {
     const response = await request(app).get(
-      `/stocks/${invalid_stock_name}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${from}`
+      `/${invalid_stock_name}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${from}`
     );
 
     expect(response.status).toBe(404);
