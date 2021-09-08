@@ -7,7 +7,7 @@ export function CustomContainer({ children }: any) {
   return (
     <main className={content}>
       <Container maxWidth="lg" className={container}>
-        <Grid container spacing={2} direction="row" justify="center">
+        <Grid container spacing={2} direction="row" justifyContent="center">
           <Paper className={paper}>{children}</Paper>
         </Grid>
       </Container>
