@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { ProfileAvatar } from '../ProfileAvatar';
 
 import {
   Header,
@@ -14,8 +15,9 @@ import {
 interface IHeaderBase {
   title: string;
   icon?: boolean;
+  avatar?: boolean;
 }
-const HeaderBase = ({ title, icon = true }: IHeaderBase) => {
+const HeaderBase = ({ title, icon = true, avatar = false }: IHeaderBase) => {
   const navigation = useNavigation();
 
   function handlerNavigation() {
@@ -30,6 +32,7 @@ const HeaderBase = ({ title, icon = true }: IHeaderBase) => {
             <HeaderIcon name="arrow-back-ios" />
           </ButtonGoBack>
         )}
+        {!icon && avatar && <ProfileAvatar />}
       </BoxLeft>
       <BoxCenter>
         <HeaderTitle>{title}</HeaderTitle>

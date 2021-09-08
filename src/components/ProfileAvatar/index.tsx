@@ -1,13 +1,14 @@
 import React from 'react';
+import { useTheme } from 'styled-components/native';
 
-import { theme } from '../../globals/styles/theme';
 import avatarUser from '../../assets/perfil.png';
 
 import { Container, AvatarImage, Gradient } from './styles';
 
 function ProfileAvatar() {
-  const primaryColor = theme.brandColors['gradients-01'];
-  const secondaryColor = theme.brandColors['gradients-02'];
+  const { uiColors } = useTheme();
+  const primaryColor = uiColors['info-default'];
+  const secondaryColor = uiColors['success-default'];
 
   return (
     <Container>

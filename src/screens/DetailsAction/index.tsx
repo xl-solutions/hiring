@@ -136,7 +136,7 @@ function DetailsAction({ route }: any) {
               <ButtonLabel
                 style={{ marginTop: 20 }}
                 onPress={handleAddPortfolio}>
-                Adicionar ao perfil
+                Adicionar no portfólio
               </ButtonLabel>
             </ContainerCard>
           </>
