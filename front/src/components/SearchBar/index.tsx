@@ -1,24 +1,22 @@
-import { IconButton, MenuItem, Paper, Select, TextField } from "@material-ui/core";
+import { IconButton, Paper, TextField } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchBarStyles } from "./styles";
 
 interface CustomSearchBarProps {
-  filterOptions: Array<{ Key: string; Value: string }>;
-  dataOptions: Array<{ Name: string; Region: string }>;
-  handleSearch: (textSearch?: string) => void;
+  handleSearch: (textSearch?: string) => Promise<void>;
 }
 
-export function CustomSearchBar({ filterOptions, dataOptions, handleSearch }: CustomSearchBarProps) {
+export function CustomSearchBar({ handleSearch }: CustomSearchBarProps) {
   const customClasses = useSearchBarStyles();
-  const [stockName, setStockName] = useState<string | null>(null);
+  const [stockName, setStockName] = useState<string>("");
 
-  function handleSearchTextChange(value: string | null) {
+  function handleSearchTextChange(value: string) {
     setStockName(value);
   }
 
   function onSearch() {
-    handleSearch(stockName ?? "");
+    handleSearch(stockName);
   }
 
   return (
@@ -33,7 +31,7 @@ export function CustomSearchBar({ filterOptions, dataOptions, handleSearch }: Cu
             onSearch();
           }
         }}
-        onChange={(e) => console.log(e.target.value)}
+        onChange={(e) => handleSearchTextChange(e.target.value)}
       />
       <IconButton
         type="submit"

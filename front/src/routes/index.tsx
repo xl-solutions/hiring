@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Main } from "../pages/main";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { Stocks } from "../pages/main/stocks";
 
 export const Router = () => {
