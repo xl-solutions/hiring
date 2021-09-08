@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
-import {} from "@material-ui/core";
-import { api } from "../../services/api";
+import { Layout } from "../../containers/Layout";
+import { Router } from "../../routes";
 
-export function Main() {}
+export function Main() {
+  return (
+    <Layout>
+      <Router />
+    </Layout>
+  );
+}

@@ -1,7 +1,7 @@
 import { Container, Grid, Paper } from "@material-ui/core";
 import { useStyles } from "../../globals/styles";
 
-function CustomContainer({ children }: any) {
+export function CustomContainer({ children }: any) {
   const { content, container, paper } = useStyles();
 
   return (
@@ -14,5 +14,3 @@ function CustomContainer({ children }: any) {
     </main>
   );
 }
-
-export default CustomContainer;
