@@ -57,6 +57,7 @@ export function CustomSearchBar({ handleSearch, handleHistory, stocks }: CustomS
         fullWidth
         onChange={(e) => setDateFrom(e)}
         value={dateFrom}
+        maxDate={new Date()}
       />
       <DatePicker
         label="Data Final"
@@ -65,6 +66,7 @@ export function CustomSearchBar({ handleSearch, handleHistory, stocks }: CustomS
         fullWidth
         onChange={(e) => setDateTo(e)}
         value={dateTo}
+        maxDate={new Date()}
       />
       <IconButton
         type="submit"

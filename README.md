@@ -14,7 +14,7 @@ Nesse teste foi implementado o backend em NodeJs e o frontend em ReactJs.
 
 ### Utilizando a aplicação WEB
 
-- Após iniciar, ja será realizada uma chamada à api com o ativo "VALE3.SA" e exibirá a cotação atual e seu histórico (o histórico está fixo como o da VALE3.SA pois algum bug ocorre ao realizar a estruturação do objeto no back-end, testei em outros lugares (console do chrome, sandbox) e neles o resultado vinha corretamente, porém na api ocorre um erro);
+- Após iniciar, ja será realizada uma chamada à api com o ativo "VALE3.SA" e exibirá a cotação atual e seu histórico;
 - É possivel fazer a busca de uma ação no campo superior central, ja informando as datas caso necessário.
 - Para simular ganhos, é necessário informar a quantidade de açoes, assim como a data de compra na parte inferior, e clicar em "simular"
 

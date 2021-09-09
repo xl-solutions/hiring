@@ -78,15 +78,16 @@ async function getStockHistory(request, response) {
     let first = dataKeys.indexOf(from) === -1 ? 0 : dataKeys.indexOf(from);
 
     for (i = first; last !== to && i !== 0; i--) {
-      console.log(stockResponse);
-      stockResponse.prices.push({
-        opening: parseFloat(data[dataKeys[i]]["1. open"]),
-        low: parseFloat(data[dataKeys[i]]["3. low"]),
-        high: parseFloat(data[dataKeys[i]]["2. high"]),
-        closing: parseFloat(data[dataKeys[i]]["4. close"]),
-        pricedAt: dataKeys[i],
-      });
-      last = dataKeys[i];
+      if (data["Time Series (Daily)"][dataKeys[i]] !== undefined) {
+        stockResponse.prices.push({
+          opening: parseFloat(data["Time Series (Daily)"][dataKeys[i]]["1. open"]),
+          low: parseFloat(data["Time Series (Daily)"][dataKeys[i]]["3. low"]),
+          high: parseFloat(data["Time Series (Daily)"][dataKeys[i]]["2. high"]),
+          closing: parseFloat(data["Time Series (Daily)"][dataKeys[i]]["4. close"]),
+          pricedAt: dataKeys[i],
+        });
+        last = dataKeys[i];
+      }
     }
 
     return response.status(200).send(stockResponse);

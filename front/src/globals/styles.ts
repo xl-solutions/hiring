@@ -30,4 +30,9 @@ export const useStyles = makeStyles((theme) => ({
   customGrid: {
     width: 1200,
   },
+  customStockGrid: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
