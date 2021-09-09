@@ -50,19 +50,6 @@ export function CustomSearchBar({ handleSearch, handleHistory, stocks }: CustomS
           <TextField {...params} fullWidth onChange={(e) => handleSearchTextChange(e.target.value)} />
         )}
       />
-      {/* <TextField
-        label="Buscar ativo"
-        className={customClasses.searchStock}
-        fullWidth
-        value={stockName}
-        onKeyPress={(event) => {
-          if (event.key.toUpperCase() === "ENTER") {
-            event.preventDefault();
-            onSearch();
-          }
-        }}
-        onChange={(e) => handleSearchTextChange(e.target.value)}
-      /> */}
       <DatePicker
         format="yyyy-MM-dd"
         label="Data inicial"
