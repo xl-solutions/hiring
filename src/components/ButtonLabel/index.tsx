@@ -5,11 +5,12 @@ import { Container, TitleButton } from './styles';
 
 interface Props extends RectButtonProps {
   children: string;
+  color?: boolean;
 }
 
-function ButtonLabel({ children, ...rest }: Props) {
+function ButtonLabel({ children, color = false, ...rest }: Props) {
   return (
-    <Container {...rest}>
+    <Container color={color} {...rest}>
       <TitleButton>{children}</TitleButton>
     </Container>
   );

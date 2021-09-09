@@ -4,7 +4,12 @@ import { HeaderBase } from '../../components/HeaderBase';
 import { StatusBarBase } from '../../components/StatusBarBase';
 import { useFetch } from '../../hooks/fetchData';
 
-import { Container } from './styles';
+import {
+  Container,
+  ListPortfolio,
+  PortfolioContainer,
+  TitleText,
+} from './styles';
 
 const { PORTFOLIO_ACTIONS } = process.env;
 
@@ -60,6 +65,25 @@ function Portfolio() {
       />
       <Container>
         <HeaderBase title="Portfólio" icon={false} avatar />
+        <ListPortfolio
+          data={listPortfolio}
+          keyExtractor={item => String(item['01. symbol'])}
+          renderItem={({ item }) => (
+            <PortfolioContainer>
+              <TitleText>symbol: {item['01. symbol']}</TitleText>
+              <TitleText>open: {item['02. open']}</TitleText>
+              <TitleText>high: {item['03. high']}</TitleText>
+              <TitleText>low: {item['04. low']}</TitleText>
+              <TitleText>price: {item['05. price']}</TitleText>
+              <TitleText>volume: {item['06. volume']}</TitleText>
+              <TitleText>close: {item['08. previous close']}</TitleText>
+              <TitleText>change: {item['09. change']}</TitleText>
+              <TitleText>
+                change percent: {item['10. change percent']}
+              </TitleText>
+            </PortfolioContainer>
+          )}
+        />
       </Container>
     </>
   );

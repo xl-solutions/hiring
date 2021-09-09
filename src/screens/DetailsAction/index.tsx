@@ -199,6 +199,7 @@ function DetailsAction({ route }: any) {
                 change percent: {detailsAction['10. change percent']}
               </TitleText>
               <ButtonLabel
+                color
                 style={{ marginTop: 20 }}
                 onPress={handleAddPortfolio}>
                 Adicionar no portfólio

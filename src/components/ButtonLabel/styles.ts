@@ -2,7 +2,10 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled(RectButton)`
+type RectButtonProps = {
+  color: boolean;
+};
+export const Container = styled(RectButton)<RectButtonProps>`
   align-items: center;
   justify-content: center;
 
@@ -12,7 +15,8 @@ export const Container = styled(RectButton)`
 
   border-radius: ${({ theme }) => theme.card.borderRadius}px;
 
-  background-color: ${({ theme }) => theme.card.backgroundSuccess};
+  background-color: ${({ theme, color }) =>
+    color ? theme.uiColors['success-default'] : theme.uiColors['info-default']};
 `;
 
 export const TitleButton = styled.Text.attrs({ numberOfLines: 1 })`
