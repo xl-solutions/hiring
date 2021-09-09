@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test-api": "cd ./API && npm test",
+    "test-web": "",
+    "start-api": "cd ./API && npm install && npm start",
+    "start-web": "cd ./WEB && npm install && npm start",
+    "start": " npm run start-api | npm run start-web"
+  }
+}

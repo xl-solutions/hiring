@@ -1,0 +1,24 @@
+{
+  "name": "hiring_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "start": "node src/server.js",
+    "build": "rollup -c"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^27.1.0",
+    "nodemon": "^2.0.12",
+    "rollup": "^2.56.3",
+    "supertest": "^6.1.6"
+  }
+}
