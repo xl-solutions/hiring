@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -51,7 +51,7 @@ function AppBottomTab() {
             <Icon name={name} color={focused ? '#4e4e4e' : color} size={size} />
           );
         },
-        tabBarLabel: ({ color, focused }) => {
+        tabBarLabel: () => {
           const { title } = iconsTabs[route.name];
           return <Text>{title}</Text>;
         },

@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ProfileAvatar } from '../ProfileAvatar';
+import { TextLinearGradient } from '../TextLinearGradient';
 
 import {
   Header,
   HeaderIcon,
-  HeaderTitle,
   BoxLeft,
   BoxCenter,
   BoxRight,
@@ -35,7 +35,7 @@ const HeaderBase = ({ title, icon = true, avatar = false }: IHeaderBase) => {
         {!icon && avatar && <ProfileAvatar />}
       </BoxLeft>
       <BoxCenter>
-        <HeaderTitle>{title}</HeaderTitle>
+        <TextLinearGradient>{title}</TextLinearGradient>
       </BoxCenter>
       <BoxRight />
     </Header>

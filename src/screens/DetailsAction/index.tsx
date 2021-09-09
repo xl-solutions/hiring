@@ -1,17 +1,34 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Alert, View } from 'react-native';
+
 import { useTheme } from 'styled-components/native';
 import { parse } from 'date-fns';
 
 import { useFetch } from '../../hooks/fetchData';
+import {
+  Calendars,
+  MarkedDateProps,
+  DayProps,
+  generationInterval,
+} from '../../components/Calendars';
 
 import { HeaderBase } from '../../components/HeaderBase';
+import { ModalLoadingSimple } from '../../components/Modals/ModalLoads/ModalLoadingSimple';
 import { StatusBarBase } from '../../components/StatusBarBase';
-import { LoadButton } from '../../components/Loading/LoadButton';
 import { ButtonLabel } from '../../components/ButtonLabel';
 
-import { Container, ContainerCard, TitleText, Title } from './styles';
-import { Alert } from 'react-native';
+import {
+  Container,
+  ContainerCard,
+  TitleText,
+  Title,
+  DateInfo,
+  DateTitle,
+  DateValue,
+  Footer,
+  Icon,
+} from './styles';
 
 const { PORTFOLIO_ACTIONS } = process.env;
 
@@ -41,6 +58,14 @@ function DetailsAction({ route }: any) {
     saveAsyncStorage,
     getAsyncStorage,
   } = useFetch();
+
+  const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
+    {} as DayProps,
+  );
+
+  const [markedDates, setMarkedDate] = useState<MarkedDateProps>(
+    {} as MarkedDateProps,
+  );
 
   useEffect(() => {
     async function loadingRequest(): Promise<void> {
@@ -92,6 +117,23 @@ function DetailsAction({ route }: any) {
     }
   }
 
+  function handleChangeDate(date: DayProps) {
+    let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
+    let end = date;
+
+    if (start.timestamp > end.timestamp) {
+      start = end;
+      end = start;
+    }
+
+    console.log(date);
+    console.log('start', start);
+    console.log('end', end);
+    setLastSelectedDate(end);
+    const interval = generationInterval(start, end);
+    setMarkedDate(interval);
+  }
+
   const formattedDate = useMemo(() => {
     const parseDate = parse(
       detailsAction['07. latest trading day'],
@@ -112,12 +154,13 @@ function DetailsAction({ route }: any) {
       />
       <HeaderBase title={`Detalhes - ${symbol}`} />
 
-      <Container>
-        {loading ? (
-          <LoadButton color={neutralColors.dark['dark-light']} size={20} />
-        ) : (
-          <>
+      {loading ? (
+        <ModalLoadingSimple />
+      ) : (
+        <>
+          <Container>
             <Title>Informação cotação</Title>
+
             <ContainerCard>
               <TitleText>symbol: {detailsAction['01. symbol']}</TitleText>
               <TitleText>open: {detailsAction['02. open']}</TitleText>
@@ -139,9 +182,45 @@ function DetailsAction({ route }: any) {
                 Adicionar no portfólio
               </ButtonLabel>
             </ContainerCard>
-          </>
-        )}
-      </Container>
+
+            <Title>Histórico</Title>
+
+            <ContainerCard>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignContent: 'center',
+                  justifyContent: 'space-around',
+                  padding: 0,
+                  marginBottom: 30,
+                }}>
+                <DateInfo>
+                  <DateTitle>DE</DateTitle>
+                  <DateValue>12-2021</DateValue>
+                </DateInfo>
+                <Icon
+                  size={24}
+                  color={neutralColors.dark['dark-default']}
+                  name="arrow-right-l"
+                />
+                <DateInfo>
+                  <DateTitle>ATÉ</DateTitle>
+                  <DateValue>12-2021</DateValue>
+                </DateInfo>
+              </View>
+              <Calendars
+                markedDates={markedDates}
+                onDayPress={handleChangeDate}
+              />
+            </ContainerCard>
+          </Container>
+          <Footer>
+            <ButtonLabel style={{ marginTop: 20 }} onPress={() => {}}>
+              Histórico de preços
+            </ButtonLabel>
+          </Footer>
+        </>
+      )}
     </>
   );
 }

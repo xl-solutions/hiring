@@ -19,18 +19,6 @@ export const HeaderIcon = styled(MaterialIcons)`
   color: #000;
 `;
 
-export const HeaderTitle = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.SemiBold};
-  font-weight: 600;
-  font-size: ${({ theme }) => RFValue(theme.fontScale.md)}px;
-
-  line-height: ${RFValue(21.6)}px;
-  font-style: normal;
-  text-align: center;
-
-  color: ${({ theme }) => theme.neutralColors.dark['dark-dark']};
-`;
-
 export const BoxLeft = styled.View`
   flex: 3;
   height: 100%;

@@ -43,14 +43,6 @@ function Portfolio() {
         JSON.parse(listPortfolioExist);
 
       setListPortfolio(listFormatted);
-
-      // const findPortfolioExists = listFormatted.find(a => a.id === account.id);
-
-      // if (!findPortfolioExists) {
-      //   let newListPortfolio: DetailsActionProps[] = [...listFormatted, account];
-
-      //   await saveAsyncStorage(`${PORTFOLIO_ACTIONS}`, newListPortfolio);
-      // }
     }
 
     loadListAsyncStorage();
@@ -67,7 +59,7 @@ function Portfolio() {
         translucent={false}
       />
       <Container>
-        <HeaderBase title="Portfolio" icon={false} />
+        <HeaderBase title="Portfólio" icon={false} avatar />
       </Container>
     </>
   );

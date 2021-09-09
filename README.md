@@ -6,7 +6,7 @@ Uma corretora de ações está desenvolvendo um sistema para permitir que pequen
    - Preço histórico;
    - Preço atual em comparação a outras ações;
    - Projeção de ganhos com compra em data específica.
-   
+
 Para isso, a equipe de software da empresa optou por desenvolver um APP que dará visibilidade aos dados. Sua missão para este teste é implementar este APP
 
 # Requisitos técnicos da solução
@@ -36,10 +36,10 @@ O importante nesta parte do desafio é que saibamos como você lida com os compo
 
 As funcionalidades esperadas são:
 
-- Incluir ações no portifólio;
-- Ver situação atual das ações (último preço e data e hora da atualização);
-- Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
-- Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
+- [*] Incluir ações no portifólio ;
+- [*] Ver situação atual das ações (último preço e data e hora da atualização);
+- [] Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
+- [] Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
 
 Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Google Finance ou fazer uma arquitetura master-detail simples.
 
