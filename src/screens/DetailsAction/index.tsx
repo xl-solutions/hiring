@@ -62,6 +62,7 @@ function DetailsAction({ route }: any) {
     loading,
     saveAsyncStorage,
     getAsyncStorage,
+    loadingDailyAdjusted,
   } = useFetch();
 
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
@@ -146,6 +147,15 @@ function DetailsAction({ route }: any) {
     });
   }
 
+  async function handleHistoricPrice() {
+    try {
+      await loadingDailyAdjusted(detailsAction['01. symbol'], 'full');
+    } catch (error) {
+      console.log(error);
+      return Alert.alert('Falha', 'Algo deu errado!');
+    }
+  }
+
   const formattedDate = useMemo(() => {
     const parseDate = parse(
       detailsAction['07. latest trading day'],
@@ -227,7 +237,9 @@ function DetailsAction({ route }: any) {
             </ContainerCard>
           </Container>
           <Footer>
-            <ButtonLabel style={{ marginTop: 20 }} onPress={() => {}}>
+            <ButtonLabel
+              style={{ marginTop: 20 }}
+              onPress={handleHistoricPrice}>
               Histórico de preços
             </ButtonLabel>
           </Footer>

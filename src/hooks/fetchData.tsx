@@ -1,11 +1,11 @@
 import React, { createContext, useContext, ReactNode, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../services/api';
-import { formattedData } from '../utils/fetchDataFormatted';
 
 const { SERIES_INTRADAY } = process.env;
 const { SYMBOL_SEARCH } = process.env;
 const { SYMBOL_GLOBAL_QUOTE } = process.env;
+const { SERIES_DAILY_ADJUSTED } = process.env;
 
 type FetchDataProviderProps = {
   children: ReactNode;
@@ -15,6 +15,7 @@ type FetchLoadContextData = {
   search(params?: string): Promise<void>;
   loadingIntraday(params: string): Promise<void>;
   loadingGlobalQuote(params: string): Promise<void>;
+  loadingDailyAdjusted(params: string, outPutSize: OutPutSize): Promise<void>;
   saveAsyncStorage(key: string, data: any): Promise<void>;
   getAsyncStorage(key: string): Promise<any | null>;
   loading: boolean;
@@ -91,6 +92,8 @@ type DetailsActionAttributions =
   | '09. change'
   | '10. change percent';
 
+type OutPutSize = 'full' | 'compact';
+
 const FetchLoadContext = createContext<FetchLoadContextData>(
   {} as FetchLoadContextData,
 );
@@ -150,6 +153,26 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
     }
   }
 
+  async function loadingDailyAdjusted(symbol: string, outPutSize: OutPutSize) {
+    try {
+      setLoading(true);
+      const response = await api.get('', {
+        params: {
+          function: SERIES_DAILY_ADJUSTED,
+          symbol,
+          outputsize: outPutSize,
+        },
+      });
+
+      console.log(response.data);
+
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      throw new Error(error);
+    }
+  }
+
   async function loadingGlobalQuote(symbol: string): Promise<void> {
     try {
       setLoading(true);
@@ -175,7 +198,6 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
   async function saveAsyncStorage(key: string, data: any): Promise<void> {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(data));
-      console.log(await getAsyncStorage(key));
     } catch (error: any) {
       throw new Error(error);
     }
@@ -185,7 +207,7 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
     try {
       const response = await AsyncStorage.getItem(key);
       return response;
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
   }
@@ -198,6 +220,7 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
         loadingGlobalQuote,
         saveAsyncStorage,
         getAsyncStorage,
+        loadingDailyAdjusted,
         bestMatchesActions,
         loading,
         detailsAction,
