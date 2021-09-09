@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, View } from 'react-native';
 
 import { useTheme } from 'styled-components/native';
-import { parse } from 'date-fns';
+import { format, parse } from 'date-fns';
 
 import { useFetch } from '../../hooks/fetchData';
 import {
@@ -29,6 +29,7 @@ import {
   Footer,
   Icon,
 } from './styles';
+import { getPlatformDate } from '../../utils/getPlatformDate';
 
 const { PORTFOLIO_ACTIONS } = process.env;
 
@@ -48,6 +49,10 @@ type DetailsActionAttributions =
   | '09. change'
   | '10. change percent';
 
+interface IPeriodDate {
+  start: string;
+  end: string;
+}
 function DetailsAction({ route }: any) {
   const { symbol } = route.params;
   const { statusBar, neutralColors } = useTheme();
@@ -66,6 +71,8 @@ function DetailsAction({ route }: any) {
   const [markedDates, setMarkedDate] = useState<MarkedDateProps>(
     {} as MarkedDateProps,
   );
+
+  const [periodDate, setPeriodDate] = useState<IPeriodDate>({} as IPeriodDate);
 
   useEffect(() => {
     async function loadingRequest(): Promise<void> {
@@ -126,12 +133,17 @@ function DetailsAction({ route }: any) {
       end = start;
     }
 
-    console.log(date);
-    console.log('start', start);
-    console.log('end', end);
     setLastSelectedDate(end);
     const interval = generationInterval(start, end);
     setMarkedDate(interval);
+
+    const startDate = Object.keys(interval)[0];
+    const endDate = Object.keys(interval)[Object.keys(interval).length - 1];
+
+    setPeriodDate({
+      start: format(getPlatformDate(new Date(startDate)), 'dd/MM/yyyy'),
+      end: format(getPlatformDate(new Date(endDate)), 'dd/MM/yyyy'),
+    });
   }
 
   const formattedDate = useMemo(() => {
@@ -196,7 +208,7 @@ function DetailsAction({ route }: any) {
                 }}>
                 <DateInfo>
                   <DateTitle>DE</DateTitle>
-                  <DateValue>12-2021</DateValue>
+                  <DateValue>{periodDate.start || null}</DateValue>
                 </DateInfo>
                 <Icon
                   size={24}
@@ -205,7 +217,7 @@ function DetailsAction({ route }: any) {
                 />
                 <DateInfo>
                   <DateTitle>ATÉ</DateTitle>
-                  <DateValue>12-2021</DateValue>
+                  <DateValue>{periodDate.end || null}</DateValue>
                 </DateInfo>
               </View>
               <Calendars
