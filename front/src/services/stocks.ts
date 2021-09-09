@@ -6,6 +6,7 @@ export interface IGetHistoryResponse {
   pricedAt: Date | string;
   prices: Array<IStockPriceHistory>;
   erro?: string;
+  gains?: IStockGains;
 }
 
 export interface IStockPriceHistory {
@@ -14,6 +15,12 @@ export interface IStockPriceHistory {
   high: number;
   closing: number;
   pricedAt: string;
+}
+
+export interface IStockGains {
+  capitalGains: number;
+  purchasedAmount: number;
+  purchasedAt: string;
 }
 
 export async function getStock(stockName: string) {
@@ -74,4 +81,21 @@ export async function getComparison(stockName: string, stocks: Array<string>) {
   }
 }
 
-export async function getGains() {}
+export async function getGains(stockName: string, purchasedAmount: number, purchasedAt: string) {
+  try {
+    let response = null;
+    if (stockName === "" || purchasedAmount < 100 || purchasedAt === "") {
+      return "Foram fornecidas informações insuficientes para realizar a requisição.";
+    }
+
+    const { data } = await api.get(`/${stockName}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${purchasedAt}`);
+
+    if (data) {
+      response = data;
+    }
+
+    return response;
+  } catch (error: any) {
+    return error.toString();
+  }
+}

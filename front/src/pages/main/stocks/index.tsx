@@ -25,6 +25,7 @@ let mockup: IGetHistoryResponse = {
 export function Stocks() {
   const { customGrid } = useStyles();
   const [stock, setStock] = useState<IGetHistoryResponse>(mockup);
+  const [stocks, setStocks] = useState<Array<string>>([]);
 
   async function handleSearch(textSearch: string): Promise<void> {
     getStock(textSearch).then((response) => {
@@ -35,6 +36,9 @@ export function Stocks() {
           lastPrice: response.lastPrice,
           pricedAt: response.pricedAt,
         });
+        if (!stocks.includes(response.name)) {
+          setStocks([...stocks, response.name]);
+        }
       }
     });
   }
@@ -54,11 +58,11 @@ export function Stocks() {
   return (
     <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2}>
       <Grid item xs={12} md={12} lg={12} className={customGrid}>
-        <CustomSearchBar handleSearch={handleSearch} handleHistory={handleHistory} />
+        <CustomSearchBar handleSearch={handleSearch} handleHistory={handleHistory} stocks={stocks} />
       </Grid>
       {stock && (
         <Grid item xs={12} md={12} lg={12} className={customGrid}>
-          <StockContainer stock={stock} />
+          <StockContainer stock={stock} stocks={stocks} />
         </Grid>
       )}
     </Grid>

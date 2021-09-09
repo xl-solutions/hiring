@@ -142,6 +142,7 @@ async function getStockComparison(request, response) {
 
 async function getStockProgection(request, response) {
   try {
+    let parsedData = null;
     let { purchasedAmount, purchasedAt } = request.query;
     const { stock_name } = request.params;
     const purchasedAtSplit = purchasedAt.split("-");
@@ -165,9 +166,9 @@ async function getStockProgection(request, response) {
       return response.status(400).send({ erro: "Data com formato invalido. Esperado: yyyy-mm-dd" });
     }
 
-    const { data } = await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`)[
-      "Time Series (Daily)"
-    ];
+    const { data } = await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`);
+
+    parsedData = data["Time Series (Daily)"];
 
     if (!data) {
       return response.status(404).send({ erro: "Ação não encontrada ou não existe" });
@@ -177,12 +178,12 @@ async function getStockProgection(request, response) {
       return response.status(400).send({ erro: "Limite de buscas por minuto atingido" });
     }
 
-    if (data[purchasedAt] == undefined) {
+    if (parsedData[purchasedAt] == undefined) {
       return response.status(404).send({ erro: "Data de compra não encontrada" });
     }
 
-    let onPurchase = data[purchasedAt];
-    let today = data[Object.keys(data)[0]];
+    let onPurchase = parsedData[purchasedAt];
+    let today = parsedData[Object.keys(parsedData)[0]];
     let priceAtDate = parseFloat(onPurchase["4. close"]);
     let lastPrice = parseFloat(today["4. close"]);
 

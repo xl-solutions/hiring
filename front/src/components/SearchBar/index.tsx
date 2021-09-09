@@ -1,16 +1,18 @@
 import { IconButton, Paper, TextField } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
+import { Autocomplete } from "@material-ui/lab";
 import { DatePicker } from "@material-ui/pickers";
 import { isValid } from "date-fns";
 import { useState } from "react";
 import { useSearchBarStyles } from "./styles";
 
 interface CustomSearchBarProps {
+  stocks: Array<string>;
   handleSearch: (textSearch: string) => Promise<void>;
   handleHistory: (textSearch: string, dateFrom: string, dateTo: string) => Promise<void>;
 }
 
-export function CustomSearchBar({ handleSearch, handleHistory }: CustomSearchBarProps) {
+export function CustomSearchBar({ handleSearch, handleHistory, stocks }: CustomSearchBarProps) {
   const customClasses = useSearchBarStyles();
   const [stockName, setStockName] = useState<string>("VALE3.SA");
   const [dateFrom, setDateFrom] = useState<Date | null>(new Date());
@@ -35,7 +37,20 @@ export function CustomSearchBar({ handleSearch, handleHistory }: CustomSearchBar
 
   return (
     <Paper component="form" className={customClasses.root}>
-      <TextField
+      <Autocomplete
+        className={customClasses.searchStock}
+        value={stockName}
+        onChange={(e, value) => {
+          if (value) handleSearchTextChange(value);
+        }}
+        fullWidth
+        placeholder="Buscar ativo"
+        options={stocks}
+        renderInput={(params) => (
+          <TextField {...params} fullWidth onChange={(e) => handleSearchTextChange(e.target.value)} />
+        )}
+      />
+      {/* <TextField
         label="Buscar ativo"
         className={customClasses.searchStock}
         fullWidth
@@ -47,7 +62,7 @@ export function CustomSearchBar({ handleSearch, handleHistory }: CustomSearchBar
           }
         }}
         onChange={(e) => handleSearchTextChange(e.target.value)}
-      />
+      /> */}
       <DatePicker
         format="yyyy-MM-dd"
         label="Data inicial"
