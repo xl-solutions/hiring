@@ -10,7 +10,7 @@ Nesse teste foi implementado o backend em NodeJs e o frontend em ReactJs.
 - "npm run start-api" ou "yarn start-api": Instala os pacotes do Nodejs e roda apenas a api (porta 3333).
 - "npm run start-web" ou "yarn start-web": Instala os pacotes do ReactJs e roda apenas a aplicação web (porta 3000).
 - "npm start" ou "yarn start": Roda tanto o servidor como a aplicação web.
-  _Lembrando que talvez seja necessário executar o comando "npm install" ou "yarn" dentro de cada pasta antes de executar, assim serão instalados os pacotes necessários_
+  **Lembrando que talvez seja necessário executar o comando "npm install" ou "yarn" dentro de cada pasta antes de executar, assim serão instalados os pacotes necessários**
 
 ### Utilizando a aplicação WEB
 
