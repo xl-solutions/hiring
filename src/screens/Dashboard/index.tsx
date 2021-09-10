@@ -79,17 +79,20 @@ function Dashboard() {
             <HeaderBase title="Google Finances" icon={false} />
 
             <InputFormController
+              testID="test-input-search"
               placeholder="Pesquisar ações, ETFs e outros para comprar"
               name="search"
               isFocused={isFocused}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               iconName="search"
-              // onChangeText={text => loadingSearch(text)}
-              onChange={event => handleOnChange(event.nativeEvent.text)}
+              onChangeText={event => handleOnChange(event)}
+
+              // onChange={event => handleOnChange(event.nativeEvent.text)}
             />
 
             <LitActionsMercado
+              testID="test-LitActionsMercado"
               data={bestMatchesActions}
               ListHeaderComponent={listHeaderComponent}
               keyExtractor={item => String(item['1. symbol'])}

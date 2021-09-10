@@ -35,6 +35,5 @@ export function generationInterval(start: DayProps, end: DayProps): Response {
     };
   });
 
-  console.log('dateFormattedList', dateFormattedList);
   return { interval, dateFormattedList };
 }

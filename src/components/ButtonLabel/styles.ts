@@ -13,7 +13,7 @@ export const Container = styled(RectButton)<RectButtonProps>`
   width: 100%;
   height: ${RFValue(48)}px;
 
-  border-radius: ${({ theme }) => theme.card.borderRadius}px;
+  border-radius: ${({ theme }) => RFValue(theme.card.borderRadius)}px;
 
   background-color: ${({ theme, color }) =>
     color ? theme.uiColors['success-default'] : theme.uiColors['info-default']};

@@ -21,7 +21,10 @@ const InputFormController = ({
 }: Props) => {
   return (
     <Container>
-      <FieldContainer error={!!error} isFocused={isFocused}>
+      <FieldContainer
+        testID="test-fieldContainer"
+        error={!!error}
+        isFocused={isFocused}>
         <IconInput name={iconName} style={{ marginRight: RFValue(15) }} />
         <Input {...rest} />
         {error && (
@@ -32,7 +35,7 @@ const InputFormController = ({
           />
         )}
       </FieldContainer>
-      {error && <Error>{error}</Error>}
+      {error && <Error testID="test-error">{error}</Error>}
     </Container>
   );
 };

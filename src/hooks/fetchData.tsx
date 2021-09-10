@@ -2,7 +2,10 @@ import React, { createContext, useContext, ReactNode, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../services/api';
 import { AppError } from '../services/AppError';
-import { comparHistoricActions } from '../utils/fetchDataFormatted';
+import {
+  comparHistoricActions,
+  formattedData,
+} from '../utils/fetchDataFormatted';
 
 const { SERIES_INTRADAY } = process.env;
 const { SYMBOL_SEARCH } = process.env;
@@ -189,6 +192,8 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
         dataResponse['Time Series (Daily)'],
         intervalDates,
       );
+
+      // formattedData([...dataResponse['Time Series (Daily)']]);
 
       setTimeSeriesDay(formattedSeriesDay);
       setLoading(false);

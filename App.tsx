@@ -5,6 +5,7 @@ import { theme } from './src/global/theme';
 import AppLoading from 'expo-app-loading';
 import { Routes } from './src/routes';
 import { FetchDataProvider } from './src/hooks/fetchData';
+
 import {
   useFonts,
   IBMPlexSans_400Regular,

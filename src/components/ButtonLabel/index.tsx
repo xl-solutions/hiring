@@ -11,7 +11,7 @@ interface Props extends RectButtonProps {
 function ButtonLabel({ children, color = false, ...rest }: Props) {
   return (
     <Container color={color} {...rest}>
-      <TitleButton>{children}</TitleButton>
+      <TitleButton testID="test-TitleButton">{children}</TitleButton>
     </Container>
   );
 }
