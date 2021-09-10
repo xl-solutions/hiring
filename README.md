@@ -1,4 +1,4 @@
-# Google Finances | Teste tecnico
+# Google Finances | Teste técnico
 
 
 ### Na pasta do projeto, execute os seguintes comandos:
