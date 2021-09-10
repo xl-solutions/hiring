@@ -1,0 +1,97 @@
+{
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "extends": [
+        "airbnb",
+        "airbnb-base",
+        "plugin:prettier/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "globals": {
+      "__DEV__": "readonly",
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "react-hooks",
+        "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "no-unused-expressions": "off",
+      "react/jsx-one-expression-per-line": "off",
+      "react/jsx-props-no-spreading": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "consistent-return": "off",
+      "no-return-assign":"off",
+      "react/prop-types": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "no-anused-expressions": "off",
+      "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+      "import/prefer-default-export": "off",
+      "@typescript-eslint/explicit-function-return-type": [
+        "error",
+        {
+          "allowExpressions": true
+        }
+      ],
+      "@typescript-eslint/no-unused-vars": ["error", {
+        "argsIgnorePattern": "_"
+      }],
+      "import/no-unresolved": "error",
+        "@typescript-eslint/naming-convention": [
+        "error",
+        {
+            "selector": "interface",
+            "format": ["PascalCase"],
+            "custom": {
+            "regex": "^I[A-Z]",
+            "match": true
+            }
+        }
+      ],
+      "class-methods-use-this": "off",
+      "no-shadow": "off",
+      "no-console": "off",
+      "camelcase": "off",
+      "no-useless-constructor": "off",
+      "no-empty-function": "off",
+      "lines-between-class-members": "off",
+      "@typescript-eslint/camelcase": "off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never",
+          "tsx": "never"
+        }
+      ],
+      "import-helpers/order-imports": [
+        "warn",
+        {
+            "newlinesBetween": "always",
+            "groups": ["module", "/^@/", ["parent", "sibling", "index"]],
+            "alphabetize": { "order": "asc", "ignoreCase": true }
+        }
+      ],
+        "import/no-extraneous-dependencies": [
+        "error",
+        { "devDependencies": ["**/*.spec.js"] }
+      ]
+    },
+    "settings": {
+      "import/resolver": {
+        "typescript": {}
+      }
+    }
+}

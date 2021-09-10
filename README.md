@@ -1,13 +1,39 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+# Google Finances | Teste técnico
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
 
-Choose a language to which you are interested and follow the instructions:
+### Na pasta do projeto, execute os seguintes comandos:
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
-- [HTML/CSS/JS](front/README.md) [(English Version)](front/README_ENGLISH.md)
+- Instalando as dependências
+
+```
+yarn
+```
+
+- Executando o aplicativo para Android
+
+```
+yarn android
+```
+
+- Executando o aplicativo para Ios
+
+```
+yarn ios
+```
+
+- Executar os test Android ou Ios
+
+```
+yarn test
+```
+
+
+## APP
+
+As funcionalidades:
+
+- [*] Incluir ações no portifólio ;
+- [*] Ver situação atual das ações (último preço e data e hora da atualização);
+- [*] Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
+- [] Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
+

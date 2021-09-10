@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check component integrity InputFormController should able to visible Text Error 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+        "paddingBottom": 31,
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+      },
+    ]
+  }
+>
+  <View
+    error={true}
+    isFocused={false}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#F0F0F5",
+          "borderColor": "#F53636",
+          "borderRadius": 500,
+          "borderStyle": "solid",
+          "borderWidth": 4,
+          "flexDirection": "row",
+          "height": 98,
+          "paddingBottom": 0,
+          "paddingLeft": 53,
+          "paddingRight": 53,
+          "paddingTop": 0,
+          "width": "100%",
+        },
+      ]
+    }
+    testID="test-fieldContainer"
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 12,
+          },
+          Array [
+            Object {
+              "color": "#565666",
+              "fontSize": 35,
+            },
+            Object {
+              "marginRight": 29,
+            },
+          ],
+          Object {
+            "fontFamily": "feather",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      name="search"
+      placeholder="Pesquisar ações, ETFs e outros para comprar"
+      rejectResponderTermination={true}
+      selectionColor="rgba(114, 114, 133, 1)"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderColor": "transparent",
+            "color": "#565666",
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "fontFamily": "IBMPlexSans_500Medium",
+            "fontSize": 31,
+            "fontStyle": "normal",
+            "fontWeight": "500",
+            "height": 90,
+            "lineHeight": 40,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": 0,
+            "marginTop": 0,
+            "paddingBottom": 28,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 28,
+            "textAlign": "left",
+          },
+        ]
+      }
+      testID="inputFormController-error-text"
+      underlineColorAndroid="transparent"
+    />
+    <Text
+      allowFontScaling={false}
+      error="error-any"
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 12,
+          },
+          Array [
+            Object {
+              "color": "#F53636",
+              "fontSize": 35,
+            },
+            Object {
+              "marginLeft": 29,
+            },
+          ],
+          Object {
+            "fontFamily": "feather",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#F53636",
+          "fontFamily": "IBMPlexSans_500Medium",
+          "fontSize": 24,
+          "fontStyle": "normal",
+          "fontWeight": "500",
+          "lineHeight": 28,
+          "paddingLeft": 47,
+          "paddingTop": 8,
+          "textAlign": "left",
+        },
+      ]
+    }
+    testID="test-error"
+  >
+    error-any
+  </Text>
+</View>
+`;

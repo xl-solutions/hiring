@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonLabel Visible or Function Should able to Press in Button 1`] = `
+<RNGestureHandlerButton
+  activeOpacity={0.105}
+  collapsable={false}
+  color={true}
+  onActiveStateChange={[Function]}
+  onGestureEvent={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onHandlerStateChange={[Function]}
+  onPress={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#2BAF1F",
+      "borderRadius": 24,
+      "height": 94,
+      "justifyContent": "center",
+      "paddingBottom": 27,
+      "paddingLeft": 55,
+      "paddingRight": 55,
+      "paddingTop": 24,
+      "width": "100%",
+    }
+  }
+  testID="test-ButtonLabel"
+  underlayColor="black"
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "black",
+        "borderBottomLeftRadius": undefined,
+        "borderBottomRightRadius": undefined,
+        "borderRadius": 24,
+        "borderTopLeftRadius": undefined,
+        "borderTopRightRadius": undefined,
+        "bottom": 0,
+        "left": 0,
+        "opacity": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <Text
+    numberOfLines={1}
+    style={
+      Array [
+        Object {
+          "color": "#F0F0F5",
+          "fontFamily": "IBMPlexSans_600SemiBold",
+          "fontSize": 35,
+          "fontStyle": "normal",
+          "fontWeight": "600",
+          "lineHeight": 42,
+          "textAlign": "center",
+        },
+      ]
+    }
+    testID="test-TitleButton"
+  >
+    execute-function
+  </Text>
+</RNGestureHandlerButton>
+`;

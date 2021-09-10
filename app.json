@@ -1,0 +1,12 @@
+{
+  "name": "googlefinance",
+  "displayName": "googlefinance",
+  "expo": {
+    "name": "googlefinance",
+    "slug": "googlefinance",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
