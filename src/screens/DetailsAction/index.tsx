@@ -49,9 +49,21 @@ type DetailsActionAttributions =
   | '09. change'
   | '10. change percent';
 
+type DateFormat = {
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  adjustedClose: string;
+  volume: string;
+  dividendAmount: string;
+  splitCoefficient: string;
+};
 interface IPeriodDate {
-  start: string;
-  end: string;
+  start: DayProps;
+  end: DayProps;
+  formatStartDate: string;
+  formatEndDate: string;
 }
 function DetailsAction({ route }: any) {
   const { symbol } = route.params;
@@ -63,6 +75,7 @@ function DetailsAction({ route }: any) {
     saveAsyncStorage,
     getAsyncStorage,
     loadingDailyAdjusted,
+    timesSeriesDay,
   } = useFetch();
 
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
@@ -135,21 +148,37 @@ function DetailsAction({ route }: any) {
     }
 
     setLastSelectedDate(end);
-    const interval = generationInterval(start, end);
+    const { interval } = generationInterval(start, end);
     setMarkedDate(interval);
 
     const startDate = Object.keys(interval)[0];
     const endDate = Object.keys(interval)[Object.keys(interval).length - 1];
 
     setPeriodDate({
-      start: format(getPlatformDate(new Date(startDate)), 'dd/MM/yyyy'),
-      end: format(getPlatformDate(new Date(endDate)), 'dd/MM/yyyy'),
+      start,
+      end,
+      formatStartDate: format(
+        getPlatformDate(new Date(startDate)),
+        'dd/MM/yyyy',
+      ),
+      formatEndDate: format(getPlatformDate(new Date(endDate)), 'dd/MM/yyyy'),
     });
   }
 
   async function handleHistoricPrice() {
     try {
-      await loadingDailyAdjusted(detailsAction['01. symbol'], 'full');
+      // buscar um  intervalo de datas
+      const { dateFormattedList } = generationInterval(
+        periodDate.start,
+        periodDate.end,
+      );
+
+      // request pro historic
+      await loadingDailyAdjusted(
+        detailsAction['01. symbol'],
+        'full',
+        dateFormattedList,
+      );
     } catch (error) {
       console.log(error);
       return Alert.alert('Falha', 'Algo deu errado!');
@@ -165,6 +194,30 @@ function DetailsAction({ route }: any) {
     const formatted = `${parseDate.getDay()}/${parseDate.getMonth()}`;
     return formatted;
   }, [detailsAction]);
+
+  function historicActionsList() {
+    let dataFormat: DateFormat;
+    const newListFormatSeries = Object.keys(timesSeriesDay).map(
+      (key, index) => {
+        const formattedDate = Object.assign(
+          {},
+          {
+            [index]: Object.values(timesSeriesDay)[index],
+          },
+        );
+
+        return formattedDate;
+      },
+    );
+
+    console.log(Object.values(timesSeriesDay)[0]);
+    // newListFormatSeries.forEach(item => console.log(item['0']['1. open']));
+
+    return newListFormatSeries;
+  }
+  // historicActionsList();
+
+  timesSeriesDay.forEach(item => console.log(item));
 
   return (
     <>
@@ -219,7 +272,7 @@ function DetailsAction({ route }: any) {
                 }}>
                 <DateInfo>
                   <DateTitle>DE</DateTitle>
-                  <DateValue>{periodDate.start || null}</DateValue>
+                  <DateValue>{periodDate.formatStartDate || null}</DateValue>
                 </DateInfo>
                 <Icon
                   size={24}
@@ -228,7 +281,7 @@ function DetailsAction({ route }: any) {
                 />
                 <DateInfo>
                   <DateTitle>ATÉ</DateTitle>
-                  <DateValue>{periodDate.end || null}</DateValue>
+                  <DateValue>{periodDate.formatEndDate || null}</DateValue>
                 </DateInfo>
               </View>
               <Calendars
@@ -236,14 +289,25 @@ function DetailsAction({ route }: any) {
                 onDayPress={handleChangeDate}
               />
             </ContainerCard>
+
+            {/* {Object.keys(timesSeriesDay).length > 0 && (
+              <ContainerCard>
+                {historicActionsList().map((item, index) => (
+                  <TitleText key={String(index)}>{item}</TitleText>
+                ))}
+              </ContainerCard>
+            )} */}
           </Container>
-          <Footer>
-            <ButtonLabel
-              style={{ marginTop: 20 }}
-              onPress={handleHistoricPrice}>
-              Histórico de preços
-            </ButtonLabel>
-          </Footer>
+          {!!periodDate.start && (
+            <Footer>
+              <ButtonLabel
+                enabled={!!periodDate.start}
+                style={{ marginTop: 20 }}
+                onPress={handleHistoricPrice}>
+                Histórico de preços
+              </ButtonLabel>
+            </Footer>
+          )}
         </>
       )}
     </>

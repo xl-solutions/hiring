@@ -1,6 +1,8 @@
 import React, { createContext, useContext, ReactNode, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../services/api';
+import { AppError } from '../services/AppError';
+import { comparHistoricActions } from '../utils/fetchDataFormatted';
 
 const { SERIES_INTRADAY } = process.env;
 const { SYMBOL_SEARCH } = process.env;
@@ -15,27 +17,32 @@ type FetchLoadContextData = {
   search(params?: string): Promise<void>;
   loadingIntraday(params: string): Promise<void>;
   loadingGlobalQuote(params: string): Promise<void>;
-  loadingDailyAdjusted(params: string, outPutSize: OutPutSize): Promise<void>;
+  loadingDailyAdjusted(
+    params: string,
+    outPutSize: OutPutSize,
+    intervalDates: string[],
+  ): Promise<void>;
   saveAsyncStorage(key: string, data: any): Promise<void>;
   getAsyncStorage(key: string): Promise<any | null>;
   loading: boolean;
   bestMatchesActions: BestMatches[];
   detailsAction: DetailsActionProps;
+  timesSeriesDay: TimesSeries[];
 };
 
 type IntraDayData = {
   'Meta Data': MetaData;
-  'Time Series (5min)': {
+  'Time Series (Daily)': {
     [key in string]: TimesSeries;
   };
 };
 
 type TimesSeries = {
-  [key in TimeAttribution]: string;
+  [key in MetaDataAttribution]: string;
 };
 
 type MetaData = {
-  [key in MetaDataAttribution]: string;
+  [key in TimeAttribution]: string;
 };
 
 type MetaDataAttribution =
@@ -43,7 +50,10 @@ type MetaDataAttribution =
   | '2. high'
   | '3. low'
   | '4. close'
-  | '5. volume';
+  | '5. adjusted close'
+  | '6. volume'
+  | '7. dividend amount'
+  | '8. split coefficient';
 
 type TimeAttribution =
   | '1. Information'
@@ -100,12 +110,15 @@ const FetchLoadContext = createContext<FetchLoadContextData>(
 
 function FetchDataProvider({ children }: FetchDataProviderProps) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [series, setSeries] = useState<IntraDayData>();
   const [bestMatchesActions, setBestMatchesActions] = useState<BestMatches[]>(
     [],
   );
   const [detailsAction, setDetailsAction] = useState<DetailsActionProps>(
     {} as DetailsActionProps,
+  );
+
+  const [timesSeriesDay, setTimeSeriesDay] = useState<TimesSeries[]>(
+    [] as TimesSeries[],
   );
 
   async function search(keywords: string = ''): Promise<void> {
@@ -114,10 +127,11 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
       const response = await api.get('', {
         params: {
           keywords,
-          function: SYMBOL_SEARCH,
+          function: String(SYMBOL_SEARCH),
         },
       });
 
+      console.log(response.data);
       const { bestMatches } = response.data as RequestSearch;
 
       setBestMatchesActions(bestMatches);
@@ -129,8 +143,7 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
       setLoading(false);
     } catch (error: any) {
       setLoading(false);
-      console.log(error);
-      throw new Error(error);
+      throw new AppError(error);
     }
   }
 
@@ -153,9 +166,14 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
     }
   }
 
-  async function loadingDailyAdjusted(symbol: string, outPutSize: OutPutSize) {
+  async function loadingDailyAdjusted(
+    symbol: string,
+    outPutSize: OutPutSize,
+    intervalDates: string[],
+  ) {
     try {
       setLoading(true);
+
       const response = await api.get('', {
         params: {
           function: SERIES_DAILY_ADJUSTED,
@@ -164,8 +182,15 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
         },
       });
 
-      console.log(response.data);
+      const dataResponse = response.data as IntraDayData;
 
+      // verifica se o intervalo de dadtas fazem match com response time series do symbol que foi passado
+      const formattedSeriesDay = await comparHistoricActions(
+        dataResponse['Time Series (Daily)'],
+        intervalDates,
+      );
+
+      setTimeSeriesDay(formattedSeriesDay);
       setLoading(false);
     } catch (error: any) {
       setLoading(false);
@@ -224,6 +249,7 @@ function FetchDataProvider({ children }: FetchDataProviderProps) {
         bestMatchesActions,
         loading,
         detailsAction,
+        timesSeriesDay,
       }}>
       {children}
     </FetchLoadContext.Provider>

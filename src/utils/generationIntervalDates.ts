@@ -1,20 +1,24 @@
 import { eachDayOfInterval, format } from 'date-fns';
-import { DayProps, MarkedDateProps } from './index';
-import { getPlatformDate } from '../../utils/getPlatformDate';
+import { DayProps, MarkedDateProps } from '../components/Calendars/index';
+import { getPlatformDate } from './getPlatformDate';
 
-import { theme } from '../../global/theme';
+import { theme } from '../global/theme';
 
-export function generationInterval(
-  start: DayProps,
-  end: DayProps,
-): MarkedDateProps {
+type Response = {
+  interval: MarkedDateProps;
+  dateFormattedList: string[];
+};
+
+export function generationInterval(start: DayProps, end: DayProps): Response {
   let interval: MarkedDateProps = {};
+  let dateFormattedList: string[] = [];
 
   eachDayOfInterval({
     start: new Date(start.timestamp),
     end: new Date(end.timestamp),
   }).forEach(item => {
     const dateFormatted = format(getPlatformDate(item), 'yyyy-MM-dd');
+    dateFormattedList.push(dateFormatted);
 
     interval = {
       ...interval,
@@ -31,6 +35,6 @@ export function generationInterval(
     };
   });
 
-  console.log('interval', interval);
-  return interval;
+  console.log('dateFormattedList', dateFormattedList);
+  return { interval, dateFormattedList };
 }

@@ -38,7 +38,7 @@ As funcionalidades esperadas são:
 
 - [*] Incluir ações no portifólio ;
 - [*] Ver situação atual das ações (último preço e data e hora da atualização);
-- [] Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
+- [*] Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
 - [] Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
 
 Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Google Finance ou fazer uma arquitetura master-detail simples.
