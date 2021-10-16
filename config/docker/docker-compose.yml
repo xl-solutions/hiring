@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  node_dev_hiring:
+    image: hiring/node
+    stdin_open: true
+    container_name: node_dev_hiring
+    build:
+      context: ../../
+      dockerfile: ./config/docker/Dockerfile.dev.node
+    ports:
+      - 5487:3333
+    volumes:
+      - ../../node/:/node_dev_hiring/
+      - /node_dev_hiring/node_modules
+    restart: always

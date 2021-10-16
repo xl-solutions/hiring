@@ -1,0 +1,7 @@
+FROM node:15.2.1-alpine
+RUN mkdir -p /node_dev_hiring/src/
+WORKDIR /node_dev_hiring/
+COPY ./node/package.json /node_dev_hiring/
+RUN yarn
+COPY ./node /node_dev_hiring/
+CMD ["yarn", "dev:server"]
