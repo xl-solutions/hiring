@@ -1,0 +1,11 @@
+# dependencies
+/node/node_modules
+/node/coverage
+
+# yarn
+/node/yarn-debug.log*
+/node/yarn-error.log*
+/node/yarn.lock
+
+#eslint
+/node/.eslintcache
