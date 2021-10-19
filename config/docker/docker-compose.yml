@@ -30,5 +30,5 @@ services:
       - 5488:3000
     volumes:
       - ../../front/:/front_dev_hiring/
-      - /front_dev_hiring/front_modules
+      - /front_dev_hiring/node_modules
     restart: always
