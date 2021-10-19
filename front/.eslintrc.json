@@ -22,6 +22,9 @@
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "no-underscore-dangle": "off",
     "react/require-default-props": "off",
     "no-shadow": "off",
@@ -40,6 +43,7 @@
     "import/no-cycle": ["error", { "maxDepth": "∞" }],
     "object-curly-newline": "off",
     "react/prop-types": "off",
+    "react/no-unused-prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "import/extensions": [
       "error",
