@@ -8,9 +8,27 @@ services:
     build:
       context: ../../
       dockerfile: ./config/docker/Dockerfile.dev.node
+    environment:
+      NODE_ENV_SETUP: "development-docker"
     ports:
       - 5487:3333
     volumes:
       - ../../node/:/node_dev_hiring/
       - /node_dev_hiring/node_modules
+    restart: always
+
+  front_dev_hiring:
+    image: hiring/front
+    stdin_open: true
+    container_name: front_dev_hiring
+    build:
+      context: ../../
+      dockerfile: ./config/docker/Dockerfile.dev.front
+    environment:
+      REACT_APP_ENV_SETUP: "development-docker"
+    ports:
+      - 5488:3000
+    volumes:
+      - ../../front/:/front_dev_hiring/
+      - /front_dev_hiring/front_modules
     restart: always

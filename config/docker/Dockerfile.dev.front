@@ -1,0 +1,7 @@
+FROM node:15.2.1-alpine
+RUN mkdir -p /front_dev_hiring/src/
+WORKDIR /front_dev_hiring/
+COPY ./front/package.json /front_dev_hiring/
+RUN yarn
+COPY ./front /front_dev_hiring/
+CMD ["yarn", "start"]
