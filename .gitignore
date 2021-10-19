@@ -9,3 +9,15 @@
 
 #eslint
 /node/.eslintcache
+
+# dependencies
+/front/node_modules
+/front/coverage
+
+# yarn
+/front/yarn-debug.log*
+/front/yarn-error.log*
+/front/yarn.lock
+
+#eslint
+/front/.eslintcache
