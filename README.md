@@ -45,7 +45,10 @@
                 </tbody>
               </table>
             </li>
-            <li style="font-size: 0.6rem"><a href="http://localhost:5488">5488</a></li>
+            <li style="font-size: 0.6rem">
+              <a href="http://localhost:5488">frontend</a>
+              <a href="http://localhost:5487">backend</a>
+            </li>
           </ol>
         </td>
       </tr>
