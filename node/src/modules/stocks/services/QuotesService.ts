@@ -17,10 +17,6 @@ class QuotesService implements IQuotes {
   public async execute({ stock_name }: IRequest): Promise<IQuotesDTO> {
     const price = await this.alphaVantageService.getLatest({ stock_name });
 
-    if (!price) {
-      throw new AppError('stocks not found');
-    }
-
     const date = new Date(price['07. latest trading day']);
 
     const quotes = {
