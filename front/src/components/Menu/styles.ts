@@ -131,8 +131,9 @@ export const Container = styled.div`
 
   /* MOBILE EXCLUSIVE */
 
-  @media (max-width: 700px) {
+  @media (max-width: 701px) {
     .nav ol {
+      background-color: var(--animation);
       flex-direction: column;
       height: 100%;
       width: auto;
