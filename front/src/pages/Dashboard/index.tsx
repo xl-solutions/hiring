@@ -49,6 +49,7 @@ const Dashboard: React.FC = () => {
         <Input
           icon={null}
           type="text"
+          placeholder="Insere o nome da ação"
           className="input"
           value={stockName}
           onChange={handleChange}

@@ -104,6 +104,7 @@ const Gains: React.FC = () => {
       <Input
         icon={null}
         className="input"
+        placeholder="Insere a quantidade"
         type="number"
         value={purchasedAmount}
         onChange={handleChange}

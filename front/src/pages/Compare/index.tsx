@@ -98,6 +98,7 @@ const Compare: React.FC = () => {
       <Input
         icon={null}
         type="text"
+        placeholder="Insere o nome da ação a ser comparada"
         value={compareStockName}
         onChange={handleChange}
         onKeyPress={handleKeyUpValue}
