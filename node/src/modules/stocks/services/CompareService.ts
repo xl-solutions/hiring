@@ -15,6 +15,9 @@ class CompareService implements ICompare {
 
     let lastPrices: IQuotesDTO[] = [];
 
+    const quoteOfStockName = await quotesService.execute({ stock_name });
+    lastPrices.push(quoteOfStockName);
+
     for (let i = 0; i < stocks.length; i++) {
       const quote = await quotesService.execute({ stock_name: stocks[i] });
       lastPrices.push(quote);
