@@ -14,6 +14,7 @@
         <td>
           <ol>
             <li style="font-size: 0.6rem">run-app.sh</li>
+            <li style="font-size: 0.6rem">port</li>
           </ol>
         </td>
         <td>
@@ -44,6 +45,7 @@
                 </tbody>
               </table>
             </li>
+            <li style="font-size: 0.6rem"><a href="http://localhost:5488">5488</a></li>
           </ol>
         </td>
       </tr>
