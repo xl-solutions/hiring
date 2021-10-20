@@ -1,7 +1,11 @@
 import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import { IAlphaVantageDTO } from '@modules/alphavantage/entities/IAlphaVantageDTO';
-import { IRequest, IResponse, IGains } from '@modules/stocks/entities/IGainsDTO';
+import {
+  IRequest,
+  IResponse,
+  IGains,
+} from '@modules/stocks/entities/IGainsDTO';
 
 @injectable()
 class GainsService implements IGains {
@@ -23,7 +27,8 @@ class GainsService implements IGains {
     if (Object.keys(prices).indexOf(purchasedAt) === -1) {
       throw new AppError('Not Found purchasedAt on stock');
     }
-    const key = Object.keys(prices)[0]
+
+    const key = Object.keys(prices)[0];
     const lastPrice = Number(prices[key]['4. close']);
     const priceAtDate = Number(prices[purchasedAt]['4. close']);
 
@@ -33,7 +38,9 @@ class GainsService implements IGains {
       purchasedAt,
       priceAtDate,
       lastPrice: lastPrice,
-      capitalGains: (lastPrice - priceAtDate) * Number(purchasedAmount),
+      capitalGains: Number(
+        ((lastPrice - priceAtDate) * Number(purchasedAmount)).toFixed(2),
+      ),
     };
 
     return gains;
