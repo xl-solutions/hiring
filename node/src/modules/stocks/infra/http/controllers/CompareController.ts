@@ -5,10 +5,6 @@ import { classToClass } from 'class-transformer';
 import CompareService from '@modules/stocks/services/CompareService';
 
 interface IRequest extends Request {
-  query: {
-    to: string;
-    from: string;
-  };
   params: {
     stock_name: string;
   };
@@ -24,6 +20,7 @@ export default class CompareController {
     const req = <IRequest>(<unknown>request);
     let { stock_name } = req.params;
     let { stocks } = req.body;
+    console.log(stocks);
 
     const compareService = container.resolve(CompareService);
     const compare = await compareService.execute({ stock_name, stocks });
