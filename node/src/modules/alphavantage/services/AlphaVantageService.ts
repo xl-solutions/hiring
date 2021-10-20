@@ -18,8 +18,13 @@ class AlphaVantageService implements IAlphaVantageDTO {
   public async getPrices({ stock_name }: IRequest): Promise<IResponse> {
     const { data }: { data: any } = await axios.get(this.url(stock_name));
     const prices: IResponse = data['Time Series (Daily)'];
+    
+    if (data['Error Message']) {
+      throw new AppError(`Stock not found`, 401);
+    }
+
     if (!prices) {
-      throw new AppError('Not possible get stock');
+      throw new AppError('Not possible get operation');
     }
 
     return prices;
@@ -29,11 +34,20 @@ class AlphaVantageService implements IAlphaVantageDTO {
     const { data }: { data: any } = await axios.get(
       this.url(stock_name, 'GLOBAL_QUOTE'),
     );
-    const price: IResponseLatest = data['Global Quote'];
 
-    if (!price) {
-      throw new AppError('Not possible get price');
+    if (data['Note']) {
+      throw new AppError('API call frequency is 5 calls per minute');
     }
+
+    if (!data['Global Quote']) {
+      throw new AppError('Error unknown');
+    }
+
+    if (Object.keys(data['Global Quote']).length === 0) {
+      throw new AppError(`Stock not found`, 401);
+    }
+
+    const price: IResponseLatest = data['Global Quote'];
 
     return price;
   }
