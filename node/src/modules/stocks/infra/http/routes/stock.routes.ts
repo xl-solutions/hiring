@@ -50,7 +50,7 @@ stockRouter.get(
   gainsController.create,
 );
 
-stockRouter.get(
+stockRouter.post(
   '/:stock_name/compare',
   celebrate({
     [Segments.BODY]: {
