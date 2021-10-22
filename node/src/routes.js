@@ -1,0 +1,39 @@
+import React, {useState, useEffect} from 'react'
+import { 
+  BrowserRouter as Router,
+  Redirect, 
+  Route,
+  Switch 
+} from 'react-router-dom'
+
+import Header from './common/template/header'
+import Footer from './common/template/footer'
+
+import Home from './pages/Home'
+
+const Routes = () => {
+  const [count, setCount] = useState(null);
+
+  useEffect(() => {
+    // updateKeyValue().then(
+    //   (res)=>{
+    //     setCount(res.value)
+    // })
+  }, [])
+
+  return (
+    <Router>
+      <Header />
+        <Switch>
+          <Route exact path="/home" component={Home} />
+          <Redirect from='*' to='/home' />
+        </Switch>
+        <Footer 
+          count={count}
+        />
+    </Router>
+  )
+}
+
+export default Routes
+
