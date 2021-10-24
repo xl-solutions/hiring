@@ -3,7 +3,6 @@ const cors = require("cors");
 const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-bodyParser = require('body-parser');
 const app = require('express')();
 require('dotenv/config');
 
@@ -16,8 +15,8 @@ var corsOptions = {
 
 //app.use(logger('dev'));
 app.use(cors(corsOptions));// enabling cors for all requests by using cors middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json()); // only parses JSON and only looks at requests where the Content-Type header matches the type option
+app.use(express.urlencoded({ extended: false })); // 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
