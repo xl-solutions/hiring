@@ -45,15 +45,13 @@ router.get('/stocks/:stock_name/quote', function(req, res) {
     res.status(200).send(e)
   )
   .catch(err => {
-    res.status(500).send(err.message);
+    res.status(500).send(err);
   });
 })
 
 // `/stocks/:stock_name/history?from=<string>&to=<string>` - Retorna preço histórico da ação 
 router.get('/stocks/:stock_name/history', function(req, res) {
-  const params= req.params
-  
-  Request.getHistPrice(params).then(
+  Request.getHistPrice(req).then(
     (ans)=> 
       res.status(200).send(ans)
   )
@@ -64,22 +62,9 @@ router.get('/stocks/:stock_name/history', function(req, res) {
 });
 
 // `/stocks/:stock_name/compare` - Compara uma ação com uma ou mais ações
-router.get('/stocks/:stock_name/compare', function(req, res) {
-  const {
-    stocks,
-  } = req.body
-
-  const {
-    stock_name,
-  } = req.params
-
-  let uri = `/query?function=TIME_SERIES_INTRADAY_EXTENDED&`
-  uri+= `symbol=${stock_name}&`
-  uri+= `interval=5min&`
-  uri+= `slice=year1month1&`
-  uri+= `apikey=${process.env.ALPHA_API_KEY}`;
+router.post('/stocks/:stock_name/compare', function(req, res) {
   
-  Request.getHistPrice().then(
+  Request.compare(req).then(
     (ans)=> 
       res.status(200).send(ans)
   )
@@ -88,13 +73,14 @@ router.get('/stocks/:stock_name/compare', function(req, res) {
 
 // `/stocks/:stock_name/gains?purchasedAmount=<number>&purchasedAt=<string>` - Projeta 
 router.get('/stocks/:stock_name/gains', function(req, res) {
-  alphaController.getProjectStock(req, res).then(
+  alphaController.projectStock(req, res).then(
     (ans)=> 
       res.status(200).send(ans)
   )
-  res.status(505)
+  .catch(err => {
+    res.status(500).send(err);
+  });
 });
-
 
 // For invalid routes MUST be last function 
 router.get('*', (req, res) => {
