@@ -51,7 +51,7 @@ router.get('/stocks/:stock_name/quote', function(req, res) {
 
 // `/stocks/:stock_name/history?from=<string>&to=<string>` - Retorna preço histórico da ação 
 router.get('/stocks/:stock_name/history', function(req, res) {
-  Request.getHistPrice(req).then(
+  Request.histPrice(req).then(
     (ans)=> 
       res.status(200).send(ans)
   )
@@ -73,7 +73,7 @@ router.post('/stocks/:stock_name/compare', function(req, res) {
 
 // `/stocks/:stock_name/gains?purchasedAmount=<number>&purchasedAt=<string>` - Projeta 
 router.get('/stocks/:stock_name/gains', function(req, res) {
-  alphaController.projectStock(req, res).then(
+  Request.projectStock(req, res).then(
     (ans)=> 
       res.status(200).send(ans)
   )
