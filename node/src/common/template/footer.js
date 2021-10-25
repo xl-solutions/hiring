@@ -7,15 +7,12 @@ import NavbarBrand from 'react-bootstrap/NavbarBrand'
 import '../../styles/Home.css';
 
 const Footer = (props) => {
-    const{
-        count
-    } = props
     return(
         <div className="sto-footer">  
             <Navbar color="dark">
                 <Container>
                     <NavbarBrand  data-testid="footer-navbrand">
-                        <span className="footer-counter">Contador: {count}</span>
+                        <span className="footer-counter">Stocks API</span>
                     </NavbarBrand>
                 </Container>
             </Navbar>
