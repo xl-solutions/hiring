@@ -41,7 +41,7 @@ export async function searchTickers(stockName) {
     }
 }
 
-export async function quoteStock(stockName) {
+export async function quoteStock({stockName}) {
     try {
         return api.get(`/stocks/${stockName}/quote`)
         .then((res) => {
@@ -58,3 +58,20 @@ export async function quoteStock(stockName) {
     }
 }
 
+export async function historyStock({ticker, fromConv, toConv}) {
+    try {
+        return api.get(`/stocks/${ticker}/history?from=${fromConv}&to=${toConv}`)
+        .then((res) => {
+            if(res.data)
+            {
+                console.log(res.data)
+                checkLimit(res.data)
+                return res.data;
+            }
+            
+        })
+    } catch(e) {
+        console.log("Failed to require service");
+        throw e;      
+    }
+}
