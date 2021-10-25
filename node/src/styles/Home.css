@@ -1,0 +1,117 @@
+.page {
+  background-color: white;
+  display: flex;
+  width: 100%;
+}
+
+.sto-header-right{
+  margin-right: 0px;
+}
+
+.navbar{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  font-weight: 500;
+  color: black;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+  color: rgb(88,184,43)
+}
+
+.navbar-light .navbar-brand .navbar-link{
+  font-size: 1.2rem;
+  color: black;
+  
+}
+
+.sto-body-img {
+  background-color: white;
+  display: flex;
+  width: 100vw;
+  height: 80vh;
+}
+
+.container{
+  display: flex;
+  margin-left: 0px;
+  max-width: inherit;
+  padding: 6px 30px;
+}
+
+.sto-user-info-wrapper{
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  background-color: black;
+}
+
+.sto-user-display{
+  display: block;
+  margin: 10px;
+  font-Size: 1.0rem;
+  border: 2px solid black;
+  border-radius: 15%;
+  padding: 40px;
+  background-color: white
+}
+
+.user-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 18px;
+  grid-row-gap: 0px;
+  margin: auto;
+  align-items: center;
+}
+
+.user-info-input{
+  margin-right: 10px;
+  height: 30px;
+  width: 150px;
+}
+
+.user-info-buttons{
+  margin-bottom: 5px;
+  margin-right: 5px;
+  line-height: 15px;
+  width: 40px;
+}
+
+.sto-user-title-header{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+} 
+
+.input{
+  margin-bottom: 20px;
+}
+
+.sto-user-center{
+  display: flex;
+} 
+
+.sto-footer {
+  background-color: rgba(32,37,42,1);
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.footer-counter{
+  color: white
+}
+
+@media only screen and (max-width: 800px) {
+  .sto-body-img {
+    background-color: white;
+    display: flex;
+    width: 100vw;
+    height: auto;
+  }
+}
