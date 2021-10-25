@@ -9,7 +9,9 @@ import {
 import Header from './common/template/header'
 import Footer from './common/template/footer'
 
-import Home from './pages/Home'
+import Search from './pages/Search'
+import Quote from './pages/Quote'
+
 
 const Routes = () => {
   const [count, setCount] = useState(null);
@@ -25,8 +27,10 @@ const Routes = () => {
     <Router>
       <Header />
         <Switch>
-          <Route exact path="/home" component={Home} />
-          <Redirect from='*' to='/home' />
+          <Route path="/search" component={Search} />
+          <Route path="/quote" component={Quote} />
+          <Route exact path="/search" component={Search} />
+          <Redirect from='*' to='/search' />
         </Switch>
         <Footer 
           count={count}
