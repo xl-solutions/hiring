@@ -72,7 +72,7 @@ router.post('/stocks/:stock_name/compare', function(req, res) {
 });
 
 // `/stocks/:stock_name/gains?purchasedAmount=<number>&purchasedAt=<string>` - Projeta 
-router.get('/stocks/:stock_name/gains', function(req, res) {
+router.post('/stocks/:stock_name/gains', function(req, res) {
   Request.projectStock(req, res).then(
     (ans)=> 
       res.status(200).send(ans)
