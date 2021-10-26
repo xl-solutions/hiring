@@ -37,7 +37,12 @@ const Search = () => {
         <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Busque por uma ação</Form.Label>
-            <Form.Control value={tickers} onChange={e => setTickers(e.target.value)} type="text" placeholder="Insira uma ação" />
+            <Form.Control 
+                key="search-input-ticker"
+                value={tickers} 
+                onChange={e => setTickers(e.target.value)} 
+                type="text" 
+                placeholder="Insira uma ação" />
             <Button onClick={() => handleClick()}> Buscar Ação </Button>
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
