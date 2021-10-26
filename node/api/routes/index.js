@@ -84,7 +84,7 @@ router.get('/stocks/:stock_name/gains', function(req, res) {
 
 // For invalid routes MUST be last function 
 router.get('*', (req, res) => {
-  res.send('404! This is an invalid URL.');
+  res.status(404).send('404! This is an invalid URL.');
 });
 
 module.exports = router;
