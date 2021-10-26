@@ -96,3 +96,22 @@ export async function compareStocks({stockList}) {
         throw e;      
     }
 }
+
+export async function projectStock({stockName, purchasedAmount, purchasedAt}) {
+    try {
+        //console.log("data", data)
+        return api.get(`/stocks/${stockName}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${purchasedAt}`)
+        .then((res) => {
+            if(res.data)
+            {
+                //console.log("data", res.data)
+                checkLimit(res.data)
+                return res.data;
+            }
+            
+        })
+    } catch(e) {
+        console.log("Failed to require service");
+        throw e;      
+    }
+}
