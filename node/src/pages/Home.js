@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 //import GigaTon from '../assets/GigaTon.png'
 
@@ -10,11 +10,6 @@ import '../styles/Home.css';
 
 export default function Home(props) {
     const [stock, setStock] = useState("");
-
-    // useEffect(() => {
-    //     const serverAliveReq = getPrices("PETR4.SA");
-    //     console.log("res", serverAliveReq);
-    // },[stock]);
 
     return ( 
         <>
