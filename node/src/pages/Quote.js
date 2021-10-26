@@ -1,13 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-
-
-//import logo from '../../assets/logo.png'
 
 import {
     quoteStock

@@ -86,7 +86,7 @@ class Requests {
                 let recentPrice= {
                     name: stockName,
                     lastPrice: obj[lastRefreshed]["4. close"], 
-                    pricedAt: lastRefreshed
+                    pricedAt: lastRefreshed.slice(0, 10)
                 }
                 resolve(recentPrice);
             })
@@ -177,6 +177,8 @@ class Requests {
             stock_name,
         } = req.params
        
+        //console.log(stocks)
+        //console.log(stock_name)
         const allStocks= [...stocks, stock_name]
         
         const stocksPromises= allStocks.map( stock => {return this.recent({stock_name: stock})})

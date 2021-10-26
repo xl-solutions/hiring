@@ -41,7 +41,7 @@ export async function searchTickers(stockName) {
     }
 }
 
-export async function quoteStock({stockName}) {
+export async function quoteStock(stockName) {
     try {
         return api.get(`/stocks/${stockName}/quote`)
         .then((res) => {
@@ -65,6 +65,46 @@ export async function historyStock({ticker, fromConv, toConv}) {
             if(res.data)
             {
                 console.log(res.data)
+                checkLimit(res.data)
+                return res.data;
+            }
+            
+        })
+    } catch(e) {
+        console.log("Failed to require service");
+        throw e;      
+    }
+}
+
+export async function compareStocks({stockList}) {
+    try {
+        const ticker= stockList[0]
+        const data = { stocks: stockList.slice(1, stockList.length)};
+        //console.log("data", data)
+        return api.post(`/stocks/${ticker}/compare`, data)
+        .then((res) => {
+            if(res.data)
+            {
+                //console.log("data", res.data)
+                checkLimit(res.data)
+                return res.data;
+            }
+            
+        })
+    } catch(e) {
+        console.log("Failed to require service");
+        throw e;      
+    }
+}
+
+export async function projectStock({stockName, purchasedAmount, purchasedAt}) {
+    try {
+        //console.log("data", data)
+        return api.get(`/stocks/${stockName}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${purchasedAt}`)
+        .then((res) => {
+            if(res.data)
+            {
+                //console.log("data", res.data)
                 checkLimit(res.data)
                 return res.data;
             }
