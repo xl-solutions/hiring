@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
 import {
     searchTickers
@@ -13,7 +14,7 @@ const Search = () => {
     const [tickers, setTickers] = useState("");
     const [foundTickers, setFoundTickers] = useState("");
 
-    useEffect(() => {
+    const handleClick = () =>{
         if (tickers){
             let findTickers = searchTickers(tickers);
             findTickers.then(
@@ -27,7 +28,7 @@ const Search = () => {
         }else{
             setFoundTickers("")
         }
-    }, [tickers])
+    }
 
     return(
     <Container fluid="sm">
@@ -37,6 +38,7 @@ const Search = () => {
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Busque por uma ação</Form.Label>
             <Form.Control value={tickers} onChange={e => setTickers(e.target.value)} type="text" placeholder="Insira uma ação" />
+            <Button onClick={() => handleClick()}> Buscar Ação </Button>
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Tickers Encontrados</Form.Label>
