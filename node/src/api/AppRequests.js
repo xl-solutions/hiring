@@ -41,7 +41,7 @@ export async function searchTickers(stockName) {
     }
 }
 
-export async function quoteStock({stockName}) {
+export async function quoteStock(stockName) {
     try {
         return api.get(`/stocks/${stockName}/quote`)
         .then((res) => {

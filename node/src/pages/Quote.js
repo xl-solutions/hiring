@@ -6,9 +6,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
-
-//import logo from '../../assets/logo.png'
-
 import {
     quoteStock
 } from "../api/AppRequests";
