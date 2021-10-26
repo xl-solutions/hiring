@@ -1,39 +1,36 @@
-# react-express
-A react-node-express SPA good for starting a Full Stack project. 
+# Stocks-Project
+Um projeto para gerenciar ações que permite: 
 
-## Starting Front-End : 
+   - Cotar uma ação;
+   - Determinar seu Preço histórico;
+   - Preço atual em comparação a outras ações;
+   - Projeção de ganhos com compra em data específica.
 
+# Documentação da API 
+
+- https://documenter.getpostman.com/view/11935242/UV5dctZE
+
+# Utilização: 
+
+- Gere sua chave gratuitamente em : 
+- https://www.alphavantage.co/ 
+- Preencha o arquivo api/.env com a informação da chave: 
+- ALPHA_API_KEY= "Sua Chave"
+
+## Inicialização do Front-End
+
+- npm install
 - npm run start
 
-## Starting Back-End : 
+## Inicialização do Back-End : 
 
+- npm install
 - npm run dev 
 
-Front-end: 
-A react create-react-app with a simple API call:  
-- A generic react folder organization
-- Promisses-based 
-- Axios 
-- react-bootstrap
+## Testes Automatizados
 
-Some packages were removed feel free to reinstall: 
-- @testing-library
+- npm test -- --watch
 
-Back-end: 
-A NodeJs-Express back-end working API with :
+## Construção: 
 
-- env configs for dev and prod 
-- Helmet for security 
-- Mysql2 Driver
-- cors
-- debug
-- http-errors
-- morgan 
-- multer
-- nodemon 
-
-
-
-
-
-
+- npm run build 
