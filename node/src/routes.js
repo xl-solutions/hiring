@@ -12,6 +12,7 @@ import Footer from './common/template/footer'
 import Search from './pages/Search'
 import Quote from './pages/Quote'
 import History from './pages/History'
+import Compare from './pages/Compare'
 
 
 const Routes = () => {
@@ -31,6 +32,7 @@ const Routes = () => {
           <Route path="/search" component={Search} />
           <Route path="/quote" component={Quote} />
           <Route path="/history" component={History} />
+          <Route path="/compare" component={Compare} />
           <Route exact path="/search" component={Search} />
           <Redirect from='*' to='/search' />
         </Switch>

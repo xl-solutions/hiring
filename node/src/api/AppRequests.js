@@ -75,3 +75,24 @@ export async function historyStock({ticker, fromConv, toConv}) {
         throw e;      
     }
 }
+
+export async function compareStocks({stockList}) {
+    try {
+        const ticker= stockList[0]
+        const data = { stocks: stockList.slice(1, stockList.length)};
+        //console.log("data", data)
+        return api.post(`/stocks/${ticker}/compare`, data)
+        .then((res) => {
+            if(res.data)
+            {
+                //console.log("data", res.data)
+                checkLimit(res.data)
+                return res.data;
+            }
+            
+        })
+    } catch(e) {
+        console.log("Failed to require service");
+        throw e;      
+    }
+}
