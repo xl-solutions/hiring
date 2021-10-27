@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+.navbar-light .navbar-nav .nav-link:hover{
+  color: red;
+}
+
+.header-selected{
+  background-color: cornflowerblue;
+  border-radius: 10px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
