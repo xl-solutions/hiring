@@ -29,7 +29,17 @@ Um projeto para gerenciar ações que permite:
 
 ## Testes Automatizados
 
-- npm test -- --watch
+Há um problema de versão na utilização do JEST com o create-react-app. Para contorná-lo:  
+
+- Crie um arquivo .env na raiz do projeto e adicione 
+- SKIP_PREFLIGHT_CHECK=true
+Após este passo basta rodar os testes de Back-End: 
+
+```
+- cd /api
+- npm run test
+```
+
 
 ## Construção: 
 
