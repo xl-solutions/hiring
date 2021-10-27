@@ -19,19 +19,36 @@ Um projeto para gerenciar ações que permite:
 
 ## Inicialização do Front-End
 
-- npm install
-- npm run start
+Há um problema de versão na utilização do JEST com o create-react-app. 
+Para rodar o front e os testes faça: 
+
+Renomeie o arquivo .env.development.local para .env
+
+### Instalação dos Pacotes do Front-End: 
+
+Na raiz do projeto:
+
+```
+ npm install
+ npm run start
+```
 
 ## Inicialização do Back-End : 
 
+Raiz do projeto de api:
+
+```
+- cd /api
 - npm install
 - npm run dev 
+```
+
 
 ## Testes Automatizados
 
 Há um problema de versão na utilização do JEST com o create-react-app. Para contorná-lo:  
 
-- Crie um arquivo .env na raiz do projeto e adicione 
+- Renomeie o arquivo .env.development.local para .env
 - SKIP_PREFLIGHT_CHECK=true
 Após este passo basta rodar os testes de Back-End: 
 
@@ -39,7 +56,6 @@ Após este passo basta rodar os testes de Back-End:
 - cd /api
 - npm run test
 ```
-
 
 ## Construção: 
 
