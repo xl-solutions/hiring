@@ -62,14 +62,14 @@ describe('Test Endpoints', () => {
     expect(JSON.parse(res.text)).toHaveLength(5)
   })
 
-  it('history - should return history quote for a valid stockname', async () => {
-    const data= {stocks: ["AADI","IBM"]}
-    const res = await request(app)
-      .post('/stocks/TSLA/compare')
-      .send(data)
-    expect(res.statusCode).toEqual(200)
-    expect(JSON.parse(res.text)).toHaveProperty('lastPrices')
-    expect(JSON.parse(res.text)['lastPrices']).toHaveLength(3)
-  })
+  // it('history - should return history quote for a valid stockname', async () => {
+  //   const data= {stocks: ["AADI","IBM"]}
+  //   const res = await request(app)
+  //     .post('/stocks/TSLA/compare')
+  //     .send(data)
+  //   expect(res.statusCode).toEqual(200)
+  //   expect(JSON.parse(res.text)).toHaveProperty('lastPrices')
+  //   expect(JSON.parse(res.text)['lastPrices']).toHaveLength(3)
+  // })
 
 })
