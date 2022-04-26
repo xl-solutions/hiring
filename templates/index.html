@@ -38,13 +38,13 @@
     </form>
     <div class="filtro">
         <select name="" id="modelo">
-            
+            <option value=""></option>
         </select>
         <select name="" id="fabricante">
-
+            <option value=""></option>
         </select>
         <select name="" id="plano">
-
+            <option value=""></option>
         </select>
     </div>
     <div id="container">
@@ -68,7 +68,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     
     <script> // filtro selects
-        function get_table() {
+        function filter() {
+
+        }
+        function get_filtro() {
             axios.get('/get_filter').then(resp => {
                 const select_modelo = document.getElementById('modelo')
                 const select_fabricante = document.getElementById('fabricante')
@@ -102,43 +105,59 @@
                 })
                 select_plano.innerHTML = inner_plano
                 
+                select_modelo.addEventListener('click', () =>{
+                    mod_value = select_modelo.options[select_modelo.selectedIndex].text
+                    console.log(mod_value);
+                })
+                
+                select_fabricante.addEventListener('click', () =>{
+                    let fab_value = select_fabricante.options[select_fabricante.selectedIndex].text
+                    console.log(fab_value);
+                })
+                
+                select_plano.addEventListener('click', () =>{
+                    let pla_value = select_plano.options[select_plano.selectedIndex].text
+                    console.log(pla_value);
+                })
             })
+        }
+        get_filtro()
+    </script>
+
+    <script> // get itens
+        function get_table(params) {
+            axios.get('/get_itens').then(resp => {
+                const table = document.getElementById('tb')
+                const list = resp.data.itens;
+                const status = resp.status;
+
+                if (!resp.data){
+                    document.getElementById('container').innerHTML = "<h3>Você não tem itens cadastrados</h3>"
+                }
+
+                let html = ''
+
+                list.forEach(item => {
+                    html += `
+                            <tr>
+                                <td style="display:none;">${item[0]}</td>
+                                <td>${item[1]}</td>
+                                <td>${item[2]}</td>
+                                <td>${item[3]}</td>
+                                <td>${item[4]}</td>
+                                <td>${item[5]}</td>
+                                <td>${item[6]}</td>
+                            </tr>
+                            `
+                })
+                table.innerHTML = html
+
+                //alertAPP({action: 'succes', title: 'Titulo do alerta', text: 'Texto de descrição do alerta em questão', icon: 'check_circle'})
+            });
         }
         get_table()
     </script>
-    
-    <script> // get itens
-        axios.get('/get_itens').then(resp => {
-            const table = document.getElementById('tb')
-            const list = resp.data.itens;
-            const status = resp.status;
-            
-            if (!resp.data){
-                document.getElementById('container').innerHTML = "<h3>Você não tem itens cadastrados</h3>"
-            }
-                
-            let html = ''
 
-            list.forEach(item => {
-                html += `
-                        <tr>
-                            <td style="display:none;">${item[0]}</td>
-                            <td>${item[1]}</td>
-                            <td>${item[2]}</td>
-                            <td>${item[3]}</td>
-                            <td>${item[4]}</td>
-                            <td>${item[5]}</td>
-                            <td>${item[6]}</td>
-                        </tr>
-                        `
-            })
-            table.innerHTML = html
-            
-            //alertAPP({action: 'succes', title: 'Titulo do alerta', text: 'Texto de descrição do alerta em questão', icon: 'check_circle'})
-        });
-
-    </script>
-    
     <script> // import csv
         const form = document.querySelector("form");
         form.addEventListener("submit", (e) => {
@@ -160,7 +179,7 @@
     </script>
     
     <script>
-
+        
     </script>
 
     <script src="./static/alertsAPP.js"></script>
