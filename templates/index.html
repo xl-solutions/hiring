@@ -6,11 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piske</title>
 </head>
+<style>
+    body {
+        margin: 0;
+    }
+    .table{
+        border: .5px solid black;
+        border-collapse: collapse;
+    }
+    .table tr td{
+        border: .5px solid black;
+    }
+</style>
 <body>
     <form action="/" method="post" enctype=multipart/form-data>
         <label for="csv">CSV</label>
         <input type="file" name="csv" id="csv">
         <input type="submit" value="ok">
     </form>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>titulo</th>
+                </tr>
+            </thead>
+            <tbody id="tb">
+
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script>
+        axios.get('/get_itens').then(resp => {
+            const table = document.getElementById('tb')
+            const list = resp.data.itens;
+            let html = ''
+
+            list.forEach(item => {
+                html += `
+                        <tr>
+                            <td>${item[0]}</td>
+                            <td>${item[1]}</td>
+                            <td>${item[2]}</td>
+                            <td>${item[3]}</td>
+                            <td>${item[4]}</td>
+                            <td>${item[5]}</td>
+                            <td>${item[6]}</td>
+                        </tr>
+                        `
+            })
+            table.innerHTML = html
+            
+        });
+
+    </script>
 </body>
 </html>
