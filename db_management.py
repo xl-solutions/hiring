@@ -36,7 +36,7 @@ def validate_database() -> bool:
         }
     return client
 
-def create_data(data): # is_ok [True: ok, 1: erro de conexao, 2: falha ao criar ou encontra tabela, 3: falha ao inserir itens]
+def create_data(data) -> bool: # is_ok [True: ok, 1: erro de conexao, 2: falha ao criar ou encontra tabela, 3: falha ao inserir itens]
     is_ok = True
     client = validate_database()
     cur = client.get('cur')
@@ -55,8 +55,7 @@ def create_data(data): # is_ok [True: ok, 1: erro de conexao, 2: falha ao criar 
 
     return is_ok
 
-
-def get_data():
+def get_data() -> list:
     is_ok = True
     client = validate_database()
     cur = client.get('cur')
@@ -79,3 +78,41 @@ def get_data():
         'rows': rows
     }
     return rows
+
+def get_filter_data() -> dict:
+    is_ok = True
+    client = validate_database()
+    cur = client.get('cur')
+    con = client.get('con')
+    is_valid = client.get('is_valid')
+    filter_data = {}
+    
+    if is_valid:
+        # manufacturer
+        sql = 'SELECT DISTINCT manufacturer FROM public.telefones '
+        cur.execute(sql)
+        manufacturer = cur.fetchall()
+        
+        print(manufacturer)
+        
+        # carrier_plan_type
+        sql = 'SELECT DISTINCT carrier_plan_type FROM public.telefones '
+        cur.execute(sql)
+        plan = cur.fetchall()
+        
+        print(plan)
+        
+        # model
+        sql = 'SELECT DISTINCT model FROM public.telefones '
+        cur.execute(sql)
+        model = cur.fetchall()
+        
+        print(model)
+    
+        filter_data = {
+            "manufacturer": manufacturer,
+            "model": model,
+            "plan": plan
+        }
+        con.close()
+    return filter_data

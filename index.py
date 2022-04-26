@@ -1,8 +1,7 @@
 import json
-import os
-from db_management import create_data, get_data
+from db_management import create_data, get_data, get_filter_data
 from utils import format_json
-from flask import Flask, Response, flash, request, redirect, render_template
+from flask import Flask, request, redirect, render_template
 import pandas as pd
 
 app = Flask(__name__)
@@ -49,6 +48,16 @@ def get_itens():
         'itens': itens
     }
     return json.dumps(df)
+
+@app.route('/get_filter', methods=['GET'])
+def get_filter():# dados dos filtros da tabela, podem ser atualizados de forma assincrona
+    
+    data_filter = get_filter_data()
+
+    
+    return json.dumps(data_filter)
+
+
 
 if __name__ == "__main__":
     app.run()
