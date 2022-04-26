@@ -4,31 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='alert.css') }}">
+    
     <title>Piske</title>
 </head>
 <style>
     body {
         margin: 0;
+        display: flex;
+    }
+    form{
+        align-items: center;
+    }
+    #container {
+        align-items: center;
+        width: 80vw;
     }
     .table{
+        text-align: center;
+        width: 100%;
         border: .5px solid black;
         border-collapse: collapse;
     }
     .table tr td{
-        border: .5px solid black;
+        border-bottom: .5px solid black;
     }
 </style>
 <body>
-    <form action="/" method="post" enctype=multipart/form-data>
+    <form action="" method="post" enctype=multipart/form-data>
         <label for="csv">CSV</label>
         <input type="file" name="csv" id="csv">
         <input type="submit" value="ok">
     </form>
-    <div>
+    <div class="filtro">
+        <select name="" id="modelo">
+            <option value=""></option>
+        </select>
+        <select name="" id="fabricante"></select>
+        <select name="" id="modalidade"></select>
+    </div>
+    <div id="container">
         <table class="table">
             <thead>
                 <tr>
-                    <th>titulo</th>
+                    <th>Manufacturer</th>
+                    <th>Model</th>
+                    <th>Color</th>
+                    <th>Carrier Plan</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
                 </tr>
             </thead>
             <tbody id="tb">
@@ -37,16 +61,42 @@
         </table>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script>
+    
+    <script> // filtro selects
+        axios.get('/get_filter').then(resp => {
+            const select_modelo = document.getElementById('modelo')
+            const select_fabricante = document.getElementById('fabricante')
+            const select_modalidade = document.getElementById('modalidade')
+
+            const modelos = resp.data.modelos
+            const fabricantes = resp.data.fabricantes
+            const modalidade = resp.data.modalidade
+
+            let inner_modelos = ""
+            /* modelos.forEach(modelo => {
+                inner_modelos +=    `
+
+                                    ` 
+            })
+            select_modelo */
+        })
+    </script>
+    <script> // get itens
         axios.get('/get_itens').then(resp => {
             const table = document.getElementById('tb')
             const list = resp.data.itens;
+            const status = resp.status;
+            
+            if (!resp.data){
+                document.getElementById('container').innerHTML = "<h3>Você não tem itens cadastrados</h3>"
+            }
+                
             let html = ''
 
             list.forEach(item => {
                 html += `
                         <tr>
-                            <td>${item[0]}</td>
+                            <td style="display:none;">${item[0]}</td>
                             <td>${item[1]}</td>
                             <td>${item[2]}</td>
                             <td>${item[3]}</td>
@@ -58,8 +108,30 @@
             })
             table.innerHTML = html
             
+            //alertAPP({action: 'succes', title: 'Titulo do alerta', text: 'Texto de descrição do alerta em questão', icon: 'check_circle'})
         });
 
     </script>
+    
+    <script> // import csv
+        const form = document.querySelector("form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            axios
+            .post("/create", formData, {
+                headers: {
+                "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        });
+    </script>
+    <script src="./static/alertsAPP.js"></script>
 </body>
 </html>

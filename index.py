@@ -2,7 +2,7 @@ import json
 import os
 from db_management import create_data, get_data
 from utils import format_json
-from flask import Flask, flash, request, redirect, render_template
+from flask import Flask, Response, flash, request, redirect, render_template
 import pandas as pd
 
 app = Flask(__name__)
@@ -17,33 +17,34 @@ def create_itens():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'csv' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
+            return "sem dados", 400
         
         file = request.files.get('csv') #arquivo csv
         
         if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
+            return "sem dados", 400
         
         try:
             df = pd.read_csv(file)
             df = json.loads(df.to_json())
         except:
-            flash("por favor selecone um cvs")
+            return "sem cvs", 409
         
         else:
             formated_json = format_json(df)
             is_created = create_data(formated_json)
             if is_created:
-                print("dados criados com sucesso")
+                num_items = len(formated_json)
+                df = {'num': num_items}
+                return df, 201
             else:
-                print("erro ao criar dados")
+                return "erro", 500
+    return redirect('/')
 
 @app.route('/get_itens', methods=['GET'])
 def get_itens():
     itens = get_data()
-    print(itens)
+
     df = {
         'itens': itens
     }

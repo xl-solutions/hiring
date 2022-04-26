@@ -57,18 +57,25 @@ def create_data(data): # is_ok [True: ok, 1: erro de conexao, 2: falha ao criar 
 
 
 def get_data():
+    is_ok = True
     client = validate_database()
     cur = client.get('cur')
     con = client.get('con')
     is_valid = client.get('is_valid')
+    rows = []
     
     if is_valid:
         sql = 'SELECT * FROM public.telefones'
         cur.execute(sql)
         rows = cur.fetchall()
         con.close()
-        return rows
+        
     else:
+        is_ok = False
         print("erro")
 
+    df = {
+        'is_ok': is_ok,
+        'rows': rows
+    }
     return rows
