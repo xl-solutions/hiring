@@ -36,7 +36,7 @@ export const Container = styled.div`
         }
       }
       a:hover{
-        color: #456ae6;
+        color: #7304f1;
       }
       label{
         font-weight: bold;

@@ -9,7 +9,7 @@ export const Container = styled.div`
     color: #fff;
   }
   a:hover {
-    color: #456ae6;
+    color: #7304f1;
   }
   header {
     width: 100%;

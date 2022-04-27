@@ -10,7 +10,7 @@ a{
   text-decoration: none;
 }
 a:hover{
-  color: #456ae6;
+  color: #7304f1;
 }
 h1{
   margin: 2vh 0;
