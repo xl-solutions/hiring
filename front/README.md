@@ -48,3 +48,10 @@ Port 3000 is in use, trying another one...
 neste caso, a aplicação está rodando normalmente no localhost:3001!
 
 
+# Curiosidades:
+
+## Tempo gasto no projeto:
+[![wakatime](https://wakatime.com/badge/user/c3c14b97-fc84-43fa-a3d7-ef365de00f4a/project/a8019ada-b33a-439b-b518-0441b70b5154.svg)](https://wakatime.com/badge/user/c3c14b97-fc84-43fa-a3d7-ef365de00f4a/project/a8019ada-b33a-439b-b518-0441b70b5154)
+
+## Tempo em cada arquivo, linguagens, distribuição do tempo:
+[WakaTime!](https://wakatime.com/@Lux_sales/projects/ybaceqvxfz?start=2022-04-21&end=2022-04-27)
