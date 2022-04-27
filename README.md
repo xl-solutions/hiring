@@ -21,7 +21,7 @@ Windows
 ```
 Todas as dependências da aplicação estão listadas em requirements.txt.
 ```
-pip install -r requirements.txt -t .
+pip install -r requirements.txt
 ```
 ## Execução
 Para executar o script digite:
