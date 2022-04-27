@@ -26,7 +26,7 @@ pip install -r requirements.txt
 ## Atenção
 Para que tenha menos problemas ao tentar execultar a plicação utilize um banco de dados PostgreSQL, com a senha padrao 2208, utilize um container docker para realizar os testes:
 ```
-docker run --name some-postgres -e POSTGRES_PASSWORD=2208 -d postgres 
+docker run -e POSTGRES_PASSWORD=2208 -d postgres 
 ```
 ## Execução
 Para executar o script digite:
