@@ -7,6 +7,7 @@ a{
   color: #fff;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 a:hover{
   color: #456ae6;
@@ -18,6 +19,7 @@ h1{
 p{
   margin-top: 10vh;
   font-size: 24px;
+  line-height: 150%;
 }
 footer{
   display:flex;

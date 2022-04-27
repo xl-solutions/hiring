@@ -25,6 +25,7 @@ function Home() {
         }
       }
       else{
+        console.log('wee')
         setError('Algo inesperado aconteceu')
       }
     }

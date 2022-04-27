@@ -23,11 +23,14 @@ export const Container = styled.div`
       align-items: start;
       border: 1px solid #fff;
       margin: 2vh 0;
+      border-radius: 15px;
+      line-height: 150%;
       a{
         cursor: pointer;
         font-size: 36px;
         color: #fff;
         font-weight: bold;
+        margin-top: 2vh;
         svg{
           margin-right: 0.5vw;
         }
@@ -38,6 +41,7 @@ export const Container = styled.div`
       label{
         font-weight: bold;
         color: #ff02b3;
+        margin-top: 2vh;
         a{
           font-size: 16px;
           font-weight: normal;
