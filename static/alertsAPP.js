@@ -26,7 +26,6 @@ function alertAPP(params) {
 // filtro selects
 function filter(value, ps) {
     const table = document.querySelector('#tb')
-    // console.log(table.children);
     for (linha of table.children) {
         if (linha.children[ps].innerText != value && value != 'Selecione'){
             
@@ -74,7 +73,7 @@ function get_filtro() {
         select_modelo.addEventListener('click', () =>{
             mod_value = select_modelo.options[select_modelo.selectedIndex].text
             filter(mod_value, 2)
-            //console.log(mod_value);
+
         })
         
         select_fabricante.addEventListener('click', () =>{
@@ -94,7 +93,7 @@ get_filtro()
 function get_table() {
     axios.get('/get_itens').then(resp => {
         const list = resp.data.itens;
-        console.log(list);
+
         if (list.length === 0){
             document.querySelector('.table').innerHTML = "<h3>Você não tem itens cadastrados, pode imputar seu csv</h3>"
         }else{
@@ -144,7 +143,7 @@ form.addEventListener("submit", (e) => {
         },
     })
     .then((res) => {
-        console.log(res.status);
+
         switch (res.status) {
             case 201:
                 alertAPP({
@@ -188,7 +187,7 @@ form.addEventListener("submit", (e) => {
                 
                 break;
         }
-        console.log(e);
+
     });
     
 });

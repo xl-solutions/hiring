@@ -1,8 +1,9 @@
 import psycopg2
 
-def validate_database() -> bool:
-    is_valid = True
 
+def valid_database() -> bool:
+    is_valid = True
+    con = None
     try:
         con = psycopg2.connect(
             host='localhost',
@@ -10,33 +11,45 @@ def validate_database() -> bool:
             user='postgres',
             password='2208'
         )
+    except:
+        pass
+    if not con:
+        is_valid = False
+    
+    return is_valid
+
+def validate_database() -> object:
+    is_valid = True
+    con = None
+    try:
+        con = psycopg2.connect(
+            host='localhost',
+            database='postgres',
+            user='postgres',
+            password='2208'
+        )
+    except:
+        pass
+    
+    if con:
         cur = con.cursor()
 
-    except Exception as e:
-        is_valid = False
-        print(f"Não conectado {e}")
+        try:
+            sql = '''CREATE TABLE IF NOT EXISTS
+                    public.telefones (id serial primary key, manufacturer varchar(50),
+                    model varchar(50), color varchar(25),
+                    carrier_plan_type varchar(5), quantity int, price float )'''
+            cur.execute(sql)
+            con.commit()
+            
+            client = {
+                'con': con,
+                'cur': cur
+            }
+        except:
+            client = {}
 
-    try:
-        sql = '''CREATE TABLE IF NOT EXISTS
-                public.telefones (id serial primary key, manufacturer varchar(50),
-                model varchar(50), color varchar(25),
-                carrier_plan_type varchar(5), quantity int, price float )'''
-        cur.execute(sql)
-        con.commit()
-    except Exception as e:
-        is_valid = False
-        print(e)
     
-    if is_valid:
-        client = {
-            'is_valid': is_valid,
-            'con': con,
-            'cur': cur
-        }
-    else:
-        client = {
-            'is_valid': is_valid
-        }
     return client
 
 def create_data(data) -> bool: # is_ok [True: ok, 1: erro de conexao, 2: falha ao criar ou encontra tabela, 3: falha ao inserir itens]
@@ -63,10 +76,10 @@ def create_data(data) -> bool: # is_ok [True: ok, 1: erro de conexao, 2: falha a
             print("Banco de dados nao validado")
     except:
         is_ok = False
+    
     return is_ok
 
 def get_data() -> list:
-    is_ok = True
     client = validate_database()
     cur = client.get('cur')
     con = client.get('con')
@@ -80,17 +93,12 @@ def get_data() -> list:
         con.close()
         
     else:
-        is_ok = False
         print("erro")
 
-    df = {
-        'is_ok': is_ok,
-        'rows': rows
-    }
     return rows
 
 def get_filter_data() -> dict:
-    is_ok = True
+
     client = validate_database()
     cur = client.get('cur')
     con = client.get('con')
@@ -125,4 +133,5 @@ def get_filter_data() -> dict:
             "plan": plan
         }
         con.close()
+    
     return filter_data
