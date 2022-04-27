@@ -23,15 +23,19 @@ Todas as dependências da aplicação estão listadas em requirements.txt.
 ```
 pip install -r requirements.txt
 ```
-## Execução
-Para executar o script digite:
-```
-python index.py
-```
 ## Atenção
 Para que tenha menos problemas ao tentar execultar a plicação utilize um banco de dados PostgreSQL, com a senha padrao 2208, utilize um container docker para realizar os testes:
 ```
-sudo docker run --name some-postgres -e POSTGRES_PASSWORD=2208 -d postgres 
+docker run --name some-postgres -e POSTGRES_PASSWORD=2208 -d postgres 
+```
+## Execução
+Para executar o script digite:
+```
+python app.py
+```
+Também existe a alternativa de baixar um container docker com a imagem
+```
+docker run -p 5000:5000 -d mrpiske/flask
 ```
 ## Entendendo a funcionalidade
 Esse pequeno projeto le um modelo especifico de csv e persiste o mesmo no banco de dados (PostgreSQL) e utiliza o mesmo para rederizar uma tabela no em um templeta, a mesma ossui alguns filtros para melhorar a experiencia do usuario.
