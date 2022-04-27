@@ -28,7 +28,7 @@ export const Container = styled.div`
     }
     button {
       width: 10vw;
-      background-color: #7304f1;
+      background: linear-gradient(to top,#24102b,#7304f1);
       border: none;
       border-radius: 0 5px 5px 0;
       font-size: 18px;

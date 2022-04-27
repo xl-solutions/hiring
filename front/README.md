@@ -17,7 +17,7 @@ No terminal do seu computador rode o comando:
 
 ### 2 - Abra o projeto com:
 
-`cd Xl-Solutions`
+`cd Xl-Solutions/front`
 
 ### 3 - Instale as dependências e rode o projeto:
 
