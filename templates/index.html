@@ -30,6 +30,7 @@
         border-bottom: .5px solid black;
     }
 </style>
+
 <body>
     <form action="" method="post" enctype=multipart/form-data>
         <label for="csv">CSV</label>
@@ -68,8 +69,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     
     <script> // filtro selects
-        function filter() {
-
+        function filter(value, ps) {
+            const table = document.querySelector('#tb')
+            // console.log(table.children);
+            for (linha of table.children) {
+                if (linha.children[ps].innerText != value){
+                    
+                    linha.style.display = 'none'
+                }else{
+                    linha.style.display = 'table-row'
+                }
+            }
         }
         function get_filtro() {
             axios.get('/get_filter').then(resp => {
@@ -107,17 +117,18 @@
                 
                 select_modelo.addEventListener('click', () =>{
                     mod_value = select_modelo.options[select_modelo.selectedIndex].text
-                    console.log(mod_value);
+                    filter(mod_value, 2)
+                    //console.log(mod_value);
                 })
                 
                 select_fabricante.addEventListener('click', () =>{
                     let fab_value = select_fabricante.options[select_fabricante.selectedIndex].text
-                    console.log(fab_value);
+                    filter(fab_value, 1)
                 })
                 
                 select_plano.addEventListener('click', () =>{
                     let pla_value = select_plano.options[select_plano.selectedIndex].text
-                    console.log(pla_value);
+                    filter(pla_value, 4)
                 })
             })
         }
@@ -131,7 +142,7 @@
                 const list = resp.data.itens;
                 const status = resp.status;
 
-                if (!resp.data){
+                if (! resp.data){
                     document.getElementById('container').innerHTML = "<h3>Você não tem itens cadastrados</h3>"
                 }
 
