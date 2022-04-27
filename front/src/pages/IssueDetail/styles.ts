@@ -25,8 +25,14 @@ footer{
   margin-top: 10vh;
   img{
     width: 7vw;
-    height: 9vh;
+    height: 11vh;
     border-radius: 50%;
+  }
+
+  @media screen and (max-width: 900px){
+    img{
+      width: 20vw;
+    }
   }
   span{
     margin-left: 1vw;

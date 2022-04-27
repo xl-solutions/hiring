@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
-  display:flex;
-  flex-direction:column;
-  align-items:left;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
   h1 {
     margin-top: 5vh;
     color: #fff;
@@ -31,6 +31,14 @@ export const Container = styled.div`
       background-color: #3eda17;
       border: none;
       border-radius: 0 5px 5px 0;
+    }
+    @media screen and (max-width: 900px) {
+      input{
+        width: 70vw;
+      }
+      button {
+        width: 15vw;
+      }
     }
   }
 `;
