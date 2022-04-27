@@ -19,7 +19,6 @@ def valid_database() -> bool:
     return is_valid
 
 def validate_database() -> object:
-    is_valid = True
     con = None
     try:
         con = psycopg2.connect(
@@ -49,7 +48,6 @@ def validate_database() -> object:
         except:
             client = {}
 
-    
     return client
 
 def create_data(data) -> bool: # is_ok [True: ok, 1: erro de conexao, 2: falha ao criar ou encontra tabela, 3: falha ao inserir itens]
@@ -57,10 +55,8 @@ def create_data(data) -> bool: # is_ok [True: ok, 1: erro de conexao, 2: falha a
     client = validate_database()
     cur = client.get('cur')
     con = client.get('con')
-    is_valid = client.get('is_valid')
-    print(client)
     try:
-        if is_valid:
+        if client:
             for d in data:
                 sql = f"""INSERT INTO
                         telefones values (default, '{d.get("manufacturer")}',
@@ -83,10 +79,9 @@ def get_data() -> list:
     client = validate_database()
     cur = client.get('cur')
     con = client.get('con')
-    is_valid = client.get('is_valid')
     rows = []
     
-    if is_valid:
+    if client:
         sql = 'SELECT * FROM public.telefones'
         cur.execute(sql)
         rows = cur.fetchall()
@@ -102,10 +97,9 @@ def get_filter_data() -> dict:
     client = validate_database()
     cur = client.get('cur')
     con = client.get('con')
-    is_valid = client.get('is_valid')
     filter_data = {}
     
-    if is_valid:
+    if client:
         # manufacturer
         sql = 'SELECT DISTINCT manufacturer FROM public.telefones '
         cur.execute(sql)
