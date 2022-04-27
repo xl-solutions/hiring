@@ -1,22 +1,57 @@
-# Background
+# Xl Solutions
 
-Um novo cliente contratou a XL Solutions e pediu para que fosse feito um frontend para pesquisar dados de repositorios de usuários do github e também as issues dos repositórios. Para essa funcionalidade, a aplicação deve consumir da API do github.
+# Website:
 
-# Requisitos
+https://xl-solutions-9a49b.web.app/
 
-1. A aplicação deverá inicialmente ter uma página onde o usuário irá digitar o nome de algum user do github.
-2. A pagina terá que mostrar o nome do usuário, avatar, e também a lista de repositórios do mesmo. Na lista de repositórios, deve ser mostrado o `nome do repositório`, a `url para clonar o repositório` e um `link` para o usuário poder acessar a página do próprio github do repositório ao clicar nela.
-3. Ao clicar no nome do repositório, o usuário deve ser direcionado para uma outra página, que vai listar as `issues` do repositório.
-4. Ao clicar no titulo da `issue` nessa página, o usuário vai ser direcionado para uma outra página que mostrará novamente o título da issue, bem como o corpo da issue, que tem a descrição do problema.
+## Requisitos do projeto:
+nodejs  14.XX.X <br/>
 
-# Observações:
+# Como rodar o projeto:
 
-- A aplicação pode ser feita usando qualquer framework de frontend, ou em JS vanilla
-- A documentação para a API do github: https://docs.github.com/en/rest/reference
+### 1 - Download do projeto:
 
-# Procedimento para entrega do teste:
+No terminal do seu computador rode o comando:
 
-1. Faça o fork desse projeto no github;
-2. Codifique a aplicação nesse fork;
-3. Escreva um README explicando como rodar sua aplicação. Dê o máximo de detalhes.
-4. Abra um pull request quando estiver pronto.
+`git clone https://github.com/Lux-Sales/Xl-Solutions.git`
+
+### 2 - Abra o projeto com:
+
+`cd Xl-Solutions/front`
+
+### 3 - Instale as dependências e rode o projeto:
+
+`yarn && yarn dev`
+ou
+`npm install && npm run dev`
+
+### 4 - Abra o projeto:
+
+[Clique Aqui](http://localhost:3000)
+
+
+# Possíveis problemas
+
+### 1 - Algo rodando na porta 3000
+
+A porta padrão configurada do projeto é a 3000, porém você pode ter outro processo rodando na porta 3000, nesse caso, o projeto vai para a 3001, caso essa esteja em uso, vai para 3002, e assim por diante, mas não é preciso ficar com tentativa e erro até acertar, no terminal onde você usou os comandos, a própria aplicação indica onde está rodando assim:
+```
+Port 3000 is in use, trying another one...
+
+  vite v2.9.6 dev server running at:
+
+  > Local: http://localhost:3001/
+  > Network: use `--host` to expose
+
+  ready in 230ms.
+```
+neste caso, a aplicação está rodando normalmente no localhost:3001!
+
+
+# Curiosidades:
+
+## Tempo gasto no projeto:
+[![wakatime](https://wakatime.com/badge/user/c3c14b97-fc84-43fa-a3d7-ef365de00f4a/project/a8019ada-b33a-439b-b518-0441b70b5154.svg)](https://wakatime.com/badge/user/c3c14b97-fc84-43fa-a3d7-ef365de00f4a/project/a8019ada-b33a-439b-b518-0441b70b5154)
+
+## Tempo em cada arquivo, linguagens, distribuição do tempo:
+[WakaTime!](https://wakatime.com/@Lux_sales/projects/ybaceqvxfz?start=2022-04-21&end=2022-04-27)
