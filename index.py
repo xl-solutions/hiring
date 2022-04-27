@@ -31,7 +31,11 @@ def create_itens():
         
         else:
             formated_json = format_json(df)
+            
             is_created = create_data(formated_json)
+            if not is_created:
+                return "nao foi possivel inserir cvs", 500
+            
             if is_created:
                 num_items = len(formated_json)
                 df = {'num': num_items}
@@ -56,7 +60,6 @@ def get_filter():# dados dos filtros da tabela, podem ser atualizados de forma a
 
     
     return json.dumps(data_filter)
-
 
 
 if __name__ == "__main__":

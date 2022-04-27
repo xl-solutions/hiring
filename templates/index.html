@@ -4,195 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='alert.css') }}">
-    
-    <title>Piske</title>
-</head>
-<style>
-    body {
-        margin: 0;
-        display: flex;
-    }
-    form{
-        align-items: center;
-    }
-    #container {
-        align-items: center;
-        width: 80vw;
-    }
-    .table{
-        text-align: center;
-        width: 100%;
-        border: .5px solid black;
-        border-collapse: collapse;
-    }
-    .table tr td{
-        border-bottom: .5px solid black;
-    }
-</style>
-
-<body>
-    <form action="" method="post" enctype=multipart/form-data>
-        <label for="csv">CSV</label>
-        <input type="file" name="csv" id="csv">
-        <input type="submit" value="ok">
-    </form>
-    <div class="filtro">
-        <select name="" id="modelo">
-            <option value=""></option>
-        </select>
-        <select name="" id="fabricante">
-            <option value=""></option>
-        </select>
-        <select name="" id="plano">
-            <option value=""></option>
-        </select>
-    </div>
-    <div id="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Manufacturer</th>
-                    <th>Model</th>
-                    <th>Color</th>
-                    <th>Carrier Plan</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody id="tb">
-
-            </tbody>
-        </table>
-    </div>
-    
+    <link rel="stylesheet" type="text/css" href="../static/alertAPP.css">
+    <!-- MATERIAL ICONS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     
-    <script> // filtro selects
-        function filter(value, ps) {
-            const table = document.querySelector('#tb')
-            // console.log(table.children);
-            for (linha of table.children) {
-                if (linha.children[ps].innerText != value){
-                    
-                    linha.style.display = 'none'
-                }else{
-                    linha.style.display = 'table-row'
-                }
-            }
-        }
-        function get_filtro() {
-            axios.get('/get_filter').then(resp => {
-                const select_modelo = document.getElementById('modelo')
-                const select_fabricante = document.getElementById('fabricante')
-                const select_plano = document.getElementById('plano')
+    <title>Piske</title>
 
-                const modelos = resp.data.model
-                const fabricantes = resp.data.manufacturer
-                const planos = resp.data.plan
+</head>
 
-                let inner_modelos = ""
-                modelos.forEach(modelo => {
-                    inner_modelos +=   `<option value="">
-                                            ${modelo[0]}
-                                        </option>`
-                })
-                select_modelo.innerHTML = inner_modelos
-
-                let inner_fabricante = ""
-                fabricantes.forEach(fabricante => {
-                    inner_fabricante +=`<option value="">
-                                            ${fabricante[0]}
-                                        </option>`
-                })
-                select_fabricante.innerHTML = inner_fabricante
-
-                let inner_plano = ""
-                planos.forEach(plano => {
-                    inner_plano += `<option value="">
-                                        ${plano[0]}
-                                    </option>`
-                })
-                select_plano.innerHTML = inner_plano
+<body>
+    <main>
+        <h1>Aparelhos</h1>
+        <div id="container">
+            <div style="display: flex;">
+                <div class="filtro">
+                    <div>
+                        <label for="">Modelo</label><br>
+                        <select name="" id="modelo">
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Fabricante</label><br>
+                        <select name="" id="fabricante">
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Plano</label><br>
+                        <select name="" id="plano">
+                        </select>
+                    </div>
+                </div>
+                <div class="input">
+                    <form action="" method="post" enctype=multipart/form-data>
+                        <label for="csv">
+                            <span class="material-icons-sharp">upload_file</span>
+                            <input type="file" name="csv" id="csv">    
+                        </label>
+                        <input type="submit" value="ok">
+                    </form>
+                </div>
+            </div>
+            
+            <table class="table">
                 
-                select_modelo.addEventListener('click', () =>{
-                    mod_value = select_modelo.options[select_modelo.selectedIndex].text
-                    filter(mod_value, 2)
-                    //console.log(mod_value);
-                })
-                
-                select_fabricante.addEventListener('click', () =>{
-                    let fab_value = select_fabricante.options[select_fabricante.selectedIndex].text
-                    filter(fab_value, 1)
-                })
-                
-                select_plano.addEventListener('click', () =>{
-                    let pla_value = select_plano.options[select_plano.selectedIndex].text
-                    filter(pla_value, 4)
-                })
-            })
-        }
-        get_filtro()
-    </script>
-
-    <script> // get itens
-        function get_table(params) {
-            axios.get('/get_itens').then(resp => {
-                const table = document.getElementById('tb')
-                const list = resp.data.itens;
-                const status = resp.status;
-
-                if (! resp.data){
-                    document.getElementById('container').innerHTML = "<h3>Você não tem itens cadastrados</h3>"
-                }
-
-                let html = ''
-
-                list.forEach(item => {
-                    html += `
-                            <tr>
-                                <td style="display:none;">${item[0]}</td>
-                                <td>${item[1]}</td>
-                                <td>${item[2]}</td>
-                                <td>${item[3]}</td>
-                                <td>${item[4]}</td>
-                                <td>${item[5]}</td>
-                                <td>${item[6]}</td>
-                            </tr>
-                            `
-                })
-                table.innerHTML = html
-
-                //alertAPP({action: 'succes', title: 'Titulo do alerta', text: 'Texto de descrição do alerta em questão', icon: 'check_circle'})
-            });
-        }
-        get_table()
-    </script>
-
-    <script> // import csv
-        const form = document.querySelector("form");
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const formData = new FormData(form);
-            axios.post("/create", formData, {
-                headers: {
-                "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((res) => {
-                
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-            get_table()
-        });
-    </script>
-    
-    <script>
-        
-    </script>
-
-    <script src="./static/alertsAPP.js"></script>
+            </table>
+        </div>
+    </main>
+    <script src="../static/alertsAPP.js"></script>
 </body>
 </html>
