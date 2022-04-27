@@ -24,6 +24,7 @@ export const Container = styled.div`
       background-color: #39393f;
       border: none;
       border-radius: 5px 0 0 5px;
+      color: #fff;
     }
     button {
       width: 10vw;

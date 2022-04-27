@@ -1,4 +1,5 @@
 import api from './api'
+import { Issue } from './issue'
 
 export interface Repo{
     name:string,
@@ -11,3 +12,7 @@ export const getUserRepos = async (username: string) => {
   return response.data
 }
 
+export const getRepoIssues = async (owner: string, repo: string) => {
+  const response = await api.get<Issue[]>(`/repos/${owner}/${repo}/issues`)
+  return response.data
+}

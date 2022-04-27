@@ -33,7 +33,7 @@ function UserInfo(props: UserInfoProps) {
         {repos.map(repo => {
           return (
             <ListItem>
-              <a>
+              <a href={`/issues?owner=${user.login}&repo=${repo.name}`}>
                 <OpenInNewIcon />
                 {repo.name}
               </a>
