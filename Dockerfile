@@ -1,18 +1,9 @@
-FROM python:3.10.2
-FROM node:15.14.0 as build
+FROM python:3.10.4
 
 WORKDIR /app
 
 COPY . .
 
-RUN yarn
+RUN pip install -r requirements.txt
 
-RUN yarn build
-
-
-#star nginx
-FROM nginx
-
-COPY ./nginx.conf /etc/nginx/nginx.conf
-
-COPY --from=build /app/build /usr/share/nginx/html
+RUN python index.py
