@@ -14,7 +14,6 @@ function Home() {
     setUser(undefined)
     try{
       const userData = await getUser(search)
-      console.log(userData)
       setUser(userData)
       setError('')
     }

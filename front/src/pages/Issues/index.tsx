@@ -18,7 +18,6 @@ function Issues() {
       }
     };
     fetchIssues();
-    console.log(issues);
   }, []);
 
   return (

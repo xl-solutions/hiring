@@ -15,11 +15,9 @@ function IssueDetail() {
         typeof issue_number === 'string'
       ) {
         const issueData = await getIssue(owner, repo, +issue_number);
-        console.log(issueData)
         setIssue(issueData);
       }
     };
-    console.log(typeof owner, typeof repo, typeof issue_number)
     fetchIssue();
   }, []);
   return (
