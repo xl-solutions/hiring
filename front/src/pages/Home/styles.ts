@@ -28,9 +28,12 @@ export const Container = styled.div`
     }
     button {
       width: 10vw;
-      background-color: #3eda17;
+      background-color: #7304f1;
       border: none;
       border-radius: 0 5px 5px 0;
+      font-size: 18px;
+      color: #fff;
+      font-weight: bold;
     }
     @media screen and (max-width: 900px) {
       input{

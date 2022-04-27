@@ -59,7 +59,6 @@ export const Container = styled.div`
       }
       label+label{
         color: #980bb4;
-
       }
     }
   }
