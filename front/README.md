@@ -21,11 +21,30 @@ No terminal do seu computador rode o comando:
 
 ### 3 - Instale as dependências e rode o projeto:
 
-`yarn && yarn start`
+`yarn && yarn dev`
 ou
-`npm install && npm start`
+`npm install && npm run dev`
 
 ### 4 - Abra o projeto:
 
 [Clique Aqui](http://localhost:3000)
+
+
+# Possíveis problemas
+
+### 1 - Algo rodando na porta 3000
+
+A porta padrão configurada do projeto é a 3000, porém você pode ter outro processo rodando na porta 3000, nesse caso, o projeto vai para a 3001, caso essa esteja em uso, vai para 3002, e assim por diante, mas não é preciso ficar com tentativa e erro até acertar, no terminal onde você usou os comandos, a própria aplicação indica onde está rodando assim:
+```
+Port 3000 is in use, trying another one...
+
+  vite v2.9.6 dev server running at:
+
+  > Local: http://localhost:3001/
+  > Network: use `--host` to expose
+
+  ready in 230ms.
+```
+neste caso, a aplicação está rodando normalmente no localhost:3001!
+
 
