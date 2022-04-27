@@ -2,7 +2,7 @@
 
 ## Instalação
 Antes de execiltar o arquivo instale suas dependências.<br>
-Python 3.10.14<br>
+Python 3.10.4<br>
 É recomendavel que utilize uma virtualenv para não comprometer os pacotes de sua maquina.
 ```
 pip install virtualenv
