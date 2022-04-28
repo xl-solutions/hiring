@@ -1,10 +1,12 @@
 import express from "express";
 import gainsProjection from "../services/GainsProjection.js";
 import recentQuote from "../services/RecentQuote.js";
+import compareQuotes from "../services/CompareQuotes.js";
 import requestGet from "../services/StocksService.js";
 
 const router = express.Router()
 
+// Gains projection by specific date
 router.get("/:stock_name/gains", async (req, res) => {
   const stockName = req.params.stock_name;
   const { query } = req;
@@ -20,18 +22,32 @@ router.get("/:stock_name/gains", async (req, res) => {
     res.status(400).send(error);
   }
 });
-
+// Returns the most recent quote for stock
 router.get("/:stock_name/quote", async (req, res) => {
   const stockName = req.params.stock_name;
-  const stockFunction = "TIME_SERIES_INTRADAY";
+  const stockFunction = "TIME_SERIES_DAILY";
   const stockInterval = "5min";
   try {
     const response = await requestGet(stockFunction, stockName, stockInterval);
-    // console.log(response)
     const informationData = response[Object.keys(response)[0]];
     const stockData = response[Object.keys(response)[1]];
     const quoteResult = await recentQuote(stockName, stockData, informationData);
     res.status(200).json(quoteResult);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+// Compare two or more stocks
+router.post("/:stock_name/compare", async (req, res) => {
+  const stockName = req.params.stock_name;
+  const stockNamesArray = req.body.stocks;
+  stockNamesArray.unshift(stockName);
+  const stockFunction = "TIME_SERIES_DAILY";
+  const stockInterval = "5min";
+  try {
+    const response = await compareQuotes(stockNamesArray, stockFunction, stockInterval);
+    res.status(200).json(response);
   } catch (error) {
     res.status(400).send(error);
   }
