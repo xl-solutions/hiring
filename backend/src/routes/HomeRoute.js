@@ -1,8 +1,8 @@
-import express from 'express';
+import express from "express";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   try {
     const response = "Server Online";
     res.status(200).json(response);

@@ -1,21 +1,11 @@
-import request from 'request';
+import getStockData from "./GetStockData.js";
 
-const url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=PETR4.SA&interval=5min&apikey=S36E5NC9SNC9VEC6';
-
-const requestGet = () => {
-  request.get({
-      url: url,
-      json: true,
-      headers: {'User-Agent': 'request'}
-    }, (err, res, data) => {
-      if (err) {
-        console.log('Error:', err);
-      } else if (res.statusCode !== 200) {
-        console.log('Status:', res.statusCode);
-      } else {
-        console.log(data);
-      }
-  });
+const requestGet = async (stockFunction, stockSymbol, stockInterval) => {
+  // const API_KEY = "S36E5NC9SNC9VEC6";
+  const API_KEY = "demo";
+  const url = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${stockSymbol}&apikey=${API_KEY}`; //&interval=${stockInterval}
+  const response = await getStockData(url);
+  return response;
 }
 
 export default requestGet;
