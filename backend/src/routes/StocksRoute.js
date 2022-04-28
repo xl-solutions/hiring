@@ -13,7 +13,7 @@ router.get("/:stock_name/gains", async (req, res) => {
     const response = await requestGet(stockFunction, stockName, stockInterval);
     const informationData = response[Object.keys(response)[0]];
     const stockData = response[Object.keys(response)[1]];
-    const gainsResult = gainsProjection(query, stockName, stockData, informationData);
+    const gainsResult = await gainsProjection(query, stockName, stockData, informationData);
     res.status(200).json(gainsResult);
   } catch (error) {
     res.status(400).send(error);
