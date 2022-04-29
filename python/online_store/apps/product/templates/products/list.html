@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}
+    <h1>tests</h1>
+{% endblock title %}
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>Products</h2>
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="manufacturer" class="col-sm2 col-form-label">Manufacturers</label>
+                        <select name="manufacturer" id="inpmanufacture" class="form-control">
+                            <option selected>all</option>
+                            {% for manufacturer in manufacturers %}
+                                <option value={{manufacturer.id}}>{{manufacturer.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="model" class="col-sm2 col-form-label">Model</label>
+                        <input class="form-control" type="text" name="model">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+        <table class="table table-bordered">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Manufacture</th>
+                <th scope="col">Model</th>
+                <th scope="col">Color</th>
+                <th scope="col">Carrier Plan</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+            </tr>
+            <tr>            
+                {% if not products %}
+                    <h2>Not find products for this search</h2>
+                {% endif %}
+            </tr>
+            {% for p in products %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{p.manufacturer.name}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.color}}</td>
+                    <td>{{p.carrier_plan.name}}</td>
+                    <td>{{p.quantity}}</td>
+                    <td>{{p.price}}</td>
+                    <td>
+                        <a href="{{ url_for('product.update', id=p.id)}}" class="btn btn-warning btn-xs">Edit</a>
+                        <a href="{{ url_for('product.delete', id=p.id)}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete ?')">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock content%}
+{% block scripts %}
+
+{% endblock %}
