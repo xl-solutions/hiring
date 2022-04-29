@@ -3,6 +3,7 @@ import gainsProjection from "../services/GainsProjection.js";
 import recentQuote from "../services/RecentQuote.js";
 import compareQuotes from "../services/CompareQuotes.js";
 import stockHistory from "../services/StockHistory.js";
+import getStockCurrency from "../services/GetStockCurrency.js";
 import requestGet from "../services/StocksService.js";
 
 const router = express.Router()
@@ -14,10 +15,11 @@ router.get("/:stock_name/gains", async (req, res) => {
   const stockFunction = "TIME_SERIES_MONTHLY";
   const stockInterval = "5min";
   try {
-    const response = await requestGet(stockFunction, stockName, stockInterval);
+    const { stockSymbol, currency } = await getStockCurrency(stockName);
+    const response = await requestGet(stockFunction, stockSymbol, stockInterval);
     const informationData = response[Object.keys(response)[0]];
     const stockData = response[Object.keys(response)[1]];
-    const gainsResult = await gainsProjection(query, stockName, stockData, informationData);
+    const gainsResult = await gainsProjection(query, stockSymbol, stockData, informationData, currency);
     res.status(200).json(gainsResult);
   } catch (error) {
     res.status(400).send(error);
@@ -29,9 +31,10 @@ router.get("/:stock_name/quote", async (req, res) => {
   const stockFunction = "GLOBAL_QUOTE";
   const stockInterval = "5min";
   try {
-    const response = await requestGet(stockFunction, stockName, stockInterval);
+    const { stockSymbol, currency } = await getStockCurrency(stockName);
+    const response = await requestGet(stockFunction, stockSymbol, stockInterval);
     const informationData = response[Object.keys(response)[0]];
-    const quoteResult = await recentQuote(stockName, informationData);
+    const quoteResult = await recentQuote(stockSymbol, informationData, currency);
     res.status(200).json(quoteResult);
   } catch (error) {
     res.status(400).send(error);
@@ -60,9 +63,10 @@ router.get("/:stock_name/history", async (req, res) => {
   const stockFunction = "TIME_SERIES_MONTHLY";
   const stockInterval = "5min";
   try {
-    const response = await requestGet(stockFunction, stockName, stockInterval);
+    const { stockSymbol, currency } = await getStockCurrency(stockName);
+    const response = await requestGet(stockFunction, stockSymbol, stockInterval);
     const stockData = response[Object.keys(response)[1]];
-    const resultHistory = await stockHistory(stockName, stockData, from, to);
+    const resultHistory = await stockHistory(stockSymbol, stockData, from, to, currency);
     res.status(200).json(resultHistory);
   } catch (error) {
     res.status(400).send(error);

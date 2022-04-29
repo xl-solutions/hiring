@@ -1,11 +1,11 @@
 import currencyConversion from "./CurrencyConversion.js";
 
-const stockHistory = async (stockSymbol, stockData, fromDate, toDate) => {
+const stockHistory = async (stockSymbol, stockData, fromDate, toDate, currency) => {
   const historyArray = [];
   for(const stock of Object.keys(stockData)) {
     if (stockData[fromDate] && stockData[toDate]) {
       if (stock === fromDate || stock === toDate || historyArray.length) {
-        const currencyQuote = await currencyConversion(1, stock)
+        const currencyQuote = await currencyConversion(1, stock, currency)
         historyArray.push({
           "opening": parseFloat(stockData[stock][Object.keys(stockData[stock])[0]]) * currencyQuote,
           "low": parseFloat(stockData[stock][Object.keys(stockData[stock])[2]]) * currencyQuote,
