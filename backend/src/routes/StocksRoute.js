@@ -2,6 +2,7 @@ import express from "express";
 import gainsProjection from "../services/GainsProjection.js";
 import recentQuote from "../services/RecentQuote.js";
 import compareQuotes from "../services/CompareQuotes.js";
+import stockHistory from "../services/StockHistory.js";
 import requestGet from "../services/StocksService.js";
 
 const router = express.Router()
@@ -53,5 +54,20 @@ router.post("/:stock_name/compare", async (req, res) => {
   }
 });
 
+// Returns history stock prices
+router.get("/:stock_name/history", async (req, res) => {
+  const stockName = req.params.stock_name;
+  const { from, to } = req.query;
+  const stockFunction = "TIME_SERIES_MONTHLY";
+  const stockInterval = "5min";
+  try {
+    const response = await requestGet(stockFunction, stockName, stockInterval);
+    const stockData = response[Object.keys(response)[1]];
+    const resultHistory = await stockHistory(stockName, stockData, from, to);
+    res.status(200).json(resultHistory);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 export default router;
