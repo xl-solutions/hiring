@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title%}  Upload new products file {% endblock title%}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="card" style="width: 100%;">
+        <div class="card-header">Upload Product file</div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            <div class="form-group">
+              {{form.product_file.label(class="col-sm2 col-form-label")}}
+              {{form.product_file(class="form-control-file")}}
+              {% for error in form.product_file.errors %}
+              <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+              <!-- <input class="form-control-file" type=file name="file" id="csvfile"> -->
+            </div>
+            <input class="btn btn-primary" type="submit" value="Upload">
+          </form>
+        </div>
+    </div>
+  <div>
+{% endblock content %}

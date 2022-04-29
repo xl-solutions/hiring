@@ -1,0 +1,15 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./online_store/:/webapp/
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    env_file: .env
+    expose:
+      - 5432

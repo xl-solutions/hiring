@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-outline-secondary">
+                <div class="card-header">
+                    <h2>Product update</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <form method="POST" action="">
+                            {{ form.csrf_token }}
+                            <fieldset class="form-field">
+                            {{ form.manufacturer_id.label(class="col-sm2 col-form-label") }}
+                            {{ form.manufacturer_id(class="form-control") }}
+                            {% if form.manufacturer_id.errors %}
+                            <ul class="errors">
+                                {% for error in form.manufacturer.errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            </fieldset>
+                    
+                            <fieldset class="form-field">
+                            {{ form.name.label(class="col-sm2 col-form-label") }}
+                            {{ form.name(class="form-control") }}
+                            {% if form.name.errors %}
+                                <ul class="errors">
+                                {% for error in form.name.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            </fieldset>
+                    
+                            <fieldset class="form-field">
+                            {{ form.color.label(class="col-sm2 col-form-label") }}
+                            {{ form.color(class="form-control") }}
+                            {% if form.color.errors %}
+                                <ul class="errors">
+                                {% for error in form.color.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            </fieldset>
+
+                            <fieldset class="form-field">
+                            {{ form.carrier_plan_id.label(class="col-sm2 col-form-label") }}
+                            {{ form.carrier_plan_id(class="form-control") }}
+                            {% if form.carrier_plan_id.errors %}
+                                <ul class="errors">
+                                {% for error in form.carrier_plan_id.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            </fieldset>
+                            
+                            <fieldset class="form-field">
+                            {{ form.quantity.label(class="col-sm2 col-form-label") }}
+                            {{ form.quantity(class="form-control", type="number") }}
+                            {% if form.quantity.errors %}
+                                <ul class="errors">
+                                {% for error in form.quantity.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            </fieldset>
+
+                            <fieldset class="form-field">
+                            {{ form.price.label(class="col-sm2 col-form-label") }}
+                            {{ form.price(class="form-control", type="number") }}
+                            {% if form.price.errors %}
+                                <ul class="errors">
+                                {% for error in form.price.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            </fieldset>
+                            <br/></br>
+                            <fieldset class="form-field">
+                                    {{ form.submit(class="btn btn-xs btn-primary") }}
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}
