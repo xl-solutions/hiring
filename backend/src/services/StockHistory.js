@@ -1,10 +1,10 @@
 import currencyConversion from "./CurrencyConversion.js";
 
-const stockHistory = async (stockSymbol, stockData, dateFrom, dateTo) => {
+const stockHistory = async (stockSymbol, stockData, fromDate, toDate) => {
   const historyArray = [];
   for(const stock of Object.keys(stockData)) {
-    if (stockData[dateFrom] && stockData[dateTo]) {
-      if (stock === dateFrom || stock === dateTo || historyArray.length) {
+    if (stockData[fromDate] && stockData[toDate]) {
+      if (stock === fromDate || stock === toDate || historyArray.length) {
         const currencyQuote = await currencyConversion(1, stock)
         historyArray.push({
           "opening": parseFloat(stockData[stock][Object.keys(stockData[stock])[0]]) * currencyQuote,
@@ -13,12 +13,12 @@ const stockHistory = async (stockSymbol, stockData, dateFrom, dateTo) => {
           "closing": parseFloat(stockData[stock][Object.keys(stockData[stock])[3]]) * currencyQuote,
           "pricedAt": stock
         })
-        if (stock === dateTo) {
+        if (stock === toDate) {
           break;
         }
       }
     } else {
-      return "Error: Invalid date 'from/to'.";
+      return "Error: Invalid from/to' date.";
     }
   }
 
