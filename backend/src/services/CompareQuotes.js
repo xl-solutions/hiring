@@ -6,8 +6,7 @@ const compareQuotes = async (stockSymbolArray, stockFunction, stockInterval) => 
   for(const stockSymbol of stockSymbolArray){
     const response = await requestGet(stockFunction, stockSymbol, stockInterval);
     const informationData = response[Object.keys(response)[0]];
-    const stockData = response[Object.keys(response)[1]];
-    const quoteResult = await recentQuote(stockSymbol, stockData, informationData);
+    const quoteResult = await recentQuote(stockSymbol, informationData);
     resultArray.push(quoteResult);
   }
   const result = {

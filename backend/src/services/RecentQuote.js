@@ -1,16 +1,16 @@
 import currencyConversion from "./CurrencyConversion.js";
 
-const recentQuote = async (stockSymbol, stockData, stockInformation) => {
+const recentQuote = async (stockSymbol, stockInformation) => {
   // Set variables
-  const lastRefreshDate = stockInformation[Object.keys(stockInformation)[2]];
-  const stockLastData = stockData[lastRefreshDate];
-  const lastRefreshPrice = stockLastData[Object.keys(stockLastData)[3]];
-  const lastPrice = await currencyConversion(lastRefreshPrice, lastRefreshDate.replace(/\s.*/, ""));
+  const lastRefreshDate = stockInformation[Object.keys(stockInformation)[6]];
+  const lastRefreshPrice = stockInformation[Object.keys(stockInformation)[7]];
+  const lastPrice = await currencyConversion(lastRefreshPrice, lastRefreshDate);
   // Creating object return
+
   const result = {
     "name": stockSymbol,
     "lastPrice": parseFloat(lastPrice),
-    "pricedAt": `${lastRefreshDate.replace(/\s/, "T")}Z`
+    "pricedAt": lastRefreshDate
   };
 
   return result;

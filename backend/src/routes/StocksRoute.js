@@ -26,13 +26,12 @@ router.get("/:stock_name/gains", async (req, res) => {
 // Returns the most recent quote for stock
 router.get("/:stock_name/quote", async (req, res) => {
   const stockName = req.params.stock_name;
-  const stockFunction = "TIME_SERIES_DAILY";
+  const stockFunction = "GLOBAL_QUOTE";
   const stockInterval = "5min";
   try {
     const response = await requestGet(stockFunction, stockName, stockInterval);
     const informationData = response[Object.keys(response)[0]];
-    const stockData = response[Object.keys(response)[1]];
-    const quoteResult = await recentQuote(stockName, stockData, informationData);
+    const quoteResult = await recentQuote(stockName, informationData);
     res.status(200).json(quoteResult);
   } catch (error) {
     res.status(400).send(error);
@@ -44,7 +43,7 @@ router.post("/:stock_name/compare", async (req, res) => {
   const stockName = req.params.stock_name;
   const stockNamesArray = req.body.stocks;
   stockNamesArray.unshift(stockName);
-  const stockFunction = "TIME_SERIES_DAILY";
+  const stockFunction = "GLOBAL_QUOTE";
   const stockInterval = "5min";
   try {
     const response = await compareQuotes(stockNamesArray, stockFunction, stockInterval);
