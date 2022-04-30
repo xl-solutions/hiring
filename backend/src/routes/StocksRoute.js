@@ -73,4 +73,21 @@ router.get("/:stock_name/history", async (req, res) => {
   }
 });
 
+// Returns populate array date
+router.get("/:stock_name/populate", async (req, res) => {
+  const stockName = req.params.stock_name;
+  const stockFunction = "TIME_SERIES_MONTHLY";
+  const stockInterval = "5min";
+  try {
+    const response = await requestGet(stockFunction, stockName, stockInterval);
+    const stockData = response[Object.keys(response)[1]];
+    const result = Object.keys(stockData).map((key) => {
+      return key;
+    });
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 export default router;

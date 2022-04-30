@@ -1,5 +1,6 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
+import Button from '@material-ui/core/Button';
 import { getYear, getMonth } from "date-fns";
 import range from "lodash/range";
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,85 +9,107 @@ import pt from "date-fns/locale/pt-BR";
 
 registerLocale("pt", pt);
 
-const GetDate = () => {
-    const [startDate, setStartDate] = useState(new Date());
-    const GetDateInput = forwardRef(({ value, onClick }, ref) => (
-      <button className="get-date-input" onClick={onClick} ref={ref}>
-        {value}
-      </button>
-    ));
-    const years = range(2005, getYear(new Date()) + 1, 1);
-    const months = [
-      "Janeiro",
-      "Fevereiro",
-      "Março",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-      "Outubro",
-      "Novembro",
-      "Dezembro",
-    ];
-    return (
-      <DatePicker
-        renderCustomHeader={({
-          date,
-          changeYear,
-          changeMonth,
-          decreaseMonth,
-          increaseMonth,
-          prevMonthButtonDisabled,
-          nextMonthButtonDisabled,
-        }) => (
-          <div
-            style={{
-              margin: 10,
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-              {"<"}
-            </button>
-            <select
-              value={getYear(date)}
-              onChange={({ target: { value } }) => changeYear(value)}
-            >
-              {years.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-  
-            <select
-              value={months[getMonth(date)]}
-              onChange={({ target: { value } }) =>
-                changeMonth(months.indexOf(value))
-              }
-            >
-              {months.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-  
-            <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-              {">"}
-            </button>
-          </div>
-        )}
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        includeDates={[new Date("04-21-2022"), new Date()]}
-        customInput={<GetDateInput />}
-        locale="pt"
-      />
-    );
+const formatDate = (date) => {
+  let newDate = new Date(date),
+      month = '' + (newDate.getMonth() + 1),
+      day = '' + newDate.getDate(),
+      year = newDate.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+
+const GetDatePicker = ({ onDateChange }) => {
+
+
+  const [startDate, setStartDate] = useState(false);
+  const changeDate = (date) => {
+    setStartDate(date);
+    onDateChange(formatDate(date));
   };
 
-export default GetDate;
+  const GetDateInput = forwardRef(({ value, onClick }, ref) => (
+    <Button variant="contained" color="primary" onClick={onClick} ref={ref}>
+      {value ? value : "00/00/0000"}
+    </Button>
+  ));
+  const years = range(2005, getYear(new Date()) + 1, 1);
+  const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
+  return (
+    <DatePicker
+      renderCustomHeader={({
+        date,
+        changeYear,
+        changeMonth,
+        decreaseMonth,
+        increaseMonth,
+        prevMonthButtonDisabled,
+        nextMonthButtonDisabled,
+      }) => (
+        <div
+          style={{
+            margin: 10,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+            {"<"}
+          </button>
+          <select
+            value={getYear(date)}
+            onChange={({ target: { value } }) => changeYear(value)}
+          >
+            {years.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={months[getMonth(date)]}
+            onChange={({ target: { value } }) =>
+              changeMonth(months.indexOf(value))
+            }
+          >
+            {months.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+
+          <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+            {">"}
+          </button>
+        </div>
+      )}
+      selected={startDate}
+      dateFormat="dd/MM/yyyy"
+      onChange={(date) => changeDate(date)}
+      includeDates={[new Date("04-21-2022"), new Date()]}
+      customInput={<GetDateInput />}
+      locale="pt"
+    />
+  );
+};
+
+export default GetDatePicker;
