@@ -1,4 +1,5 @@
 import currencyConversion from "./CurrencyConversion.js";
+import roundNumber from "./RoundNumber.js";
 
 // Get close price at date
 const getClosePrice = (dateData) => {
@@ -17,9 +18,9 @@ const gainsProjection = async (query, stockSymbol, stockData, stockInformation, 
     "name": stockSymbol,
     "purchasedAmount": parseFloat(purchasedAmount),
     "purchasedAt": purchasedAt,
-    "priceAtDate": parseFloat(priceAtDate),
-    "lastPrice": parseFloat(lastPrice),
-    "capitalGains": capitalGains
+    "priceAtDate": roundNumber(parseFloat(priceAtDate)),
+    "lastPrice": roundNumber(parseFloat(lastPrice)),
+    "capitalGains": roundNumber(capitalGains)
   };
 
   return result;

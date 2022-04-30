@@ -1,4 +1,5 @@
 import currencyConversion from "./CurrencyConversion.js";
+import roundNumber from "./RoundNumber.js"
 
 const recentQuote = async (stockSymbol, stockInformation, currency) => {
   // Set variables
@@ -9,7 +10,7 @@ const recentQuote = async (stockSymbol, stockInformation, currency) => {
 
   const result = {
     "name": stockSymbol,
-    "lastPrice": parseFloat(lastPrice),
+    "lastPrice": roundNumber(parseFloat(lastPrice)),
     "pricedAt": lastRefreshDate
   };
 
