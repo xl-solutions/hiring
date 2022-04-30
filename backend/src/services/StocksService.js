@@ -8,7 +8,6 @@ const requestGet = async (stockFunction, stockSymbol, stockInterval) => {
     "W0XA2EVBYBVE6P1G", "8JGKZMDMTSKXM9U2", "LD7091XHVBLSXZOB", "R52F5J4RX5J4P50O", "T51DWVHZRZ4JETU3", "517SUK4F5J3J3Q1J", "BCEC5J5PODZ41AF4"
   ];
   const API_KEY = randomApi[Math.floor(Math.random() * 21)];
-  console.log(API_KEY)
   const url = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${stockSymbol}&keywords=${stockSymbol}&interval=${stockInterval}&apikey=${API_KEY}`;
   const response = await getStockData(url);
   return response;
