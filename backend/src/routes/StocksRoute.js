@@ -82,7 +82,9 @@ router.get("/:stock_name/populate", async (req, res) => {
     const response = await requestGet(stockFunction, stockName, stockInterval);
     const stockData = response[Object.keys(response)[1]];
     const result = Object.keys(stockData).map((key) => {
-      return key;
+      let pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
+      let resultKey = key.replace(pattern, '$2-$3-$1');
+      return resultKey;
     });
     res.status(200).json(result);
   } catch (error) {

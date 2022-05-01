@@ -11,20 +11,23 @@ registerLocale("pt", pt);
 
 const formatDate = (date) => {
   let newDate = new Date(date),
-      month = '' + (newDate.getMonth() + 1),
-      day = '' + newDate.getDate(),
-      year = newDate.getFullYear();
+    month = '' + (newDate.getMonth() + 1),
+    day = '' + newDate.getDate(),
+    year = newDate.getFullYear();
 
-  if (month.length < 2) 
-      month = '0' + month;
-  if (day.length < 2) 
-      day = '0' + day;
+  if (month.length < 2)
+    month = '0' + month;
+  if (day.length < 2)
+    day = '0' + day;
 
   return [year, month, day].join('-');
 }
 
-const GetDatePicker = ({ onDateChange }) => {
+const GetDatePicker = ({ onDateChange, datesArray }) => {
 
+  const newDatesArray = datesArray.map((key) => {
+    return new Date(key);
+  });
 
   const [startDate, setStartDate] = useState(false);
   const changeDate = (date) => {
@@ -105,7 +108,7 @@ const GetDatePicker = ({ onDateChange }) => {
       selected={startDate}
       dateFormat="dd/MM/yyyy"
       onChange={(date) => changeDate(date)}
-      includeDates={[new Date("04-21-2022"), new Date()]}
+      includeDates={newDatesArray}
       customInput={<GetDateInput />}
       locale="pt"
     />

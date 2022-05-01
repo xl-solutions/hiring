@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Paper, TextField, Divider } from "@material-ui/core";
 import GetData from '../GetData';
 import GetDatePicker from '../DatePicker';
+import LoopStock from './LoopStock';
 
 const useStyles = makeStyles({
   paperResult: {
@@ -18,9 +19,9 @@ const HistoryPage = () => {
   const [error, seterror] = React.useState();
   const [fromDate, setFromDate] = React.useState();
   const [toDate, setToDate] = React.useState();
-  const [populateArray, setPopulateArray] = React.useState();
+  const [populateArray, setPopulateArray] = React.useState([]);
   const [requestName, setRequestName] = React.useState();
-  const [requestOpenPrice, setRequestOpenPrice] = React.useState();
+  const [requestPrices, setRequestPrices] = React.useState();
   const [requestPricedAt, setRequestPricedAt] = React.useState();
 
   const handleChangeSymbol = (event) => {
@@ -34,10 +35,9 @@ const HistoryPage = () => {
     };
     try {
       const result = await GetData("get", `/stocks/${symbol}/history`, query);
-      const { name, lastPrice, pricedAt } = result;
+      const { name, prices } = result;
       setRequestName(name);
-      setRequestOpenPrice(String(lastPrice.toFixed(2)).replace(".", ","));
-      setRequestPricedAt(pricedAt);
+      setRequestPrices(prices);
     } catch (err) {
       seterror(err);
     }
@@ -85,49 +85,43 @@ const HistoryPage = () => {
               >Datas</Button>
             </Grid>
           </Grid>
-          <Grid container justifyContent="center" alignItems="center" >
-            <Grid item xs={4}>
-              Data Inicial
-              <GetDatePicker onDateChange={setFromDate} />
-            </Grid>
-            <Grid item xs={4}>
-              Data Final
-              <GetDatePicker onDateChange={setToDate} />
-            </Grid>
-          </Grid>
-          <Grid container justifyContent="center" alignItems="flex-end" >
-            <Button
-              style={{ margin: "2vh" }}
-              size="medium"
-              type="submit"
-              color="primary"
-              variant="outlined"
-              onClick={() => submit()}
-            >
-              Buscar
-            </Button>
-          </Grid>
-          {(requestName
+          {(populateArray.length
             ? <React.Fragment>
+              <Grid container justifyContent="center" alignItems="center" >
+                <Grid item xs={4}>
+                  Data Inicial
+                  <GetDatePicker onDateChange={setFromDate} datesArray={populateArray} />
+                </Grid>
+                <Grid item xs={4}>
+                  Data Final
+                  <GetDatePicker onDateChange={setToDate} datesArray={populateArray} />
+                </Grid>
+              </Grid>
+              <Grid container justifyContent="center" alignItems="flex-end" >
+                <Button
+                  style={{ margin: "2vh" }}
+                  size="medium"
+                  type="submit"
+                  color="primary"
+                  variant="outlined"
+                  onClick={() => submit()}
+                >
+                  Buscar
+                </Button>
+              </Grid>
+            </React.Fragment>
+            : null)}
+          {(requestName
+            ? (<React.Fragment>
               <Divider />
               <Grid container justifyContent="center" alignItems="center" >
                 <Grid item xs={12} >
-                  <Paper className={classes.paperResult} >
-                    Data da Cotação: {requestPricedAt}
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} >
-                  <Paper className={classes.paperResult}>
-                    Código Ação: {requestName}
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} >
-                  <Paper className={classes.paperResult}>
-                    Valor Atual (em reais): R${requestOpenPrice}
-                  </Paper>
+                  {requestPrices?.map((data) => (
+                    <LoopStock key={data.pricedAt} data={data} />
+                  ))}
                 </Grid>
               </Grid>
-            </React.Fragment>
+            </React.Fragment>)
             : error
           )}
         </Paper>

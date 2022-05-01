@@ -18,7 +18,7 @@ const stockHistory = async (stockSymbol, stockData, fromDate, toDate, currency) 
           "closing": roundNumber(stockClosing),
           "pricedAt": stock
         })
-        if (stock === toDate) {
+        if (stock === fromDate) {
           break;
         }
       }
@@ -31,7 +31,6 @@ const stockHistory = async (stockSymbol, stockData, fromDate, toDate, currency) 
     "name": stockSymbol,
     "prices": historyArray
   };
-
   return result;
 
 }
