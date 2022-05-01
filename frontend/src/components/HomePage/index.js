@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import QuotePage from '../QuotePage';
 import HistoryPage from '../HistoryPage';
 import ComparePage from '../ComparePage';
+import ProjectionPage from '../ProjectionPage';
 
 const useStyles = makeStyles({
   root: {
@@ -73,6 +74,9 @@ const HomePage = () => {
     </TabPanel>
     <TabPanel value={value} index={2}>
       <ComparePage />
+    </TabPanel>
+    <TabPanel value={value} index={3}>
+      <ProjectionPage />
     </TabPanel>
     </React.Fragment>
   );
