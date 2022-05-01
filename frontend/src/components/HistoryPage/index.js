@@ -1,20 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Paper, TextField, Divider } from "@material-ui/core";
 import GetData from '../GetData';
 import GetDatePicker from '../DatePicker';
 import LoopStock from './LoopStock';
 
-const useStyles = makeStyles({
-  paperResult: {
-    margin: "1vh",
-    padding: "1vh",
-    textAlign: "center",
-  },
-});
-
 const HistoryPage = () => {
-  const classes = useStyles();
   const [symbol, setSymbol] = React.useState([]);
   const [error, seterror] = React.useState();
   const [fromDate, setFromDate] = React.useState();
@@ -22,7 +12,6 @@ const HistoryPage = () => {
   const [populateArray, setPopulateArray] = React.useState([]);
   const [requestName, setRequestName] = React.useState();
   const [requestPrices, setRequestPrices] = React.useState();
-  const [requestPricedAt, setRequestPricedAt] = React.useState();
 
   const handleChangeSymbol = (event) => {
     setSymbol(event.target.value);
