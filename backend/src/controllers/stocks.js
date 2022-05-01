@@ -1,7 +1,5 @@
 const api = require("../services/api");
 
-
-
 async function getStockByName(req, res) {
     try {
         const { stock_name } = req.params;
@@ -76,7 +74,7 @@ async function getHistoryStock(req, res) {
         }
 
         const { data } = await api.get(
-            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`
+            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}`
         );
 
         if (!data) {
@@ -112,4 +110,98 @@ async function getHistoryStock(req, res) {
     }
 }
 
-module.exports = { getStockByName, getHistoryStock };
+async function stocksComparation(req, res) {
+    try {
+        const { stock_name, stocksToCompare } = req.params;
+        let lastPrices = [];
+
+        if (!stock_name || !stocksToCompare) {
+            return res.status(400).send("Nome da ação inválida");
+        }
+
+        if (stock_name === "" || stocksToCompare.length == 0) {
+            return res.status(400).send("Inclua pelo menos uma ação para comparação");
+        }
+
+        let stocksCompare = [];
+        stocksCompare.push(stock_name, stocksToCompare);
+
+        for (stock in stocksCompare) {
+            const { data } = await api.get(
+                `/query?function=GLOBAL_QUOTE&symbol=${stocksToCompare[stock]}`
+            );
+
+            if (!data) {
+                return res.status(400).send("Ação não encontrada");
+            }
+
+            if (Object.keys(data["Global Quote"]).length === 0) {
+                return res.status(400).send("Ação não encontrada");
+            }
+
+            lastPrices.push({
+                name: stocksCompare[stock],
+                lastPrice: parseFloat(data["Global Quote"]["05. price"]),
+                pricedAt: data["Global Quote"]["07. latest trading day"],
+            });
+        }
+        return res.status(200).send(lastPrices);
+    } catch (error) {
+        return res.status(400).send({ erro: error.toString() });
+    }
+}
+
+async function getProjectionStock(req, res) {
+    try {
+        let { purchasedAt, purchasedAmount } = req.query
+        const { stock_name } = req.params
+
+        purchasedAmount = parseInt(purchasedAmount)
+
+        if (!stock_name || !purchasedAt || !purchasedAmount) {
+            return res.status(400).send('Inclua todos os dados requeridos')
+        }
+
+        if (purchasedAmount < 0) {
+            return res.status(400).send('Quantidade comprada inválida')
+        }
+
+        const purchasedAtSplit = purchasedAt.split('-')
+
+        if (purchasedAtSplit.length !== 3 || purchasedAtsplit['0'].length !== 4 || purchasedAtSplit['1'].length !== 2 || purchasedAtSplit['2'].length !== 2) {
+            return res.status(400).send('Formato da data inválida! Insira o formato: YYYY--MM--DD')
+        }
+
+        const { data } = await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}`)
+
+        if (!data) {
+            return res.status(400).send('Ação não encontrada')
+        }
+
+        const StockPrices = data['Time Series (Daily)']
+
+        if (StockPrices[purchasedAt] === undefined) {
+            return res.status(400).send('Data de compra não encontrada')
+        }
+
+        const purchased = StockPrices[purchasedAt]
+        let now = StockPrices[Object.keys(StockPrices)[0]]
+        let pricePurchased = parseFloat(purchased['4. close'])
+        let priceNow = parseFloat(now['4. close'])
+
+        const gainsResponse = {
+            name: stock_name,
+            purchasedAmount,
+            purchasedAt,
+            pricePurchased,
+            priceNow,
+            gains: parseFloat((priceNow - pricePurchased) * purchasedAmount).toFixed(2)
+        }
+
+        return res.status(200).send(gainsResponse)
+    } catch (error) {
+        return res.status(400).send({ erro: error.toString() })
+    }
+}
+
+module.exports = { getStockByName, getHistoryStock, stocksComparation, getProjectionStock };
