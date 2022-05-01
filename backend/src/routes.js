@@ -1,8 +1,8 @@
 const { Router } = require('express')
-const { getStocks } = require('./controllers/stocks')
+const { getStockByName } = require('./controllers/stocks')
 
 const routes = Router()
 
-routes.get("/stocks/:stock_name/quote", getStocks)
+routes.get("/stocks/:stock_name/quote", getStockByName)
 
 module.exports = routes

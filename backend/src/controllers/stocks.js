@@ -1,19 +1,22 @@
 const api = require("../services/api");
 
-async function getStocks(req, res) {
+
+
+async function getStockByName(req, res) {
     try {
         const { stock_name } = req.params;
 
+        console.log(stock_name);
         if (!stock_name || stock_name == "") {
             return res.status(400).send("Nome da ação inválido");
         }
 
         const { data } = await api.get(
-            `/query?function=GLOBAL_QUOTE&symbol=${stock_name}&apikey=${process.env.API_KEY}`
+            `/query?function=GLOBAL_QUOTE&symbol=${stock_name}`
         );
 
         if (!data || Object.values(data["Global Quote"]).length === 0) {
-            return res.status(404).send("Ação não encontrada");
+            return res.status(400).send("Ação não encontrada");
         }
 
         const stock = {
@@ -73,7 +76,7 @@ async function getHistoryStock(req, res) {
         }
 
         const { data } = await api.get(
-            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full&apikey=${process.env.API_KEY}`
+            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`
         );
 
         if (!data) {
@@ -109,4 +112,4 @@ async function getHistoryStock(req, res) {
     }
 }
 
-module.exports = { getStocks, getHistoryStock };
+module.exports = { getStockByName, getHistoryStock };
