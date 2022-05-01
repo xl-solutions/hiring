@@ -1,0 +1,8 @@
+{
+  "name": "hiring",
+  "version": "1.0",
+  "private": true,
+  "scripts": {
+    "start": "(cd frontend && npm start) & (cd backend && npm start)"
+  }
+}

@@ -1,13 +1,14 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+# Instalar todos os pacotes como comando npm install, dentro de backend e frontend
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+:~hiring$ cd backend
+:~hiring/backend$ npm install
 
-Choose a language to which you are interested and follow the instructions:
+:~hiring$ cd frontend
+:~hiring/frontend$ npm install
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
-- [HTML/CSS/JS](front/README.md) [(English Version)](front/README_ENGLISH.md)
+# Dentro de hiring, rodar o comando npm start
+
+:~hiring$ npm start
+
+
+### OBS: Não é possível COMPARAR com mais de 2 ações devido a limitação da alphavantage.co.
