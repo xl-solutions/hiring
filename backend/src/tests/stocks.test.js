@@ -48,3 +48,18 @@ describe("Test unit route history", () => {
     })
 
 });
+
+describe("Test unit route gains", () => {
+    const stock_name = "USIM5.SA"
+    const purchasedAmount = "100"
+    const purchasedAt = "2016-05-31"
+
+    test("should be return 200", async() => {
+        const reqMock = new RequestMock({ method: "get", query: { purchasedAt, purchasedAmount }, params: { stock_name } });
+        const resMock = new ResponseMock({ request: reqMock });
+
+        await getHistoryStock(reqMock, resMock);
+
+        expect(resMock.statusCode).toBe(200);
+    })
+})
