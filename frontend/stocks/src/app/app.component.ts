@@ -9,21 +9,24 @@ export class AppComponent {
   title = 'stocks';
 
   public listItems = [
-    { title: 'Meu portifólio', label: 'portfolio', selected: true},
+    { title: 'Meu portifólio', label: 'portfolio', selected: true },
     { title: 'Ações', label: 'stocks' },
-    { title: 'Histórico de Preços', label: 'history' },
-    { title: 'Projeção de Ganhos', label: 'gains' },
+    { title: 'Histórico de greços', label: 'history' },
+    { title: 'Projeção de ganhos', label: 'gains' },
+    { title: 'Comparar ações', label: 'compare' },
   ];
   public isGains: boolean = false;
   public isStocks: boolean = false;
   public isPortfolio: boolean = true;
   public isHistory: boolean = false;
+  public isCompare: boolean = false;
 
   getItem(item) {
     this.isGains = false;
     this.isPortfolio = false;
     this.isStocks = false;
     this.isHistory = false;
+    this.isCompare = false;
     if (item.label == 'portfolio') {
       this.isPortfolio = true;
     }
@@ -35,6 +38,9 @@ export class AppComponent {
     }
     if (item.label == 'gains') {
       this.isGains = true;
+    }
+    if (item.label == 'compare') {
+      this.isCompare = true;
     }
   }
 }

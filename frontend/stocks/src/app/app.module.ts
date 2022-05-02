@@ -10,6 +10,7 @@ import { PortfolioComponent } from './system/portfolio/portfolio.component';
 import { HistoryStocksComponent } from './system/history-stocks/history-stocks.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CompareStocksComponent } from './system/compare-stocks/compare-stocks.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     StocksComponent,
     PortfolioComponent,
     HistoryStocksComponent,
+    CompareStocksComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
