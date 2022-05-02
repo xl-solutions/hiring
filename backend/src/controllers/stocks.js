@@ -1,4 +1,27 @@
 const api = require("../services/api");
+const {get, add } = require("../database/myStocks");
+
+async function addStockAtPortfolio(req, res) {
+    try {
+        const stock = req.body;
+        if (!stock.name || !stock.lastPrice || !stock.pricedAt) {
+            return res.status(400).send({ message: "Ação inválida" });
+        }
+        await add(stock);
+        return res.status(200).send({ message: "Ação incluida" });
+    } catch (error) {
+        return res.status(400).send({ erro: error.toString() });
+    }
+}
+
+async function getStockAtPortfolio(req, res) {
+    try {
+        const stocks = await get();
+        return res.status(200).send(stocks);
+    } catch (error) {
+        return res.status(400).send({ erro: error.toString() });
+    }
+}
 
 async function getStockByName(req, res) {
     try {
@@ -6,7 +29,7 @@ async function getStockByName(req, res) {
 
         console.log(stock_name);
         if (!stock_name || stock_name == "") {
-            return res.status(400).send("Nome da ação inválido");
+            return res.status(400).send({ message: "Nome da ação inválido" });
         }
 
         const { data } = await api.get(
@@ -14,7 +37,7 @@ async function getStockByName(req, res) {
         );
 
         if (!data || Object.values(data["Global Quote"]).length === 0) {
-            return res.status(400).send("Ação não encontrada");
+            return res.status(400).send({ message: "Ação não encontrada" });
         }
 
         const stock = {
@@ -35,11 +58,11 @@ async function getHistoryStock(req, res) {
         const { to, from } = req.query;
 
         if (!stock_name) {
-            return res.status(400).send("Nome da ação inválida");
+            return res.status(400).send({ message: "Nome da ação inválida" });
         }
 
         if (!to || !from) {
-            return res.status(400).send("Data inválida");
+            return res.status(400).send({ message: "Data inválida" });
         }
 
         const toSplit = to.split("-");
@@ -53,7 +76,7 @@ async function getHistoryStock(req, res) {
         ) {
             return res
                 .status(400)
-                .send("Insira o formato de data válido: YYYY-MM-DD");
+                .send({ message: "Insira o formato de data válido: YYYY-MM-DD" });
         }
 
         if (
@@ -64,21 +87,21 @@ async function getHistoryStock(req, res) {
         ) {
             return res
                 .status(400)
-                .send("Insira o formato de data válido: YYYY-MM-DD");
+                .send({ message: "Insira o formato de data válido: YYYY-MM-DD" });
         }
 
         if (new Date(from) > new Date(to)) {
             return res
                 .status(400)
-                .send("A data final não pode ser menor que a inicial!");
+                .send({ message: "A data final não pode ser menor que a inicial!" });
         }
 
         const { data } = await api.get(
-            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}`
+            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`
         );
 
         if (!data) {
-            return res.status(404).send("Ação não encontrada");
+            return res.status(404).send({ message: "Ação não encontrada" });
         }
 
         const Keys = Object.keys(data["Time Series (Daily)"]);
@@ -116,11 +139,13 @@ async function stocksComparation(req, res) {
         let lastPrices = [];
 
         if (!stock_name || !stocksToCompare) {
-            return res.status(400).send("Nome da ação inválida");
+            return res.status(400).send({ message: "Nome da ação inválida" });
         }
 
         if (stock_name === "" || stocksToCompare.length == 0) {
-            return res.status(400).send("Inclua pelo menos uma ação para comparação");
+            return res
+                .status(400)
+                .send({ message: "Inclua pelo menos uma ação para comparação" });
         }
 
         let stocksCompare = [];
@@ -132,11 +157,11 @@ async function stocksComparation(req, res) {
             );
 
             if (!data) {
-                return res.status(400).send("Ação não encontrada");
+                return res.status(400).send({ message: "Ação não encontrada" });
             }
 
             if (Object.keys(data["Global Quote"]).length === 0) {
-                return res.status(400).send("Ação não encontrada");
+                return res.status(400).send({ message: "Ação não encontrada" });
             }
 
             lastPrices.push({
@@ -153,41 +178,52 @@ async function stocksComparation(req, res) {
 
 async function getProjectionStock(req, res) {
     try {
-        let { purchasedAt, purchasedAmount } = req.query
-        const { stock_name } = req.params
+        let { purchasedAt, purchasedAmount } = req.query;
+        const { stock_name } = req.params;
 
-        purchasedAmount = parseInt(purchasedAmount)
+        purchasedAmount = parseInt(purchasedAmount);
 
         if (!stock_name || !purchasedAt || !purchasedAmount) {
-            return res.status(400).send('Inclua todos os dados requeridos')
+            return res
+                .status(400)
+                .send({ message: "Inclua todos os dados requeridos" });
         }
 
-        if (purchasedAmount < 0) {
-            return res.status(400).send('Quantidade comprada inválida')
+        if (purchasedAmount <= 0) {
+            return res.status(400).send({ message: "Quantidade comprada inválida" });
         }
 
-        const purchasedAtSplit = purchasedAt.split('-')
+        const purchasedAtSplit = purchasedAt.split("-");
 
-        if (purchasedAtSplit.length !== 3 || purchasedAtsplit['0'].length !== 4 || purchasedAtSplit['1'].length !== 2 || purchasedAtSplit['2'].length !== 2) {
-            return res.status(400).send('Formato da data inválida! Insira o formato: YYYY--MM--DD')
+        if (
+            purchasedAtSplit.length !== 3 ||
+            purchasedAtsplit["0"].length !== 4 ||
+            purchasedAtSplit["1"].length !== 2 ||
+            purchasedAtSplit["2"].length !== 2
+        ) {
+            return res.status(400).send({
+                message: "Formato da data inválida! Insira o formato: YYYY--MM--DD",
+            });
         }
 
-        const { data } = await api.get(`/query?function=TIME_SERIES_DAILY&symbol=${stock_name}`)
+        const { data } = await api.get(
+            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}`
+        );
 
         if (!data) {
-            return res.status(400).send('Ação não encontrada')
+            return res.status(400).send({ message: "Ação não encontrada" });
         }
 
-        const StockPrices = data['Time Series (Daily)']
+        const StockPrices = data["Time Series (Daily)"];
 
         if (StockPrices[purchasedAt] === undefined) {
-            return res.status(400).send('Data de compra não encontrada')
+            return res.status(400).send({ message: "Data de compra não encontrada" });
         }
 
-        const purchased = StockPrices[purchasedAt]
-        let now = StockPrices[Object.keys(StockPrices)[0]]
-        let pricePurchased = parseFloat(purchased['4. close'])
-        let priceNow = parseFloat(now['4. close'])
+        const purchased = StockPrices[purchasedAt];
+        let now = StockPrices[Object.keys(StockPrices)[0]];
+        let pricePurchased = parseFloat(purchased["4. close"]);
+        let priceNow = parseFloat(now["4. close"]);
 
         const gainsResponse = {
             name: stock_name,
@@ -195,13 +231,23 @@ async function getProjectionStock(req, res) {
             purchasedAt,
             pricePurchased,
             priceNow,
-            gains: parseFloat((priceNow - pricePurchased) * purchasedAmount).toFixed(2)
-        }
+            gains: parseFloat((priceNow - pricePurchased) * purchasedAmount).toFixed(
+                2
+            ),
+        };
 
-        return res.status(200).send(gainsResponse)
+        return res.status(200).send(gainsResponse);
     } catch (error) {
-        return res.status(400).send({ erro: error.toString() })
+        return res.status(400).send({ erro: error.toString() });
     }
 }
 
-module.exports = { getStockByName, getHistoryStock, stocksComparation, getProjectionStock };
+module.exports = {
+    getStockByName,
+    getHistoryStock,
+    stocksComparation,
+    getProjectionStock,
+    addStockAtPortfolio,
+    getStockAtPortfolio
+
+};
