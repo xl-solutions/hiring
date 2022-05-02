@@ -38,13 +38,12 @@ async function getStockByName(req, res) {
         if (!data || Object.values(data["Global Quote"]).length === 0) {
             return res.status(400).send({ message: "Ação não encontrada" });
         }
-        const date = new Date(data["Global Quote"]["07. latest trading day"])
+        const date = new Date(data["Global Quote"]["07. latest trading day"]);
 
         const stock = {
-
             name: stock_name,
             lastPrice: parseFloat(data["Global Quote"]["05. price"]),
-            pricedAt: date
+            pricedAt: date,
         };
 
         return res.status(200).send(stock);
@@ -137,7 +136,7 @@ async function getHistoryStock(req, res) {
 async function stocksComparation(req, res) {
     try {
         const { stock_name } = req.params;
-        const { stocksList } = req.body
+        const { stocksList } = req.body;
         let lastPrices = [];
 
         if (!stock_name || !stocksList) {
@@ -150,12 +149,12 @@ async function stocksComparation(req, res) {
                 .send({ message: "Inclua pelo menos uma ação para comparação" });
         }
 
-        let stocksCompare = [];
-        stocksCompare.push(stock_name, stocksList);
+        let stocksCompare = [stock_name, ...stocksList];
+        console.log(stocksCompare);
 
-        for (stock in stocksCompare) {
+        for (stock of stocksCompare) {
             const { data } = await api.get(
-                `/query?function=GLOBAL_QUOTE&symbol=${stock_name}`
+                `/query?function=GLOBAL_QUOTE&symbol=${stock}`
             );
 
             if (!data) {
@@ -240,7 +239,7 @@ async function getProjectionStock(req, res) {
 
         return res.status(200).send(gainsResponse);
     } catch (error) {
-        return res.status(400).send({ erro: error.toString() });
+        return res.status(400).send({ erro: "Ação não encontrada" });
     }
 }
 
