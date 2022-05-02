@@ -2,3 +2,19 @@ td {
     display: flex;
     flex-direction: column;
 }
+
+.inputs {
+    display: flex;
+}
+
+.dataC {
+    margin-right: 8px;
+}
+
+.results {
+    margin-top: 12px;
+}
+
+input {
+    margin-right: 8px;
+}
