@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class StocksComponent implements OnInit {
   public stockName: string = '';
   public stock: IStock;
+  public view: boolean = false;
 
   constructor(private stocksService: StocksService) {}
 
@@ -31,7 +32,19 @@ export class StocksComponent implements OnInit {
   }
 
   async getStock() {
-    const result = await this.stocksService.getStockByName(this.stockName);
-    this.stock = result;
+    try {
+      const result = await this.stocksService.getStockByName(this.stockName);
+      this.stock = result;
+      this.view = true;
+    } catch (error) {
+      return Swal.fire({
+        title: 'Ação não encontrada!',
+        icon: 'error',
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+    }
   }
 }

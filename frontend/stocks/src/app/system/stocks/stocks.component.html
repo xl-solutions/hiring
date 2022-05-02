@@ -21,7 +21,7 @@
             <td>{{stock?.name}}</td>
             <td>{{stock?.lastPrice}}</td>
             <td>{{stock?.pricedAt}}</td>
-            <button (click)="addToPortfolio(stock)">add ao portifolio</button>
+            <button *ngIf="view" (click)="addToPortfolio(stock)">add ao portifolio</button>
         </tr>
     </table>
 </div>
