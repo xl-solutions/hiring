@@ -4,16 +4,6 @@ const path = require("path");
 const file = path.resolve(__dirname, "myStocks.json");
 
 module.exports = {
-    save(data) {
-        return new Promise((resolve) => {
-            return fs.writeFileSync(
-                file,
-                JSON.stringify(data),
-                resolve(require(file))
-            );
-        });
-    },
-
     get() {
         return new Promise((resolve) => {
             return fs.readFile(file, "utf8", (error, data) =>

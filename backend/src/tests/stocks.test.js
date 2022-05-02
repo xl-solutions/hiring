@@ -32,13 +32,13 @@ describe("Test unit StocksController", () => {
     });
 });
 
-describe("Test unit route /history", () => {
+describe("Test unit route history", () => {
     const stock_name = "PETR4.SA";
     const from = "2017-04-04"
     const to = "2017-04-05"
 
     test("should be return 200", async() => {
-        const reqMock = new RequestMock({ method: "get", params: { stock_name, to, from } });
+        const reqMock = new RequestMock({ method: "get", params: { stock_name }, query: { from, to } });
         const resMock = new ResponseMock({ request: reqMock });
 
         await getHistoryStock(reqMock, resMock);
