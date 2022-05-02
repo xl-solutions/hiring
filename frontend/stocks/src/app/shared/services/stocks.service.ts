@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import IStock from '../interfaces/stock.interface';
+import IStockHistory from '../interfaces/stock-history.interface';
+import IGains from '../interfaces/gains.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,18 +15,44 @@ export class StocksService {
     this.url = `${environment.apiUrl}`;
   }
 
-  getStockByName(name: string) {
-    const url = `${this.url}/stocks/${name}/quote`;
-    return this.http.get<IStock>(url).toPromise()
+  addToPortfolio(stock: IStock) {
+    const url = `${this.url}/stocks/add`;
+    return this.http.post<IStock>(url, stock).toPromise();
   }
 
-  getStockHistory(name:string, date1:string, date2: string){
-    const url = `${this.url}/stocks/${name}/history`
-    return this.http.get(url, {
-      params:{
-        date1:'',
-        date2:'',
-      }
-    }).toPromise()
+  getPortfolio() {
+    const url = `${this.url}/stocks/my`;
+    return this.http.get<IStock[]>(url).toPromise();
+  }
+
+  getStockByName(name: string) {
+    const url = `${this.url}/stocks/${name}/quote`;
+    return this.http.get<IStock>(url).toPromise();
+  }
+
+  getStockHistory(name: string, from: string, to: string) {
+    const url = `${this.url}/stocks/${name}/history`;
+    return this.http
+      .get<IStockHistory>(url, {
+        params: {
+          from,
+          to,
+        },
+      })
+      .toPromise();
+  }
+
+  getEarningsProjection(
+    name: string,
+    purchasedAmount: string,
+    purchasedAt: string
+  ) {
+    const url = `${this.url}/stocks/${name}/gains`;
+    return this.http.get<IGains>(url, {
+      params: {
+        purchasedAmount,
+        purchasedAt,
+      },
+    }).toPromise();
   }
 }

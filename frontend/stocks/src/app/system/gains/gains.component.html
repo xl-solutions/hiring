@@ -2,27 +2,35 @@
     <h1>Projeção de ganhos</h1>
 </div>
 <div class="inputs">
-    <input type="text" placeholder="Nome da ação" />
-    <input type="number" placeholder="Quantidade de compra" />
-    <input type="date" placeholder="Data de compra" placeholder="Data de Compra" /><label>Data de Compra</label>
-    <button>Simular ganhos</button>
+    <input [(ngModel)]="stockName" type="text" placeholder="Nome da ação" />
+    <input [(ngModel)]="purchasedAmount" type="text" placeholder="Quantidade de compra" />
+    <label>Data de Compra:</label>
+    <input [(ngModel)]="purchasedAt" type="date" placeholder="Data de compra" placeholder="Data de Compra" />
+    <button (click)="getGains()">Simular ganhos</button>
 </div>
 <div class="results">
     <table>
         <tr>
-            <th>Ações Compradas</th>
-            <th>Data de compra</th>
-            <th>Preço Pago</th>
-            <th>Preço Atual</th>
-            <th>Saldo</th>
-        </tr>
-        <tr>
-            <td>a</td>
-            <td>a</td>
-            <td>a</td>
-            <td>a</td>
-            <td>a</td>
+            <div class="cell">
+                <th>Ações Compradas:</th>
+                <td>{{ gains?.purchasedAmount }}</td>
+            </div>
+            <div class="cell">
+                <th>Data de compra</th>
+                <td>{{ gains?.purchasedAt }}</td>
+            </div>
+            <div class="cell">
+                <th>Preço Pago</th>
+                <td>{{ gains?.pricePurchased }}</td>
+            </div>
+            <div class="cell">
+                <th>Preço Atual</th>
+                <td>{{ gains?.currentPrice }}</td>
+            </div>
+            <div class="cell">
+                <th>Saldo</th>
+                <td>{{ gains?.gains }}</td>
+            </div>
         </tr>
     </table>
-
 </div>

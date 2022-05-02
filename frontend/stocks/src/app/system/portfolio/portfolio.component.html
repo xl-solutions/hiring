@@ -5,14 +5,12 @@
         <tr>
             <th>Símbolo</th>
             <th>Ultimo preço</th>
-            <th>Currency</th>
             <th>Data e hora</th>
         </tr>
-        <tr *ngFor="">
-            <td>a</td>
-            <td>a</td>
-            <td>a</td>
-            <td>a</td>
+        <tr *ngFor="let stock of stocks">
+            <td>{{stock?.name}}</td>
+            <td>{{stock?.lastPrice}}</td>
+            <td>{{stock?.pricedAt}}</td>
         </tr>
     </table>
 </div>

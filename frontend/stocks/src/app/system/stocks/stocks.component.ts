@@ -15,6 +15,10 @@ export class StocksComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  async addToPortfolio(stock: IStock) {
+    await this.stocksService.addToPortfolio(stock);
+  }
+
   async getStock() {
     console.log(this.stockName);
 
