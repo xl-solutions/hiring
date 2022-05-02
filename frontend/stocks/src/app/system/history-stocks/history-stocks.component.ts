@@ -3,6 +3,8 @@ import { StocksService } from '../../shared/services/stocks.service';
 import { Chart, registerables } from 'node_modules/chart.js';
 import IStockHistory from '../../shared/interfaces/stock-history.interface';
 
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-history-stocks',
   templateUrl: './history-stocks.component.html',
