@@ -197,7 +197,7 @@ async function getProjectionStock(req, res) {
 
         if (
             purchasedAtSplit.length !== 3 ||
-            purchasedAtsplit["0"].length !== 4 ||
+            purchasedAtSplit["0"].length !== 4 ||
             purchasedAtSplit["1"].length !== 2 ||
             purchasedAtSplit["2"].length !== 2
         ) {
@@ -207,31 +207,31 @@ async function getProjectionStock(req, res) {
         }
 
         const { data } = await api.get(
-            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}`
+            `/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&outputsize=full`
         );
 
         if (!data) {
             return res.status(400).send({ message: "Ação não encontrada" });
         }
 
-        const StockPrices = data["Time Series (Daily)"];
+        const stockPrices = data["Time Series (Daily)"];
 
-        if (StockPrices[purchasedAt] === undefined) {
+        if (stockPrices[purchasedAt] === undefined) {
             return res.status(400).send({ message: "Data de compra não encontrada" });
         }
 
-        const purchased = StockPrices[purchasedAt];
-        let now = StockPrices[Object.keys(StockPrices)[0]];
+        const purchased = stockPrices[purchasedAt];
+        let now = stockPrices[Object.keys(stockPrices)[0]];
         let pricePurchased = parseFloat(purchased["4. close"]);
-        let priceNow = parseFloat(now["4. close"]);
+        let currentPrice = parseFloat(now["4. close"]);
 
         const gainsResponse = {
             name: stock_name,
             purchasedAmount,
             purchasedAt,
             pricePurchased,
-            priceNow,
-            gains: parseFloat((priceNow - pricePurchased) * purchasedAmount).toFixed(
+            currentPrice,
+            gains: parseFloat((currentPrice - pricePurchased) * purchasedAmount).toFixed(
                 2
             ),
         };
