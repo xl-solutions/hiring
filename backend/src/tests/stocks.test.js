@@ -44,6 +44,7 @@ describe("Test unit route history", () => {
         await getHistoryStock(reqMock, resMock);
 
         expect(resMock.statusCode).toBe(200);
+        expect(resMock._getJSON().name).toBe(stock_name);
     })
 
 });

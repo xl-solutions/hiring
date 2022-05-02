@@ -38,11 +38,13 @@ async function getStockByName(req, res) {
         if (!data || Object.values(data["Global Quote"]).length === 0) {
             return res.status(400).send({ message: "Ação não encontrada" });
         }
+        const date = new Date(data["Global Quote"]["07. latest trading day"])
 
         const stock = {
+
             name: stock_name,
             lastPrice: parseFloat(data["Global Quote"]["05. price"]),
-            pricedAt: data["Global Quote"]["07. latest trading day"],
+            pricedAt: date
         };
 
         return res.status(200).send(stock);
@@ -134,34 +136,35 @@ async function getHistoryStock(req, res) {
 
 async function stocksComparation(req, res) {
     try {
-        const { stock_name, stocksToCompare } = req.params;
+        const { stock_name } = req.params;
+        const { stocksList } = req.body
         let lastPrices = [];
 
-        if (!stock_name || !stocksToCompare) {
+        if (!stock_name || !stocksList) {
             return res.status(400).send({ message: "Nome da ação inválida" });
         }
 
-        if (stock_name === "" || stocksToCompare.length == 0) {
+        if (stock_name === "" || stocksList.length == 0) {
             return res
                 .status(400)
                 .send({ message: "Inclua pelo menos uma ação para comparação" });
         }
 
         let stocksCompare = [];
-        stocksCompare.push(stock_name, stocksToCompare);
+        stocksCompare.push(stock_name, stocksList);
 
         for (stock in stocksCompare) {
             const { data } = await api.get(
-                `/query?function=GLOBAL_QUOTE&symbol=${stocksToCompare[stock]}`
+                `/query?function=GLOBAL_QUOTE&symbol=${stock_name}`
             );
 
             if (!data) {
                 return res.status(400).send({ message: "Ação não encontrada" });
             }
 
-            if (Object.keys(data["Global Quote"]).length === 0) {
-                return res.status(400).send({ message: "Ação não encontrada" });
-            }
+            // if (Object.keys(data["Global Quote"]).length === 0) {
+            //     return res.status(400).send({ message: "Ação não encontrada" });
+            // }
 
             lastPrices.push({
                 name: stocksCompare[stock],
