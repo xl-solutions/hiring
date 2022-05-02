@@ -1,0 +1,27 @@
+<div>
+    <h1>Buscar Ações</h1>
+</div>
+<div>
+    <input name="stock" [(ngModel)]="stockName" type="text" placeholder="Nome da ação">
+    <button (click)="getStock()" type="button">
+      Procurar
+    </button>
+</div>
+<div>
+    <h1>{{stock?.name}}</h1>
+</div>
+<div>
+    <table class="table">
+        <tr class="title">
+            <th>Símbolo</th>
+            <th>Ultimo preço</th>
+            <th>Data e hora</th>
+        </tr>
+        <tr>
+            <td>{{stock?.name}}</td>
+            <td>{{stock?.lastPrice}}</td>
+            <td>{{stock?.pricedAt}}</td>
+            <button>add ao portifolio</button>
+        </tr>
+    </table>
+</div>

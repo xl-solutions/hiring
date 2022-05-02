@@ -1,0 +1,3 @@
+<div class="topnav">
+    <a (click)="selectItem(item)" [ngClass]="{'active':item.selected}" *ngFor="let item of items">{{item.title}}</a>
+</div>

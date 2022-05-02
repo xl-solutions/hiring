@@ -1,0 +1,11 @@
+<div>
+    <h1>Histórico de preços</h1>
+</div>
+<div>
+    <input type="text" placeholder="Nome da ação">
+    <button (click)="getHistory()" type="button">
+      Procurar
+    </button> Data Inicial
+    <input [(ngModel)]="date1" type="date"> Data Final
+    <input [(ngModel)]="date2" type="date">
+</div>
