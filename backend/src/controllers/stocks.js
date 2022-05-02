@@ -27,7 +27,6 @@ async function getStockByName(req, res) {
     try {
         const { stock_name } = req.params;
 
-        console.log(stock_name);
         if (!stock_name || stock_name == "") {
             return res.status(400).send({ message: "Nome da ação inválido" });
         }
@@ -231,9 +230,9 @@ async function getProjectionStock(req, res) {
             purchasedAt,
             pricePurchased,
             currentPrice,
-            gains: parseFloat((currentPrice - pricePurchased) * purchasedAmount).toFixed(
-                2
-            ),
+            gains: parseFloat(
+                (currentPrice - pricePurchased) * purchasedAmount
+            ).toFixed(2),
         };
 
         return res.status(200).send(gainsResponse);
@@ -248,6 +247,5 @@ module.exports = {
     stocksComparation,
     getProjectionStock,
     addStockAtPortfolio,
-    getStockAtPortfolio
-
+    getStockAtPortfolio,
 };
