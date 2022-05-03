@@ -14,6 +14,7 @@ export interface TimeSeriesDaily {
 export async function getHistoricalPriceBySymbol(symbol: string) {
   const params = {
     function: 'TIME_SERIES_DAILY',
+    outputsize: 'full',
     symbol,
   };
 

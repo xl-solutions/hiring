@@ -1,4 +1,7 @@
-import { getQuoteBySymbol } from '../../../../services/getQuoteBySymbol';
+import {
+  getQuoteBySymbol,
+  GlobalQuote,
+} from '../../../../services/getQuoteBySymbol';
 import { AppError } from '../../../../shared/errors/AppError';
 
 interface IRequest {
@@ -17,7 +20,7 @@ export class GetLastQuoteUseCase {
       throw new AppError('Stock name not provided');
     }
 
-    const searchQuote = await getQuoteBySymbol(stock_name);
+    const searchQuote = (await getQuoteBySymbol(stock_name)) as GlobalQuote;
 
     const quoteFromStock: IReturn = {
       name: searchQuote['01. symbol'],
