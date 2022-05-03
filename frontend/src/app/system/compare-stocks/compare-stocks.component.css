@@ -1,6 +1,10 @@
 td {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.table {
+    align-items: center;
+    justify-content: center;
 }
 
 .inputs {

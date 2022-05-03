@@ -5,6 +5,7 @@
  - Caminho da pasta para instalação do front: acoes/frontend/stocks: rodar npm i no terminal;
  - Rodar o comando ng build na pasta acoes/frontend
  - Após gerar o build rodar comando npm start na pasta `acoes`
+ - O projeto estará rodando no localhost:8080
 
 ## Banco de dados
 

@@ -23,11 +23,12 @@ export class CompareStocksComponent implements OnInit {
     try {
       this.compare = await this.stocksService.stocksComparation(
         this.stockName,
-        [this.stock1, this.stock2]
+        {stocksList:[this.stock1, this.stock2]}
+
       );
     } catch (error) {
       return Swal.fire({
-        title: error.error.erro,
+        title: 'Ação não encontrada',
         icon: 'error',
         position: 'top',
         showConfirmButton: false,

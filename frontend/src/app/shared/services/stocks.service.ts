@@ -42,7 +42,7 @@ export class StocksService {
       .toPromise();
   }
 
-  stocksComparation(name: string, stocksList: string[]) {
+  stocksComparation(name: string, stocksList: any) {
     const url = `${this.url}/stocks/${name}/compare`;
     return this.http.post<IStock>(url, stocksList).toPromise()
   }
