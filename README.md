@@ -1,10 +1,11 @@
 # Detalhes do projeto
    
  - Primeiro passo instalar as depêndencias do projeto tanto do front como do back. 
- - Caminho da pasta para instalação do back : acoes/backend: rodar npm i no terminal;
- - Caminho da pasta para instalação do front: acoes/frontend/stocks: rodar npm i no terminal;
- - Rodar o comando ng build na pasta acoes/frontend
- - Após gerar o build rodar comando npm start na pasta `acoes`
+ - Dentro da pasta hiring, rodar npm i no terminal;
+ - Dentro da pasta backend, rodar npm i no terminal;
+ - Dentro da pasta frontend, rodar npm i no terminal;
+ - Rodar o comando ng build na pasta frontend
+ - Após gerar o build rodar comando npm start na pasta principal
  - O projeto estará rodando no localhost:8080
 
 ## Banco de dados
