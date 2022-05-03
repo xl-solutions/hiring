@@ -42,6 +42,11 @@ export class StocksService {
       .toPromise();
   }
 
+  stocksComparation(name: string, stocksList: string[]) {
+    const url = `${this.url}/stocks/${name}/compare`;
+    return this.http.post<IStock>(url, stocksList).toPromise()
+  }
+
   getEarningsProjection(
     name: string,
     purchasedAmount: string,
@@ -53,6 +58,6 @@ export class StocksService {
         purchasedAmount,
         purchasedAt,
       },
-    })
+    });
   }
 }
