@@ -4,6 +4,7 @@ import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import { AppError } from './shared/errors/AppError';
+import './shared/container/index';
 
 import { router } from './shared/routes';
 
