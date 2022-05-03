@@ -1,0 +1,26 @@
+<div>
+    <h1>Comparador de ações</h1>
+</div>
+<div class="inputs">
+    <label>Ação escolhida:</label>
+    <input name="stockName" [(ngModel)]="stockName" type="text" placeholder="Nome da ação" />
+    <label class="">Ações a serem comparadas:</label>
+    <input name="stockName1" [(ngModel)]="stock1" type="text" placeholder="Ação 1" />
+    <input name="stockName2" [(ngModel)]="stock2" type="text" placeholder="Ação 2" />
+
+    <button (click)="getCompare()">Comparar</button>
+</div>
+<div class="results">
+    <table class="table">
+        <tr>
+            <th>Nome:</th>
+            <th>Último preço:</th>
+            <th>Data atualização:</th>
+        </tr>
+        <tr class="results1" *ngFor="let stock of compare">
+            <td>{{ stock?.name }}</td>
+            <td>{{ stock?.lastPrice }}</td>
+            <td>{{ stock?.pricedAt }}</td>
+        </tr>
+    </table>
+</div>

@@ -1,13 +1,31 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+# Detalhes do projeto
+   
+ - Primeiro passo instalar as depêndencias do projeto tanto do front como do back. 
+ - Dentro da pasta hiring, rodar npm i no terminal;
+ - Dentro da pasta backend, rodar npm i no terminal;
+ - Dentro da pasta frontend, rodar npm i no terminal;
+ - Rodar o comando ng build na pasta frontend
+ - Após gerar o build rodar comando npm start na pasta principal
+ - O projeto estará rodando no localhost:8080
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+## Banco de dados
 
-Choose a language to which you are interested and follow the instructions:
+Não achei que tivesse a necessidade de um banco de dados para uma simples função de salvar ações
+no seu portifólio, então foi criado um para exibição dos dados.
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
-- [HTML/CSS/JS](front/README.md) [(English Version)](front/README_ENGLISH.md)
+## Testes
+
+- Para realização dos testes no backend rodar o comando npm test dentro da pasta backend
+- Para realização dos testes no front rodar o comando ng test dentro da pasta frontend
+## Chave da API
+
+No backend há um arquivo .env como exemplo para definição da chave da API utilizada,
+caso a chave tenha sido expirada, gerar outra em https://www.alphavantage.co
+
+
+
+
+
+
+
+

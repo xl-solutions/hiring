@@ -1,0 +1,12 @@
+<div>
+    <h1>Histórico de preços</h1>
+</div>
+<div>
+    <input [(ngModel)]="stockName" type="text" placeholder="Nome da ação" />
+    <button (click)="getHistory()" type="button">Procurar</button> Data Inicial:
+    <input class="date1" [(ngModel)]="date1" type="date" /> Data Final:
+    <input class="date2" [(ngModel)]="date2" type="date" />
+</div>
+<div class="chart">
+    <canvas id="myChart" width="100" height="100"></canvas>
+</div>

@@ -1,0 +1,13 @@
+.chart {
+    display: block;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.date1 {
+    margin-right: 8px;
+}
+
+.date2 {
+    margin-right: 8px;
+}
