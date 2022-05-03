@@ -161,14 +161,12 @@ async function stocksComparation(req, res) {
                 return res.status(400).send({ message: "Ação não encontrada" });
             }
 
-            // if (Object.keys(data["Global Quote"]).length === 0) {
-            //     return res.status(400).send({ message: "Ação não encontrada" });
-            // }
+            const date = new Date(data["Global Quote"]["07. latest trading day"]);
 
             lastPrices.push({
-                name: stocksCompare[stock],
+                name: stock,
                 lastPrice: parseFloat(data["Global Quote"]["05. price"]),
-                pricedAt: data["Global Quote"]["07. latest trading day"],
+                pricedAt: date,
             });
         }
         return res.status(200).send(lastPrices);
