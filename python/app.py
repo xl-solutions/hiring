@@ -53,7 +53,7 @@ def upload_file():
             # Verificar se cada linha está completa
             for i, row in enumerate(rows):
                 if(len(row) < 6):
-                    return f"A linha de dados {i+2} está com incompatibilidade de itens"
+                    return f"A linha de dados {i+2} está com incompatibilidade de itens", 400
             # Salvar ou atualizar o banco de dados
             for row in rows:
                 stock = Stock(manufacturer=row[0], model=row[1], color=row[2], carrier_plan_type=row[3], quantity=row[4], price=row[5])
@@ -61,7 +61,7 @@ def upload_file():
             db.session.commit()
             return '''
             Arquivo carregado com sucesso, acesse <a href="/filtros">Tela de filtragem</a> para visualizar os itens carregados
-            '''
+            ''', 200
       
 
 def allowed_file(filename):
