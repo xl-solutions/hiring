@@ -1,32 +1,17 @@
 import styled from 'styled-components';
 import device from '../../../main/config/screens';
 
-export const Container = styled.div`
-  width: 100%;
-  height: 80%;
-  margin-top: 20px;
-
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-
-  @media screen and (${device.mobileL}) {
-        width: 100%;
-        height: fit-content;
-        padding: 10px;
-        align-items: center;
-
-        display:flex;
-        flex-direction: column;
-    }
-`;
-
 export const Card = styled.div`
   width: 170px;
-  height: 200px;
+  height: 100px;
   padding: 8px;
   display: flex;
   flex-direction:column;
   border-radius: 5px;
+  justify-content: space-between;
+  border: solid 1.5px var(--secondary);
+  margin-bottom: 18px;
+
   :hover{
     cursor: pointer;
     background-color: var(--background);
@@ -41,8 +26,13 @@ export const Card = styled.div`
     align-self: center;
   }
 
+  h3{
+    font-size: 16px;
+    text-align: center;
+  }
+
   p{
-    font-size:18px;
+    font-size:16px;
     font-weight: 500;
     text-align: center;
     margin-top: 6px;

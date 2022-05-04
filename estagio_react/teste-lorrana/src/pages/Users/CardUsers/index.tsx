@@ -1,36 +1,18 @@
 import { Link } from "react-router-dom";
-import { Card, Container } from "./styles";
+import { Card } from "./styles";
 
-export function CardUsers(){
+interface IUsers{
+    name: string,
+    username: string
+}
+
+export const CardUsers: React.FC<IUsers> = ({ name, username}) => {
     return(
         <>
-            <Container>
-                <Link to="/user/album">
-                    <Card>
-                        <div className="img"></div>
-                        <p>Ruan Limassssssss ssssssssss</p>
-                    </Card>
-                </Link>
-                <Card>
-                    <div className="img"></div>
-                    <p>Ruan Limassssssss ssssssssss</p>
-                </Card>
-                <Card>
-                    <div className="img"></div>
-                    <p>Ruan Limassssssss ssssssssss</p>
-                </Card>
-                <Card>
-                    <div className="img"></div>
-                    <p>Ruan Limassssssss ssssssssss</p>
-                </Card> <Card>
-                    <div className="img"></div>
-                    <p>Ruan Limassssssss ssssssssss</p>
-                </Card>
-                <Card>
-                    <div className="img"></div>
-                    <p>Ruan Limassssssss ssssssssss</p>
-                </Card>
-            </Container>
+            <Card>
+                <h3>{username}</h3>
+                <p>{name}</p>
+            </Card>
         </>
     );
 }

@@ -14,23 +14,28 @@ interface IPost {
 export function Feed(){
 
     const [posts, setPosts ] = useState<IPost[] | undefined>(undefined);
+    const [reload, setReload] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {
-        loadPosts();
-      }, [posts]);
-    
-
-    const loadPosts = async () => {
+      const loadPosts = async () => {
         try {
-          const { data } = await route.posts.list();
+          setIsLoading(true)
 
+          const { data } = await route.posts.list();
           setPosts(data);
+
         } catch (error: any) {
           console.log(error);
           setError(error.message);
+
+          setIsLoading(false)
         }
       };
+      loadPosts();
+
+    }, [reload]);
 
     return(
         <>
@@ -38,7 +43,7 @@ export function Feed(){
                 <Container>
                     <h1>Publicações Recentes</h1>
                     {posts?.length && posts.map((post) => (
-                        <Post {...post} />
+                        <Post post={post} />
                     ))}
                 </Container>
             </DefaultLayout>

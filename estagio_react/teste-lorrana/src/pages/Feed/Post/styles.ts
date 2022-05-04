@@ -43,7 +43,7 @@ export const PostAuthor = styled.div`
     }
     .toggleOptions{
       width: 180px;
-      height: 90px;
+      height: fit-content;
       background-color: var(--secondary);
       border-radius: 5px;
       display: flex;
@@ -83,8 +83,8 @@ export const PostAndDescription = styled.div`
 export const Comment = styled.div`
     margin-top: 10px;
 
-    h1 {
-      font-size: 18px;
+    h3 {
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       transition: 0.2s;

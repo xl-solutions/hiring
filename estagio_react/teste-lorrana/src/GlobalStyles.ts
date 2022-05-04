@@ -29,6 +29,18 @@ const GlobalStyles = createGlobalStyle`
         background: var(--primary);
         border-radius: 15px;
     }
+
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:active {
+        text-decoration: none;
+    }
 `;
 
 export default GlobalStyles;

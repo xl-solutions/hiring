@@ -9,28 +9,22 @@ interface DivProps extends HTMLAttributes<DivProps>{
 
 export const Table: FC<DivProps> =({ children, title, backButton}: DivProps) => {
 
+    const goBack = () => {
+        window.history.back()
+    }
+
     return(
         <Container>
             <Header>
                 {backButton ? (
-                    <h3>&#10094; Voltar</h3>
+                    <h3 onClick={goBack}>&#10094; Voltar</h3>
                 ): (
                     ''
                 )}
                 <h2>{title}</h2>
             </Header>
             <Content>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
-                <div className="data"></div>
+                {children}
             </Content>
         </Container>
     );

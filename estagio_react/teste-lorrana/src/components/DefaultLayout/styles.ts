@@ -100,6 +100,11 @@ export const Content = styled.div`
         border-radius: 5px;
         padding-left: 5px;
         padding-right: 5px;
+        padding-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
 
         background-color: var(--background);
     }
@@ -115,15 +120,12 @@ export const Content = styled.div`
     .menu p{
         font-size: 20px;
         line-height: 40px;
-        text-align: center;
         margin-top: 5px;
     }
 
     .menu p:hover{
         cursor: pointer;
-        transition: 0.1s;
         border-bottom: solid 2px var(--primary);
-        border-radius: 1px;
     }
 
     .bodyContainer{
