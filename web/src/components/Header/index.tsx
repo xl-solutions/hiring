@@ -10,7 +10,7 @@ export function Header() {
         <span>.</span>
       </Logo>
       <SearchBox>
-        <input placeholder="Buscar por ações na plataforma"></input>
+        <input placeholder="Pesquise por ativos na plataforma"></input>
         <IconSearch as={RiSearchLine} />
       </SearchBox>
 
@@ -21,7 +21,7 @@ export function Header() {
             10 itens
           </span>
         </div>
-        <BsCurrencyExchange size={36} color="#FFF" />
+        <BsCurrencyExchange size={36} color="#008FFB" />
       </Portfolio>
     </Container>
   )

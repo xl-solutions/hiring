@@ -19,7 +19,7 @@ export const Logo = styled(Link)`
   text-decoration: none;
 
   span {
-    color: var(--green);
+    color: var(--blue);
     margin-left: 4px;
   }
 `;
@@ -48,7 +48,7 @@ export const SearchBox = styled.label`
 
 export const IconSearch = styled.img`
   margin-right: 8px;
-  color: var(--green);
+  color: var(--blue);
   font-size: 20px;
 `;
 
