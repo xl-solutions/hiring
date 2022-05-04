@@ -24,3 +24,8 @@ Para facilitar esse processo, é necessário criar uma interface para upload des
 2. Codifique a aplicação nesse fork;
 3. Escreva um README explicando como rodar sua aplicação e os testes. Dê o máximo de detalhes;
 4. Abra um pull request quando estiver pronto.
+
+
+Passo a passo para rodar o projeto 
+tecnologia ultilizada
+Motivação do projeto/ o que o projeto faz

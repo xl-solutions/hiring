@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Aplicação Flask</title>
+      <style>
+         * {
+            margin: 0;
+            padding: 0;
+         }
+
+         header{
+            height: 40px;
+            line-height: 40px;
+            background: black;
+            color: white;
+            margin-bottom: 20px;
+         }
+
+         header p{
+            text-align: center;
+         }
+
+         main{
+            width: 900px;
+            margin: 0 auto;
+         }
+
+         main form{
+            text-align: left;
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <p>Aplicação FlaskCell&reg</p>
+      </header>
+      <main>
+         <form action="http://localhost:5000/uploader" method="POST"  enctype="multipart/form-data">
+            <label for="file_input">Faça o upload de um csv aqui para cadastrar ou atualizar produtos:</label><br/>
+            <input type="file" name="file" id="file_input" /><br/>
+            <input type="submit"/><br/>
+         </form>
+      </main>
+   </body>
+</html>
