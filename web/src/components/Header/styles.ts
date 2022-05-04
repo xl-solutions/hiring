@@ -24,34 +24,6 @@ export const Logo = styled(Link)`
   }
 `;
 
-export const SearchBox = styled.label`
-  display: flex;
-  width: 100%;
-  padding: 12px 6px;
-  max-width: 400px;
-  align-self: center;
-  color: var(--gray-light);
-  position: relative;
-  background-color: var(--gray);
-  border-radius: 30px;
-
-  input {    
-    width: 100%;
-    color: var(--gray-light);
-    border: none;
-    outline: none;
-    background-color: var(--gray);
-    padding: 0 16px;
-    margin-right: 16px;
-  }
-`;
-
-export const IconSearch = styled.img`
-  margin-right: 8px;
-  color: var(--blue);
-  font-size: 20px;
-`;
-
 export const Portfolio = styled(Link)`
   display: flex;
   align-items: center;

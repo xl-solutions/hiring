@@ -1,4 +1,4 @@
-import { Header } from "../../components/Header";
+import { Header } from '../../components/Header';
 
 export default function Portfolio() {
   return (
@@ -6,5 +6,5 @@ export default function Portfolio() {
       <Header />
       <h1>Meu Portfólio</h1>
     </>
-  )
+  );
 }

@@ -1,7 +1,15 @@
-import { Header } from "../../components/Header";
-import { Container, Content, GeneralInfo, InfoStock, Item, ProjectionGains, Menu } from "./styles";
 import Chart from 'react-apexcharts';
-import { Button } from "../../components/Button";
+import { Header } from '../../components/Header';
+import {
+  Container,
+  Content,
+  GeneralInfo,
+  InfoStock,
+  Item,
+  ProjectionGains,
+  Menu,
+} from './styles';
+import { Button } from '../../components/Button';
 
 const options = {
   chart: {
@@ -43,7 +51,7 @@ const options = {
     gradient: {
       shade: 'dark',
       opacityFrom: 0.7,
-      opacityTo: 0.3
+      opacityTo: 0.3,
     },
   },
   tooltip: {
@@ -51,9 +59,7 @@ const options = {
   },
 };
 
-const series = [
-  { name: 'series1', data: [31, 120, 10, 28, 61, 18, 109] }
-];
+const series = [{ name: 'series1', data: [31, 120, 10, 28, 61, 18, 109] }];
 
 export default function Dashboard() {
   return (
@@ -83,10 +89,7 @@ export default function Dashboard() {
                 <span>$2,818.24</span>
               </Item>
             </div>
-            <Button
-              type="button"
-              label="ADICIONAR"
-            />
+            <Button type="button" label="ADICIONAR" />
           </Menu>
         </GeneralInfo>
         <h2>Projeção de ganhos por compra</h2>
@@ -107,10 +110,7 @@ export default function Dashboard() {
                 <span>$2,818.24</span>
               </Item>
             </div>
-            <Button
-              type="button"
-              label="ADICIONAR"
-            />
+            <Button type="button" label="CALCULAR" />
           </Menu>
           <InfoStock>
             <Chart options={options} series={series} type="area" height={340} />
@@ -135,5 +135,5 @@ export default function Dashboard() {
         </ProjectionGains>
       </Content>
     </Container>
-  )
+  );
 }

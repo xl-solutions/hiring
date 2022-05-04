@@ -12,7 +12,7 @@ export const Content = styled.div`
   gap: 20px;
   width: 100%;
   max-width: 1480px;
-  margin: 24px 0;  
+  margin: 24px 0;
 `;
 
 export const GeneralInfo = styled.div`
@@ -37,21 +37,21 @@ export const Menu = styled.div`
   justify-content: space-between;
   background-color: var(--gray);
   border-radius: 10px;
-  padding: 15px;  
+  padding: 15px;
 
   div {
     h2 {
       margin-bottom: 30px;
-    } 
+    }
   }
 `;
 
-export const Item = styled.div`   
+export const Item = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px 0;
   justify-content: space-between;
-  padding: 5px 0;  
+  padding: 5px 0;
 
   input {
     width: 100px;
