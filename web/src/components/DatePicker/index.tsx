@@ -14,10 +14,7 @@ interface DatePickerProps {
   label: string;
 }
 
-const DatePickerBase: ForwardRefRenderFunction<
-  HTMLDivElement,
-  DatePickerProps
-> = ({ value, setValue, label }, ref) => {
+export function DatePicker({ value, setValue, label }: DatePickerProps) {
   const handleDateChange = (date: MaterialUiPickersDate) => {
     setValue(date);
   };
@@ -30,7 +27,6 @@ const DatePickerBase: ForwardRefRenderFunction<
           variant="inline"
           format="dd/MM/yyyy"
           margin="normal"
-          ref={ref}
           id="date-picker"
           label={label}
           value={value}
@@ -45,6 +41,4 @@ const DatePickerBase: ForwardRefRenderFunction<
       </Container>
     </MuiPickersUtilsProvider>
   );
-};
-
-export const DatePicker = forwardRef(DatePickerBase);
+}

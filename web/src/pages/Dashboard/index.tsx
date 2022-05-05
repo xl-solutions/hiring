@@ -70,7 +70,6 @@ export default function Dashboard() {
           <Menu>
             <div>
               <h2>Selecione o período:</h2>
-              <hr />
               <DatePicker
                 value={startDate}
                 setValue={setStartDate}
@@ -82,9 +81,9 @@ export default function Dashboard() {
                 label="TÉRMINO EM:"
               />
             </div>
+            <hr />
             <div>
               <h2>Adicionar ao meu portfólio</h2>
-              <hr />
               <Item>
                 <span>Quantidade</span>
                 <input type="number" />
@@ -109,15 +108,11 @@ export default function Dashboard() {
                 <span>Quantidade comprada</span>
                 <input type="number" />
               </Item>
-              <Item>
-                <span>Preço de mercado</span>
-                <span>$176.14</span>
-              </Item>
-              <hr />
-              <Item>
-                <span>Valor estimado</span>
-                <span>$2,818.24</span>
-              </Item>
+              <DatePicker
+                value={startDate}
+                setValue={setStartDate}
+                label="DATA DA COMPRA:"
+              />
             </div>
             <Button type="button" label="CALCULAR" />
           </Menu>
