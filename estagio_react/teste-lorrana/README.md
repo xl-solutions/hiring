@@ -4,11 +4,11 @@
 - Feito em React, TypeScript e Styled-components
 - API utilizada: https://jsonplaceholder.typicode.com/
 
-## Requisitos:
+### Requisitos:
 - Ter Node na máquina onde o projeto será renderizado
 
-## Para utilizar:
-- Clonar o repositório
-- Importar as dependências utilizando $npm install ou $yarn add
-- Inicializar utilizando $npm start
+### Para utilizar:
+- Clonar o repositório;
+- Importar as dependências utilizando $npm install ou $yarn add;
+- Inicializar utilizando $npm start.
 
