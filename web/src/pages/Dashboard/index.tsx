@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { Header } from '../../components/Header';
 import {
   Container,
@@ -17,11 +18,16 @@ import { SearchBar } from '../../components/SearchBar';
 import api from '../../services/api';
 import { useDebounce } from '../../hooks/useDebounce';
 import { AreaChart } from '../../components/Charts/AreaChart';
+import { DatePicker } from '../../components/DatePicker';
 
 export default function Dashboard() {
   const [searchStockCompare, setSearchStockCompare] = useState('');
   const [resultStocks, setResultStocks] = useState([]);
   const [stocksFromCompare, setStocksFromCompare] = useState<string[]>([]);
+
+  const [startDate, setStartDate] = useState<MaterialUiPickersDate>(new Date());
+  const [endDate, setEndDate] = useState<MaterialUiPickersDate>(new Date());
+
   const debouncedSearch = useDebounce(searchStockCompare, 500);
 
   async function searchStockForCompare() {
@@ -63,7 +69,22 @@ export default function Dashboard() {
           </InfoStock>
           <Menu>
             <div>
+              <h2>Selecione o período:</h2>
+              <hr />
+              <DatePicker
+                value={startDate}
+                setValue={setStartDate}
+                label="INÍCIO EM:"
+              />
+              <DatePicker
+                value={endDate}
+                setValue={setEndDate}
+                label="TÉRMINO EM:"
+              />
+            </div>
+            <div>
               <h2>Adicionar ao meu portfólio</h2>
+              <hr />
               <Item>
                 <span>Quantidade</span>
                 <input type="number" />
@@ -72,13 +93,12 @@ export default function Dashboard() {
                 <span>Preço de mercado</span>
                 <span>$176.14</span>
               </Item>
-              <hr />
               <Item>
                 <span>Valor estimado</span>
                 <span>$2,818.24</span>
               </Item>
+              <Button type="button" label="ADICIONAR" />
             </div>
-            <Button type="button" label="ADICIONAR" />
           </Menu>
         </GeneralInfo>
         <h1>Projeção de ganhos por compra</h1>

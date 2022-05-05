@@ -49,7 +49,7 @@ export const Menu = styled.div`
 
   div {
     h2 {
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
 
     #stock-compare {
