@@ -1,9 +1,10 @@
+import { route } from "../../../services/api";
+import React, { useEffect, useState } from "react";
+
+import Answer from "../Answer";
 import { QuestionCard, PostAuthor, PostAndDescription, Comment } from "./styles";
 import Profile from '../../../main/assets/icons/profile.png'
 import Menu from '../../../main/assets/icons/toggle.svg'
-import React, { useEffect, useState } from "react";
-import Answer from "../Answer";
-import { route } from "../../../services/api";
 interface IPost {
     post: {
         title: string,

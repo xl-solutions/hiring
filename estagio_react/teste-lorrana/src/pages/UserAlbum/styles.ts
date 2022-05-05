@@ -9,7 +9,6 @@ export const Header = styled.div`
       width: 90px;
       height: 90px;
       border-radius: 50%;
-      background-color: black;
   }
   h2{
       font-size: 22px;
@@ -18,4 +17,25 @@ export const Header = styled.div`
       margin-top: 6px;
   }
 
+`;
+
+export const Albums = styled.div`
+  width:190px;
+  height: 100%;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content:flex-start ;
+
+  p{
+    margin-top: 8px;
+    color: var(--black);
+
+
+    :hover{
+      transition: 0.3s;
+      border-bottom: solid 1px var(--primary);
+    }
+  }
 `;

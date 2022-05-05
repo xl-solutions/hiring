@@ -29,6 +29,7 @@ export const Card = styled.div`
   h3{
     font-size: 16px;
     text-align: center;
+    color: var(--black);
   }
 
   p{
@@ -36,5 +37,6 @@ export const Card = styled.div`
     font-weight: 500;
     text-align: center;
     margin-top: 6px;
+    color: var(--black);
   }
 `;

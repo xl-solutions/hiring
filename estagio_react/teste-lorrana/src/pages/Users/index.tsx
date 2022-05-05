@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { route } from "../../services/api";
-import { Container, Content } from "./styles";
-import DefaultLayout from "../../components/DefaultLayout";
-import CardUsers from "./CardUsers";
 import { Link } from "react-router-dom";
+
+import { Container, Content } from "./styles";
+import CardUsers from "./CardUsers";
+import DefaultLayout from "../../components/DefaultLayout";
 
 interface IUsers{
     id: string,

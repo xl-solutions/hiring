@@ -33,8 +33,18 @@ export const Header = styled.div`
         .logo{
             width: 65px;
             height: 80px;
-            background-color: gray;
             margin-right: 10px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+        .logoLetter{
+            color: var(--white);
+            font-size: 42px;
+        }
+        .brand h1{
+            font-size: 50px;
+            font-weight: 700;
         }
         .brand h2{
             color: var(--white);
@@ -44,9 +54,7 @@ export const Header = styled.div`
         .userPicture{
             width: 65px;
             height: 60px;
-
             border-radius: 50%;
-            background-color: gray ;
         }
     }
 `;
@@ -121,6 +129,7 @@ export const Content = styled.div`
         font-size: 20px;
         line-height: 40px;
         margin-top: 5px;
+        color: var(--black);
     }
 
     .menu p:hover{
@@ -148,5 +157,3 @@ export const Content = styled.div`
     }
 
 `;
-
-export const Footer = styled.div``;

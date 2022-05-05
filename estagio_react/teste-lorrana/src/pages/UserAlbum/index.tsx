@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import DefaultLayout from "../../components/DefaultLayout";
-import Table from "../../components/Table";
 import { route } from "../../services/api";
-import { Header } from "./styles";
+
+import { Albums, Header } from "./styles";
+import Photo from "../../main/assets/icons/photoProfile.png"
+import Table from "../../components/Table";
+import DefaultLayout from "../../components/DefaultLayout";
 
 interface IAlbum {
     id: string,
@@ -37,17 +39,19 @@ export function UserAlbum(){
         <>
             <DefaultLayout>
                 <Header>
-                    <div className="img"></div>
+                    <img src={Photo} alt="Foto do usuário" className="img"></img>
                     <h2>{id}</h2>
                 </Header>
-                <Table title="Álbum" backButton={false}>
+                <Table title="Álbuns" backButton={false}>
                     {albums?.length && albums.map((album) =>(
                         <>
-                            <Link to={`/albums/${album.id}/photos`}>
-                                <div className="album">
-                                    {album.title}
-                                </div>
-                            </Link>
+                            <Albums>
+                                <Link to={`/albums/${album.id}/photos`}>
+                                    <p>
+                                        {album.title}
+                                    </p>
+                                </Link>
+                            </Albums>
                         </>
                     ))}
                 </Table>

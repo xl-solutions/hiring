@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from "react";
 import { Link } from "react-router-dom";
-import { Container, Content, ContentArea, Footer, Header } from "./styles";
-
+import Profile from '../../main/assets/icons/profile.png'
+import { Container, Content, ContentArea, Header } from "./styles";
 
 interface DivProps extends HTMLAttributes<DivProps>{
     children: any
@@ -14,12 +14,15 @@ export const DefaultLayout: FC<DivProps> =({children}: DivProps) => {
             <Header>
                 <header>
                     <div className="brand">
-                        <div className="logo"></div>
+                        <div className="logo">
+                            <h1>
+                                <span className="logoLetter">i</span>C
+                            </h1>
+                        </div>
                         <h2>inContact</h2>
                     </div>
-                    <div className="userPicture">
-                            
-                    </div>   
+                    <img src={Profile} className="userPicture" alt="Imagem de Perfil"/>
+                          
                 </header>
             </Header>
             <ContentArea>
@@ -36,13 +39,10 @@ export const DefaultLayout: FC<DivProps> =({children}: DivProps) => {
                         </div>
                     </div>
                     <div className="bodyContainer">
-
-                    {children}
+                        {children}
                     </div>
                 </Content>
             </ContentArea>
-            <Footer>
-            </Footer>
         </Container>
     );
 };

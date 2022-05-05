@@ -3,7 +3,8 @@ import device from '../../main/config/screens';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: fit-content;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
 `;
@@ -15,8 +16,13 @@ export const Header = styled.div`
 
   h3{
       font-size: 16px;
-      color: var(--secondary);
+      color: gray;
       justify-self: center;
+
+      :hover{
+        cursor: pointer;
+        transition: 0.3s;
+      }
   }
 
   h2{
@@ -48,13 +54,6 @@ export const Content = styled.div`
         display:flex;
         flex-direction: column;
     }
-
-   .data{
-    width: 150px;
-    height: 150px;
-
-    background-color: purple;
-    margin-bottom: 25px;
 
     @media screen and (${device.mobileL}){
         margin-bottom: 12px;
