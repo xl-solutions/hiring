@@ -1,4 +1,6 @@
 import Chart from 'react-apexcharts';
+import { useEffect, useState } from 'react';
+import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { Header } from '../../components/Header';
 import {
   Container,
@@ -8,8 +10,13 @@ import {
   Item,
   ProjectionGains,
   Menu,
+  CompareStock,
+  IconDelete,
 } from './styles';
 import { Button } from '../../components/Button';
+import { SearchBar } from '../../components/SearchBar';
+import api from '../../services/api';
+import { useDebounce } from '../../hooks/useDebounce';
 
 const options = {
   chart: {
@@ -62,6 +69,38 @@ const options = {
 const series = [{ name: 'series1', data: [31, 120, 10, 28, 61, 18, 109] }];
 
 export default function Dashboard() {
+  const [searchStockCompare, setSearchStockCompare] = useState('');
+  const [resultStocks, setResultStocks] = useState([]);
+  const [stocksFromCompare, setStocksFromCompare] = useState<string[]>([]);
+  const debouncedSearch = useDebounce(searchStockCompare, 500);
+
+  async function searchStockForCompare() {
+    const response = await api.get('/search', {
+      params: { symbol: debouncedSearch },
+    });
+
+    setResultStocks(response.data);
+  }
+
+  function addToStockCompare(stock_name: string) {
+    setStocksFromCompare([...stocksFromCompare, stock_name]);
+    setSearchStockCompare('');
+  }
+
+  function removeStockFromCompare(stock_name: string) {
+    setStocksFromCompare(
+      stocksFromCompare.filter((e) => e !== `${stock_name}`)
+    );
+  }
+
+  useEffect(() => {
+    if (!debouncedSearch.trim()) {
+      setResultStocks([]);
+    } else {
+      searchStockForCompare();
+    }
+  }, [debouncedSearch]);
+
   return (
     <Container>
       <Header />
@@ -92,7 +131,7 @@ export default function Dashboard() {
             <Button type="button" label="ADICIONAR" />
           </Menu>
         </GeneralInfo>
-        <h2>Projeção de ganhos por compra</h2>
+        <h1>Projeção de ganhos por compra</h1>
         <ProjectionGains>
           <Menu>
             <div>
@@ -133,6 +172,36 @@ export default function Dashboard() {
             </Item>
           </Menu>
         </ProjectionGains>
+        <h1>Comparar com outros ativos</h1>
+        <CompareStock>
+          <Menu>
+            <div>
+              <SearchBar
+                value={searchStockCompare}
+                setValue={setSearchStockCompare}
+                stocks={resultStocks}
+                placeholder="Adicione os ativos que deseja comparar"
+                fetchData={addToStockCompare}
+              />
+              {stocksFromCompare.length > 0 &&
+                stocksFromCompare.map((stock) => (
+                  <div id="stock-compare" key={stock}>
+                    <p>{stock}</p>
+                    <button
+                      type="button"
+                      onClick={() => removeStockFromCompare(stock)}
+                    >
+                      <IconDelete as={RiDeleteBin5Fill} />
+                    </button>
+                  </div>
+                ))}
+            </div>
+            <Button type="button" label="COMPARAR" />
+          </Menu>
+          <InfoStock>
+            <Chart options={options} series={series} type="area" height={340} />
+          </InfoStock>
+        </CompareStock>
       </Content>
     </Container>
   );

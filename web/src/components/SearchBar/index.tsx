@@ -4,26 +4,40 @@ import { SearchStocksProps } from '../Header';
 import { IconSearch, Search } from './styles';
 
 interface SearchBarProps {
+  value?: string;
   setValue?: any;
+  fetchData: (stock_name: string) => void;
   stocks: SearchStocksProps[];
+  placeholder: string;
 }
 
-export function SearchBar({ setValue, stocks }: SearchBarProps) {
+export function SearchBar({
+  value,
+  setValue,
+  stocks,
+  placeholder,
+  fetchData,
+}: SearchBarProps) {
   return (
     <Search>
       <div>
         <input
           type="text"
-          placeholder="Pesquise por ativos na plataforma"
+          placeholder={placeholder}
+          value={value?.toUpperCase()}
           onChange={(e) => setValue(e.target.value)}
         />
         <IconSearch as={RiSearchLine} />
       </div>
       {stocks.length > 0 && (
         <div className="data-results">
-          {stocks.map((stock) => {
+          {stocks?.map((stock) => {
             return (
-              <div className="item" key={stock.name}>
+              <div
+                className="item"
+                key={stock.name}
+                onClick={() => fetchData(stock.name)}
+              >
                 <p>{stock.name}</p>
               </div>
             );

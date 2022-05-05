@@ -25,6 +25,10 @@ export function Header() {
     setFilterStocks(response.data);
   }
 
+  async function searchQuoteFromStock() {
+    console.log('Buscar informacoes de cotacao para a açaõ');
+  }
+
   useEffect(() => {
     if (!debouncedSearch.trim()) {
       setFilterStocks([]);
@@ -39,7 +43,13 @@ export function Header() {
         dashmoney
         <span>.</span>
       </Logo>
-      <SearchBar setValue={setSearch} stocks={filterStocks} />
+      <SearchBar
+        value={search}
+        setValue={setSearch}
+        stocks={filterStocks}
+        placeholder="Pesquise por ativos na plataforma"
+        fetchData={searchQuoteFromStock}
+      />
       <Portfolio to="/portfolio">
         <div>
           <strong>Meu Portfólio</strong>
