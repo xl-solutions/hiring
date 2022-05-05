@@ -57,8 +57,8 @@ export default function Dashboard() {
       <Content>
         <GeneralInfo>
           <InfoStock>
-            <h1>Apple Inc</h1>
-            <span>$176.14</span>
+            <h1 id="company-name">Apple Inc</h1>
+            <span id="price">$176.14</span>
             <AreaChart />
           </InfoStock>
           <Menu>

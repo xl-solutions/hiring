@@ -29,6 +29,14 @@ export const InfoStock = styled.div`
   background-color: var(--gray);
   border-radius: 10px;
   padding: 15px;
+
+  #company-name {
+    font-size: 32px;
+  }
+  #price {
+    font-size: 24px;
+    margin: 5px 0;
+  }
 `;
 
 export const Menu = styled.div`
