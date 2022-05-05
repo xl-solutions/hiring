@@ -1,4 +1,3 @@
-import Chart from 'react-apexcharts';
 import { useEffect, useState } from 'react';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { Header } from '../../components/Header';
@@ -17,56 +16,7 @@ import { Button } from '../../components/Button';
 import { SearchBar } from '../../components/SearchBar';
 import api from '../../services/api';
 import { useDebounce } from '../../hooks/useDebounce';
-
-const options = {
-  chart: {
-    toolbar: {
-      show: false,
-    },
-    zoom: {
-      enabled: false,
-    },
-    foreColor: '#fff',
-  },
-  grid: {
-    show: false,
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  xaxis: {
-    type: 'datetime' as const,
-    axisBorder: {
-      color: '#fff',
-    },
-    axisTicks: {
-      color: '#fff',
-    },
-    categories: [
-      '2022-04-20T00:00:00.000Z',
-      '2022-04-21T00:00:00.000Z',
-      '2022-04-22T00:00:00.000Z',
-      '2022-04-23T00:00:00.000Z',
-      '2022-04-24T00:00:00.000Z',
-      '2022-04-25T00:00:00.000Z',
-      '2022-04-26T00:00:00.000Z',
-    ],
-  },
-  fill: {
-    opacity: 0.3,
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      opacityFrom: 0.7,
-      opacityTo: 0.3,
-    },
-  },
-  tooltip: {
-    enabled: false,
-  },
-};
-
-const series = [{ name: 'series1', data: [31, 120, 10, 28, 61, 18, 109] }];
+import { AreaChart } from '../../components/Charts/AreaChart';
 
 export default function Dashboard() {
   const [searchStockCompare, setSearchStockCompare] = useState('');
@@ -109,7 +59,7 @@ export default function Dashboard() {
           <InfoStock>
             <h1>Apple Inc</h1>
             <span>$176.14</span>
-            <Chart options={options} series={series} type="area" height={340} />
+            <AreaChart />
           </InfoStock>
           <Menu>
             <div>
@@ -152,7 +102,7 @@ export default function Dashboard() {
             <Button type="button" label="CALCULAR" />
           </Menu>
           <InfoStock>
-            <Chart options={options} series={series} type="area" height={340} />
+            <AreaChart />
           </InfoStock>
           <Menu>
             <div>
@@ -199,7 +149,7 @@ export default function Dashboard() {
             <Button type="button" label="COMPARAR" />
           </Menu>
           <InfoStock>
-            <Chart options={options} series={series} type="area" height={340} />
+            <AreaChart />
           </InfoStock>
         </CompareStock>
       </Content>
