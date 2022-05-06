@@ -1,13 +1,11 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+# Growth Partner Desafio 2 - Postgram [Link do Site](https://postgramgrowthpartner.netlify.app)
+## Respositório - https://github.com/mmessiasdev/PostgramIpNet
+<img src="https://i.imgur.com/Kp7WdCd.jpg?1">
+Essa aplicação foi criada com o íntuito de demonstrar algumas das minhas skills no React, limitado ao que foi exigido nas funcionalidades do teste. Iniciei ele no dia 03/05/22 e estou lançando a versão final 1.0, hoje, 06/05/22.
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
 
-Choose a language to which you are interested and follow the instructions:
+## Growth Partner Desafio 1 - Photouser
+### Respositório - https://github.com/mmessiasdev/PhotouserIpNet
+<img src="https://i.imgur.com/677BzJg.jpg">
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
-- [HTML/CSS/JS](front/README.md) [(English Version)](front/README_ENGLISH.md)
+Essa aplicação foi criada com o íntuito de demonstrar algumas das minhas skills no React, limitado ao que foi exigido nas funcionalidades do teste. Iniciei ele no dia 29/04/22 e estou lançando a versão final 1.0, 03/04/22 (não programei no domingo).
