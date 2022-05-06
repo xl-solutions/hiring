@@ -1,13 +1,19 @@
 import Chart from 'react-apexcharts';
 import ptBr from 'apexcharts/dist/locales/pt-br.json';
 
-interface AreaChartProps {
+interface BarChartProps {
   name: string;
-  categories: string[];
+  categories?: string[];
   data: number[];
+  horizontal?: boolean;
 }
 
-export function AreaChart({ name, categories, data }: AreaChartProps) {
+export function BarChart({
+  name,
+  categories,
+  data,
+  horizontal,
+}: BarChartProps) {
   const series = [{ name: `${name}`, data }];
 
   const options = {
@@ -22,6 +28,11 @@ export function AreaChart({ name, categories, data }: AreaChartProps) {
       },
       foreColor: '#fff',
     },
+    plotOptions: {
+      bar: {
+        horizontal,
+      },
+    },
     grid: {
       show: false,
     },
@@ -29,7 +40,7 @@ export function AreaChart({ name, categories, data }: AreaChartProps) {
       enabled: true,
     },
     xaxis: {
-      type: 'datetime' as const,
+      type: 'category' as const,
       axisBorder: {
         color: '#fff',
       },
@@ -43,8 +54,8 @@ export function AreaChart({ name, categories, data }: AreaChartProps) {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        opacityFrom: 0.7,
-        opacityTo: 0.3,
+        opacityFrom: 0.8,
+        opacityTo: 0.6,
       },
     },
     tooltip: {
@@ -52,5 +63,5 @@ export function AreaChart({ name, categories, data }: AreaChartProps) {
     },
   };
 
-  return <Chart options={options} series={series} type="area" height={340} />;
+  return <Chart options={options} series={series} type="bar" height={340} />;
 }

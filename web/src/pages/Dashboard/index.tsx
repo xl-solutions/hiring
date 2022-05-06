@@ -21,6 +21,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { AreaChart } from '../../components/Charts/AreaChart';
 import { DatePicker } from '../../components/DatePicker';
 import { formatPriceUSD, formatPriceBRL } from '../../utils/formatPrice';
+import { BarChart } from '../../components/Charts/BarChart';
 
 interface Pricing {
   opening: number;
@@ -42,6 +43,25 @@ interface CurrentStockProps {
   currency?: string;
 }
 
+interface GainsByDateCurrentStockProps {
+  name: string;
+  purchasedAmount: number;
+  purchasedAt: string;
+  priceAtDate: number;
+  lastPrice: number;
+  capitalGains: number;
+}
+
+interface LastPrice {
+  name: string;
+  lastPrice: number;
+  pricedAt: string;
+}
+
+interface InfoStocksCompareProps {
+  lastPrices: LastPrice[];
+}
+
 export default function Dashboard() {
   const [currentStock, setCurrentStock] = useState<CurrentStockProps>({
     name: 'AAPL',
@@ -50,21 +70,34 @@ export default function Dashboard() {
     useState<HistoricalPriceProps>();
   const [searchStockCompare, setSearchStockCompare] = useState('');
   const [searchResultStocks, setSearchResultStocks] = useState([]);
-  const [stocksFromCompare, setStocksFromCompare] = useState<string[]>([]);
+  const [stocksFromCompare, setStocksFromCompare] = useState<string[]>([
+    'FB',
+    'NFLX',
+    'MSFT',
+  ]);
+  const [infoStocksCompare, setInfoStocksCompare] =
+    useState<InfoStocksCompareProps>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [startDate, setStartDate] = useState<MaterialUiPickersDate>(
     subDays(new Date(), 7)
   );
   const [endDate, setEndDate] = useState<MaterialUiPickersDate>(new Date());
+  const [purchasedAmount, setPurchasedAmount] = useState<number>(10);
+  const [purchasedDate, setPurchasedDate] = useState<MaterialUiPickersDate>(
+    subDays(new Date(), 16)
+  );
+  const [gainsByDateFromCurrentStock, setGainsByDateFromCurrentStock] =
+    useState<GainsByDateCurrentStockProps>();
 
   const debouncedSearch = useDebounce(searchStockCompare, 500);
 
   async function searchStockForCompare() {
-    const response = await api.get('/search', {
+    const { data } = await api.get('/search', {
       params: { symbol: debouncedSearch },
     });
 
-    setSearchResultStocks(response.data);
+    setSearchResultStocks(data);
   }
 
   async function getHistoricalPriceFromStock(
@@ -72,20 +105,34 @@ export default function Dashboard() {
     from: string,
     to: string
   ) {
-    const response = await api.get(`/${stock_name}/history`, {
+    const { data } = await api.get(`/${stock_name}/history`, {
       params: { from, to },
     });
 
-    setHistoricalPrice(response.data);
+    setHistoricalPrice(data);
   }
 
   const categoriesChartHistoricalPrice: string[] = [];
   const dataChartHistoricalPrice: number[] = [];
+  const categoriesChartGainsByDate: string[] = [];
+  const dataChartGainsByDate: number[] = [];
 
   historicalPrice?.prices.forEach((history) => {
     dataChartHistoricalPrice.push(history.closing);
     categoriesChartHistoricalPrice.push(history.pricedAt);
   });
+
+  if (gainsByDateFromCurrentStock?.capitalGains) {
+    categoriesChartGainsByDate.push(
+      gainsByDateFromCurrentStock.purchasedAt,
+      format(new Date(), 'yyyy-MM-dd')
+    );
+
+    dataChartGainsByDate.push(
+      gainsByDateFromCurrentStock.priceAtDate,
+      gainsByDateFromCurrentStock.lastPrice
+    );
+  }
 
   function addToStockCompare(stock_name: string) {
     setStocksFromCompare([...stocksFromCompare, stock_name]);
@@ -104,14 +151,44 @@ export default function Dashboard() {
     stock_region?: string,
     stock_currency?: string
   ) {
-    const response = await api.get(`/${stock_name}/quote`);
+    const { data } = await api.get(`/${stock_name}/quote`);
     setCurrentStock({
       name: stock_name,
-      lastPrice: response.data.lastPrice,
+      lastPrice: data.lastPrice,
       company: stock_company,
       region: stock_region,
       currency: stock_currency,
     });
+  }
+
+  async function getGainsByDate(
+    stock_name: string,
+    purchasedAmount: number,
+    purchasedAt: string
+  ) {
+    setIsLoading(true);
+    const { data } = await api
+      .get(`/${stock_name}/gains`, {
+        params: { purchasedAmount, purchasedAt },
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+
+    setGainsByDateFromCurrentStock(data);
+  }
+
+  async function compareCurrentStock() {
+    setIsLoading(true);
+    const { data } = await api
+      .post(`/${currentStock.name}/compare`, {
+        stocks: stocksFromCompare,
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+
+    setInfoStocksCompare(data);
   }
 
   useEffect(() => {
@@ -128,7 +205,15 @@ export default function Dashboard() {
       format(startDate, 'yyyy-MM-dd'),
       format(endDate, 'yyyy-MM-dd')
     );
-  }, [currentStock, startDate, endDate]);
+    getGainsByDate(
+      currentStock.name,
+      purchasedAmount,
+      format(purchasedDate, 'yyyy-MM-dd')
+    );
+    compareCurrentStock();
+  }, [currentStock.name, startDate, endDate]);
+
+  console.log(stocksFromCompare);
 
   return (
     <Container>
@@ -155,7 +240,7 @@ export default function Dashboard() {
           </InfoStock>
           <Menu>
             <div>
-              <h3>Selecione o período:</h3>
+              <h3>SELECIONE O PERÍODO:</h3>
               <DatePicker
                 value={startDate}
                 setValue={setStartDate}
@@ -175,33 +260,66 @@ export default function Dashboard() {
           <Menu>
             <div>
               <Item>
-                <span>Quantidade comprada</span>
-                <input type="number" />
+                <span>QUANTIDADE COMPRADA:</span>
+                <input
+                  type="number"
+                  value={purchasedAmount}
+                  onChange={(e) => setPurchasedAmount(Number(e.target.value))}
+                />
               </Item>
               <DatePicker
-                value={startDate}
-                setValue={setStartDate}
+                value={purchasedDate}
+                setValue={setPurchasedDate}
                 label="DATA DA COMPRA:"
               />
             </div>
-            <Button type="button" label="CALCULAR" />
+            <Button
+              type="button"
+              label="CALCULAR"
+              isLoading={isLoading}
+              onClick={() =>
+                getGainsByDate(
+                  currentStock.name,
+                  purchasedAmount,
+                  format(purchasedDate, 'yyyy-MM-dd')
+                )
+              }
+            />
           </Menu>
-          <InfoStock>{/* <AreaChart /> */}</InfoStock>
+          <InfoStock>
+            <BarChart
+              name="chartGainsByDate"
+              categories={categoriesChartGainsByDate}
+              data={dataChartGainsByDate}
+            />
+          </InfoStock>
           <Menu>
             <div>
               <Item>
-                <span>Preço na data da compra</span>
-                <span>$176.14</span>
+                <span>PREÇO NA DATA DA COMPRA:</span>
+                <span>
+                  {currentStock?.currency === 'BRL'
+                    ? formatPriceBRL(gainsByDateFromCurrentStock?.priceAtDate)
+                    : formatPriceUSD(gainsByDateFromCurrentStock?.priceAtDate)}
+                </span>
               </Item>
               <Item>
-                <span>Preço mais recente</span>
-                <span>$240.14</span>
+                <span>PREÇO MAIS RECENTE:</span>
+                <span>
+                  {currentStock?.currency === 'BRL'
+                    ? formatPriceBRL(gainsByDateFromCurrentStock?.lastPrice)
+                    : formatPriceUSD(gainsByDateFromCurrentStock?.lastPrice)}
+                </span>
               </Item>
               <hr />
             </div>
             <Item>
-              <span>Lucro/Prejuízo</span>
-              <span>$2,818.24</span>
+              <span>LUCRO/PREJUÍZO</span>
+              <span>
+                {currentStock?.currency === 'BRL'
+                  ? formatPriceBRL(gainsByDateFromCurrentStock?.capitalGains)
+                  : formatPriceUSD(gainsByDateFromCurrentStock?.capitalGains)}
+              </span>
             </Item>
           </Menu>
         </ProjectionGains>
@@ -231,7 +349,14 @@ export default function Dashboard() {
             </div>
             <Button type="button" label="COMPARAR" />
           </Menu>
-          <InfoStock>{/* <AreaChart /> */}</InfoStock>
+          <InfoStock>
+            <BarChart
+              name="chartGainsByDate"
+              categories={categoriesChartGainsByDate}
+              data={dataChartGainsByDate}
+              horizontal
+            />
+          </InfoStock>
         </CompareStock>
       </Content>
     </Container>

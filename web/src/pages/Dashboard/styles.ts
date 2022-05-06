@@ -80,8 +80,9 @@ export const Item = styled.div`
   padding: 5px 0;
 
   input {
+    text-align: right;
     width: 100px;
-    padding: 4px;
+    padding: 5px;
     border-radius: 5px;
     border: none;
     color: var(--gray);

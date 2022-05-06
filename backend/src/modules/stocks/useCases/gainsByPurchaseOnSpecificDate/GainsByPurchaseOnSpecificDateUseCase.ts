@@ -25,9 +25,16 @@ export class GainsByPurchaseOnSpecificDateUseCase {
     if (!stock_name) {
       throw new AppError('Stock name not provided');
     }
+    let searchQuote: GlobalQuote;
+    let searchHistoricalPrice;
 
-    const searchQuote = (await getQuoteBySymbol(stock_name)) as GlobalQuote;
-    const searchHistoricalPrice = await getHistoricalPriceBySymbol(stock_name);
+    do {
+      searchQuote = (await getQuoteBySymbol(stock_name)) as GlobalQuote;
+    } while (!searchQuote);
+
+    do {
+      searchHistoricalPrice = await getHistoricalPriceBySymbol(stock_name);
+    } while (!searchHistoricalPrice);
 
     const lastPrice = Number(searchQuote['05. price']);
     const priceAtDate = Number(searchHistoricalPrice[purchasedAt]['4. close']);
