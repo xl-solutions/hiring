@@ -9,6 +9,7 @@ interface IResponse {
   name: string;
   company: string;
   region: string;
+  currency: string;
 }
 
 export class SearchStocksUseCase {
@@ -26,6 +27,7 @@ export class SearchStocksUseCase {
         name: stock['1. symbol'],
         company: stock['2. name'],
         region: stock['4. region'],
+        currency: stock['8. currency'],
       });
     });
 

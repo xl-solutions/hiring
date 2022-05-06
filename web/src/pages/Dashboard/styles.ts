@@ -31,10 +31,10 @@ export const InfoStock = styled.div`
   padding: 15px;
 
   #company-name {
-    font-size: 32px;
+    font-size: 24px;
   }
   #price {
-    font-size: 24px;
+    font-size: 22px;
     margin: 5px 0;
   }
 `;

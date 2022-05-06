@@ -5,13 +5,23 @@ import { useDebounce } from '../../hooks/useDebounce';
 import api from '../../services/api';
 import { SearchBar } from '../SearchBar';
 
+interface HeaderProps {
+  fetchData?: (
+    stock_name: string,
+    stock_company?: string,
+    stock_region?: string,
+    stock_currency?: string
+  ) => void;
+}
+
 export interface SearchStocksProps {
   name: string;
   company: string;
   region: string;
+  currency: string;
 }
 
-export function Header() {
+export function Header({ fetchData }: HeaderProps) {
   const [search, setSearch] = useState('');
   const [filterStocks, setFilterStocks] = useState<SearchStocksProps[]>([]);
 
@@ -23,10 +33,6 @@ export function Header() {
     });
 
     setFilterStocks(response.data);
-  }
-
-  async function searchQuoteFromStock() {
-    console.log('Buscar informacoes de cotacao para a açaõ');
   }
 
   useEffect(() => {
@@ -46,9 +52,10 @@ export function Header() {
       <SearchBar
         value={search}
         setValue={setSearch}
+        setStocks={setFilterStocks}
         stocks={filterStocks}
         placeholder="Pesquise por ativos na plataforma"
-        fetchData={searchQuoteFromStock}
+        fetchData={fetchData}
       />
       <Portfolio to="/portfolio">
         <div>

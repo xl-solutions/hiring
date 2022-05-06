@@ -14,7 +14,7 @@ export const Container = styled.header`
 
 export const Logo = styled(Link)`
   color: var(--white);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   text-decoration: none;
 

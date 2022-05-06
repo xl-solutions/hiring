@@ -19,8 +19,11 @@ export class GetLastQuoteUseCase {
     if (!stock_name) {
       throw new AppError('Stock name not provided');
     }
+    let searchQuote: GlobalQuote;
 
-    const searchQuote = (await getQuoteBySymbol(stock_name)) as GlobalQuote;
+    do {
+      searchQuote = (await getQuoteBySymbol(stock_name)) as GlobalQuote;
+    } while (!searchQuote);
 
     const quoteFromStock: IReturn = {
       name: searchQuote['01. symbol'],

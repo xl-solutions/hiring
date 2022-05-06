@@ -32,7 +32,6 @@ export async function getQuoteBySymbol(
         console.log(error);
       }
     }
-
     return result;
   } else {
     try {

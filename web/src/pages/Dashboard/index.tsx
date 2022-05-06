@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+import { format, subDays } from 'date-fns';
 import { Header } from '../../components/Header';
 import {
   Container,
@@ -19,13 +20,41 @@ import api from '../../services/api';
 import { useDebounce } from '../../hooks/useDebounce';
 import { AreaChart } from '../../components/Charts/AreaChart';
 import { DatePicker } from '../../components/DatePicker';
+import { formatPriceUSD, formatPriceBRL } from '../../utils/formatPrice';
+
+interface Pricing {
+  opening: number;
+  high: number;
+  closing: number;
+  pricedAt: string;
+}
+
+interface HistoricalPriceProps {
+  name: string;
+  prices: Pricing[];
+}
+
+interface CurrentStockProps {
+  name: string;
+  lastPrice?: number;
+  company?: string;
+  region?: string;
+  currency?: string;
+}
 
 export default function Dashboard() {
+  const [currentStock, setCurrentStock] = useState<CurrentStockProps>({
+    name: 'AAPL',
+  });
+  const [historicalPrice, setHistoricalPrice] =
+    useState<HistoricalPriceProps>();
   const [searchStockCompare, setSearchStockCompare] = useState('');
-  const [resultStocks, setResultStocks] = useState([]);
+  const [searchResultStocks, setSearchResultStocks] = useState([]);
   const [stocksFromCompare, setStocksFromCompare] = useState<string[]>([]);
 
-  const [startDate, setStartDate] = useState<MaterialUiPickersDate>(new Date());
+  const [startDate, setStartDate] = useState<MaterialUiPickersDate>(
+    subDays(new Date(), 7)
+  );
   const [endDate, setEndDate] = useState<MaterialUiPickersDate>(new Date());
 
   const debouncedSearch = useDebounce(searchStockCompare, 500);
@@ -35,8 +64,28 @@ export default function Dashboard() {
       params: { symbol: debouncedSearch },
     });
 
-    setResultStocks(response.data);
+    setSearchResultStocks(response.data);
   }
+
+  async function getHistoricalPriceFromStock(
+    stock_name: string,
+    from: string,
+    to: string
+  ) {
+    const response = await api.get(`/${stock_name}/history`, {
+      params: { from, to },
+    });
+
+    setHistoricalPrice(response.data);
+  }
+
+  const categoriesChartHistoricalPrice: string[] = [];
+  const dataChartHistoricalPrice: number[] = [];
+
+  historicalPrice?.prices.forEach((history) => {
+    dataChartHistoricalPrice.push(history.closing);
+    categoriesChartHistoricalPrice.push(history.pricedAt);
+  });
 
   function addToStockCompare(stock_name: string) {
     setStocksFromCompare([...stocksFromCompare, stock_name]);
@@ -49,27 +98,64 @@ export default function Dashboard() {
     );
   }
 
+  async function searchQuoteFromStock(
+    stock_name: string,
+    stock_company?: string,
+    stock_region?: string,
+    stock_currency?: string
+  ) {
+    const response = await api.get(`/${stock_name}/quote`);
+    setCurrentStock({
+      name: stock_name,
+      lastPrice: response.data.lastPrice,
+      company: stock_company,
+      region: stock_region,
+      currency: stock_currency,
+    });
+  }
+
   useEffect(() => {
     if (!debouncedSearch.trim()) {
-      setResultStocks([]);
+      setSearchResultStocks([]);
     } else {
       searchStockForCompare();
     }
   }, [debouncedSearch]);
 
+  useEffect(() => {
+    getHistoricalPriceFromStock(
+      currentStock.name,
+      format(startDate, 'yyyy-MM-dd'),
+      format(endDate, 'yyyy-MM-dd')
+    );
+  }, [currentStock, startDate, endDate]);
+
   return (
     <Container>
-      <Header />
+      <Header fetchData={searchQuoteFromStock} />
       <Content>
         <GeneralInfo>
           <InfoStock>
-            <h1 id="company-name">Apple Inc</h1>
-            <span id="price">$176.14</span>
-            <AreaChart />
+            <h1 id="company-name">
+              {currentStock.company ? currentStock.company : 'Apple Inc'} (
+              {currentStock.name})
+            </h1>
+            {currentStock.lastPrice && (
+              <span id="price">
+                {currentStock.currency === 'USD'
+                  ? formatPriceUSD(currentStock.lastPrice)
+                  : formatPriceBRL(currentStock.lastPrice)}
+              </span>
+            )}
+            <AreaChart
+              name="chartHistoricalPrice"
+              categories={categoriesChartHistoricalPrice}
+              data={dataChartHistoricalPrice}
+            />
           </InfoStock>
           <Menu>
             <div>
-              <h2>Selecione o período:</h2>
+              <h3>Selecione o período:</h3>
               <DatePicker
                 value={startDate}
                 setValue={setStartDate}
@@ -81,26 +167,10 @@ export default function Dashboard() {
                 label="TÉRMINO EM:"
               />
             </div>
-            <hr />
-            <div>
-              <h2>Adicionar ao meu portfólio</h2>
-              <Item>
-                <span>Quantidade</span>
-                <input type="number" />
-              </Item>
-              <Item>
-                <span>Preço de mercado</span>
-                <span>$176.14</span>
-              </Item>
-              <Item>
-                <span>Valor estimado</span>
-                <span>$2,818.24</span>
-              </Item>
-              <Button type="button" label="ADICIONAR" />
-            </div>
+            <Button type="button" label="ADICIONAR AO PORTFÓLIO" />
           </Menu>
         </GeneralInfo>
-        <h1>Projeção de ganhos por compra</h1>
+        <h2>Projeção de ganhos por compra</h2>
         <ProjectionGains>
           <Menu>
             <div>
@@ -116,9 +186,7 @@ export default function Dashboard() {
             </div>
             <Button type="button" label="CALCULAR" />
           </Menu>
-          <InfoStock>
-            <AreaChart />
-          </InfoStock>
+          <InfoStock>{/* <AreaChart /> */}</InfoStock>
           <Menu>
             <div>
               <Item>
@@ -137,14 +205,14 @@ export default function Dashboard() {
             </Item>
           </Menu>
         </ProjectionGains>
-        <h1>Comparar com outros ativos</h1>
+        <h2>Comparar com outros ativos</h2>
         <CompareStock>
           <Menu>
             <div>
               <SearchBar
                 value={searchStockCompare}
                 setValue={setSearchStockCompare}
-                stocks={resultStocks}
+                stocks={searchResultStocks}
                 placeholder="Adicione os ativos que deseja comparar"
                 fetchData={addToStockCompare}
               />
@@ -163,9 +231,7 @@ export default function Dashboard() {
             </div>
             <Button type="button" label="COMPARAR" />
           </Menu>
-          <InfoStock>
-            <AreaChart />
-          </InfoStock>
+          <InfoStock>{/* <AreaChart /> */}</InfoStock>
         </CompareStock>
       </Content>
     </Container>

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 import { SearchStocksProps } from '../Header';
 import { IconSearch, Search } from './styles';
@@ -6,14 +7,21 @@ import { IconSearch, Search } from './styles';
 interface SearchBarProps {
   value?: string;
   setValue?: any;
-  fetchData: (stock_name: string) => void;
+  fetchData: (
+    stock_name: string,
+    stock_company?: string,
+    stock_region?: string,
+    stock_currency?: string
+  ) => void;
   stocks: SearchStocksProps[];
+  setStocks?: any;
   placeholder: string;
 }
 
 export function SearchBar({
   value,
   setValue,
+  setStocks,
   stocks,
   placeholder,
   fetchData,
@@ -36,7 +44,15 @@ export function SearchBar({
               <div
                 className="item"
                 key={stock.name}
-                onClick={() => fetchData(stock.name)}
+                onClick={() => {
+                  fetchData(
+                    stock.name,
+                    stock.company,
+                    stock.region,
+                    stock.currency
+                  );
+                  setStocks([]);
+                }}
               >
                 <p>{stock.name}</p>
               </div>

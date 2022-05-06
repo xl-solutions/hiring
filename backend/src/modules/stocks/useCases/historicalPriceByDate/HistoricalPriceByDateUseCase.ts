@@ -29,7 +29,11 @@ export class HistoricalPriceByDateUseCase {
     private dateFnsProvider: IDateProvider,
   ) {}
   async execute({ stock_name, from, to }: IRequest) {
-    const searchHistoricalPrice = await getHistoricalPriceBySymbol(stock_name);
+    let searchHistoricalPrice;
+
+    do {
+      searchHistoricalPrice = await getHistoricalPriceBySymbol(stock_name);
+    } while (!searchHistoricalPrice);
 
     const dates = this.dateFnsProvider.getDatesInRange(
       parse(from, 'yyyy-MM-dd', new Date()),
