@@ -29,6 +29,14 @@ const fetchAlphaVantageApi = async (stockName: string) => {
 		`${ALPHA_VANTAGE_URL}${stockName}&outputsize=full&apikey=${ALPHA_VANTAGE_API_KEY}`
 	);
 
+	if (data['Error Message']) {
+		throw new Error(data['Error Message']);
+	}
+
+	if (data['Note']) {
+		throw new Error(data['Note']);
+	}
+
 	return data;
 };
 
@@ -57,6 +65,15 @@ export class StockBrokerService {
 		stockName: string,
 		{ to, from }: IDateRangeRequest
 	) {
+
+		if (!Date.parse(from)) {
+			throw Error('Invalid from date format');
+		}
+
+		if (!Date.parse(to)) {
+			throw new Error('Invalid to date format');
+		}
+
 		const data = await fetchAlphaVantageApi(stockName);
 
 		const startDate = new Date(from);
@@ -122,6 +139,11 @@ export class StockBrokerService {
 		stockName: string,
 		{ purchasedAmount, purchasedAt }: IEarningsProjectionRequest
 	) {
+
+		if (!Date.parse(purchasedAt)) {
+			throw Error('Invalid purchasedAt date format');
+		}
+
 		const data = await fetchAlphaVantageApi(stockName);
 
 		const lastRefreshed = data['Meta Data']['3. Last Refreshed'];

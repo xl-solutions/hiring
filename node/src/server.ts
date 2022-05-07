@@ -2,26 +2,18 @@ import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 
 import { routes } from './routes';
-import { AppError } from './errors/AppError';
 
 const app = express();
 
 app.use(express.json());
 app.use(routes);
 
-app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
-	if (err instanceof AppError) {
-		return res.status(err.statusCode).json({
-			status: 'error',
-			message: err.message
-		});
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+	if (req.xhr) {
+		res.status(500).send({ error: 'Something failed!' });
+	} else {
+		next(err);
 	}
-
-	console.error(err);
-	return res.status(500).json({
-		status: 'error',
-		message: 'Internal Server Error'
-	});
 });
 
 app.listen(3000, () => console.log('listening on port 3000'));
