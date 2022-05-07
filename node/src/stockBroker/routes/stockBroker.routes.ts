@@ -15,3 +15,8 @@ stockBrokerRouter.get(
 	'/:stock_name/history',
 	stockBrokerController.getPriceHistoryBetweenDates
 );
+
+stockBrokerRouter.post(
+	'/:stock_name/compare',
+	stockBrokerController.compareQuotesBetweenSymbols
+);

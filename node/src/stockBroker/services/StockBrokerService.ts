@@ -9,16 +9,29 @@ interface IPricesResponse {
 	[key: string]: string | number;
 }
 
-const functionsAlphaVantage = {
-	1: 'function=TIME_SERIES_DAILY'
+type IRequestCompareQuotes = Array<string>
+
+type IStockComparaResponse = Array<{
+	name: string;
+	lastPrice: number;
+	pricedAt: string;
+}>
+
+const { ALPHA_VANTAGE_URL, ALPHA_VANTAGE_API_KEY } = process.env;
+
+const fetchALphaVantageApi = async (stockName: string) => {
+	const { data } = await axios.get(
+		`${ALPHA_VANTAGE_URL}${stockName}&apikey=${ALPHA_VANTAGE_API_KEY}`
+	);
+
+	return data;
 };
 
 export class StockBrokerService {
 
 	async getRecentQuoteBySymbol(stockName: string) {
-		const { data } = await axios.get(
-			`${process.env.ALPHA_VANTAGE_URL}${functionsAlphaVantage[1]}&symbol=${stockName}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
-		);
+
+		const data = await fetchALphaVantageApi(stockName);
 
 		const metaData = data['Meta Data'];
 
@@ -31,7 +44,7 @@ export class StockBrokerService {
 		);
 
 		return {
-			name: metaData['2. Symbol'],
+			name: stockName,
 			lastPrice,
 			pricedAt
 		};
@@ -41,9 +54,7 @@ export class StockBrokerService {
 		stockName: string,
 		{ to, from }: IDateRangeRequest
 	) {
-		const { data } = await axios.get(
-			`${process.env.ALPHA_VANTAGE_URL}${functionsAlphaVantage[1]}&symbol=${stockName}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
-		);
+		const data = await fetchALphaVantageApi(stockName);
 
 		const startDate = new Date(from);
 		const endDate = new Date(to);
@@ -51,20 +62,56 @@ export class StockBrokerService {
 
 		Object.entries(data['Time Series (Daily)'])
 			.forEach(([key, value]: [string, any]) => {
-				if (new Date(key) >= startDate && new Date(key) <= endDate) {
+				const keyDate = new Date(key);
+				if (keyDate >= startDate && keyDate <= endDate) {
 					prices.push({
 						opening: Number(value['1. open']),
 						high: Number(value['2. high']),
 						low: Number(value['3. low']),
 						closing: Number(value['4. close']),
-						pricedAt: new Date(key).toISOString().slice(0, 10)
+						pricedAt: keyDate.toISOString().slice(0, 10)
 					});
 				}
 			});
 
 		return {
-			name: data['Meta Data']['2. Symbol'],
+			name: stockName,
 			prices
 		};
+	}
+
+	async compareQuoteBetweenSymbols(
+		stockName: string,
+		stocksRequest: IRequestCompareQuotes
+	) {
+
+		const lastPrices: IStockComparaResponse = [];
+
+		const data = await fetchALphaVantageApi(stockName);
+
+		const pricedAt = data['Meta Data']['3. Last Refreshed'];
+
+		lastPrices.push({
+			name: stockName,
+			lastPrice: Number(data['Time Series (Daily)'][pricedAt]['4. close']),
+			pricedAt
+		});
+
+		for (const stockName of stocksRequest) {
+			const data = await fetchALphaVantageApi(stockName);
+
+			Object.entries(data['Time Series (Daily)'])
+				.forEach(([key, value]: [string, any], index) => {
+					if (index === 0) {
+						lastPrices.push({
+							name: stockName,
+							lastPrice: Number(value['4. close']),
+							pricedAt: key
+						});
+					}
+				});
+		}
+
+		return { lastPrices };
 	}
 }

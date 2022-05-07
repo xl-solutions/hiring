@@ -26,4 +26,16 @@ export class StockBrokerController {
 
 		return res.json(priceHistory);
 	}
+
+	async compareQuotesBetweenSymbols(req: Request, res: Response) {
+		const { stock_name } = req.params;
+		const { stocks } = req.body;
+
+		const comparedQuotes = await stockBrokerService.compareQuoteBetweenSymbols(
+			stock_name,
+			stocks
+		);
+
+		return res.json(comparedQuotes);
+	}
 }
