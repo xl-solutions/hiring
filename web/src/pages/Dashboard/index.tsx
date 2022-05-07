@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { toast } from 'react-toastify';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { format, subDays } from 'date-fns';
 import { Header } from '../../components/Header';
@@ -22,6 +24,9 @@ import { AreaChart } from '../../components/Charts/AreaChart';
 import { DatePicker } from '../../components/DatePicker';
 import { formatPriceUSD, formatPriceBRL } from '../../utils/formatPrice';
 import { BarChart } from '../../components/Charts/BarChart';
+import { IStock } from '../../store/modules/portfolio/types';
+import { addStockToPortfolioRequest } from '../../store/modules/portfolio/actions';
+import { IState } from '../../store';
 
 interface Pricing {
   opening: number;
@@ -63,6 +68,7 @@ interface InfoStocksCompareProps {
 }
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
   const [currentStock, setCurrentStock] = useState<CurrentStockProps>({
     name: 'AAPL',
   });
@@ -70,11 +76,7 @@ export default function Dashboard() {
     useState<HistoricalPriceProps>();
   const [searchStockCompare, setSearchStockCompare] = useState('');
   const [searchResultStocks, setSearchResultStocks] = useState([]);
-  const [stocksFromCompare, setStocksFromCompare] = useState<string[]>([
-    'FB',
-    'NFLX',
-    'MSFT',
-  ]);
+  const [stocksFromCompare, setStocksFromCompare] = useState<string[]>([]);
   const [infoStocksCompare, setInfoStocksCompare] =
     useState<InfoStocksCompareProps>();
   const [isLoading, setIsLoading] = useState(false);
@@ -114,13 +116,14 @@ export default function Dashboard() {
 
   const categoriesChartHistoricalPrice: string[] = [];
   const dataChartHistoricalPrice: number[] = [];
-  const categoriesChartGainsByDate: string[] = [];
-  const dataChartGainsByDate: number[] = [];
 
   historicalPrice?.prices.forEach((history) => {
     dataChartHistoricalPrice.push(history.closing);
     categoriesChartHistoricalPrice.push(history.pricedAt);
   });
+
+  const categoriesChartGainsByDate: string[] = [];
+  const dataChartGainsByDate: number[] = [];
 
   if (gainsByDateFromCurrentStock?.capitalGains) {
     categoriesChartGainsByDate.push(
@@ -133,6 +136,13 @@ export default function Dashboard() {
       gainsByDateFromCurrentStock.lastPrice
     );
   }
+  const categoriesChartCompareStocks: string[] = [];
+  const dataChartCompareStocks: number[] = [];
+
+  infoStocksCompare?.lastPrices.forEach((stock) => {
+    categoriesChartCompareStocks.push(stock.name);
+    dataChartCompareStocks.push(stock.lastPrice);
+  });
 
   function addToStockCompare(stock_name: string) {
     setStocksFromCompare([...stocksFromCompare, stock_name]);
@@ -205,15 +215,21 @@ export default function Dashboard() {
       format(startDate, 'yyyy-MM-dd'),
       format(endDate, 'yyyy-MM-dd')
     );
-    getGainsByDate(
-      currentStock.name,
-      purchasedAmount,
-      format(purchasedDate, 'yyyy-MM-dd')
-    );
-    compareCurrentStock();
   }, [currentStock.name, startDate, endDate]);
 
-  console.log(stocksFromCompare);
+  const hasFailedStockCheck = useSelector<IState, boolean>((state) => {
+    return state.portfolio.failedStockCheck.includes(currentStock.name);
+  });
+
+  const handleAddStockToPortfolio = useCallback(
+    (stock: IStock) => {
+      if (hasFailedStockCheck) {
+        toast.error('Este ativo já está no seu portfólio');
+      }
+      dispatch(addStockToPortfolioRequest(stock));
+    },
+    [dispatch, hasFailedStockCheck]
+  );
 
   return (
     <Container>
@@ -252,7 +268,11 @@ export default function Dashboard() {
                 label="TÉRMINO EM:"
               />
             </div>
-            <Button type="button" label="ADICIONAR AO PORTFÓLIO" />
+            <Button
+              type="button"
+              label="ADICIONAR AO PORTFÓLIO"
+              onClick={() => handleAddStockToPortfolio(currentStock)}
+            />
           </Menu>
         </GeneralInfo>
         <h2>Projeção de ganhos por compra</h2>
@@ -297,29 +317,43 @@ export default function Dashboard() {
             <div>
               <Item>
                 <span>PREÇO NA DATA DA COMPRA:</span>
-                <span>
-                  {currentStock?.currency === 'BRL'
-                    ? formatPriceBRL(gainsByDateFromCurrentStock?.priceAtDate)
-                    : formatPriceUSD(gainsByDateFromCurrentStock?.priceAtDate)}
-                </span>
+                {gainsByDateFromCurrentStock?.priceAtDate ? (
+                  <span>
+                    {currentStock?.currency === 'BRL'
+                      ? formatPriceBRL(gainsByDateFromCurrentStock?.priceAtDate)
+                      : formatPriceUSD(
+                          gainsByDateFromCurrentStock?.priceAtDate
+                        )}
+                  </span>
+                ) : (
+                  <span>00.00</span>
+                )}
               </Item>
               <Item>
                 <span>PREÇO MAIS RECENTE:</span>
-                <span>
-                  {currentStock?.currency === 'BRL'
-                    ? formatPriceBRL(gainsByDateFromCurrentStock?.lastPrice)
-                    : formatPriceUSD(gainsByDateFromCurrentStock?.lastPrice)}
-                </span>
+                {gainsByDateFromCurrentStock?.lastPrice ? (
+                  <span>
+                    {currentStock?.currency === 'BRL'
+                      ? formatPriceBRL(gainsByDateFromCurrentStock?.lastPrice)
+                      : formatPriceUSD(gainsByDateFromCurrentStock?.lastPrice)}
+                  </span>
+                ) : (
+                  <span>00.00</span>
+                )}
               </Item>
               <hr />
             </div>
             <Item>
               <span>LUCRO/PREJUÍZO</span>
-              <span>
-                {currentStock?.currency === 'BRL'
-                  ? formatPriceBRL(gainsByDateFromCurrentStock?.capitalGains)
-                  : formatPriceUSD(gainsByDateFromCurrentStock?.capitalGains)}
-              </span>
+              {gainsByDateFromCurrentStock?.capitalGains ? (
+                <span>
+                  {currentStock?.currency === 'BRL'
+                    ? formatPriceBRL(gainsByDateFromCurrentStock?.capitalGains)
+                    : formatPriceUSD(gainsByDateFromCurrentStock?.capitalGains)}
+                </span>
+              ) : (
+                <span>00.00</span>
+              )}
             </Item>
           </Menu>
         </ProjectionGains>
@@ -347,13 +381,19 @@ export default function Dashboard() {
                   </div>
                 ))}
             </div>
-            <Button type="button" label="COMPARAR" />
+            <Button
+              type="button"
+              label="COMPARAR"
+              isLoading={isLoading}
+              onClick={compareCurrentStock}
+              disabled={!stocksFromCompare.length}
+            />
           </Menu>
           <InfoStock>
             <BarChart
-              name="chartGainsByDate"
-              categories={categoriesChartGainsByDate}
-              data={dataChartGainsByDate}
+              name="chartCompareStocks"
+              categories={categoriesChartCompareStocks}
+              data={dataChartCompareStocks}
               horizontal
             />
           </InfoStock>

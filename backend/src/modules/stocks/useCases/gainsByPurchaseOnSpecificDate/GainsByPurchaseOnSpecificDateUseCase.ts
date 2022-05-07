@@ -27,8 +27,11 @@ export class GainsByPurchaseOnSpecificDateUseCase {
     }
 
     const searchQuote = (await getQuoteBySymbol(stock_name)) as GlobalQuote;
-
     const searchHistoricalPrice = await getHistoricalPriceBySymbol(stock_name);
+
+    if (!searchQuote || !searchHistoricalPrice) {
+      throw new AppError('Requests limit exceeded free API');
+    }
 
     const lastPrice = Number(searchQuote['05. price']);
     const priceAtDate = Number(searchHistoricalPrice[purchasedAt]['4. close']);

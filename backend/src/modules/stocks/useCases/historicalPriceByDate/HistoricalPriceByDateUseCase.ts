@@ -2,6 +2,7 @@ import { parse } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
 import { getHistoricalPriceBySymbol } from '../../../../services/getHistoricalPriceBySymbol';
 import { IDateProvider } from '../../../../shared/container/providers/DateProvider/IDateProvider';
+import { AppError } from '../../../../shared/errors/AppError';
 
 interface IRequest {
   stock_name: string;
@@ -30,6 +31,10 @@ export class HistoricalPriceByDateUseCase {
   ) {}
   async execute({ stock_name, from, to }: IRequest) {
     const searchHistoricalPrice = await getHistoricalPriceBySymbol(stock_name);
+
+    if (!searchHistoricalPrice) {
+      throw new AppError('Requests limit exceeded free API');
+    }
 
     const dates = this.dateFnsProvider.getDatesInRange(
       parse(from, 'yyyy-MM-dd', new Date()),

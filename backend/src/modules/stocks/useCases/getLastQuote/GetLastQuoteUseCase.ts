@@ -22,6 +22,10 @@ export class GetLastQuoteUseCase {
 
     const searchQuote = (await getQuoteBySymbol(stock_name)) as GlobalQuote;
 
+    if (!searchQuote) {
+      throw new AppError('Requests limit exceeded free API');
+    }
+
     const quoteFromStock: IReturn = {
       name: searchQuote['01. symbol'],
       lastPrice: Number(searchQuote['05. price']),

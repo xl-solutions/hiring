@@ -1,9 +1,11 @@
 import { BsCurrencyExchange } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Container, Logo, Portfolio } from './styles';
 import { useDebounce } from '../../hooks/useDebounce';
 import api from '../../services/api';
 import { SearchBar } from '../SearchBar';
+import { IState } from '../../store';
 
 interface HeaderProps {
   fetchData?: (
@@ -22,6 +24,9 @@ export interface SearchStocksProps {
 }
 
 export function Header({ fetchData }: HeaderProps) {
+  const portfolioSize = useSelector<IState, number>(
+    (state) => state.portfolio.items.length
+  );
   const [search, setSearch] = useState('');
   const [filterStocks, setFilterStocks] = useState<SearchStocksProps[]>([]);
 
@@ -60,7 +65,11 @@ export function Header({ fetchData }: HeaderProps) {
       <Portfolio to="/portfolio">
         <div>
           <strong>Meu Portfólio</strong>
-          <span data-testid="cart-size">10 itens</span>
+          <span data-testid="portfolio-size">
+            {portfolioSize === 1
+              ? `${portfolioSize} item`
+              : `${portfolioSize} itens`}
+          </span>
         </div>
         <BsCurrencyExchange size={36} color="#008FFB" />
       </Portfolio>

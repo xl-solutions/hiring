@@ -48,6 +48,7 @@
       "react/jsx-no-bind": "off",
       "no-console": "off",
       "dot-notation": "off",
+      "default-param-last": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

@@ -27,7 +27,6 @@ export async function searchStocksBySymbol(
   try {
     const { data }: { data: IData } = await api.get('/', { params });
 
-    console.log(data);
     return data.bestMatches;
   } catch (error) {
     console.log(error);
