@@ -20,3 +20,8 @@ stockBrokerRouter.post(
 	'/:stock_name/compare',
 	stockBrokerController.compareQuotesBetweenSymbols
 );
+
+stockBrokerRouter.get(
+	'/:stock_name/gains',
+	stockBrokerController.getEarningsProjection
+);

@@ -38,4 +38,19 @@ export class StockBrokerController {
 
 		return res.json(comparedQuotes);
 	}
+
+	async getEarningsProjection(req: Request, res: Response) {
+		const { stock_name } = req.params;
+		const { purchasedAmount, purchasedAt } = req.query;
+
+		const earningsProjection = await stockBrokerService.getEarningsProjection(
+			stock_name,
+			{
+				purchasedAmount,
+				purchasedAt
+			}
+		);
+
+		return res.json(earningsProjection);
+	}
 }
