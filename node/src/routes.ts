@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { corretoraRouter } from './corretora/routes/corretora.routes';
+import { stockBrokerRouter } from './stockBroker/routes/stockBroker.routes';
 
 export const routes = Router();
 
-routes.use('/stocks', corretoraRouter);
+routes.use('/stocks', stockBrokerRouter);
