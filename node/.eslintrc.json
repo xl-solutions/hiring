@@ -32,6 +32,7 @@
 			"error",
 			"always"
 		],
-		"comma-dangle": ["error", "never"]
+		"comma-dangle": ["error", "never"],
+		"@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "_" }]
 	}
 }
