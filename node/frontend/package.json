@@ -4,9 +4,13 @@
   "private": true,
   "author": "Daniel Vidal",
   "dependencies": {
+    "apexcharts": "^3.35.2",
     "axios": "^0.27.2",
+    "moment": "^2.29.3",
     "polished": "^4.2.2",
     "react": "^18.1.0",
+    "react-apexcharts": "^1.4.0",
+    "react-data-table-component": "^7.5.1",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
