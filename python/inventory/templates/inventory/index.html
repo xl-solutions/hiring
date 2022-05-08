@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static',
+            filename='css/bootstrap.min.css')}}">
+        <title>Loja virtual</title>
+    </head>
+    <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">
+            {{ message }}
+        </div>
+
+        {% endfor %}
+
+
+        {% endif %}
+        {% endwith %}
+
+
+        <main class="container-fluid w-50 mt-5 mb-5">
+            <div class="row w-50">
+                <form action="/inventory/"
+                    method="GET">
+                    <div class="col">
+                        <label class="form-label" for="">Fabricante</label>
+                        <select class="form-select" name="manufacturer"
+                            id="field">
+                            <option value="">Todos</option>
+                            {% for filter in filters %}
+                            <option value="{{filter.product_manufacturer}}">{{filter.product_manufacturer}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label class="form-label" for="">Modelo</label>
+                        <select class="form-select" name="model">
+                            <option value="">Todos</option>
+                            {% for filter in filters %}
+                            <option value="{{filter.product_model}}">{{filter.product_model}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label class="form-label" for="">Cor</label>
+                        <select class="form-select" name="color">
+                            <option value="">Todos</option>
+                            {% for filter in filters %}
+                            <option value="{{filter.product_color}}">{{filter.product_color}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label class="form-label" for="">Modalidade de Venda</label>
+                        <select class="form-select" name="carrier_plan_type">
+                            <option value="">Todos</option>
+                            {% for filter in filters %}
+                            <option
+                                value="{{filter.product_carrier_plan_type}}">{{filter.product_carrier_plan_type}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <input class="btn btn-primary m-2 col" type="submit"
+                        value="Pesquisar">
+                    <a class="btn btn-secondary"
+                        href="{{url_for('inventory_bp.home_inventory')}}">Pagina
+                        do Upload</a>
+                </form>
+
+            </div>
+
+            <table class="table text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Fabricante</th>
+                        <th>Modelo</th>
+                        <th>Cor</th>
+                        <th>Tipo de plano da operadora</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{product.product_manufacturer}}</td>
+                        <td>{{product.product_model}}</td>
+                        <td>{{product.product_color}}</td>
+                        <td>{{product.product_carrier_plan_type}}</td>
+                        <td>{{product.product_quantity}}</td>
+                        <td>{{product.product_price}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div>
+
+            </div>
+        </main>
+
+    </body>
+</html>
