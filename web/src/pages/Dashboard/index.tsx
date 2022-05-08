@@ -71,6 +71,7 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   const [currentStock, setCurrentStock] = useState<CurrentStockProps>({
     name: 'AAPL',
+    company: 'Apple Inc',
   });
   const [historicalPrice, setHistoricalPrice] =
     useState<HistoricalPriceProps>();
@@ -82,7 +83,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [startDate, setStartDate] = useState<MaterialUiPickersDate>(
-    subDays(new Date(), 7)
+    subDays(new Date(), 10)
   );
   const [endDate, setEndDate] = useState<MaterialUiPickersDate>(new Date());
   const [purchasedAmount, setPurchasedAmount] = useState<number>(10);
@@ -165,9 +166,9 @@ export default function Dashboard() {
     setCurrentStock({
       name: stock_name,
       lastPrice: data.lastPrice,
-      company: stock_company,
-      region: stock_region,
-      currency: stock_currency,
+      company: stock_company || currentStock.company,
+      region: stock_region || currentStock.region,
+      currency: stock_currency || currentStock.currency,
     });
   }
 
@@ -202,6 +203,10 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
+    searchQuoteFromStock(currentStock.name);
+  }, []);
+
+  useEffect(() => {
     if (!debouncedSearch.trim()) {
       setSearchResultStocks([]);
     } else {
@@ -233,13 +238,12 @@ export default function Dashboard() {
 
   return (
     <Container>
-      <Header fetchData={searchQuoteFromStock} />
+      <Header withSearchBar fetchData={searchQuoteFromStock} />
       <Content>
         <GeneralInfo>
           <InfoStock>
             <h1 id="company-name">
-              {currentStock.company ? currentStock.company : 'Apple Inc'} (
-              {currentStock.name})
+              {currentStock.company} ({currentStock.name})
             </h1>
             {currentStock.lastPrice && (
               <span id="price">

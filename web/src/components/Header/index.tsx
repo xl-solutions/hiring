@@ -14,6 +14,7 @@ interface HeaderProps {
     stock_region?: string,
     stock_currency?: string
   ) => void;
+  withSearchBar?: boolean;
 }
 
 export interface SearchStocksProps {
@@ -23,7 +24,7 @@ export interface SearchStocksProps {
   currency: string;
 }
 
-export function Header({ fetchData }: HeaderProps) {
+export function Header({ fetchData, withSearchBar }: HeaderProps) {
   const portfolioSize = useSelector<IState, number>(
     (state) => state.portfolio.items.length
   );
@@ -54,14 +55,16 @@ export function Header({ fetchData }: HeaderProps) {
         dashmoney
         <span>.</span>
       </Logo>
-      <SearchBar
-        value={search}
-        setValue={setSearch}
-        setStocks={setFilterStocks}
-        stocks={filterStocks}
-        placeholder="Pesquise por ativos na plataforma"
-        fetchData={fetchData}
-      />
+      {withSearchBar && (
+        <SearchBar
+          value={search}
+          setValue={setSearch}
+          setStocks={setFilterStocks}
+          stocks={filterStocks}
+          placeholder="Pesquise por ativos na plataforma"
+          fetchData={fetchData}
+        />
+      )}
       <Portfolio to="/portfolio">
         <div>
           <strong>Meu Portfólio</strong>
