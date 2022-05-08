@@ -30,8 +30,6 @@ export class CompareStocksUseCase {
     stocks.unshift(stock_name);
     const searchQuotes = (await getQuoteBySymbol(stocks)) as GlobalQuote[];
 
-    console.log(searchQuotes);
-
     if (searchQuotes.length < stocks.length) {
       throw new AppError('Requests limit exceeded free API');
     }
