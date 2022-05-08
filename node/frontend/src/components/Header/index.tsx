@@ -5,8 +5,10 @@ export function Header() {
 	return (
 		<Container>
 			<Content>
-				<h1>Corretora ipnet</h1>
-				<Link to="/">Cotação recente</Link>
+				<Link to="/">
+					<h1>Corretora ipnet</h1>
+				</Link>
+				<Link to="/quote">Cotação recente</Link>
 				<Link to="/">Histórico entre datas</Link>
 				<Link to="/">Comparar cotações</Link>
 				<Link to="/">Projeção de ganhos</Link>

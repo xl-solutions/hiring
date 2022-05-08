@@ -11,16 +11,20 @@ export const Content = styled.div`
 	max-height: 60px;
 	align-items: center;
 
-	h1 {
-		min-width: 230px;
+	> a {
+		h1 {
+			color: #fff;
+			min-width: 230px;
+			margin-left: -30px;
+		}
 	}
 
 	a {
 		color: #89d718;
 		text-decoration: none;
 		display: inline-block;
-		padding: 30px;
-    margin: 30px;
+		padding: 20px;
+    margin: 20px;
 
 		&:hover {
 			color: ${shade(0.2, '#89d718')}
