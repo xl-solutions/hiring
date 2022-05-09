@@ -111,9 +111,12 @@ export function EarningsProjection() {
 						/>
 					</Col>
 					<Col>
-						<Button type="submit">
-							Projetar ganhos
-						</Button>
+						{
+							symbol && purchasedAmount && purchasedDate &&
+							<Button type="submit">
+								Projetar ganhos
+							</Button>
+						}
 					</Col>
 				</Row>
 			</form>
