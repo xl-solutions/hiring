@@ -12,11 +12,18 @@ interface DatePickerProps {
   value: any;
   setValue: any;
   label: string;
+  refetchData?: any;
 }
 
-export function DatePicker({ value, setValue, label }: DatePickerProps) {
-  const handleDateChange = (date: MaterialUiPickersDate) => {
+export function DatePicker({
+  value,
+  setValue,
+  label,
+  refetchData,
+}: DatePickerProps) {
+  const handleDateChange = async (date: MaterialUiPickersDate) => {
     setValue(date);
+    refetchData();
   };
 
   return (

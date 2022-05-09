@@ -5,6 +5,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { IPortfolioState } from './modules/portfolio/types';
+import { ICurrentStockState } from './modules/currentStock/types';
 
 import rootReducer from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
@@ -18,6 +19,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export interface IState {
   portfolio: IPortfolioState;
+  currentStock: ICurrentStockState;
 }
 
 const sagaMiddleware = createSagaMiddleware();

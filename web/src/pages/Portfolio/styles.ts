@@ -52,4 +52,8 @@ export const ProductTable = styled.table`
       }
     }
   }
+
+  #button-delete {
+    text-align: right;
+  }
 `;

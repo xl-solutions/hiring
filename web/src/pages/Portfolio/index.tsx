@@ -50,7 +50,7 @@ export default function Portfolio() {
                     <strong>{formatPriceUSD(item.stock.lastPrice)}</strong>
                   )}
                 </td>
-                <td>
+                <td id="button-delete">
                   <button
                     type="button"
                     data-testid="remove-stock"
