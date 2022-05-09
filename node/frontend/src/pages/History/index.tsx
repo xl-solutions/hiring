@@ -1,7 +1,7 @@
-import moment from 'moment';
 import { FormEvent, useState } from 'react';
 import { TableColumn } from 'react-data-table-component';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 import { api } from '../../api';
 import { Button } from '../../components/Button';
@@ -68,7 +68,7 @@ export function History() {
 
 			SetHistoryPrices(historyMapped);
 		} catch (error) {
-			console.error(error);
+			console.error(error.response.data);
 		}
 	}
 

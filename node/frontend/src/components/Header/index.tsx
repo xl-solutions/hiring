@@ -10,8 +10,7 @@ export function Header() {
 				</Link>
 				<Link to="/">Home</Link>
 				<Link to="/history">Histórico entre datas</Link>
-				<Link to="/">Comparar cotações</Link>
-				<Link to="/">Projeção de ganhos</Link>
+				<Link to="/gains">Projeção de ganhos</Link>
 			</Content>
 		</Container>
 	);
