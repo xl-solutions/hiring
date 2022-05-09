@@ -13,7 +13,7 @@ interface SearchBarProps {
     stock_region?: string,
     stock_currency?: string
   ) => void;
-  stocks: SearchStocksProps[];
+  stocks?: SearchStocksProps[];
   setStocks?: any;
   placeholder: string;
 }
@@ -37,7 +37,7 @@ export function SearchBar({
         />
         <IconSearch as={RiSearchLine} />
       </div>
-      {stocks.length > 0 && (
+      {stocks?.length > 0 && (
         <div className="data-results">
           {stocks?.map((stock) => {
             return (

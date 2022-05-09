@@ -57,6 +57,7 @@ export function Header({ fetchData, withSearchBar }: HeaderProps) {
       </Logo>
       {withSearchBar && (
         <SearchBar
+          data-testid="search-bar"
           value={search}
           setValue={setSearch}
           setStocks={setFilterStocks}
