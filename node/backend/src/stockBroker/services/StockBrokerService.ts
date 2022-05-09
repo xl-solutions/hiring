@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from 'axios';
 import { api } from '../../api/AlphaApi';
 
 export interface IDateRangeRequest {
