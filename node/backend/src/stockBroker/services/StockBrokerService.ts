@@ -74,11 +74,16 @@ export class StockBrokerService {
 			throw new Error('Invalid to date format');
 		}
 
-		const data = await fetchAlphaVantageApi(stockName);
-
 		const startDate = new Date(from);
 		const endDate = new Date(to);
+
+		if (startDate > endDate) {
+			throw new Error('"From" date must be less than "To" date');
+		}
+
 		const prices: IPricesResponse[] = [];
+
+		const data = await fetchAlphaVantageApi(stockName);
 
 		Object.entries(data['Time Series (Daily)'])
 			.forEach(([key, value]: [string, any]) => {
