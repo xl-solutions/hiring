@@ -1,31 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import DataTable, { TableColumn } from 'react-data-table-component';
 
 import { customDataTableStyle } from './styles';
 
-interface IDataRow {
-	name: string;
-	lastPrice: number;
-	pricedAt: string;
-}
-
 interface IDataTableProps {
-	columns: TableColumn<IDataRow>[];
-	stocks: Array<{
-		name: string;
-		lastPrice: number;
-		pricedAt: string;
-	}>;
+	columns: TableColumn<any>[];
+	data: Array<{[key: string]: any}>;
 }
 
 export function DataTableComponent ({
 	columns,
-	stocks,
+	data,
 	...rest
 }: IDataTableProps) {
 	return(
 		<DataTable
 			columns={columns}
-			data={stocks}
+			data={data}
 			customStyles={customDataTableStyle}
 			noDataComponent="Não há dados para exibir"
 			{...rest}

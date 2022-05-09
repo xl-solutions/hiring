@@ -44,7 +44,7 @@ export function Home() {
 	const [chartOptions, setChartOptions] = useState<string[]>([]);
 	const [chartSeries, setChartSeries] = useState<number[]>([]);
 
-	function mapDataChart(lastPrices: ILastPrices) {
+	function mapChartData(lastPrices: ILastPrices) {
 
 		const categories: string[] = [];
 		const dataSeries: number[] = [];
@@ -65,9 +65,9 @@ export function Home() {
 			}
 		).then(({ data }) => {
 			setStocks(data.lastPrices);
-			mapDataChart(data.lastPrices);
+			mapChartData(data.lastPrices);
 		})
-			.catch(err => console.log(err.response.data));
+			.catch(err => console.error(err.response.data));
 	}, []);
 
 	return (
@@ -80,7 +80,7 @@ export function Home() {
 				/>
 				<DataTableComponent
 					columns={columns}
-					stocks={stocks}
+					data={stocks}
 				/>
 			</Content>
 		</Container>

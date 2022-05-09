@@ -21,4 +21,18 @@ export default createGlobalStyle`
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 500;
   }
+
+	label {
+		margin-bottom: 5px;
+	}
+
+	input {
+		border-radius: 4px;
+		height: 30px;
+		padding-left: 10px;
+	}
+
+	button {
+		cursor: pointer;
+	}
 `;

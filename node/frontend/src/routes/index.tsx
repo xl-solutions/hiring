@@ -5,13 +5,13 @@ import {
 
 import { Home } from '../pages/Home';
 
-import { RecentQuote } from '../pages/RecentQuote';
+import { History } from '../pages/History';
 
 export function Router() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-			<Route path="/quote" element={<RecentQuote />} />
+			<Route path="/history" element={<History />} />
 		</Routes>
 	);
 }

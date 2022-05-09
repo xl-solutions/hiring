@@ -8,8 +8,8 @@ export function Header() {
 				<Link to="/">
 					<h1>Corretora ipnet</h1>
 				</Link>
-				<Link to="/quote">Cotação recente</Link>
-				<Link to="/">Histórico entre datas</Link>
+				<Link to="/">Home</Link>
+				<Link to="/history">Histórico entre datas</Link>
 				<Link to="/">Comparar cotações</Link>
 				<Link to="/">Projeção de ganhos</Link>
 			</Content>

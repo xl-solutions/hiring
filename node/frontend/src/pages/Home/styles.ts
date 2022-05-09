@@ -10,8 +10,4 @@ export const Content = styled.div`
 	flex-direction: row;
 	gap: 50px;
 	margin-top: 40px;
-
-	h2 {
-		margin-bottom: 20px;
-	}
 `;
