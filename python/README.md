@@ -24,3 +24,70 @@ Para facilitar esse processo, é necessário criar uma interface para upload des
 2. Codifique a aplicação nesse fork;
 3. Escreva um README explicando como rodar sua aplicação e os testes. Dê o máximo de detalhes;
 4. Abra um pull request quando estiver pronto.
+
+## Instalação e configuração manual
+
+#### Criar o env e instalando as dependencias.
+
+```
+python3 -m venv env
+pip install -r requirements.txt
+```
+
+### Crie os arquivos .env e settings.toml
+
+#### Exemplo de .env
+
+```
+export FLASK_ENV='production'
+export FLASK_APP='app.py'
+```
+
+#### Exemplo de settings.toml
+
+```
+SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+SECRET_KEY = '123456'
+SQLALCHEMY_TRACK_MODIFICATIONS = false
+
+[production]
+SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+SECRET_KEY = '123456'
+SQLALCHEMY_TRACK_MODIFICATIONS = false
+
+```
+
+## Criando o banco de dados pelo CLI
+
+#### Criar o Banco de dados
+
+```
+flask create_db
+```
+
+#### Deletar o Banco de dados
+
+```
+flask drop_db
+```
+
+## Executar manualmente
+
+```
+cd  inventory
+flask run
+
+```
+
+## Cole a url no navegador para acessar a pagina
+
+```
+http://127.0.0.1:5000/
+```
+
+## Para rodar os testes
+
+```
+cd tests
+python3 -m pytest
+```
