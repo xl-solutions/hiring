@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
+import { api } from '../../api/AlphaApi';
 
 export interface IDateRangeRequest {
 	[key: string]: any;
@@ -21,12 +22,12 @@ export interface IEarningsProjectionRequest {
 	[key: string]: any;
 }
 
-const { ALPHA_VANTAGE_URL, ALPHA_VANTAGE_API_KEY } = process.env;
+const { ALPHA_VANTAGE_API_KEY } = process.env;
 
 // Função que retorna um objeto com as ações, datas e preços da API Alpha Vantage
 const fetchAlphaVantageApi = async (stockName: string) => {
-	const { data } = await axios.get(
-		`${ALPHA_VANTAGE_URL}${stockName}&outputsize=full&apikey=${ALPHA_VANTAGE_API_KEY}`
+	const { data } = await api.get(
+		`${stockName}&outputsize=full&apikey=${ALPHA_VANTAGE_API_KEY}`
 	);
 
 	if (data['Error Message']) {
