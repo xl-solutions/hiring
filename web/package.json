@@ -88,6 +88,7 @@
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
     "prettier": "^2.6.2",
+    "ts-jest": "^28.0.2",
     "ts-node": "^10.7.0"
   }
 }

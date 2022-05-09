@@ -1,5 +1,7 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { Header } from '.';
+import { store } from '../../store';
 
 jest.mock('react-router-dom', () => ({
   Link: 'Link',
@@ -8,8 +10,12 @@ jest.mock('react-router-dom', () => ({
 
 describe('Header component', () => {
   it('renders correctly', () => {
-    const { getByText } = render(<Header />);
+    render(
+      <Provider store={store}>
+        <Header />
+      </Provider>
+    );
 
-    expect(getByText('dashmoney')).toBeInTheDocument();
+    expect(screen.getByText('dashmoney')).toBeInTheDocument();
   });
 });
