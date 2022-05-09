@@ -1,0 +1,38 @@
+import { createGlobalStyle } from 'styled-components';
+
+export default createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+  }
+
+	body {
+		background-color: #f9f9f9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+	body, input, button {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 16px;
+  }
+
+  h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 500;
+  }
+
+	label {
+		margin-bottom: 5px;
+	}
+
+	input {
+		border-radius: 4px;
+		height: 30px;
+		padding-left: 10px;
+	}
+
+	button {
+		cursor: pointer;
+	}
+`;
