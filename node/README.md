@@ -1,51 +1,101 @@
-# Background
+# Corretora ipnet
 
-Uma corretora de ações está desenvolvendo um sistema para permitir que pequenos investidores possam tomar decisões melhores sobre seu portfólio. Uma das funcionalidades importantes é a de verificar o desempenho de uma ação em cinco cenários:
+## Descrição
 
-   - Preço atual;
-   - Preço histórico;
-   - Preço atual em comparação a outras ações;
-   - Projeção de ganhos com compra em data específica.
-   
-Para isso, a equipe de software da empresa optou por desenvolver duas aplicações: um serviço de backend especializado nesses requisitos (que permitirá que essas funcionalidades sejam reutilizadas em outros produtos da empresa) e um dashboard configurável que dará visibilidade aos dados. Sua missão para este teste é implementar ambas as partes.
+Este é um teste realizado para a empresa [IPNET Growth Partner](https://ipnet.gupy.io/)
+## 🛠 Tecnologias usadas no backend:
+Node.js, Typescript
 
-# Requisitos técnicos da solução
+### 📘 Bibliotecas usadas no backend:
+Express, Axios, Cors, Dotenv, swc/jest, Jest, ts-node, Eslint
 
-O serviço deverá ser implementado via HTTP, e o formato de serialização das requisições e respostas será JSON. O backend deverá ser implementado em node.js, seja com `http` puro, seja com framework de sua escolha. O frontend será uma single-page application (SPA), e poderá ser implementado com a solução de sua escolha: Angular, Angular 2/4, Vue.js, React, você decide. Forneça, em conjunto, uma configuração de build com Webpack, rollup, browserify ou outra solução de sua escolha, e um comando único para subir sua aplicação. 
+## 🛠 Tecnologias usadas no frontent:
+React 18, Typescript
 
-Sua solução deverá ter testes automatizados, tanto no frontend quanto no backend.
+### 📘 Bibliotecas usadas no frontend:
+Axios, Apexcharts, Moment, styled-components, Polished, React data table, React data picker, React router dom, Eslint
 
-Para obter dados de ações, você poderá usar o Alpha Vantage (https://www.alphavantage.co). Caso queira utilizar bibliotecas prontas para isso — sinta-se livre para utilizá-las.
+## Requisitos
+[Node.js](https://nodejs.org) com versão acima da 14.x
+## Como rodar a API backend:
+  * Clone este repositório
+  * Vá para pasta backend
+  * Download das depêndencias usando o Yarn:
+  ```shell
+    $ yarn
+  ```
 
-O tratamento de erros não será explicitado nos endpoints. O candidato ou candidata poderá inferir casos que poderão gerar erros ou duplicidades nos dados, e tratá-los de acordo. A ausência de tratamento não desqualifica a proposta; a presença, no entanto, contará pontos a favor.
+  * Download das depêndencias usando o Npm:
+  ```shell
+    $ npm i
+  ```
 
-## Projeção de ganhos
+  * Iniciando a API com Yarn:
+  ```shell
+    $ yarn dev
+  ```
 
-A ideia é implementar algo simples, sem preocupações com dividendos, taxas administrativas ou outras incumbências que afetariam o montante total. Em sendo assim, pressuponha que a compradora investiu seu dinheiro numa determinada quantidade de ações de uma empresa em alguma data no passado, e que deseja saber quanto teria ganhado ou perdido caso o fizesse.
+  * Iniciando a API com Npm
+  ```shell
+    $ npm run dev
+  ```
+  * Porta da API: 3333
 
-# Como enviar sua proposta
+  ## Como rodar o frontend:
+  * Clone este repositório
+  * Vá para pasta frontend
+  * Download das depêndencias usando o Yarn:
+  ```shell
+    $ yarn
+  ```
 
-- Crie um fork deste repositório;
-- Implemente sua solução, fazendo commits da maneira que faria em um projeto profissional;
-- Substitua este README com um específico para sua aplicação, indicando como rodá-la, e como executar os testes (fique à vontade para inserir mais detalhes técnicos, caso deseje);
-- Abra um pull request para este repositório.
+  * Download das depêndencias usando o Npm:
+  ```shell
+    $ npm i
+  ```
 
-# Detalhamento
+  * Iniciando a API com Yarn:
+  ```shell
+    $ yarn start
+  ```
 
-## Frontend
+  * Iniciando a API com Npm
+  ```shell
+    $ npm run start
+  ```
+  * Porta do frontend: 3000
 
-O importante nesta parte do desafio é que saibamos como você lida com os componentes que formam as técnicas contemporâneas de desenvolvimento client-side, no que tange processamento de assets, transpilers, separação de responsabilidades, minificação, armazenamento local, etc. Por isso, estética não é primordial.
+  ## Como rodar os testes backend:
+  * Clone este repositório
+  * Vá para pasta backend
+  * Download das depêndencias usando o Yarn:
+  ```shell
+    $ yarn
+  ```
 
-As funcionalidades esperadas são:
+  * Download das depêndencias usando o Npm:
+  ```shell
+    $ npm i
+  ```
 
-- Incluir ações no portifólio;
-- Ver situação atual das ações (último preço e data e hora da atualização);
-- Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
-- Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
+  * Iniciando os testes com Yarn:
+  ```shell
+    $ yarn test
+  ```
 
-Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Yahoo Finance, ou fazer uma arquitetura master-detail simples.
+  * Iniciando os testes com Npm
+  ```shell
+    $ npm run test
+  ```
+  * Aguarde até finalizar
+  
+  ## Observações:
 
-## Backend
+  * Favor verificar se realmente os dados que você está enviando estão corretos e existentes, foram tratados a maioria de errors que fiz a previsão, mas pode acontecer outros problemas. A aplicação tem potencial de crescimento.
+
+  * Por limitação da API Alpha vantage free, ela permite somente 5 consultas por minuto.
+
+  * Outro ponto é que muita das vezes o retorno das horas das datas estavam vindo zeradas, então não foi possivel tratar isso em alguns momentos.
 
 ### Endpoints
 
@@ -172,5 +222,7 @@ $ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5
 { "name": "USIM5.SA", "purchasedAmount": 100, "purchasedAt": "2016-05-31", "priceAtDate": 3.97, "lastPrice": 4.33, "capitalGains": 36.0 }
 ```
 
-
-https://www.alphavantage.co
+ ## Author
+ ### Daniel Vidal
+ * GitHub: https://github.com/denion465
+ * Linkedin: https://www.linkedin.com/in/daniel-vidal465
