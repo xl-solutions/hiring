@@ -1,0 +1,9 @@
+[default]
+SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+SECRET_KEY = ''
+SQLALCHEMY_TRACK_MODIFICATIONS = false
+
+[production]
+SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+SECRET_KEY = ''
+SQLALCHEMY_TRACK_MODIFICATIONS = false
