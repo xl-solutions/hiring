@@ -1,13 +1,65 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+<h1 align="center">
+  <img alt="IPNET" title="IPNET" src=".github/logo.svg" width="145px" height="55px"/>  
+</h1>
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
+</p>
 
-Choose a language to which you are interested and follow the instructions:
+<br>
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
-- [HTML/CSS/JS](front/README.md) [(English Version)](front/README_ENGLISH.md)
+<p align="center">
+  <img alt="dashmoney" src=".github/cover.png" width="100%">
+</p>
+
+## ✨ Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+Back-end:
+
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/pt-br/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Jest](https://jestjs.io/pt-BR/)
+- [Swagger](https://swagger.io/)
+
+Front-end:
+
+- [React](https://reactjs.org)
+- [Styled-components](https://styled-components.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux](https://redux.js.org/)
+- [Redux-Saga](https://redux-saga.js.org/)
+- [Jest](https://jestjs.io/pt-BR/)
+
+## 💻 Projeto
+
+Projeto desenvolvido para a vaga de Desenvolvedor Fullstack Junior na IPNET Growth Partner. Contém um serviço de backend especializado para os requisitos solicitados (corretora de ações) e um dashboard configurável que dará visibilidade aos dados.
+
+## 🚀 Como executar
+
+Back-end:
+
+- Clone o repositório
+- Acesse a pasta `backend`
+- Instale as dependências com `npm install ou yarn`
+- Inicie o servidor com `npm run dev ou yarn dev`
+- Para executar os testes automatizados `npm run test ou yarn test`
+
+Agora você pode acessar [`localhost:4000/api-docs`](http://localhost:4000/api-docs) do seu navegador para ter acesso a documentação da API.
+
+Front-end:
+
+- Acesse a pasta `web`
+- Instale as dependências com `npm install ou yarn`
+- Inicie o servidor com `npm run start ou yarn start`
+- Para executar os testes automatizados `npm run test ou yarn test`
+
+Agora você pode acessar [`localhost:3000`](http://localhost:3000) do seu navegador.
+
+---
+
+Feito com ♥ por [Júlio Souza](https://www.linkedin.com/in/j%C3%BAlio-souza-079351213/) 👋🏻 
