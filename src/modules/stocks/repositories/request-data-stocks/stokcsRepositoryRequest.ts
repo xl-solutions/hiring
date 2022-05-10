@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { response } from 'express';
 import { AppError } from '../../../../shared/errors/AppError';
 
 class StocksRepositoryRequest {
@@ -103,8 +104,47 @@ class StocksRepositoryRequest {
         }
     }
 
-    
+    async compareStocks(stocks: string[]): Promise<any>{
+        try{
+            const responseData = {};
+            let itens = {} as any;
+            const lastPrices: string[] = [];
+            for(let i in stocks){
+                const response = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stocks[i]}&apikey=${this.tokenAPI}`, {})
+                .then(response => {
+                    if(response.data.Note){
+                        throw new AppError(this.messageError);
+                    }
 
+                    if(response.data['Global Quote']['01. symbol'] != undefined){
+                        itens = {
+                            name: response.data['Global Quote']['01. symbol'] as string,
+                            lastPrice: parseFloat(response.data['Global Quote']['05. price']).toFixed(2),
+                            pricedAt: response.data['Global Quote']['07. latest trading day'] as string
+                        };
+
+                        lastPrices.push(itens)
+                    }
+
+                })
+                .catch(error => {
+                    return error
+                });
+            }
+
+            if(lastPrices.length > 1){
+                Object.assign(responseData,{
+                    lastPrice: lastPrices
+                })
+    
+                return responseData
+            }
+
+            return response
+        }catch (error){
+            throw new AppError(`Message error: ${error}`);
+        }
+    }
 }
 
 
