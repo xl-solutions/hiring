@@ -22,12 +22,12 @@ interface ILastPrice {
 export class CompareStocksUseCase {
   async execute({ stock_name, stocks }: IRequest) {
     const lastPrices: ILastPrice[] = [];
+    stocks.unshift(stock_name);
 
     if (!stock_name) {
       throw new AppError('Stock name not provided');
     }
 
-    stocks.unshift(stock_name);
     const searchQuotes = (await getQuoteBySymbol(stocks)) as GlobalQuote[];
 
     if (searchQuotes.length < stocks.length) {
