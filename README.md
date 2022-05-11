@@ -7,7 +7,7 @@ usando **Next.Js, React, MateriaUI e styled-components.**
 [https://www.linkedin.com/feed/update/urn:li:activity:6925777592532750336/](https://www.linkedin.com/feed/update/urn:li:activity:6925777592532750336/) 
 
 Projeto de uma aplicação web de delivery de comida, estilo iFood, UberEats etc...
-usando  **Next.Js, React, TypeScript e TailwindCSS.**  
+<br/>usando  **Next.Js, React, TypeScript e TailwindCSS.**  
 [https://www.linkedin.com/feed/update/urn:li:activity:6922147688675168257/](https://www.linkedin.com/feed/update/urn:li:activity:6922147688675168257/)  
   
 **API** usando **Node e MySql** que fiz como teste técnico de outra seleção:  
