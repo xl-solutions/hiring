@@ -4,8 +4,7 @@
 
 Projeto clone netflix com enfoque no **Front End**,  
 usando **Next.Js, React, MateriaUI e styled-components.**  
-[https://www.linkedin.com/feed/update/urn:li:activity:6925777592532750336/](https://www.linkedin.com/feed/update/urn:li:activity:6925777592532750336/)  
-  
+[https://www.linkedin.com/feed/update/urn:li:activity:6925777592532750336/](https://www.linkedin.com/feed/update/urn:li:activity:6925777592532750336/) </br>  
 Projeto de uma aplicação web de delivery de comida, estilo iFood, UberEats etc...
 
 usando  **Next.Js, React, TypeScript e TailwindCSS.**  
