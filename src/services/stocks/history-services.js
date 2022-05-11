@@ -35,7 +35,6 @@ const handleHistory = async (params) => {
 
   const keyTimeSeries = getKeyForObject(quote.data);
   const historyPrice = getHistoryPrices(quote.data, params.stock_name, keyTimeSeries);
-  
   return historyPrice;
 };
 
