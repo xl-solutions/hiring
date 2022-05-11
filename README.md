@@ -2,16 +2,21 @@
 
 *Antes de mais nada vou deixar aqui abaixo os links dos meus projetos que comentei  com a Raquel durante a entrevista, para que* ***se for possivel sejam considerados na avaliação também por favor.***
 
-Projeto clone netflix com enfoque no  **Front End**, usando  **Next.Js, React, MateriaUI e styled-components.**  
+Projeto clone netflix com enfoque no **Front End**,  
+usando **Next.Js, React, MateriaUI e styled-components.**  
 [https://www.linkedin.com/feed/update/urn:li:activity:6925777592532750336/](https://www.linkedin.com/feed/update/urn:li:activity:6925777592532750336/)  
   
-**API**  usando  **Node e MySql**  que fiz como teste técnico de outra seleção:  
+Projeto de uma aplicação web de delivery de comida, estilo iFood, UberEats etc...
+usando  **Next.Js, React, TypeScript e TailwindCSS.**  
+[https://www.linkedin.com/feed/update/urn:li:activity:6922147688675168257/](https://www.linkedin.com/feed/update/urn:li:activity:6922147688675168257/)  
+  
+**API** usando **Node e MySql** que fiz como teste técnico de outra seleção:  
 [https://github.com/guilhermemm-dev/accurate-software.github.io](https://github.com/guilhermemm-dev/accurate-software.github.io)  
 
-  
 
-**API**  simples usando  **Node e MongoDB**  - CRUD básico  
+**API** simples usando **Node e MongoDB** - CRUD básico  
 [https://github.com/guilhermemm-dev/api-node-mongodb](https://github.com/guilhermemm-dev/api-node-mongodb)
+
 
 <hr/>
 <hr/>
