@@ -6,6 +6,7 @@ class StocksRepositoryRequest {
     private tokenAPI = "EZ3IPW2YUAGT6T0O";
     // private tokenAPI = "demo";
     private messageError = "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.";
+    private messageInvalidApi = "Invalid API call. Please retry or visit the documentation (https://www.alphavantage.co/documentation/) for TIME_SERIES_DAILY."
 
     constructor(){}
 
@@ -108,7 +109,7 @@ class StocksRepositoryRequest {
         try{
             const responseData = {};
             let itens = {} as any;
-            const lastPrices: string[] = [];
+            const lastPrices: any[] = [];
             for(let i in stocks){
                 const response = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stocks[i]}&apikey=${this.tokenAPI}`, {})
                 .then(response => {
@@ -119,19 +120,24 @@ class StocksRepositoryRequest {
                     if(response.data['Global Quote']['01. symbol'] != undefined){
                         itens = {
                             name: response.data['Global Quote']['01. symbol'] as string,
-                            lastPrice: parseFloat(response.data['Global Quote']['05. price']).toFixed(2),
+                            lastPrice: parseFloat(response.data['Global Quote']['05. price']).toFixed(2) as unknown,
                             pricedAt: response.data['Global Quote']['07. latest trading day'] as string
                         };
 
                         lastPrices.push(itens)
                     }
 
+                    // if(response.data['Global Quote']){
+                    //     console.log("aakakak")
+                    //     throw new AppError("Stock name invalid");
+                    // }
                 })
                 .catch(error => {
                     return error
                 });
             }
 
+            console.log(response)
             if(lastPrices.length > 1){
                 Object.assign(responseData,{
                     lastPrice: lastPrices
@@ -140,7 +146,56 @@ class StocksRepositoryRequest {
                 return responseData
             }
 
+
             return response
+        }catch (error){
+            throw new AppError(`Message error: ${error}`);
+        }
+    }
+
+    async findByProjectGains(stock_name:string, purchasedAmount:number, purchasedAt:string){
+        try{
+            const response = axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&apikey=${this.tokenAPI}`, {})
+                .then(response => {
+                    const projectGains = {}
+                    const resposeHeader = response.data['Meta Data'];
+                    const responseBody  = response.data['Time Series (Daily)']
+
+                    if(response.data.Note){
+                        throw new AppError(this.messageError);
+                    }
+
+                    if(response.data['Error Message']){
+                        throw new AppError(this.messageInvalidApi);
+                    }
+
+                    let symbolQuote = resposeHeader['2. Symbol'];
+                    let purchasedAmountNumber = Number(purchasedAmount)
+
+                    let priceAtDate = Number(parseFloat(responseBody[purchasedAt]['4. close']).toFixed(2));
+
+                    let lastPriceDate = resposeHeader['3. Last Refreshed']
+                    let lastPrice = Number(parseFloat(responseBody[lastPriceDate]['4. close']).toFixed(2));
+
+                    let capitalGains = (lastPrice * purchasedAmountNumber) - (priceAtDate * purchasedAmountNumber)
+
+                    Object.assign(projectGains, {
+                        name: symbolQuote,
+                        purchasedAmount: purchasedAmountNumber,
+                        purchasedAt: purchasedAt,
+                        priceAtDate : priceAtDate,
+                        lastPrice: lastPrice,
+                        capitalGains: capitalGains
+                    })
+
+                    return projectGains;
+                })
+                .catch(error => {
+                    return error
+                });
+
+            return response
+
         }catch (error){
             throw new AppError(`Message error: ${error}`);
         }
