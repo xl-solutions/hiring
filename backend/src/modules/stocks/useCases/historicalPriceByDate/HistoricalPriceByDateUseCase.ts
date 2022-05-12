@@ -30,6 +30,10 @@ export class HistoricalPriceByDateUseCase {
     private dateFnsProvider: IDateProvider,
   ) {}
   async execute({ stock_name, from, to }: IRequest) {
+    if (!stock_name || !from || !to) {
+      throw new AppError('Parameters not provided');
+    }
+
     const searchHistoricalPrice = await getHistoricalPriceBySymbol(stock_name);
 
     if (!searchHistoricalPrice) {
