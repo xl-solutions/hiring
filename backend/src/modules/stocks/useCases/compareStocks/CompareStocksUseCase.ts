@@ -30,16 +30,16 @@ export class CompareStocksUseCase {
     stocks.unshift(stock_name);
     const searchQuotes = (await getQuoteBySymbol(stocks)) as GlobalQuote[];
 
-    if (searchQuotes.length < stocks.length) {
-      throw new AppError('Requests limit exceeded free API');
-    }
-
     searchQuotes.forEach((stock) => {
-      lastPrices.push({
-        name: stock['01. symbol'],
-        lastPrice: Number(stock['05. price']),
-        pricedAt: stock['07. latest trading day'],
-      });
+      if (!stock['01. symbol']) {
+        throw new AppError('Requests limit exceeded free API');
+      } else {
+        lastPrices.push({
+          name: stock['01. symbol'],
+          lastPrice: Number(stock['05. price']),
+          pricedAt: stock['07. latest trading day'],
+        });
+      }
     });
 
     const compareStocks: IReturn = {
