@@ -39,6 +39,8 @@ Front-end:
 
 Projeto desenvolvido para a vaga de Desenvolvedor Fullstack Junior na IPNET Growth Partner. Contém um serviço de backend especializado para os requisitos solicitados (corretora de ações) e um dashboard configurável que dará visibilidade aos dados.
 
+OBS: PARA OBTER DADOS DAS AÇÕES FOI UTILIZADO [`ALPHA VANTAGE API`](https://www.alphavantage.co). PORTANTO, ESTA API POSSUI UMA LIMITAÇÃO DE 5 REQUISIÇÕES POR MINUTO APENAS. PARTICULARIDADE ESTA QUE INVIABILIZOU ALGUNS RECURSOS QUE AGREGARIAM AINDA MAIS AO PROJETO DESENVOLVIDO.
+
 ## 🚀 Como executar
 
 Back-end:
