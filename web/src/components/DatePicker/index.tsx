@@ -23,7 +23,9 @@ export function DatePicker({
 }: DatePickerProps) {
   const handleDateChange = async (date: MaterialUiPickersDate) => {
     setValue(date);
-    refetchData();
+    if (refetchData) {
+      refetchData();
+    }
   };
 
   return (

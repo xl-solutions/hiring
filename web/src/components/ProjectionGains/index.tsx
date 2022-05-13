@@ -2,7 +2,6 @@ import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { format, subDays } from 'date-fns';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CurrentStockProps } from '../../pages/Dashboard';
 import api from '../../services/api';
 import { IState } from '../../store';
 import { IStock } from '../../store/modules/currentStock/types';

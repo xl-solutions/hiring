@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 import { useDebounce } from '../../hooks/useDebounce';
-import { CurrentStockProps } from '../../pages/Dashboard';
 import api from '../../services/api';
 import { IState } from '../../store';
 import { IStock } from '../../store/modules/currentStock/types';
@@ -10,10 +9,6 @@ import { Button } from '../Button';
 import { BarChart } from '../Charts/BarChart';
 import { SearchBar } from '../SearchBar';
 import { Container, IconDelete, InfoStock, Menu } from './styles';
-
-interface CompareStockProps {
-  stock: CurrentStockProps;
-}
 
 interface LastPrice {
   name: string;

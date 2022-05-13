@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 import { SearchStocksProps } from '../Header';
 import { IconSearch, Search } from './styles';
