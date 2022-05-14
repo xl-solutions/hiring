@@ -1,8 +1,11 @@
 import axios from 'axios'
 import { response } from 'express';
 import { AppError } from '../../../../shared/errors/AppError';
+import { convertDate, convertDateToUTC } from '../../../../shared/provider/ConvertDateUtc';
+import { convertAndParseFloat } from '../../../../shared/provider/ConvertNumbers';
+import { IStocksRepositoryRequest } from './IStocksRepositoryRequest';
 
-class StocksRepositoryRequest {
+class StocksRepositoryRequest implements IStocksRepositoryRequest {
     private tokenAPI = "EZ3IPW2YUAGT6T0O";
     // private tokenAPI = "demo";
     private messageError = "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.";
@@ -15,33 +18,35 @@ class StocksRepositoryRequest {
             const response = axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock_name}&apikey=${this.tokenAPI}`, {})
                 .then(response => {
                     const responseData = {};
-                    
+
                     if(response.data.Note){
                         throw new AppError(this.messageError);
                     }
+                    
+                    const responseBody = response.data['Global Quote'];
+                    
+                    let symbol = responseBody['01. symbol'];
+                    let lastPrice = convertAndParseFloat(responseBody['05. price']);
+                    let priceAt = convertDateToUTC(responseBody['07. latest trading day'])
 
-                    if(response.data['Global Quote']['01. symbol'] != undefined){
+                    if(symbol != undefined){
                         Object.assign(responseData,{
-                            name: response.data['Global Quote']['01. symbol'],
-                            lastPrice: parseFloat(response.data['Global Quote']['05. price']).toFixed(2),
-                            pricedAt: response.data['Global Quote']['07. latest trading day']
+                            name: symbol,
+                            lastPrice: lastPrice,
+                            pricedAt: priceAt
                         })
-    
                         return responseData
                     }
 
-                    if(response.data['Global Quote']){
+                    if(responseBody){
                         throw new AppError("Stock name invalid");
                     }
-
-                    return response
                 })
                 .catch(error => {
                     return error
                 });
 
             return response
-
         }catch (error){
             throw new AppError(`Message error: ${error}`);
         }
@@ -53,34 +58,47 @@ class StocksRepositoryRequest {
                 .then(response => {
                     const responseData = {};
                     const prices = [];
+                    let pricesObj = {};
 
                     if(response.data.Note){
                         throw new AppError(this.messageError);
                     }
-                    
-                    const infosHeader = response.data['Meta Data']
-                    const infosDates = response.data['Time Series (Daily)'];
-                    const infosDateObj = Object.keys(infosDates);
 
-                    for(let i in infosDateObj){
-                        if(infosDates[from] && infosDates[to]){
-                            if(infosDateObj[i] === from){
-                                prices.push({
-                                    opening: parseFloat(infosDates[from]["1. open"]).toFixed(2),
-                                    low: parseFloat(infosDates[from]["2. high"]).toFixed(2),
-                                    high: parseFloat(infosDates[from]["3. low"]).toFixed(2),
-                                    closing: parseFloat(infosDates[from]["4. close"]).toFixed(2),
-                                    pricedAt: infosDateObj[i]
-                                })
-                            }
-                            if(infosDateObj[i] === to){
-                                prices.push({
-                                    opening: parseFloat(infosDates[to]["1. open"]).toFixed(2),
-                                    low: parseFloat(infosDates[to]["2. high"]).toFixed(2),
-                                    high: parseFloat(infosDates[to]["3. low"]).toFixed(2),
-                                    closing: parseFloat(infosDates[to]["4. close"]).toFixed(2),
-                                    pricedAt: infosDateObj[i]
-                                })
+                    const resposeHeader = response.data['Meta Data'];
+                    const responseBody  = response.data['Time Series (Daily)']
+                    const responseDates = Object.keys(responseBody);
+
+                    if(response.data.Note){
+                        throw new AppError(this.messageError);
+                    }
+
+                    let symbolQuote = resposeHeader['2. Symbol'];
+                    
+                    let fromDate = convertDate(from);
+                    let toDate = convertDate(to);
+
+                    for(let i in responseDates){
+                        
+                        let allDates = convertDate(responseDates[i]);
+                        
+                        if(responseBody[from] && responseBody[to]){
+                            
+                            if(allDates >= fromDate && allDates <= toDate){
+
+                                let opening = convertAndParseFloat(responseBody[responseDates[i]]["1. open"]);
+                                let low = convertAndParseFloat(responseBody[responseDates[i]]["2. high"]);
+                                let high = convertAndParseFloat(responseBody[responseDates[i]]["3. low"]);
+                                let closing = convertAndParseFloat(responseBody[responseDates[i]]["4. close"]);
+                                let priceAt = convertDateToUTC(responseDates[i]);
+
+                                pricesObj = {
+                                    opening: opening,
+                                    low: low,
+                                    high: high,
+                                    closing: closing,
+                                    pricedAt: priceAt 
+                                }
+                                prices.push(pricesObj);
                             }
                         }else{
                             throw new AppError("Date invalid")
@@ -88,7 +106,7 @@ class StocksRepositoryRequest {
                     }
 
                     Object.assign(responseData,{
-                        name: infosHeader["2. Symbol"],
+                        name: symbolQuote,
                         prices: prices.reverse()
                     })
                 
@@ -108,36 +126,51 @@ class StocksRepositoryRequest {
     async compareStocks(stocks: string[]): Promise<any>{
         try{
             const responseData = {};
-            let itens = {} as any;
             const lastPrices: any[] = [];
+            let itens = {};
+            let error;
+
             for(let i in stocks){
                 const response = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stocks[i]}&apikey=${this.tokenAPI}`, {})
                 .then(response => {
+
+                    const responseBody = response.data['Global Quote'];
+
                     if(response.data.Note){
-                        throw new AppError(this.messageError);
+                        error = 'Limit'
                     }
 
-                    if(response.data['Global Quote']['01. symbol'] != undefined){
+                    if(responseBody['01. symbol'] == undefined){
+                        error = 'NameInvalid';
+                    }
+
+                    let name = responseBody['01. symbol'];
+                    let lastPrice = convertAndParseFloat(responseBody['05. price']);
+
+                    let date = responseBody['07. latest trading day'];
+                    let priceAt = convertDateToUTC(date);
+
+                    if(name != undefined){
                         itens = {
-                            name: response.data['Global Quote']['01. symbol'] as string,
-                            lastPrice: parseFloat(response.data['Global Quote']['05. price']).toFixed(2) as unknown,
-                            pricedAt: response.data['Global Quote']['07. latest trading day'] as string
+                            name: name,
+                            lastPrice: lastPrice,
+                            pricedAt: priceAt
                         };
 
                         lastPrices.push(itens)
                     }
-
-                    // if(response.data['Global Quote']){
-                    //     console.log("aakakak")
-                    //     throw new AppError("Stock name invalid");
-                    // }
                 })
                 .catch(error => {
                     return error
                 });
             }
 
-            console.log(response)
+            if(error == 'Limit'){
+                throw new AppError(this.messageError);
+            }else if(error == 'NameInvalid'){
+                throw new AppError("Name Invalid");
+            }
+
             if(lastPrices.length > 1){
                 Object.assign(responseData,{
                     lastPrice: lastPrices
@@ -145,38 +178,40 @@ class StocksRepositoryRequest {
     
                 return responseData
             }
-
-
-            return response
         }catch (error){
-            throw new AppError(`Message error: ${error}`);
+            return error
         }
     }
 
-    async findByProjectGains(stock_name:string, purchasedAmount:number, purchasedAt:string){
+    async findByProjectGains(stock_name:string, purchasedAmount:number, purchasedAt:string): Promise<any>{
         try{
             const response = axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stock_name}&apikey=${this.tokenAPI}`, {})
                 .then(response => {
                     const projectGains = {}
                     const resposeHeader = response.data['Meta Data'];
                     const responseBody  = response.data['Time Series (Daily)']
-
+                    
                     if(response.data.Note){
                         throw new AppError(this.messageError);
                     }
 
+                    if(responseBody[purchasedAt] == undefined){
+                        throw new AppError("Date invalid");
+                    }
+
+
                     if(response.data['Error Message']){
                         throw new AppError(this.messageInvalidApi);
                     }
-
+                    
                     let symbolQuote = resposeHeader['2. Symbol'];
                     let purchasedAmountNumber = Number(purchasedAmount)
-
-                    let priceAtDate = Number(parseFloat(responseBody[purchasedAt]['4. close']).toFixed(2));
+                    
+                    let priceAtDate = convertAndParseFloat(responseBody[purchasedAt]['4. close']);
 
                     let lastPriceDate = resposeHeader['3. Last Refreshed']
-                    let lastPrice = Number(parseFloat(responseBody[lastPriceDate]['4. close']).toFixed(2));
-
+                    let lastPrice = convertAndParseFloat(responseBody[lastPriceDate]['4. close']);
+                    
                     let capitalGains = (lastPrice * purchasedAmountNumber) - (priceAtDate * purchasedAmountNumber)
 
                     Object.assign(projectGains, {
@@ -202,7 +237,4 @@ class StocksRepositoryRequest {
     }
 }
 
-
 export { StocksRepositoryRequest };
-
-
