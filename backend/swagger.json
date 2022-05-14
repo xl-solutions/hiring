@@ -1,0 +1,309 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Stocks System Documentation",
+    "description": "This is an API to consult stocks",
+    "version": "1.0.0",
+    "contact": {
+      "email": "juliosouza.rs@gmail.com"
+    }
+  },
+  "paths": {
+    "/stocks/search": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Search stock",
+        "description": "Returns the searched stock",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "The SYMBOL for search a specific stock",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stock found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "company": {
+                        "type": "string"
+                      },
+                      "region": {
+                        "type": "string"
+                      },
+                      "currency": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/{stock_name}/quote": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Quote for a stock",
+        "description": "Returns the most recent quote for a stock",
+        "parameters": [
+          {
+            "name": "stock_name",
+            "in": "path",
+            "description": "The SYMBOL for consult a specific stock",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stock found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "lastPrice": {
+                      "type": "number"
+                    },
+                    "pricedAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/{stock_name}/history": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Historical stock price",
+        "description": "Returns historical stock price in an inclusive range",
+        "parameters": [
+          {
+            "name": "stock_name",
+            "in": "path",
+            "description": "The SYMBOL for consult a specific stock",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Date in ISO 8601 format",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Date in ISO 8601 format",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stock found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "prices": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "opening": {
+                            "type": "number"
+                          },
+                          "low": {
+                            "type": "number"
+                          },
+                          "high": {
+                            "type": "number"
+                          },
+                          "closing": {
+                            "type": "number"
+                          },
+                          "pricedAt": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/{stock_name}/gains": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Gains by purchase on specific date",
+        "description": "Projects purchase gains on a specific date",
+        "parameters": [
+          {
+            "name": "stock_name",
+            "in": "path",
+            "description": "The SYMBOL for consult a specific stock",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "purchasedAmount",
+            "in": "query",
+            "description": "number of stocks purchased",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "purchasedAt",
+            "in": "query",
+            "description": "Date in ISO 8601 format",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stock found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "purchasedAmount": {
+                      "type": "number"
+                    },
+                    "purchasedAt": {
+                      "type": "string"
+                    },
+                    "priceAtDate": {
+                      "type": "number"
+                    },
+                    "lastPrice": {
+                      "type": "number"
+                    },
+                    "capitalGains": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stocks/{stock_name}/compare": {
+      "post": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Compare stocks",
+        "description": "Compares an stock with one or more stocks",
+        "parameters": [
+          {
+            "name": "stock_name",
+            "in": "path",
+            "description": "The SYMBOL for consult a specific stock",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "stocks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "stocks": [
+                    "RAPT4.SAO",
+                    "PETR4.SA"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Comparison between stocks successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lastPrices": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "lastPrice": {
+                            "type": "number"
+                          },
+                          "pricedAt": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
