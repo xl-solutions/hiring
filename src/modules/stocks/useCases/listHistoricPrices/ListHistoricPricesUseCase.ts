@@ -12,7 +12,7 @@ class ListHistoricPricesUseCase{
     constructor(){}
 
     async execute({ stock_name, from, to}: IRequest): Promise<any>{
-        const historicPrices = stocksRepositoryRequest.findByHistoricPrices(
+        const historicPrices = await stocksRepositoryRequest.findByHistoricPrices(
             stock_name,
             from,
             to
