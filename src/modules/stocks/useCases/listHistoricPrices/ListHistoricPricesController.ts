@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 
 import { ListHistoricPricesUseCase } from "./ListHistoricPricesUseCase";
-
-const listHistoricPricesUseCase = new ListHistoricPricesUseCase();
 
 class ListHistoricPricesController{
     async handle(request: Request, response: Response): Promise<Response>{
         const { stock_name } = request.params;
         const { from, to } = request.query;
+
+        const listHistoricPricesUseCase = container.resolve(ListHistoricPricesUseCase);
 
         const historic = await listHistoricPricesUseCase.execute({
             stock_name: stock_name,
