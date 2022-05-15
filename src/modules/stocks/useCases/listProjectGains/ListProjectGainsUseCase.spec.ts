@@ -13,7 +13,7 @@ describe("Find by recent quotes", () => {
         listProjectGainsUseCase = new ListProjectGainsUseCase(
             stokcsRepositoryRequestTest
         )
-    })
+    });
 
     it("should be able to project gains", async () => {
         let stock = "IBM"

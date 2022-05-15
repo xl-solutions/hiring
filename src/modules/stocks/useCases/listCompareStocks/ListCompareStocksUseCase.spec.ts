@@ -13,7 +13,7 @@ describe("Compare stocks", () => {
         listCompareStocksUseCase = new ListCompareStocksUseCase(
             stokcsRepositoryRequestTest
         )
-    })
+    });
 
     it("should be able to compare stocks", async () => {
         let stock = "OIBR4.SA";
@@ -39,7 +39,7 @@ describe("Compare stocks", () => {
             await listCompareStocksUseCase.execute({
                 stock_name: stock, 
                 stocks
-            })
+            });
 
         }).rejects.toBeInstanceOf(AppError);   
     });
@@ -52,7 +52,7 @@ describe("Compare stocks", () => {
             await listCompareStocksUseCase.execute({
                 stock_name: name, 
                 stocks
-            })
+            });
 
         }).rejects.toBeInstanceOf(AppError);   
     });

@@ -13,7 +13,7 @@ describe("Find by recent quotes", () => {
         listRecentQuotesUseCase = new ListRecentQuotesUseCase(
             stokcsRepositoryRequestTest
         )
-    })
+    });
 
     it("should be able to list a recent quotes", async () => {
         let stock = "IBM"
@@ -22,7 +22,7 @@ describe("Find by recent quotes", () => {
         expect(quote).toHaveProperty("name");
         expect(quote.name).toBe("IBM");
         expect(quote).toHaveProperty("lastPrice")
-    })
+    });
 
     it("should not be able to list a recent quotes a name invalid", async () => {
         expect(async () => {
@@ -30,5 +30,5 @@ describe("Find by recent quotes", () => {
             await listRecentQuotesUseCase.execute({stock_name: stock})
 
         }).rejects.toBeInstanceOf(AppError);   
-    })
+    });
 });

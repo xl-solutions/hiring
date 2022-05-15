@@ -13,7 +13,7 @@ describe("Find by historic prices", () => {
         listHistoricPricesUseCase = new ListHistoricPricesUseCase(
             stokcsRepositoryRequestTest
         )
-    })
+    });
 
     it("should be able to historic prices", async () => {
         let stock = "IBM"
@@ -45,7 +45,7 @@ describe("Find by historic prices", () => {
                 stock_name: stock, 
                 from: from,
                 to: to
-            })
+            });
 
         }).rejects.toBeInstanceOf(TypeError);   
     });
@@ -60,7 +60,7 @@ describe("Find by historic prices", () => {
                 stock_name: stock, 
                 from: from,
                 to: to
-            })
+            });
 
         }).rejects.toBeInstanceOf(AppError);   
     });

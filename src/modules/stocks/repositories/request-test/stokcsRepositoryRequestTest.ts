@@ -18,7 +18,7 @@ class StocksRepositoryRequestTest implements IStocksRepositoryRequest {
                     return error
                 });
 
-            return response
+            return response;
         }catch (error){
             throw new AppError(`Message error: ${error}`);
         }
@@ -34,7 +34,7 @@ class StocksRepositoryRequestTest implements IStocksRepositoryRequest {
                     return error
                 });
 
-            return response
+            return response;
 
         }catch (error){
             throw new AppError(`Message error: ${error}`);
@@ -71,7 +71,7 @@ class StocksRepositoryRequestTest implements IStocksRepositoryRequest {
                     return error
                 });
 
-            return response
+            return response;
 
         }catch (error){
             throw new AppError(`Message error: ${error}`);
