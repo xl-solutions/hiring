@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.stocksRouter = void 0;
+const express_1 = require("express");
+const ListCompareStocksController_1 = require("../../../../modules/stocks/useCases/listCompareStocks/ListCompareStocksController");
+const ListHistoricPricesController_1 = require("../../../../modules/stocks/useCases/listHistoricPrices/ListHistoricPricesController");
+const ListProjectGainsController_1 = require("../../../../modules/stocks/useCases/listProjectGains/ListProjectGainsController");
+const ListRecentQuotesController_1 = require("../../../../modules/stocks/useCases/listRecentQuotes/ListRecentQuotesController");
+const stocksRouter = (0, express_1.Router)();
+exports.stocksRouter = stocksRouter;
+const listRecentQuotesController = new ListRecentQuotesController_1.ListRecentQuotesController();
+const listHistoricPricesController = new ListHistoricPricesController_1.ListHistoricPricesController();
+const listCompareStocksController = new ListCompareStocksController_1.ListCompareStocksController();
+const listProjectGainsController = new ListProjectGainsController_1.ListProjectGainsController();
+stocksRouter.get("/:stock_name/quote", listRecentQuotesController.handle);
+stocksRouter.get("/:stock_name/history", listHistoricPricesController.handle);
+stocksRouter.get("/:stock_name/compare", listCompareStocksController.handle);
+stocksRouter.get("/:stock_name/gains", listProjectGainsController.handle);
