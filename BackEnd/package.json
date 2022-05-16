@@ -6,6 +6,7 @@
   "author": "Alex Moreira <alex.moreira.andrade@hotmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "test": "jest"
   },
