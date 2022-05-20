@@ -12,8 +12,6 @@ interface IProjectModal{
 }
 
 export function ProjectModal(){
-    // const [projectsGains, setProjectsGains] = useState<IProjectModal>();
-
     // Valores dos botões
     const [name, setName] = useState('')
     const [value, setValue] = useState(0);
@@ -27,16 +25,6 @@ export function ProjectModal(){
     const [lastPriceShow, setLastPrice] = useState(0);
     const [capitalGainsShow, setCapitalGains] = useState(0);
 
-
-    // function handleListProject(event: FormEvent){
-    //     event.preventDefault();
-
-    //     const data = {
-    //         name,
-    //         value,
-    //         date
-    //     };
-
     const send = async() =>{
         const response = await api.get(`/${name}/gains?purchasedAmount=${value}&purchasedAt=${date}`)
         .then(response => {
@@ -45,8 +33,6 @@ export function ProjectModal(){
         .catch(error => {
             return error
         });
-
-        // setProjectsGains(response.data)
 
         setNameShow(response.data.name)
         setPurchasedAmount(response.data.purchasedAmount)
@@ -57,18 +43,8 @@ export function ProjectModal(){
 
     }
         
-        
-    // }
-
-    // useEffect(() =>{
-    //     api.get(`/${name}/gains?purchasedAmount=${value}&purchasedAt=${date}`)
-    //     .then(response => setProjectsGains(response.data))
-    // }, []);
-
-    // console.log(projectsGains)
     return (
         <ContainerModal>
-            {/* <form action="" method="get" onSubmit={handleListProject}> */}
                 <div className="all">
                     <div className="search">
 

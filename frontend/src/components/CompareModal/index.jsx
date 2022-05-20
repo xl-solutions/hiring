@@ -9,13 +9,8 @@ export function CompareModal(){
     const [name2, setName2] = useState('')
     const [name3, setName3] = useState('')
    
-
     // Valores Show
     const [compare, setCompare] = useState([]);
-    // const [nameShow1, setNameShow1] = useState('');
-    // const [nameShow2, setNameShow2] = useState('');
-    // const [nameShow3, setNameShow3] = useState('');
-    // const [nameShow4, setNameShow4] = useState('');
 
     const stocksArray = []
 
@@ -41,7 +36,6 @@ export function CompareModal(){
         <ContainerModal>
             <div className="all">
                 <div className="search">
-            {/* <form action="" method="get"></form> */}
                     <input type="text"
                     placeholder="OIBR4.SA"
                     value={name1}
@@ -59,7 +53,6 @@ export function CompareModal(){
 
                     <button type="submit" onClick={send}>Buscar</button>
                 </div>
-
                 
                 <div className="results">
                     <h1>Resultados</h1>
@@ -70,13 +63,11 @@ export function CompareModal(){
                                 <p>Quantidade: {comp.lastPrice} </p>
                                 <p>Data compra: {comp.pricedAt}</p>
                             </div>
-                            
                         )
                     })}
 
                 </div>
             </div>
-
         </ContainerModal>
     );
 }
