@@ -30,7 +30,7 @@ class ListProjectGainsUseCase{
         if(historicPrices.data['Error Message']){
             throw new AppError("Name invalid");
         }
-
+        
         const projectGains = {}
         const resposeHeader = historicPrices.data['Meta Data'];
         const responseBody  = historicPrices.data['Time Series (Daily)']
@@ -53,7 +53,9 @@ class ListProjectGainsUseCase{
         let priceAtDate = convertAndParseFloat(responseBody[purchasedAt]['4. close']);
 
         let lastPriceDate = resposeHeader['3. Last Refreshed']
-        let lastPrice = convertAndParseFloat(responseBody[lastPriceDate]['4. close']);
+        const [lastDate, hour] = lastPriceDate.split(" ")
+
+        let lastPrice = convertAndParseFloat(responseBody[lastDate]['4. close']);
         
         let capitalGains = (lastPrice * purchasedAmountNumber) - (priceAtDate * purchasedAmountNumber)
 
