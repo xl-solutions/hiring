@@ -1,0 +1,12 @@
+{
+  "name": "hiring-test-node",
+  "version": "1.0.0",
+  "repository": "https://github.com/AlexMoreira01/hiring-test-node.git",
+  "author": "Alex Moreira <alex.moreira.andrade@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "startBack": "cd BackEnd && yarn start",
+    "startFront": "cd frontend && yarn start",
+    "startApp": "cd BackEnd && yarn start && cd frontend && yarn start"
+  }
+}
