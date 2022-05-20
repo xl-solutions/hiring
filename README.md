@@ -35,13 +35,13 @@ Webpack gerava error no server.ts ao tentar compilar
 ### yarn startFront - executa somente FrontEnd
 
 
-#Detalhes
+# Detalhes
 
 FrontEnd = Não é possível executar comparação de ações pois mesmo após liberar cors
 de get e post, requisições post permaneceram bloqueadas
 
 Aplicação BackEnd foi testada com requisições no Insomnia, ocorre tratativa de erros
-porém não consegui mostrá-los no FrontEnd
+com instância AppError, porém não consegui mostrá-los no FrontEnd
 
 BackEnd = Como não havia um banco de dados, api para buscar dados de ações foi usada 
 com o mesmo princípio para se acessar métodos de um banco nos repository
