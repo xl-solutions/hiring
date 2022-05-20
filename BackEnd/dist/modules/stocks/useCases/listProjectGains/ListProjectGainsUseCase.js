@@ -57,7 +57,8 @@ let ListProjectGainsUseCase = (_dec = (0, _tsyringe.injectable)(), _dec2 = funct
     let purchasedAmountNumber = Number(purchasedAmount);
     let priceAtDate = (0, _ConvertNumbers.convertAndParseFloat)(responseBody[purchasedAt]['4. close']);
     let lastPriceDate = resposeHeader['3. Last Refreshed'];
-    let lastPrice = (0, _ConvertNumbers.convertAndParseFloat)(responseBody[lastPriceDate]['4. close']);
+    const [lastDate, hour] = lastPriceDate.split(" ");
+    let lastPrice = (0, _ConvertNumbers.convertAndParseFloat)(responseBody[lastDate]['4. close']);
     let capitalGains = lastPrice * purchasedAmountNumber - priceAtDate * purchasedAmountNumber;
     Object.assign(projectGains, {
       name: symbolQuote,

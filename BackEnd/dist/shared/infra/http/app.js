@@ -9,6 +9,8 @@ require("reflect-metadata");
 
 var _express = _interopRequireDefault(require("express"));
 
+var _cors = _interopRequireDefault(require("cors"));
+
 require("express-async-errors");
 
 require("../../container");
@@ -22,6 +24,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const app = (0, _express.default)();
 exports.app = app;
 app.use(_express.default.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", ['GET', 'POST']);
+  app.use((0, _cors.default)());
+  next();
+});
 app.use(_routes.router);
 app.use((err, request, response, next) => {
   if (err instanceof _AppError.AppError) {
