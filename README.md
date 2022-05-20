@@ -1,13 +1,51 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+# Comandos - Informações
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+NO FrontEnd foi usado o Create React App
 
-Choose a language to which you are interested and follow the instructions:
+## Diretório: cd BackEnd: 
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
-- [HTML/CSS/JS](front/README.md) [(English Version)](front/README_ENGLISH.md)
+### yarn install - adiciona todas as dependêcias
+
+### yarn dev - executa server.ts em desenvolvimento 
+
+### yarn test - executa teste unitarios
+
+### yarn build - compila BackEnd com babel
+
+### yarn buildDev - executa webpack com o arquivo serve.js gerado pelo babel
+Webpack gerava error no server.ts ao tentar compilar 
+
+### yarn start - executa bundle gerado pelo webpack na porta 3333 
+
+## Diretório: cd frontend
+
+### yarn install - adiciona todas as dependêcias
+
+### yarn start - executa aplicação react
+
+
+## Diretório: hiring-test-node
+
+## Rodar aplicação 
+
+### yarn startApp - não executa os dois serviços
+
+### yarn startBack - executa somente BackEnd
+
+### yarn startFront - executa somente FrontEnd
+
+
+# Detalhes
+
+FrontEnd = Não é possível executar comparação de ações pois mesmo após liberar cors
+de get e post, requisições post permaneceram bloqueadas
+
+Aplicação BackEnd foi testada com requisições no Insomnia, ocorre tratativa de erros
+com instância AppError, porém não consegui mostrá-los no FrontEnd
+
+BackEnd = Como não havia um banco de dados, api para buscar dados de ações foi usada 
+com o mesmo princípio para se acessar métodos de um banco nos repository
+
+Como não haviam entidades não foi posspivel definir retornos corretos para os métodos
+
+
