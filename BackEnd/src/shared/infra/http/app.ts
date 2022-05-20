@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
+import cors from 'cors';
 import "express-async-errors";
 
 import "../../container"
@@ -10,6 +11,13 @@ import { router } from "./routes"
 const app = express();
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", ['GET','POST']);
+    app.use(cors());
+    next();
+});
 
 app.use(router);
 
