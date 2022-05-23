@@ -8,8 +8,14 @@ const quote = async(req, res) => {
         res.status(400).json({ message: "Ha ocurrido un error, por favor intente de nuevo (" + err + ")", statushttp: 400 });
     }
 };
-const history = (req, res) => {
-
+const history = async(req, res) => {
+    try {
+        const stockHistory = await stockService.history(req.params.stock_name, req.query.from, req.query.to);
+        console.log(stockHistory);
+        res.status(200).json(stockHistory);
+    } catch (err) {
+        res.status(400).json({ message: "Ha ocurrido un error, por favor intente de nuevo (" + err + ")", statushttp: 400 });
+    }
 };
 const compare = (req, res) => {
 

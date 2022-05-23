@@ -1,5 +1,7 @@
 const axios = require('axios');
 const StockQuote = require('../models/stockQuote');
+const StockHistory = require('../models/stockHistory');
+const Pricing = require('../models/pricing');
 
 const token = "01510245e5dd40cb0e400642a7eae181";
 const baseUrlApi = "http://api.marketstack.com/v1/";
@@ -12,8 +14,13 @@ const quote = async(stock_name) => {
     return stockQuote;
 };
 
-const history = (stock_name, from, to) => {
-   
+const history = async(stock_name, from, to) => {
+    const urlHistory = baseUrlApi + "eod?access_key=" + token + "&symbols=" + stock_name + "&date_from=" + from + "&date_to=" + to;
+    const response = await axios.get(urlHistory);
+    const prices = response.data["data"];
+    const historyPrices = prices.map(price => {return new Pricing(price.open, price.low, price.high, price.close, price.date)});
+    const stockHistory = new StockHistory(stock_name, historyPrices)
+    return stockHistory;
 };
 const compare = (stock_name) => {
     
