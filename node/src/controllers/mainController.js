@@ -3,8 +3,14 @@ const index = (req, res) => {
     res.end();
 }; 
 
+const notFound = (req, res) => {
+    res.send(`<h1>404 Página no encontrada</h1>
+    <a href="/"> Ir a Inicio </a>`);
+}; 
+
 const mainController = {
-    index
+    index, 
+    notFound
 };
 
 module.exports = mainController; 
