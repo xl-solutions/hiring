@@ -17,8 +17,13 @@ const history = async(req, res) => {
         res.status(400).json({ message: "Ha ocurrido un error, por favor intente de nuevo (" + err + ")", statushttp: 400 });
     }
 };
-const compare = (req, res) => {
-
+const compare = async(req, res) => {
+    try {
+        const stockCompare = await stockService.compare(req.params.stock_name);
+        res.status(200).json(stockCompare);
+    } catch (err) {
+        res.status(400).json({ message: "Ha ocurrido un error, por favor intente de nuevo (" + err + ")", statushttp: 400 });
+    }
 };
 const gains = (req, res) => {
 

@@ -2,6 +2,7 @@ const axios = require('axios');
 const StockQuote = require('../models/stockQuote');
 const StockHistory = require('../models/stockHistory');
 const Pricing = require('../models/pricing');
+const LastPrice = require('../models/lastPrice');
 
 const token = "01510245e5dd40cb0e400642a7eae181";
 const baseUrlApi = "http://api.marketstack.com/v1/";
@@ -22,8 +23,12 @@ const history = async(stock_name, from, to) => {
     const stockHistory = new StockHistory(stock_name, historyPrices)
     return stockHistory;
 };
-const compare = (stock_name) => {
-    
+const compare = async(stock_name) => {
+    const urlCompare = baseUrlApi + "intraday/latest?access_key=" + token + "&symbols=" + stock_name;
+    const response = await axios.get(urlCompare);
+    const stocks = response.data["data"];
+    const stockCompare = stocks.map(stock => {return new LastPrice(stock.symbol, stock.open, stock.date)});
+    return stockCompare;
 };
 const gains = (stock_name, purchasedAmount, purchasedAt) => {
     
