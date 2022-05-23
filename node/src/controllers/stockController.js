@@ -25,8 +25,13 @@ const compare = async(req, res) => {
         res.status(400).json({ message: "Ha ocurrido un error, por favor intente de nuevo (" + err + ")", statushttp: 400 });
     }
 };
-const gains = (req, res) => {
-
+const gains = async(req, res) => {
+    try {
+        const stockGains = await stockService.gains(req.params.stock_name, req.query.purchasedAmount, req.query.purchasedAt);
+        res.status(200).json(stockGains);
+    } catch (err) {
+        res.status(400).json({ message: "Ha ocurrido un error, por favor intente de nuevo (" + err + ")", statushttp: 400 });
+    }
 };
 
 const stockController = {quote, history, compare, gains};
