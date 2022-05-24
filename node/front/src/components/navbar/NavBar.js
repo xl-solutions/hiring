@@ -15,7 +15,7 @@ export const NavBar = () => {
                     <Link className="nav-link active" aria-current="page" to="/">Inicio</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/quote">Preço Atual</Link>
+                    <Link className="nav-link" to="/quote">Cotações</Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/history">Histórico</Link>
