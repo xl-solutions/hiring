@@ -4,7 +4,7 @@ const index = (req, res) => {
 }; 
 
 const notFound = (req, res) => {
-    res.send(`<h1>404 Página no encontrada</h1>
+    res.status(404).send(`<h1>404 Página no encontrada</h1>
     <a href="/"> Ir a Inicio </a>`);
 }; 
 
