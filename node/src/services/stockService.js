@@ -5,7 +5,7 @@ const Pricing = require('../models/pricing');
 const LastPrice = require('../models/lastPrice');
 const StockGains = require('../models/stockGains');
 
-const token = "01510245e5dd40cb0e400642a7eae181";
+const token = "56b0f40c9ec4d2b5885d8f5f0aba3cde";
 const baseUrlApi = "http://api.marketstack.com/v1/";
 
 
