@@ -9,9 +9,6 @@ server.set('views', path.join(__dirname, 'views'));
 
 //routes
 server.use(cors());
-server.listen(80, function () {
-    console.log('CORS-enabled web server listening on port 80')
-  })
 server.use(webRoutes);
 
 //middleware
