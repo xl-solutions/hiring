@@ -9,7 +9,7 @@ describe ('Quote data query', () => {
     })
     it('Should be able to give the correct error if it does not have stock_name', async () => {
         await expect(stockService.quote("")).rejects.toEqual(
-            new Error("Stock_name debe completarse")
+            new Error("The stock_name field is missing")
         )
     })
 });  
@@ -21,7 +21,7 @@ describe ('History data query', () => {
     })
     it('Should be able to give the correct error if it does not have stock_name', async () => {
         await expect(stockService.history("")).rejects.toEqual(
-            new Error("Stock_name debe completarse")
+            new Error("The stock_name field is missing")
         )
     })
 });  
@@ -31,7 +31,7 @@ describe ('Compare data query', () => {
     })
     it('Should be able to give the correct error if it does not have stock_name', async () => {
         await expect(stockService.compare("")).rejects.toEqual(
-            new Error("Stock_name debe completarse")
+            new Error("The stock_name field is missing")
         )
     })
 });  
@@ -47,7 +47,7 @@ describe ('Gains data query', () => {
     })
     it('Should be able to give the correct error if it does not have stock_name', async () => {
         await expect(stockService.gains("")).rejects.toEqual(
-            new Error("Stock_name debe completarse")
+            new Error("The stock_name field is missing")
         )
     })
 });  

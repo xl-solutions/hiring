@@ -4,15 +4,16 @@ const StockHistory = require('../models/stockHistory');
 const Pricing = require('../models/pricing');
 const LastPrice = require('../models/lastPrice');
 const StockGains = require('../models/stockGains');
-const isValidStringDate = require('../utils/isValidateStringDate');
+const isValidStringDate = require('../utils/isValidStringDate');
+const isValidFromToDate = require('../utils/isValidFromToDate')
 
-const token = "b81a4770a4f4a427cd1d8cd4dee8add5";
+const token = "b4bdd55b58acf90114f1624a6d2e9f5c";
 const baseUrlApi = "http://api.marketstack.com/v1/";
 
 
 const quote = async(stock_name) => {
     if(!stock_name) {
-        throw new Error("Stock_name debe completarse"); 
+        throw new Error("The stock_name field is missing"); 
     }
     const urlQuote = baseUrlApi + "intraday/latest?access_key=" + token + "&symbols=" + stock_name;
     const response = await axios.get(urlQuote);
@@ -22,10 +23,13 @@ const quote = async(stock_name) => {
 
 const history = async(stock_name, from, to) => {
     if(!stock_name) {
-        throw new Error("Stock_name debe completarse"); 
+        throw new Error("The stock_name field is missing"); 
     }
-    if(!isValidStringDate(from) && !isValidStringDate(to)) {
-        throw new Error("O formato da data nao é valido"); 
+    if(!isValidStringDate(from) || !isValidStringDate(to)) {
+        throw new Error("The date is not valid"); 
+    }
+    if(!isValidFromToDate(from, to)) {
+        throw new Error("The from date should be less than to date"); 
     }
     const urlHistory = baseUrlApi + "eod?access_key=" + token + "&symbols=" + stock_name + "&date_from=" + from + "&date_to=" + to;
     const response = await axios.get(urlHistory);
@@ -36,7 +40,7 @@ const history = async(stock_name, from, to) => {
 };
 const compare = async(stock_name) => {
     if(!stock_name) {
-        throw new Error("Stock_name debe completarse"); 
+        throw new Error("The stock_name field is missing"); 
     }
     const urlCompare = baseUrlApi + "intraday/latest?access_key=" + token + "&symbols=" + stock_name;
     const response = await axios.get(urlCompare);
@@ -46,7 +50,10 @@ const compare = async(stock_name) => {
 };
 const gains = async(stock_name, purchasedAmount, purchasedAt) => {
     if(!stock_name) {
-        throw new Error("Stock_name debe completarse"); 
+        throw new Error("The stock_name field is missing"); 
+    }
+    if(!isValidStringDate(purchasedAt)) {
+        throw new Error("The date is not valid"); 
     }
     const urlLastPrice = baseUrlApi + "intraday?access_key=" + token + "&symbols=" + stock_name;
     const urlpriceAtDate = baseUrlApi + "intraday/" + purchasedAt + "?access_key=" + token + "&symbols=" + stock_name;
