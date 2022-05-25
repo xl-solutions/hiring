@@ -1,176 +1,75 @@
-# Background
+# AppInvestimentos
 
-Uma corretora de ações está desenvolvendo um sistema para permitir que pequenos investidores possam tomar decisões melhores sobre seu portfólio. Uma das funcionalidades importantes é a de verificar o desempenho de uma ação em cinco cenários:
+_AppInvestimentos é um aplicativo que permite consultar diferentes características de ações de forma simples e organizada._
 
-   - Preço atual;
-   - Preço histórico;
-   - Preço atual em comparação a outras ações;
-   - Projeção de ganhos com compra em data específica.
-   
-Para isso, a equipe de software da empresa optou por desenvolver duas aplicações: um serviço de backend especializado nesses requisitos (que permitirá que essas funcionalidades sejam reutilizadas em outros produtos da empresa) e um dashboard configurável que dará visibilidade aos dados. Sua missão para este teste é implementar ambas as partes.
+Com este aplicativo podemos fazer o seguinte:
 
-# Requisitos técnicos da solução
+    - Preço atual das ações;
+    - Preço histórico da ação entre datas específicas;
+    - Preço atual em comparação com outros anos;
+    - Projeção de ganhos obtidos com a compra em uma data específica.
+    - Adicionar e quitar ações no portfólio. 
 
-O serviço deverá ser implementado via HTTP, e o formato de serialização das requisições e respostas será JSON. O backend deverá ser implementado em node.js, seja com `http` puro, seja com framework de sua escolha. O frontend será uma single-page application (SPA), e poderá ser implementado com a solução de sua escolha: Angular, Angular 2/4, Vue.js, React, você decide. Forneça, em conjunto, uma configuração de build com Webpack, rollup, browserify ou outra solução de sua escolha, e um comando único para subir sua aplicação. 
+## Iniciando
 
-Sua solução deverá ter testes automatizados, tanto no frontend quanto no backend.
+_Estas instruções permitirão que você obtenha uma cópia de trabalho do projeto em sua máquina local para fins de desenvolvimento e teste._
 
-Para obter dados de ações, você poderá usar o Alpha Vantage (https://www.alphavantage.co). Caso queira utilizar bibliotecas prontas para isso — sinta-se livre para utilizá-las.
+Consulte **Implantação** para saber como implantar o projeto.
 
-O tratamento de erros não será explicitado nos endpoints. O candidato ou candidata poderá inferir casos que poderão gerar erros ou duplicidades nos dados, e tratá-los de acordo. A ausência de tratamento não desqualifica a proposta; a presença, no entanto, contará pontos a favor.
 
-## Projeção de ganhos
+### Pré requisitos
 
-A ideia é implementar algo simples, sem preocupações com dividendos, taxas administrativas ou outras incumbências que afetariam o montante total. Em sendo assim, pressuponha que a compradora investiu seu dinheiro numa determinada quantidade de ações de uma empresa em alguma data no passado, e que deseja saber quanto teria ganhado ou perdido caso o fizesse.
+- Ter o NodeJS v16.15.0 e o NPM v8.10.0 instalados.
+- Ter o Git instalado.
 
-# Como enviar sua proposta
+### Instalación
 
-- Crie um fork deste repositório;
-- Implemente sua solução, fazendo commits da maneira que faria em um projeto profissional;
-- Substitua este README com um específico para sua aplicação, indicando como rodá-la, e como executar os testes (fique à vontade para inserir mais detalhes técnicos, caso deseje);
-- Abra um pull request para este repositório.
-
-# Detalhamento
-
-## Frontend
-
-O importante nesta parte do desafio é que saibamos como você lida com os componentes que formam as técnicas contemporâneas de desenvolvimento client-side, no que tange processamento de assets, transpilers, separação de responsabilidades, minificação, armazenamento local, etc. Por isso, estética não é primordial.
-
-As funcionalidades esperadas são:
-
-- Incluir ações no portifólio;
-- Ver situação atual das ações (último preço e data e hora da atualização);
-- Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
-- Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
-
-Se você não tiver ideia de como organizar essas funcionalidades, não há problema nenhum em se inspirar no Yahoo Finance, ou fazer uma arquitetura master-detail simples.
-
-## Backend
-
-### Endpoints
-
-#### `/stocks/:stock_name/quote` - Retorna a cotação mais recente para a ação ####
-
-Entrada:
-
-- `stock_name` - parâmetro passado na URI indicando o nome da ação (PETR4.SA, VALE5.SA)
-
-Retorno:
-
-```js
-{
-  "name": string,
-  "lastPrice": number,
-  "pricedAt": string // data e hora no formato ISO 8601, UTC
-}
-```
-
-Exemplo de uso:
+1. Crear una cuenta gratuita en la API de consultas utilizada en [Market Stack](https://marketstack.com/signup/free) para obtener el token para acceder a las consultas. (Tiene un máximo de 100 consultas gratuitas por cuenta). Tendrá un Token en las configuraciones y dejo dos aqui para poder utilizar. El token se podrá cambiar desde node > back > .env. Subo a GitHub como excepción el archivo ".env" para que se pueda realizar las pruebas adecuadas. 
 
 ```
-$ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/PETR4.SA/quote
-{ "name": "PETR4.SA", "lastPrice": 25.11, "pricedAt": "2017-06-23T14:15:16Z" }
+41ff385aa180847b455274b3d35c625f
+```
+```
+b72ceef6b1aa1b603282297fb9778af0
 ```
 
-#### `/stocks/:stock_name/history?from=<string>&to=<string>` - Retorna preço histórico da ação num intervalo inclusivo ####
+2. Descargar el proyecto del repositorio. (Será enviado por un Pull Request) 
 
-Entrada:
-
-- `stock_name` - parâmetro passado na URI indicando o nome da ação (PETR4.SA, VALE5.SA)
-- `from` - string com data em formato ISO 8601
-- `to` - string com data em format ISO 8601
-
-```js
-{
-  "name": string,
-  "prices": [<pricing>, <pricing>, ...]
-}
-```
-
-O schema de `pricing` segue abaixo:
-
-```js
-{
-  "opening": number,
-  "low": number,
-  "high": number,
-  "closing": number,
-  "pricedAt": string // data no formato ISO 8601, UTC
-}
-```
-
-Exemplo de uso:
+3. Entrar a la carpeta del proyecto y ejecutar el siguiente script
 
 ```
-$ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/PETR4.SA/history?from=2017-04-04&to=2017-04-05
-{ "name": "PETR4.SA", "prices": [{ "opening": 14.67, "low": 14.57, "high": 14.89, "closing": 14.85, "pricedAt": "2017-04-04" }, { "opening": 15.05, "low": 14.50, "high": 15.16, "closing": 14.57, "pricedAt": "2017-04-05" }
+acá va el comando para descargar las librerias de Node (hacemos una para los dos ? )
 ```
 
-#### `/stocks/:stock_name/compare` - Compara uma ação com uma ou mais ações ####
-
-Entrada:
-
-- `stock_name` - parâmetro passado na URI indicando o nome da ação (PETR4.SA, VALE5.SA)
-- Payload JSON com uma lista de ações:
-
-```js
-{
-  "stocks": [<string>, <string>, ...]
-}
+4. Ejecutar el script que levanta los servidores
 ```
-
-Retorno:
-
-```js
-{
-  "lastPrices": [<lastPrice>, <lastPrice>...]
-}
-```
-
-`lastPrice` tem o seguinte schema:
-
-```js
-{
-  "name": string,
-  "lastPrice": number,
-  "pricedAt": string // data e hora no formato ISO 8601, UTC
-}
-```
-  
-Exemplo de uso:
-
-```
-$ curl -H "Accept: application/json" -H "Content-Type: application/json" -d '{ "stocks": ["TIMP3.SA", "VIVT4.SA"] }' http://coolfinancialservice.com/stock/OIBR4.SA/compare
-{ "lastPrices": [{ "name": "OIBR4.SA", "lastPrice": 3.41, "pricedAt": "2017-05-18T14:15:16Z" }, { "name": "TIMP3.SA", "lastPrice": 9.93, "pricedAt": "2017-05-18T14:15:16Z" }, { "name": "VIVT4.SA", "lastPrice": 45.92 }]}
-```
-  
-#### `/stocks/:stock_name/gains?purchasedAmount=<number>&purchasedAt=<string>` - Projeta ganhos com compra em uma data específica ####
-
-Entrada:
-
-- `stock_name` - parâmetro passado na URI indicando o nome da ação (PETR4.SA, VALE5.SA)
-- `purchasedAmount` - `number` com o número de ações
-- `purchasedAt` - `string` com data de compra em formato ISO 8601
-
-Retorno:
-
-```js
-{
-  "name": string,
-  "purchasedAmount": number,
-  "purchasedAt": string, // data em formato ISO 8601,
-  "priceAtDate": number, // preço na data de compra
-  "lastPrice": number,   // preço mais recente
-  "capitalGains": number // ganhos ou perdas com a ação, em reais
-}
-```
-
-Exemplo de uso:
-
-```
-$ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5.SA?purchasedAmount=100&purchasedAt=2016-05-31
-{ "name": "USIM5.SA", "purchasedAmount": 100, "purchasedAt": "2016-05-31", "priceAtDate": 3.97, "lastPrice": 4.33, "capitalGains": 36.0 }
+$ start. noseqe.sh
 ```
 
 
-https://www.alphavantage.co
+## Ejecutando las pruebas
+
+1. Para poder realizar las pruebas del sistema debemos entrar a la consola y ejecutar el siguente script:  
+```
+$ npm test
+```
+
+## Despliegue
+
+Para poder desplegar, debemos...
+
+## Construído com
+
+* React
+* Express
+* NodeJS
+* JavaScript
+* Sistema Operativo macOS 11.6
+
+## Versionado 
+
+Usamos [Git](https://git-scm.com) para el versionado.
+
+## Autor
+
+* **Matias Contreras** - *Test* - [matcontreras](https://github.com/matcontreras)
