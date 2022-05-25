@@ -33,7 +33,7 @@ export const NavBar = () => {
             </div>
 
             <span className="navbar-text">
-                <Link className="nav-link text-default" to="/portfolio">+ Meu Portfolio <span className="badge bg-secondary rounded-pill">{portfolio.length}</span></Link>
+                <Link className="nav-link text-default" to="/portfolio">★ Meu Portfolio <span className="badge bg-secondary rounded-pill">{portfolio.length}</span></Link>
             </span>
         </div>
     </nav>

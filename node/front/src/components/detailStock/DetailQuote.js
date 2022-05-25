@@ -36,7 +36,7 @@ export const DetailQuote = (props) => {
           <h6 className="card-subtitle mb-2 text-muted">{formattedDate} - {formattedTime}</h6>
           <p className="card-text">Último Preço: <b>$ {quote.lastPrice}</b></p>
           <button onClick={handleAddPortfolio} className="btn btn-outline-primary">Adicionar ao Portfolio</button> 
-          <Link className="btn btn-outline-secundary" to="/portfolio">+ Meu Portfolio</Link> 
+          <Link className="btn btn-outline-secundary" to="/portfolio"> ★ Meu Portfolio</Link> 
         </div>
       </div>
     </div>
