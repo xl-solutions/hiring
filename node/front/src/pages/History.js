@@ -1,22 +1,25 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { DetailHistory } from '../components/detailStock/DetailHistory';
+import { validateFormHistory } from '../utils/validateFormHistory';
 
 export const History = () => {
   const [formData, setFormData] = useState({});
   const [history, setHistory] = useState(); 
+  const [errors, setErrors] = useState({}); 
   const handleOnChange = (event) => {
     setFormData({...formData, [event.target.name]: event.target.value});
   }
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(formData.from);
     const {stock_name, from, to} = formData; 
-    getHistory(stock_name, from, to)
-        .then(response => {
-          setHistory(response);
-        })
-        .catch(error => {console.log("Este es error: ", error)});
+    if(validateFormHistory(formData, errors, setErrors)){
+      getHistory(stock_name, from, to)
+      .then(response => {
+        setHistory(response);
+      })
+      .catch(error => {console.log("Este es error: ", error)});
+    }
   }
   const getHistory = async (stock_name, from, to) => {
       console.log("entra a getQuote con: ", stock_name);
@@ -43,9 +46,11 @@ export const History = () => {
                         </div>
                         <div className="mb-3">
                           <input className="form-control" onChange={handleOnChange} name="from" type="date" placeholder="Desde" aria-label="default input example"/>
+                          <span>{errors.from ? errors.from : "" }</span>
                         </div>
                         <div className="mb-3">
                           <input className="form-control" onChange={handleOnChange} name="to" type="date" placeholder="Até" aria-label="default input example"/>
+                          <span>{errors.to ? errors.to : "" }</span>
                         </div>
                         <button type="submit" className="btn btn-primary">Ver listado</button>
                     </form>
