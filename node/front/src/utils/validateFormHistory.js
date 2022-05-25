@@ -1,4 +1,5 @@
 import { isValidStringDate } from "./isValidStringDate";
+import { isValidFromToDate } from "./isValidFromToDate";
 
 export const validateFormHistory = (formData, errors, setErrors) => {
     const {stock_name, from, to} = formData;
@@ -11,7 +12,7 @@ export const validateFormHistory = (formData, errors, setErrors) => {
       setErrors({...errors, to: "O formato da data é invalida"});
       return false;
     }
-    if(new Date(to) > new Date(from)) {
+    if(!isValidFromToDate(from, to)) {
       setErrors({...errors, to: "A data nao deve ser maior a Desde"});
       return false;
     }
