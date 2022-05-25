@@ -6,6 +6,7 @@ import { History } from "../pages/History";
 import { Compare } from "../pages/Compare";
 import { Gains } from "../pages/Gains";
 import { Portfolio } from "../pages/Portfolio";
+import { NotFound } from "../pages/NotFound";
 
 export function MainRouters () {
     return(
@@ -17,6 +18,7 @@ export function MainRouters () {
             <Route path="compare" element={<Compare />} />
             <Route path="gains" element={<Gains />} />
             <Route path="portfolio" element={<Portfolio />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     )
 }

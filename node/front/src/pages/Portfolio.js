@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { PortfolioContext } from '../contexts/PortfolioContext'
 import { Success } from '../components/alerts/Success';
+import { Link } from "react-router-dom";
 
 export const Portfolio = () => {
   const {portfolio, setPortfolio} = useContext(PortfolioContext);
@@ -27,8 +28,9 @@ export const Portfolio = () => {
               <div className="col-md-8 offset-md-2">
                 {success ? <span><Success /></span> : <span></span> }
                 <ul className="list-group">
-                  {portfolio.map((stock, index) => <li className="list-group-item" key={index}>{stock} - <button data-id={index} onClick={handleDeletePortfolio} className="btn btn-danger">Apagar</button></li>)}
+                  {portfolio.map((stock, index) => <li className="list-group-item" key={index}>{stock} | <button data-id={index} onClick={handleDeletePortfolio} className="btn btn-sm btn-outline-danger">Apagar</button></li>)}
                 </ul>
+                <span className="text-info">Você pode adicionar mais ações ao Portfólio depois de escolher uma <Link className="text-primary" to="/quote">cotação aqui.</Link></span>
               </div>
             </div>
         </div>
