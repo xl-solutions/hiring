@@ -14,9 +14,6 @@ Com este aplicativo podemos:
 
 _Estas instruções permitirão que você obtenha uma cópia de trabalho do projeto em sua máquina local para fins de desenvolvimento e teste._
 
-Consulte **Implantação** para saber como implantar o projeto.
-
-
 ### Pré requisitos
 
 - Ter o NodeJS v16.15.0 e o NPM v8.10.0 instalados.
@@ -24,7 +21,7 @@ Consulte **Implantação** para saber como implantar o projeto.
 
 ### Instalação
 
-1. Criar uma conta gratuita na API de consulta usada no [Market Stack](https://marketstack.com/signup/free) para obter o token para acessar as consultas. (Você tem um máximo de 100 consultas gratuitas por conta.) Você terá um Token nas configurações e deixo dois aqui para poder usar. O token pode ser alterado de node > back > .env. Carrego o arquivo ".env" no GitHub como exceção para que os testes apropriados possam ser realizados.
+1. Criar uma conta gratuita na API de consulta usada no [Market Stack](https://marketstack.com/signup/free) para obter o token para acessar as consultas. (Você tem um máximo de 100 consultas gratuitas por conta.) Você terá um Token nas configurações e deixo dois aqui para poder usar. O token pode ser alterado de node > back > .env. Carrego o arquivo ".env" no GitHub como exceção para que os testes apropriados possam ser realizados. 
 
 ```
 41ff385aa180847b455274b3d35c625f
@@ -35,28 +32,32 @@ b72ceef6b1aa1b603282297fb9778af0
 
 2. Baixe o projeto do repositório. (Será enviado por um Pull Request). 
 
-3. Entre na pasta do projeto com o console (hiring > node) e execute o seguinte script para baixar os módulos do Node:
+3. Entre na pasta do projeto com o console (hiring > node) e execute o seguinte script para baixar os instalar do Node:
 
 ```
-acá va el comando para descargar las librerias de Node (hacemos una para los dos ? )
+./install.sh
 ```
 
-4. Execute o seguinte script para compilar e iniciar os servidores backend e frontend
+4. Execute o seguinte script para compilar e iniciar os servidores backend e frontend: 
 ```
-$ start. noseqe.sh
+./start.sh
 ```
 
 
 ## Executando os testes
 
 1. Para realizar os testes do sistema devemos entrar no console e executar o seguinte script
+
+Para probar el backend, entrar a la carpeta "back" y ejecutar el comando:
+
 ```
 $ npm test
 ```
+Para probar el frontend, entrar a la carpeta "front" y ejecutar el comando:
 
-## Implantação
-
-Para poder desplegar, debemos...
+```
+$ npm test
+```
 
 ## Construído com
 
