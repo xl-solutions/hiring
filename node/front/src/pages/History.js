@@ -45,6 +45,7 @@ export const History = () => {
                                 <option value="none">Procure seu símbolo</option>
                                 {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
+                            <span>{errors.name ? errors.name : "" }</span>
                         </div>
                         <div className="mb-3">
                           <input className="form-control" onChange={handleOnChange} name="from" type="date" placeholder="Desde" aria-label="default input example"/>

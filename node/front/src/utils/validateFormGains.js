@@ -4,7 +4,7 @@ import { isValidNumber } from "./isValidNumber";
 export const validateFormGains = (formData, errors, setErrors) => {
     const {stock_name, purchasedAmount, purchasedAt} = formData;
     setErrors({});
-    if(stock_name === 'none') {
+    if(stock_name === 'none' || stock_name === undefined) {
       setErrors({...errors, stock_name: "Deve inserir um Stock"});
       return false;
     }

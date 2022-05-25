@@ -5,7 +5,7 @@ export const validateFormHistory = (formData, errors, setErrors) => {
     const {stock_name, from, to} = formData;
     setErrors({});
     console.log(stock_name);
-    if(stock_name === 'none' || stock_name === "") {
+    if(stock_name === 'none' || stock_name === undefined) {
       setErrors({...errors, name: "Deve inserir um Stock"});
       return false;
     }
