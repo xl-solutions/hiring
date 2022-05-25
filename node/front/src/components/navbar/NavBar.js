@@ -4,7 +4,7 @@ import { PortfolioContext } from '../../contexts/PortfolioContext'
 
 
 export const NavBar = () => {
-    const {portfolio, setPortfolio} = useContext(PortfolioContext);
+    const {portfolio} = useContext(PortfolioContext);
   return (
     <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
