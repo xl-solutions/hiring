@@ -24,7 +24,7 @@ export const DetailHistory = (props) => {
                 <td>$ {price.low}</td>
                 <td>$ {price.high}</td>
                 <td>$ {price.closing}</td>
-                <td>{price.pricedAt}</td>
+                <td>{new Date(price.pricedAt).toLocaleDateString("pt-BR")}</td>
                 </tr>
             )}
             </tbody>

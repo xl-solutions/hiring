@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 export const DetailCompare = (props) => {
     const {compare} = props;
@@ -12,7 +12,7 @@ export const DetailCompare = (props) => {
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">Último Preço: <b>$ {stock.lastPrice}</b></li>
-                <li className="list-group-item">Data: {stock.pricedAt}</li>
+                <li className="list-group-item">Data: {new Date(stock.pricedAt).toLocaleDateString("pt-BR")}</li>
             </ul>
             </div>
         </div>
