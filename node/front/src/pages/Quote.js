@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios'; 
 import { DetailQuote } from '../components/detailStock/DetailQuote';
+import useGetStocksNameFromApi from '../hooks/useGetStocksNameFromApi';
 
 export const Quote = () => {
     const [stock_name, setStockName] = useState("none"); 
@@ -8,6 +9,7 @@ export const Quote = () => {
     const handleOnChange = (event) => {
       setStockName(event.target.value);
   }
+  const [stocksName] = useGetStocksNameFromApi();
   const handleOnSubmit = (event) => {
     event.preventDefault();
     getQuote(stock_name)
@@ -35,8 +37,7 @@ export const Quote = () => {
                         <div className="mb-3">
                             <select className="form-select" onChange={handleOnChange} aria-label="Default select example" defaultValue>
                                 <option value="">Procure seu símbolo</option>
-                                <option value="AAPL">AAPL</option>
-                                <option value="MSFT">MSFT</option>
+                                {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
                         </div>
                         <button type="submit" className="btn btn-primary">Ver preço atual</button>

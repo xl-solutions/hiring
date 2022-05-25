@@ -33,7 +33,7 @@ const gains = async(req, res) => {
     }
 };
 const list = (req, res) => {
-    const stocks = ["AAPL", "MSFT", "TSLA"];
+    const stocks = ["AAPL", "MSFT", "TSLA", "GOOGL", "AMZN", "FB", "TSM", "UNH", "JPM", "ABBV"];
     res.status(200).json({stocks}); 
 };
 

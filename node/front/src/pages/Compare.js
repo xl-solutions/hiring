@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { DetailCompare } from '../components/detailStock/DetailCompare';
+import useGetStocksNameFromApi from '../hooks/useGetStocksNameFromApi';
 
 export const Compare = () => {
     const [formData, setFormData] = useState({});
@@ -8,6 +9,9 @@ export const Compare = () => {
     const handleOnChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
     }
+    
+  const [stocksName] = useGetStocksNameFromApi();
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const {stockName1, stockName2} = formData; 
@@ -36,17 +40,13 @@ export const Compare = () => {
                         <div className="mb-3">
                             <select className="form-select"  onChange={handleOnChange} name="stockName1" aria-label="Default select example" defaultValue>
                                 <option value="">Procure seu símbolo</option>
-                                <option value="AAPL">AAPL</option>
-                                <option value="MSFT">MSFT</option>
-                                <option value="TSLA">TSLA</option>
+                                {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
                         </div>
                         <div className="mb-3">
                             <select className="form-select" onChange={handleOnChange} name="stockName2" aria-label="Default select example" defaultValue>
                                 <option value="">Procure seu símbolo</option>
-                                <option value="AAPL">AAPL</option>
-                                <option value="MSFT">MSFT</option>
-                                <option value="TSLA">TSLA</option>
+                                {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
                         </div>
                         <div className="mb-3"></div>

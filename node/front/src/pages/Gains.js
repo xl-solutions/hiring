@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { DetailGains } from '../components/detailStock/DetailGains';
+import useGetStocksNameFromApi from '../hooks/useGetStocksNameFromApi';
 
 export const Gains = () => {
   const [formData, setFormData] = useState({});
   const [gains, setGains] = useState(); 
   const handleOnChange = (event) => {
     setFormData({...formData, [event.target.name]: event.target.value});
-  }
+  }  
+  
+  const [stocksName] = useGetStocksNameFromApi();
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const {stock_name, purchasedAmount, purchasedAt} = formData; 
@@ -36,9 +40,7 @@ export const Gains = () => {
                         <div className="mb-3">
                             <select className="form-select" onChange={handleOnChange} name="stock_name" aria-label="Default select example" defaultValue>
                                 <option value="">Procure seu símbolo</option>
-                                <option value="AAPL">AAPL</option>
-                                <option value="MSFT">MSFT</option>
-                                <option value="TSLA">TSLA</option>
+                                {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
                         </div>
                         <div className="mb-3">
