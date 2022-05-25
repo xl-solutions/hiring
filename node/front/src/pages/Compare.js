@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { DetailCompare } from '../components/detailStock/DetailCompare';
 import useGetStocksNameFromApi from '../hooks/useGetStocksNameFromApi';
+import { validateFormQuote } from '../utils/validateFormQuote';
 
 export const Compare = () => {
     const [formData, setFormData] = useState({});
     const [compare, setCompare] = useState(); 
+    const [errors, setErrors] = useState({}); 
     const handleOnChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
     }
@@ -14,11 +16,13 @@ export const Compare = () => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const {stockName1, stockName2} = formData; 
+    if(validateFormQuote(stockName1, errors, setErrors) && validateFormQuote(stockName2, errors, setErrors)) {
     getCompare(stockName1, stockName2)
         .then(response => {
             setCompare(response);
         })
         .catch(error => {console.log("Este es error: ", error)});
+    }
   }
   const getCompare = async (stockName1, stockName2) => {
       const history = await axios.get("http://localhost:3001/stocks/" + stockName1 + "," + stockName2 + "/compare");
@@ -48,6 +52,7 @@ export const Compare = () => {
                                 {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
                         </div>
+                        <span>{errors.name ? errors.name : "" }</span>
                         <div className="mb-3"></div>
                         <button type="submit" className="btn btn-primary">Ver comparação</button>
                     </form>

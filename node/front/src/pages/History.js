@@ -17,6 +17,7 @@ export const History = () => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const {stock_name, from, to} = formData; 
+    setErrors({});
     if(validateFormHistory(formData, errors, setErrors)){
       getHistory(stock_name, from, to)
       .then(response => {
@@ -41,7 +42,7 @@ export const History = () => {
                     <form onSubmit={handleOnSubmit}>
                         <div className="mb-3">
                             <select className="form-select" onChange={handleOnChange} name="stock_name" aria-label="Default select example" defaultValue>
-                                <option value="">Procure seu símbolo</option>
+                                <option value="none">Procure seu símbolo</option>
                                 {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
                         </div>
