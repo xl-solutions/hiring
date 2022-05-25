@@ -50,12 +50,12 @@ export const Gains = () => {
                             <span className="text-danger">{errors.stock_name ? errors.stock_name : "" }</span>
                         </div>
                         <div className="mb-3">
-                          <label for="purchasedAmount" className="form-label">Quantidade de açoes compradas:</label>
+                          <label htmlFor="purchasedAmount" className="form-label">Quantidade de açoes compradas:</label>
                           <input className="form-control" onChange={handleOnChange} id="purchasedAmount" name="purchasedAmount" type="number"/>
                           <span className="text-danger">{errors.purchasedAmount ? errors.purchasedAmount : "" }</span>
                         </div>
                         <div className="mb-3">
-                          <label for="purchasedAt" className="form-label">Data da compra:</label>
+                          <label htmlFor="purchasedAt" className="form-label">Data da compra:</label>
                           <input className="form-control" onChange={handleOnChange} id="purchasedAt" name="purchasedAt" type="date"/>
                           <span className="text-danger">{errors.purchasedAt ? errors.purchasedAt : "" }</span>
                         </div>

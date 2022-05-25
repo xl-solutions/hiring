@@ -48,12 +48,12 @@ export const History = () => {
                             <span className="text-danger">{errors.name ? errors.name : "" }</span>
                         </div>
                         <div className="mb-3">
-                          <label for="from" className="form-label">Desde:</label>
+                          <label htmlFor="from" className="form-label">Desde:</label>
                           <input className="form-control" onChange={handleOnChange} id="from" name="from" type="date" aria-label="default input example"/>
                           <span className="text-danger">{errors.from ? errors.from : "" }</span>
                         </div>
                         <div className="mb-3">
-                          <label for="to" className="form-label">Até:</label>
+                          <label htmlFor="to" className="form-label">Até:</label>
                           <input className="form-control" onChange={handleOnChange} id="to" name="to" type="date"/>
                           <span className="text-danger">{errors.to ? errors.to : "" }</span>
                         </div>
