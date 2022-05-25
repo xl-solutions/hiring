@@ -27,8 +27,8 @@ export const Quote = () => {
         <h1>Cotações</h1>
         <div className="container">
             <div className="row">
-                <div className='col-md-8'>
-                    { quote ? <DetailQuote quote={quote}/> : <span>No muestra nada</span>}
+                <div className='col-md-8 offset-md-2'>
+                    { quote ? <DetailQuote quote={quote}/> : <span></span>}
                 </div>
                 <div className="col-md-4 offset-md-4">
                     <form onSubmit={handleOnSubmit}>

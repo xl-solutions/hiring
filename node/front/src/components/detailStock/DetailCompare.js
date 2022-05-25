@@ -11,7 +11,7 @@ export const DetailCompare = (props) => {
                 {stock.name}
             </div>
             <ul className="list-group list-group-flush">
-                <li className="list-group-item">Último Preço: {stock.lastPrice}</li>
+                <li className="list-group-item">Último Preço: <b>$ {stock.lastPrice}</b></li>
                 <li className="list-group-item">Data: {stock.pricedAt}</li>
             </ul>
             </div>

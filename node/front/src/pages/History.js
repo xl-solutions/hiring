@@ -29,8 +29,8 @@ export const History = () => {
         <h1>Cotações históricas</h1>
         <div className="container">
             <div className="row">
-                <div className='col-md-8'>
-                    { history ? <DetailHistory history={history}/> : <span>No muestra nada</span>}
+                <div className='col-md-8 offset-md-2'>
+                    { history ? <DetailHistory history={history}/> : <span></span>}
                 </div>
                 <div className="col-md-4 offset-md-4">
                     <form onSubmit={handleOnSubmit}>
