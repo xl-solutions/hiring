@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require('axios');
 const StockQuote = require('../models/stockQuote');
 const StockHistory = require('../models/stockHistory');
@@ -7,7 +8,7 @@ const StockGains = require('../models/stockGains');
 const isValidStringDate = require('../utils/isValidStringDate');
 const isValidFromToDate = require('../utils/isValidFromToDate')
 
-const token = "b4bdd55b58acf90114f1624a6d2e9f5c";
+const token = process.env.TOKEN_API;
 const baseUrlApi = "http://api.marketstack.com/v1/";
 
 
