@@ -21,7 +21,7 @@ _Estas instruções permitirão que você obtenha uma cópia de trabalho do proj
 
 ### Instalação
 
-1. Criar uma conta gratuita na API de consulta usada no [Market Stack](https://marketstack.com/signup/free) para obter o token para acessar as consultas. (Você tem um máximo de 100 consultas gratuitas por conta.) Você terá um Token nas configurações e deixo dois aqui para poder usar. O token pode ser alterado de node > back > .env. Carrego o arquivo ".env" no GitHub como exceção para que os testes apropriados possam ser realizados. 
+1. Criar uma conta gratuita na API de consulta usada no [Market Stack](https://marketstack.com/signup/free) para obter o token para acessar as consultas. (Você tem um máximo de 100 consultas gratuitas por conta) O token pode ser alterado de node > back > .env. Carrego o arquivo ".env" no GitHub como exceção para que os testes apropriados possam ser realizados. Estou deixando aqui abaixo dois tokens para poder usar (100 consultas por token).
 
 ```
 41ff385aa180847b455274b3d35c625f
@@ -46,15 +46,13 @@ b72ceef6b1aa1b603282297fb9778af0
 
 ## Executando os testes
 
-1. Para realizar os testes do sistema devemos entrar no console e executar o seguinte script
-
-Para probar el backend, entrar a la carpeta "back" y ejecutar el comando:
+1. Para testar o backend, entre na pasta "back" e execute o comando:
 
 ```
 $ npm test
 ```
-Para probar el frontend, entrar a la carpeta "front" y ejecutar el comando:
 
+2. Para testar o frontend, acesse a pasta "front" e execute o comando:
 ```
 $ npm test
 ```
