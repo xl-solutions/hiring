@@ -21,7 +21,7 @@ export const DetailGains = (props) => {
       <div>
           <div className="card text-center">
             <div className="card-header">
-                Restultado
+                Resultado
             </div>
             <div className="card-body">
                 <h5 className="card-title">{gains.name}</h5>

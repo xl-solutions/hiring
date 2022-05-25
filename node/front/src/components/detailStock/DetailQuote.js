@@ -15,7 +15,9 @@ export const DetailQuote = (props) => {
     })
     const formattedTime = date.toLocaleTimeString('pt-BR');
     const handleAddPortfolio = () => {
-      storePortfolio(quote.name);
+      if(!portfolio.includes(quote.name)) {
+        storePortfolio(quote.name);
+      }
     }
   
     const storePortfolio = (newPortfolio) => {
