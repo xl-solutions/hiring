@@ -45,15 +45,17 @@ export const History = () => {
                                 <option value="none">Procure seu símbolo</option>
                                 {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
-                            <span>{errors.name ? errors.name : "" }</span>
+                            <span className="text-danger">{errors.name ? errors.name : "" }</span>
                         </div>
                         <div className="mb-3">
-                          <input className="form-control" onChange={handleOnChange} name="from" type="date" placeholder="Desde" aria-label="default input example"/>
-                          <span>{errors.from ? errors.from : "" }</span>
+                          <label for="from" className="form-label">Desde:</label>
+                          <input className="form-control" onChange={handleOnChange} id="from" name="from" type="date" aria-label="default input example"/>
+                          <span className="text-danger">{errors.from ? errors.from : "" }</span>
                         </div>
                         <div className="mb-3">
-                          <input className="form-control" onChange={handleOnChange} name="to" type="date" placeholder="Até" aria-label="default input example"/>
-                          <span>{errors.to ? errors.to : "" }</span>
+                          <label for="to" className="form-label">Até:</label>
+                          <input className="form-control" onChange={handleOnChange} id="to" name="to" type="date"/>
+                          <span className="text-danger">{errors.to ? errors.to : "" }</span>
                         </div>
                         <button type="submit" className="btn btn-primary">Ver listado</button>
                     </form>

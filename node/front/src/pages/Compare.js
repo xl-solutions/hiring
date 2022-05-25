@@ -52,7 +52,7 @@ export const Compare = () => {
                                 {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
                         </div>
-                        <span>{errors.name ? errors.name : "" }</span>
+                        <span className="text-danger">{errors.name ? errors.name : "" }</span>
                         <div className="mb-3"></div>
                         <button type="submit" className="btn btn-primary">Ver comparação</button>
                     </form>

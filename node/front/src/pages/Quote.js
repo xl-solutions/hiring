@@ -43,7 +43,7 @@ export const Quote = () => {
                                 <option value="">Procure seu símbolo</option>
                                 {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
-                            <span>{errors.name ? errors.name : "" }</span>
+                            <span className="text-danger">{errors.name ? errors.name : "" }</span>
                         </div>
                         <button type="submit" className="btn btn-primary">Ver preço atual</button>
                     </form>

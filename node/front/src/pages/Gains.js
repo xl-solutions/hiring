@@ -47,15 +47,17 @@ export const Gains = () => {
                                 <option value="">Procure seu símbolo</option>
                                 {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
-                            <span>{errors.stock_name ? errors.stock_name : "" }</span>
+                            <span className="text-danger">{errors.stock_name ? errors.stock_name : "" }</span>
                         </div>
                         <div className="mb-3">
-                          <input className="form-control" onChange={handleOnChange} name="purchasedAmount" type="number" placeholder="Quantidade de açoes compradas" aria-label="default input example"/>
-                          <span>{errors.purchasedAmount ? errors.purchasedAmount : "" }</span>
+                          <label for="purchasedAmount" className="form-label">Quantidade de açoes compradas:</label>
+                          <input className="form-control" onChange={handleOnChange} id="purchasedAmount" name="purchasedAmount" type="number"/>
+                          <span className="text-danger">{errors.purchasedAmount ? errors.purchasedAmount : "" }</span>
                         </div>
                         <div className="mb-3">
-                          <input className="form-control" onChange={handleOnChange} name="purchasedAt" type="date" placeholder="Data da compra" aria-label="default input example"/>
-                          <span>{errors.purchasedAt ? errors.purchasedAt : "" }</span>
+                          <label for="purchasedAt" className="form-label">Data da compra:</label>
+                          <input className="form-control" onChange={handleOnChange} id="purchasedAt" name="purchasedAt" type="date"/>
+                          <span className="text-danger">{errors.purchasedAt ? errors.purchasedAt : "" }</span>
                         </div>
                         <button type="submit" className="btn btn-primary">Ver resultado</button>
                     </form>
