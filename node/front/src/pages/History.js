@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { DetailHistory } from '../components/detailStock/DetailHistory';
 import { validateFormHistory } from '../utils/validateFormHistory';
+import useGetStocksNameFromApi from '../hooks/useGetStocksNameFromApi';
 
 export const History = () => {
   const [formData, setFormData] = useState({});
@@ -10,6 +11,9 @@ export const History = () => {
   const handleOnChange = (event) => {
     setFormData({...formData, [event.target.name]: event.target.value});
   }
+  
+  const [stocksName] = useGetStocksNameFromApi();
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const {stock_name, from, to} = formData; 
@@ -22,9 +26,7 @@ export const History = () => {
     }
   }
   const getHistory = async (stock_name, from, to) => {
-      console.log("entra a getQuote con: ", stock_name);
       const history = await axios.get(`http://localhost:3001/stocks/${stock_name}/history?from=${from}&to=${to}`);
-      console.log("llama al siguiente ulr: ", history);
       return history.data;
   }
   return (
@@ -40,8 +42,7 @@ export const History = () => {
                         <div className="mb-3">
                             <select className="form-select" onChange={handleOnChange} name="stock_name" aria-label="Default select example" defaultValue>
                                 <option value="">Procure seu símbolo</option>
-                                <option value="AAPL">AAPL</option>
-                                <option value="MSFT">MSFT</option>
+                                {stocksName.map((stock, index) => <option value={stock} key={index}>{stock}</option>)}
                             </select>
                         </div>
                         <div className="mb-3">

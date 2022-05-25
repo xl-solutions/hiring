@@ -32,7 +32,11 @@ const gains = async(req, res) => {
         res.status(400).json({ message: "Ha ocurrido un error, por favor intente de nuevo (" + err + ")", statushttp: 400 });
     }
 };
+const list = (req, res) => {
+    const stocks = ["AAPL", "MSFT", "TSLA"];
+    res.status(200).json({stocks}); 
+};
 
-const stockController = {quote, history, compare, gains};
+const stockController = {quote, history, compare, gains, list};
 
 module.exports = stockController;

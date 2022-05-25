@@ -4,6 +4,7 @@ const StockHistory = require('../models/stockHistory');
 const Pricing = require('../models/pricing');
 const LastPrice = require('../models/lastPrice');
 const StockGains = require('../models/stockGains');
+const isValidStringDate = require('../utils/isValidateStringDate');
 
 const token = "b81a4770a4f4a427cd1d8cd4dee8add5";
 const baseUrlApi = "http://api.marketstack.com/v1/";
@@ -22,6 +23,9 @@ const quote = async(stock_name) => {
 const history = async(stock_name, from, to) => {
     if(!stock_name) {
         throw new Error("Stock_name debe completarse"); 
+    }
+    if(!isValidStringDate(from) && !isValidStringDate(to)) {
+        throw new Error("O formato da data nao é valido"); 
     }
     const urlHistory = baseUrlApi + "eod?access_key=" + token + "&symbols=" + stock_name + "&date_from=" + from + "&date_to=" + to;
     const response = await axios.get(urlHistory);

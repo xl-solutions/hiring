@@ -16,6 +16,7 @@ export const DetailQuote = (props) => {
           <h5 className="card-title">{quote.name}</h5>
           <h6 className="card-subtitle mb-2 text-muted">{formattedDate} - {formattedTime}</h6>
           <p className="card-text">Último Preço: <b>$ {quote.lastPrice}</b></p>
+          <button className="btn btn-primary">Adicionar ao Portfolio</button>
         </div>
       </div>
     </div>
