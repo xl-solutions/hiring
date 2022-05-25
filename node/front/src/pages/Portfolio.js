@@ -24,10 +24,12 @@ export const Portfolio = () => {
         <h1>Meu Portfolio</h1>
         <div className="container">
             <div className="row">
-              {success ? <span><Success /></span> : <span></span> }
-              <ul className="list-group col-md-4 offset-md-4">
-                {portfolio.map((stock, index) => <li className="list-group-item" key={index}>{stock} - <button data-id={index} onClick={handleDeletePortfolio} className="btn btn-danger">Apagar</button></li>)}
-              </ul>
+              <div className="col-md-8 offset-md-2">
+                {success ? <span><Success /></span> : <span></span> }
+                <ul className="list-group">
+                  {portfolio.map((stock, index) => <li className="list-group-item" key={index}>{stock} - <button data-id={index} onClick={handleDeletePortfolio} className="btn btn-danger">Apagar</button></li>)}
+                </ul>
+              </div>
             </div>
         </div>
     </section>
