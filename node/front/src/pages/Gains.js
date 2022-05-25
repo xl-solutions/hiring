@@ -50,7 +50,8 @@ export const Gains = () => {
                         <button type="submit" className="btn btn-primary">Ver resultado</button>
                     </form>
                 </div>
-                )}
+                )
+              }
             </div>
         </div>
     </section>
