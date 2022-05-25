@@ -3,13 +3,15 @@ import axios from 'axios';
 import { DetailQuote } from '../components/detailStock/DetailQuote';
 import useGetStocksNameFromApi from '../hooks/useGetStocksNameFromApi';
 
+
 export const Quote = () => {
     const [stock_name, setStockName] = useState("none"); 
     const [quote, setQuote] = useState(); 
+    const [stocksName] = useGetStocksNameFromApi();
+
     const handleOnChange = (event) => {
-      setStockName(event.target.value);
-  }
-  const [stocksName] = useGetStocksNameFromApi();
+        setStockName(event.target.value);
+    }
   const handleOnSubmit = (event) => {
     event.preventDefault();
     getQuote(stock_name)
@@ -19,9 +21,7 @@ export const Quote = () => {
         .catch(error => {console.log("Este es error: ", error)});
   }
   const getQuote = async (stock_name) => {
-      console.log("entra a getQuote con: ", stock_name);
       const quote = await axios.get("http://localhost:3001/stocks/" + stock_name + "/quote");
-      console.log("llama al siguiente ulr: ", quote);
       return quote.data;
   }
   return (

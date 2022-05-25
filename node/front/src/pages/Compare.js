@@ -9,8 +9,7 @@ export const Compare = () => {
     const handleOnChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
     }
-    
-  const [stocksName] = useGetStocksNameFromApi();
+    const [stocksName] = useGetStocksNameFromApi();
 
   const handleOnSubmit = (event) => {
     event.preventDefault();

@@ -28,6 +28,10 @@ export const NavBar = () => {
                 </li>
             </ul>
             </div>
+
+            <span className="navbar-text">
+                <Link className="nav-link text-default" to="/portfolio">+ Meu Portfolio</Link>
+            </span>
         </div>
     </nav>
   )
