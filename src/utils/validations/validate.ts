@@ -1,5 +1,17 @@
 import { isNotEmpty } from './isNotEmpty';
 
+export class Validator {
+  nameValidationMap: Map<string, Function>;
+  errorMessageValidationMap?;
+
+  constructor() {
+    this.nameValidationMap = new Map();
+
+    this.nameValidationMap.set('string', isNotEmpty);
+    this.nameValidationMap.set('date', () => {});
+  }
+}
+
 /**
  * That's faster than const obj = {}
  */
@@ -34,7 +46,11 @@ export function getValidationErrors(...values: ['string' | 'date', Record<string
   return {
     errors: [
       ...validate(...values).map(({ isValid, validationType, validationValue, validationValueName }) => {
-        if (!isValid) return validationErrorStringFactory(validationValueName, validationValue, validationType);
+        if (!isValid)
+          return {
+            type: 'TypeError',
+            description: validationErrorStringFactory(validationValueName, validationValue, validationType),
+          };
       }),
     ],
   };
