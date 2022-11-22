@@ -1,11 +1,12 @@
 import importedAxios from 'axios';
+import { NotFoundError } from '../utils/errors/NotFoundError';
 import {
   YahooApiErrorResponse,
   YahooApiSuccessResponse,
   YahooApiUsefullInfo,
 } from '../utils/types/YahooApi/YahooApiTypes';
 import { desconstructErrorObject, desconstructSuccessObject } from '../utils/types/YahooApi/YahooObjectDesconstructor';
-export class ApiService {
+export class YahooApiService {
   // Dependency injection for testing later
   constructor(private axios = importedAxios) {}
 
@@ -15,9 +16,21 @@ export class ApiService {
         `https://query1.finance.yahoo.com/v7/finance/spark?symbols=${stockName}&range=1d&interval=5m&indicators=close&includeTimestamps=false&includePrePost=false&corsDomain=finance.yahoo.com&.tsrc=finance`
       )
       .then(({ data }) => {
-        return desconstructSuccessObject(data);
+        // Some of the data are incomplete and do not return the price.
+        // So I'm duckTyping it out as a NotFound Error
+        const { regularMarketTime, regularMarketPrice, symbol } = desconstructSuccessObject(data);
+
+        if (regularMarketPrice && regularMarketPrice && symbol) {
+          return { regularMarketTime, regularMarketPrice, symbol };
+        }
+        //duck typing
+        throw 'DuckType';
       })
-      .catch((data: YahooApiErrorResponse) => {
+      .catch((data: YahooApiErrorResponse | string) => {
+        if (typeof data === 'string') {
+          throw { code: 'Not Found' };
+        }
+
         throw desconstructErrorObject(data);
       });
   }
