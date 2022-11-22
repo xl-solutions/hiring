@@ -1,4 +1,5 @@
-import { ControllerError, ErrorTypes } from '../types/ControllerResponses/ControllerError';
+import { ValidationError } from '../errors/ValidationError';
+// import { ControllerError, ErrorTypes } from '../types/ControllerResponses/ControllerError';
 import { Validators } from './Validators';
 import { ValidatationTypes } from './Validators';
 
@@ -8,11 +9,6 @@ export class ParameterValidator {
   private static nameValidationMap: Record<string, Function> = {
     string: Validators.isNotEmpty,
     date: () => {},
-  };
-
-  private static errorMessageValidationMap = {
-    string: 'não é uma string valida',
-    date: 'não é uma data valida',
   };
 
   private static validate(validationKey: string, value: any) {
@@ -39,22 +35,13 @@ export class ParameterValidator {
   }
 
   /**
-   * Constructs an error message string
-   */
-  private static validationErrorString(valueName: string, value: any, validationType: ValidatationTypes) {
-    return `Parametro ${valueName} possui o valor invalido de '${value.toString()}'.`;
-  }
-
-  /**
-   * Return validationErrors as an Errors or undefined if there's none.
+   * Return validationErrors as an Errors array or undefined if there's none.
    */
   static getValidationErrors(...values: MultipleValidationInput) {
-    const errors: ControllerError[] = [];
+    const errors: ValidationError[] = [];
     this.validateValues(...values).forEach(({ isValid, validationType, name, value }) => {
       if (!isValid) {
-        errors.push(
-          new ControllerError(ErrorTypes.VALIDATION, this.validationErrorString(name, value, validationType))
-        );
+        errors.push(new ValidationError(name, value, validationType));
       }
     });
     if (errors.length > 0) return errors;
