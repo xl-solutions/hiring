@@ -1,13 +1,12 @@
 import { ControllerResult } from './ControllerResult';
 import { EndpointsResponseTypes } from '../EndpointsTypes';
 
-export class ApiSuccess implements ControllerResult {
+export class ControllerSuccess implements ControllerResult {
   constructor(private result: EndpointsResponseTypes) {}
 
-  getApiResponseObject() {
+  getResult() {
     return this.result;
   }
-
   getStatusCode() {
     return 200;
   }
