@@ -1,12 +1,12 @@
-import { ApiError, ErrorTypes } from '../types/ApiObjects/ApiError';
-import { isNotEmpty } from './isNotEmpty';
-import { ValidatationTypes } from './validationTypes';
+import { ControllerError, ErrorTypes } from '../types/ControllerResponses/ControllerError';
+import { Validators } from './Validators';
+import { ValidatationTypes } from './Validators';
 
 type MultipleValidationInput = [ValidatationTypes, Record<string, any>][];
 
 export class ParameterValidator {
   private static nameValidationMap: Record<string, Function> = {
-    string: isNotEmpty,
+    string: Validators.isNotEmpty,
     date: () => {},
   };
 
@@ -49,10 +49,12 @@ export class ParameterValidator {
    * Return validationErrors as an Errors or undefined if there's none.
    */
   static getValidationErrors(...values: MultipleValidationInput) {
-    const errors: ApiError[] = [];
+    const errors: ControllerError[] = [];
     this.validateValues(...values).forEach(({ isValid, validationType, name, value }) => {
       if (!isValid) {
-        errors.push(new ApiError(ErrorTypes.VALIDATION, this.validationErrorString(name, value, validationType)));
+        errors.push(
+          new ControllerError(ErrorTypes.VALIDATION, this.validationErrorString(name, value, validationType))
+        );
       }
     });
     if (errors.length > 0) return errors;
