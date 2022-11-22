@@ -1,6 +1,5 @@
 import importedAxios from 'axios';
 import {
-  YahooApiErrorObject,
   YahooApiErrorResponse,
   YahooApiSuccessResponse,
   YahooApiUsefullInfo,
