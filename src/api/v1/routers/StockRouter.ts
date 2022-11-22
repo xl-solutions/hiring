@@ -12,11 +12,11 @@ stockRouter.get('/:stock_name', async ({ params: { stock_name = '' } }, res) => 
   res.status(apiResponse.getStatusCode()).send(apiResponse);
 });
 
-stockRouter.get('/:stock_name', async ({ params: { stock_name = '' } }, res) => {
-  const result = await controller.getStockBySymbol(stock_name);
-  const apiResponse = ApiResponseFactory.createResponseInstance(result);
+stockRouter.get('/:stock_name/compare', async ({ body: { stocks }, params: { stock_name = '' } }, res) => {
+  const result = await controller.compareStockBySymbol(stock_name, stocks);
+  // const apiResponse = ApiResponseFactory.createResponseInstance(result);
 
-  res.status(apiResponse.getStatusCode()).send(apiResponse);
+  res.send('Done');
 });
 
 export default stockRouter;
