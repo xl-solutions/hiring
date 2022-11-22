@@ -1,8 +1,8 @@
-import { ControllerError } from '../ControllerResponses/ControllerError';
+import { BaseError } from '../../errors/BaseError';
 import { ApiResponse } from './ApiResponse';
 
 export class ApiResponseFailure extends ApiResponse {
-  constructor(errors: ControllerError[]) {
+  constructor(errors: BaseError[]) {
     super();
     this.errors = errors;
   }
