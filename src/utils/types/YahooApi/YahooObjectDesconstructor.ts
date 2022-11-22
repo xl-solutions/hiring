@@ -3,7 +3,7 @@ import {
   YahooApiErrorResponse,
   YahooApiSuccessResponse,
   YahooApiUsefullInfo,
-} from './types/YahooApiTypes';
+} from './YahooApiTypes';
 
 export function desconstructErrorObject(error: YahooApiErrorResponse): YahooApiErrorObject {
   return error.response.data.spark?.error;
