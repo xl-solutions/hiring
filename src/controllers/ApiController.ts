@@ -6,6 +6,7 @@ import { UnknownError } from '../utils/errors/UnknownError';
 import { ControllerSuccess } from '../utils/types/ControllerResponses/ControllerSuccess';
 import {
   CompareStockBySymbols,
+  GetProjectedGains,
   GetStockBySymbol,
   GetStockHistoryBySymbol,
   HistoricPrices,
@@ -80,8 +81,8 @@ export class ApiController {
   async getStockHistoryBySymbol(
     stock_name: string,
     from: string,
-    to: string // : Promise<ControllerSuccess<GetStockHistoryBySymbol> | BaseError[]>
-  ) {
+    to: string
+  ): Promise<ControllerSuccess<GetStockHistoryBySymbol> | BaseError[]> {
     const validationErrors = ParameterValidator.getValidationErrors(
       [ValidatationTypes.STRING, { stock_name }],
       [ValidatationTypes.DATE, { from }],
@@ -98,7 +99,7 @@ export class ApiController {
     }
 
     return this.alphaApiService
-      .getStockLimitedHistoryBySymbol(stock_name, new Date(from), new Date(to))
+      .getStockLimitedHistoryBySymbol(stock_name)
       .then(async (result) => {
         /**
          * - The stream containing the result is displayed decreassingly, like this
@@ -118,6 +119,8 @@ export class ApiController {
         let reading = false;
         let ending = false;
         let stringResult = '{';
+        const toDate = new Date(to).toISOString().split('T')[0];
+        const fromDate = new Date(to).toISOString().split('T')[0];
 
         result.on('data', (lineBuffer: Buffer) => {
           const line = lineBuffer.toString();
@@ -127,13 +130,17 @@ export class ApiController {
             result.pause();
           }
 
-          const isTheStartOfToObject: boolean = line.includes(to.split('T')[0]) && line.includes('{'); // "date": {
-          const isTheStartOfFromObject: boolean = line.includes(from.split('T')[0]) && line.includes('{'); // "date": {
-          const isEndOfTheLastObject: boolean = ending && line.includes('},');
+          const isTheStartOfToObject: boolean = line.includes(toDate) && line.includes('{'); // "date": {
 
           if (isTheStartOfToObject) {
             reading = true;
           }
+
+          if (!reading) {
+            return; //ignore
+          }
+
+          const isTheStartOfFromObject: boolean = line.includes(fromDate) && line.includes('{'); // "date": {
 
           if (isTheStartOfFromObject) {
             ending = true;
@@ -143,6 +150,7 @@ export class ApiController {
             stringResult += line;
           }
 
+          const isEndOfTheLastObject: boolean = ending && line.includes('},');
           if (isEndOfTheLastObject) {
             //removing last comma
             stringResult = stringResult.slice(0, -1);
@@ -153,8 +161,8 @@ export class ApiController {
         return new Promise<ControllerSuccess<GetStockHistoryBySymbol> | BaseError[]>((resolve, _) => {
           result.on('pause', () => {
             stringResult += '}';
-            const hasError = stringResult === '{}';
 
+            const hasError = stringResult === '{}';
             if (hasError) {
               resolve([new NotFoundError({ stock_name })]);
             } else {
@@ -184,5 +192,53 @@ export class ApiController {
       .catch(() => {
         return [new UnknownError()];
       });
+  }
+
+  async projectGains(
+    stock_name: string,
+    purchasedAmount: string,
+    purchasedAt: string
+  ): Promise<ControllerSuccess<GetProjectedGains> | BaseError[]> {
+    const validationErrors = ParameterValidator.getValidationErrors(
+      [ValidatationTypes.STRING, { stock_name }],
+      [ValidatationTypes.POSITIVE_NUMBER, { purchasedAmount }],
+      [ValidatationTypes.DATE, { purchasedAt }],
+      [ValidatationTypes.IS_NOT_HOLIDAY, { purchasedAt }],
+      [ValidatationTypes.NOT_TODAY_OR_AFTER, { purchasedAt }]
+    );
+
+    if (validationErrors !== undefined) {
+      return validationErrors;
+    }
+
+    const [todaysValue, onDateValue] = await Promise.all([
+      this.getStockBySymbol(stock_name),
+      this.getStockHistoryBySymbol(stock_name, purchasedAt, purchasedAt),
+    ]);
+    let totalToday = undefined,
+      totalOnDate = undefined;
+
+    if (todaysValue instanceof ControllerSuccess) {
+      totalToday = todaysValue.getResult().lastPrice * Number(purchasedAmount);
+    } else {
+      return todaysValue;
+    }
+
+    if (onDateValue instanceof ControllerSuccess) {
+      totalOnDate = onDateValue.getResult().prices[0].closing * Number(purchasedAmount);
+    } else {
+      return onDateValue;
+    }
+    console.log(onDateValue.getResult());
+
+    todaysValue.getResult().pricedAt;
+    return new ControllerSuccess({
+      name: stock_name.toUpperCase(),
+      lastPrice: todaysValue.getResult().lastPrice,
+      priceAtDate: onDateValue.getResult().prices[0].closing,
+      purchasedAmount: Number(purchasedAmount),
+      purchasedAt: new Date(purchasedAt).toISOString(),
+      capitalGains: Number((totalToday - totalOnDate).toFixed(2)),
+    });
   }
 }
