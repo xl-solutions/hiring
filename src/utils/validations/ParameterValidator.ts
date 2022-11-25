@@ -1,5 +1,4 @@
 import { ValidationError } from '../errors/ValidationError';
-// import { ControllerError, ErrorTypes } from '../types/ControllerResponses/ControllerError';
 import { Validators } from './Validators';
 import { ValidatationTypes } from './Validators';
 
@@ -8,7 +7,10 @@ type MultipleValidationInput = [ValidatationTypes, Record<string, any>][];
 export class ParameterValidator {
   private static nameValidationMap: Record<string, Function> = {
     string: Validators.isNotEmpty,
-    date: () => {},
+    date: Validators.isValidDate,
+    holiday: Validators.isNotHoliday,
+    date_interval: Validators.isValidDateInterval,
+    today_or_after: Validators.dateIsNotTodayOrAfter,
   };
 
   private static validate(validationKey: string, value: any) {
