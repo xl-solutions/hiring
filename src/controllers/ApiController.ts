@@ -13,7 +13,6 @@ import {
 } from '../utils/types/EndpointsTypes';
 import { ParameterValidator } from '../utils/validations/ParameterValidator';
 import { ValidatationTypes } from '../utils/validations/Validators';
-import byline from 'byline';
 
 export class ApiController {
   static instance: ApiController;
@@ -120,7 +119,7 @@ export class ApiController {
         let ending = false;
         let stringResult = '{';
         const toDate = new Date(to).toISOString().split('T')[0];
-        const fromDate = new Date(to).toISOString().split('T')[0];
+        const fromDate = new Date(from).toISOString().split('T')[0];
 
         result.on('data', (lineBuffer: Buffer) => {
           const line = lineBuffer.toString();
@@ -187,6 +186,9 @@ export class ApiController {
               );
             }
           });
+          result.on('end', () => {
+            resolve([new NotFoundError({ from }), new NotFoundError({ to })]);
+          });
         });
       })
       .catch(() => {
@@ -221,15 +223,26 @@ export class ApiController {
     if (todaysValue instanceof ControllerSuccess) {
       totalToday = todaysValue.getResult().lastPrice * Number(purchasedAmount);
     } else {
+      // The only case where there's two errors is when date is not found (to and from)
+      // In that case, im remodeling the error so it doesnt show as a weird "unknown to and from"
+      // parameter that the user have never sended.
+      const didNotFindDate = todaysValue[0] instanceof NotFoundError && todaysValue.length === 2;
+      if (didNotFindDate) {
+        return [new NotFoundError({ purchasedAt })];
+      }
       return todaysValue;
     }
 
     if (onDateValue instanceof ControllerSuccess) {
       totalOnDate = onDateValue.getResult().prices[0].closing * Number(purchasedAmount);
     } else {
+      //same thing
+      const didNotFindDate = onDateValue[0] instanceof NotFoundError && onDateValue.length === 2;
+      if (didNotFindDate) {
+        return [new NotFoundError({ purchasedAt })];
+      }
       return onDateValue;
     }
-    console.log(onDateValue.getResult());
 
     todaysValue.getResult().pricedAt;
     return new ControllerSuccess({
