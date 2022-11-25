@@ -5,14 +5,13 @@ export class ValidationError extends BaseError {
   constructor(name: string, value: string, validationType: ValidatationTypes) {
     super('ValidationError');
 
-    console.log([name, value]);
     this.setDescription(this.createDescriptionString({ name, value, validationType }));
   }
 
   protected createDescriptionString({ name, value, validationType }: any) {
-    return `Parameter of name ${name} has the invalid value of '${value.toString()}'.`;
+    return `${validationType}: Parameter of name '${name}' has the invalid value of '${value.toString()}'.`;
   }
   getStatusCode(): number {
-    return 500;
+    return 400;
   }
 }
