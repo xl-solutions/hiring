@@ -1,6 +1,4 @@
-import { ControllerResult } from './ControllerResult';
-
-export class ControllerSuccess<EndpointsResponseTypes> implements ControllerResult {
+export class ControllerSuccess<EndpointsResponseTypes> {
   constructor(private result: EndpointsResponseTypes) {}
 
   getResult() {
