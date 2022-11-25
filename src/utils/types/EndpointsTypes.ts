@@ -1,5 +1,3 @@
-export type EndpointsResponseTypes = GetStockBySymbol | CompareStockBySymbols | GetStockHistoryBySymbol;
-
 export type GetStockBySymbol = {
   name: string;
   lastPrice: number;
@@ -22,3 +20,18 @@ export interface GetStockHistoryBySymbol {
   name: string;
   prices: HistoricPrices[];
 }
+
+export interface GetProjectedGains {
+  name: string;
+  purchasedAmount: number;
+  purchasedAt: string; // data em formato ISO 8601,
+  priceAtDate: number; // preço na data de compra
+  lastPrice: number; // preço mais recente
+  capitalGains: number; // ganhos ou perdas com a ação, em reais
+}
+
+export type EndpointsResponseTypes =
+  | GetStockBySymbol
+  | CompareStockBySymbols
+  | GetStockHistoryBySymbol
+  | GetProjectedGains;
