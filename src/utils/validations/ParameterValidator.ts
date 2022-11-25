@@ -11,6 +11,8 @@ export class ParameterValidator {
     holiday: Validators.isNotHoliday,
     date_interval: Validators.isValidDateInterval,
     today_or_after: Validators.dateIsNotTodayOrAfter,
+    number: Validators.isNumber,
+    number_positive: Validators.isPositiveNumber,
   };
 
   private static validate(validationKey: string, value: any) {

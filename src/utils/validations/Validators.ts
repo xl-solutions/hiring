@@ -1,6 +1,8 @@
 export enum ValidatationTypes {
   DATE = 'date',
   STRING = 'string',
+  NUMBER = 'number',
+  POSITIVE_NUMBER = 'number_positive',
   IS_NOT_HOLIDAY = 'holiday',
   DATE_INTERVAL = 'date_interval',
   NOT_TODAY_OR_AFTER = 'today_or_after',
@@ -57,6 +59,15 @@ export namespace Validators {
         return true;
       }
     }
+    return false;
+  }
+
+  export function isNumber(number: string) {
+    return !isNaN(Number(number));
+  }
+
+  export function isPositiveNumber(number: string) {
+    if (isNumber(number)) return Number(number) > 0;
     return false;
   }
 }
