@@ -1,4 +1,4 @@
-export type EndpointsResponseTypes = GetStockBySymbol | CompareStockBySymbols;
+export type EndpointsResponseTypes = GetStockBySymbol | CompareStockBySymbols | GetStockHistoryBySymbol;
 
 export type GetStockBySymbol = {
   name: string;
@@ -9,3 +9,16 @@ export type GetStockBySymbol = {
 export type CompareStockBySymbols = {
   lastPrices: GetStockBySymbol[];
 };
+
+export interface HistoricPrices {
+  opening: number;
+  low: number;
+  high: number;
+  closing: number;
+  pricedAt: string; // data no formato ISO 8601, UTC
+}
+
+export interface GetStockHistoryBySymbol {
+  name: string;
+  prices: HistoricPrices[];
+}

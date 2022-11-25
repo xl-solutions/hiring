@@ -1,22 +1,30 @@
+import { AlphaVantageApiService } from '../services/AlphaVantageApiService';
 import { YahooApiService } from '../services/YahooApiService';
 import { BaseError } from '../utils/errors/BaseError';
 import { NotFoundError } from '../utils/errors/NotFoundError';
 import { UnknownError } from '../utils/errors/UnknownError';
-// import { ControllerError, ErrorTypes } from '../utils/types/ControllerResponses/ControllerError';
 import { ControllerSuccess } from '../utils/types/ControllerResponses/ControllerSuccess';
-import { CompareStockBySymbols, GetStockBySymbol } from '../utils/types/EndpointsTypes';
-import { YahooApiErrorObject } from '../utils/types/YahooApi/YahooApiTypes';
+import {
+  CompareStockBySymbols,
+  GetStockBySymbol,
+  GetStockHistoryBySymbol,
+  HistoricPrices,
+} from '../utils/types/EndpointsTypes';
 import { ParameterValidator } from '../utils/validations/ParameterValidator';
 import { ValidatationTypes } from '../utils/validations/Validators';
+import byline from 'byline';
 
 export class ApiController {
   static instance: ApiController;
 
-  private constructor(private apiService = new YahooApiService()) {}
+  private constructor(
+    private yahooApiService = new YahooApiService(),
+    private alphaApiService: AlphaVantageApiService = new AlphaVantageApiService()
+  ) {}
 
-  static getInstance(apiService?: YahooApiService): ApiController {
+  static getInstance(yahooApiService?: YahooApiService): ApiController {
     if (!ApiController.instance) {
-      ApiController.instance = new ApiController(apiService);
+      ApiController.instance = new ApiController(yahooApiService);
     }
     return ApiController.instance;
   }
@@ -28,7 +36,7 @@ export class ApiController {
     }
 
     try {
-      const result = await this.apiService.getStockBySymbol(stock_name);
+      const result = await this.yahooApiService.getStockBySymbol(stock_name);
 
       return new ControllerSuccess({
         name: result.symbol,
@@ -44,10 +52,11 @@ export class ApiController {
     }
   }
 
-  async CompareStockBySymbols(
+  async compareStockBySymbols(
     stock_name: string,
     stocks: string[]
   ): Promise<ControllerSuccess<CompareStockBySymbols> | BaseError[]> {
+    //no need for validation, getstockbysymbol already does it.
     const stocksArray = [stock_name, ...stocks];
     const successArray: GetStockBySymbol[] = [];
     const errorArray: BaseError[] = [];
@@ -66,5 +75,114 @@ export class ApiController {
     if (hasAnyErrors) return errorArray;
 
     return new ControllerSuccess({ lastPrices: successArray });
+  }
+
+  async getStockHistoryBySymbol(
+    stock_name: string,
+    from: string,
+    to: string // : Promise<ControllerSuccess<GetStockHistoryBySymbol> | BaseError[]>
+  ) {
+    const validationErrors = ParameterValidator.getValidationErrors(
+      [ValidatationTypes.STRING, { stock_name }],
+      [ValidatationTypes.DATE, { from }],
+      [ValidatationTypes.DATE, { to }],
+      [ValidatationTypes.IS_NOT_HOLIDAY, { from }],
+      [ValidatationTypes.IS_NOT_HOLIDAY, { to }],
+      [ValidatationTypes.NOT_TODAY_OR_AFTER, { from }],
+      [ValidatationTypes.NOT_TODAY_OR_AFTER, { to }],
+      [ValidatationTypes.DATE_INTERVAL, { from_to: [from, to] }]
+    );
+
+    if (validationErrors !== undefined) {
+      return validationErrors;
+    }
+
+    return this.alphaApiService
+      .getStockLimitedHistoryBySymbol(stock_name, new Date(from), new Date(to))
+      .then(async (result) => {
+        /**
+         * - The stream containing the result is displayed decreassingly, like this
+         * "2022-01-03": { ... }, "2022-01-02": { ... }, "2022-01-01": { ... }
+         *
+         * - We can notice that the "to" date is always the first to appear since it is, by
+         * definition, earlier than the "from" one.
+         * - So my strategy here is to read the stream line by line, and ignore it,  until the
+         * "to" date has been found.
+         * - After that, we can start reading ( adding the lines to a string ) until we find
+         * the the "from" date.
+         * - And then, we can start ending ( adding the last object to the string ) end the stream.
+         *
+         * We then convert the string to a JSON Object and there you have it.
+         **/
+
+        let reading = false;
+        let ending = false;
+        let stringResult = '{';
+
+        result.on('data', (lineBuffer: Buffer) => {
+          const line = lineBuffer.toString();
+
+          const hasError = line.includes('Error Message');
+          if (hasError) {
+            result.pause();
+          }
+
+          const isTheStartOfToObject: boolean = line.includes(to.split('T')[0]) && line.includes('{'); // "date": {
+          const isTheStartOfFromObject: boolean = line.includes(from.split('T')[0]) && line.includes('{'); // "date": {
+          const isEndOfTheLastObject: boolean = ending && line.includes('},');
+
+          if (isTheStartOfToObject) {
+            reading = true;
+          }
+
+          if (isTheStartOfFromObject) {
+            ending = true;
+          }
+
+          if (reading) {
+            stringResult += line;
+          }
+
+          if (isEndOfTheLastObject) {
+            //removing last comma
+            stringResult = stringResult.slice(0, -1);
+            result.pause();
+          }
+        });
+
+        return new Promise<ControllerSuccess<GetStockHistoryBySymbol> | BaseError[]>((resolve, _) => {
+          result.on('pause', () => {
+            stringResult += '}';
+            const hasError = stringResult === '{}';
+
+            if (hasError) {
+              resolve([new NotFoundError({ stock_name })]);
+            } else {
+              const rawPricesObj = JSON.parse(stringResult);
+
+              const pricesObj: HistoricPrices[] = Object.keys(rawPricesObj).map((key) => {
+                const saidObj = rawPricesObj[key];
+                return {
+                  opening: Number(saidObj['1. open']),
+                  high: Number(saidObj['2. high']),
+                  low: Number(saidObj['3. low']),
+                  closing: Number(saidObj['4. close']),
+                  pricedAt: new Date(key).toISOString(),
+                };
+              });
+
+              resolve(
+                new ControllerSuccess<GetStockHistoryBySymbol>({
+                  name: stock_name.toUpperCase(),
+                  prices: pricesObj,
+                })
+              );
+            }
+          });
+        });
+      })
+      .catch(() => {
+        return [new UnknownError()];
+      });
   }
 }
