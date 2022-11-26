@@ -24,6 +24,6 @@
   },
   "scripts": {
     "dev": "nodemon --ignore ./dist -e .ts  --exec 'tsc && node ./dist/server.js'",
-    "test": "tsc && jest --config ./jest.config.js"
+    "test": "tsc && eslint && jest --config ./jest.config.js --runInBand "
   }
 }
