@@ -19,12 +19,6 @@ stockRouter.get('/:stock_name/compare', async ({ body: { stocks }, params: { sto
   res.status(apiResponse.getStatusCode()).send(apiResponse);
 });
 
-stockRouter.get('/:stock_name/compare', async ({ body: { stocks }, params: { stock_name = '' } }, res) => {
-  const result = await controller.compareStockBySymbols(stock_name, stocks);
-  const apiResponse = ApiResponseFactory.createResponseInstance(result);
-
-  res.status(apiResponse.getStatusCode()).send(apiResponse);
-});
 
 stockRouter.get('/:stock_name/history', async ({ params: { stock_name = '' }, query: { from = '', to = '' } }, res) => {
   const result = await controller.getStockHistoryBySymbol(stock_name, from.toString(), to.toString());
