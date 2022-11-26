@@ -1,13 +1,19 @@
-# Testes Técnicos XL solutions / Tecnical XL Solutions Test
+# Hi there
 
-Escolha a tecnologia da vaga para a qual você está se candidatando, e siga as instruções:
+This is a API I made for an technical nodejs backend challenge.
 
-Choose a language to which you are interested and follow the instructions:
+## Instructions
 
-- [C#](C/README.md) [(English Version)](C/README_ENGLISH.md)
-- [Ruby](ruby/README.md) [(English Version)](ruby/README_ENGLISH.md)
-- [Python](python/README.md) [(English Version)](python/README_ENGLISH.md)
-- [Mobile APP](Mobile_APP/README.md) [(English Version)](Mobile_APP/README_ENGLISH.md)
-- [node.js](node/README.md) [(English Version)](node/README_ENGLISH.md)
-- [PHP](PHP/README.md) [(English Version)](PHP/README_ENGLISH.md)
-- [HTML/CSS/JS](front/README.md) [(English Version)](front/README_ENGLISH.md)
+**Starting the api:**
+
+1. Assign the blank variables at the `.env.example` file and rename it to `.env`
+
+- You can get your free api key, or you can borrow mine in env.example . [here](https://www.alphavantage.co/support/#api-key).
+
+2. Run `yarn` to download project dependencies
+3. Run `yarn start` to run project.
+
+**Running tests:**
+
+1. Run `yarn` to download project dependencies.
+2. In another therminal, run `yarn test`.
