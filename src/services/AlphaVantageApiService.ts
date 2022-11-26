@@ -9,9 +9,7 @@ export class AlphaVantageApiService {
   async getStockLimitedHistoryBySymbol(stock_name: string) {
     return this.axios
       .get(
-        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock_name}&outputsize=full&apikey=${requiredEnv(
-          process.env.API_KEY
-        )}`,
+        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock_name}&outputsize=full&apikey=${process.env.API_KEY}`,
         { responseType: 'stream' }
       )
       .then(({ data }) => {
