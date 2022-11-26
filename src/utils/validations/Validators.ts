@@ -1,9 +1,11 @@
 export enum ValidatationTypes {
-  DATE = 'date',
   STRING = 'string',
+
   NUMBER = 'number',
   POSITIVE_NUMBER = 'number_positive',
-  IS_NOT_HOLIDAY = 'holiday',
+
+  DATE = 'date',
+  IS_NOT_WEEKEND = 'weekend',
   DATE_INTERVAL = 'date_interval',
   NOT_TODAY_OR_AFTER = 'today_or_after',
 }
@@ -22,7 +24,7 @@ export namespace Validators {
     return false;
   }
 
-  export function isNotHoliday(value: string) {
+  export function isNotWeekend(value: string) {
     if (isValidDate(value)) {
       const dateDay = new Date(value);
       const isSunday = dateDay.getUTCDay() === 0;
@@ -34,7 +36,8 @@ export namespace Validators {
     return false;
   }
 
-  export function isValidDateInterval([beginDate, endingDate]: string) {
+  export function isValidDateInterval(dates: string[]) {
+    const [beginDate, endingDate] = dates;
     if (isValidDate(beginDate) && isValidDate(endingDate)) {
       //getting only the 2022-01-01 part.
       const beginDateObj = new Date(new Date(beginDate).toISOString().split('T')[0]);
@@ -54,7 +57,7 @@ export namespace Validators {
       const dateObj = new Date(new Date(date).toISOString().split('T')[0]);
 
       const today = new Date(new Date().toISOString().split('T')[0]);
-      const isNotTodayOrAfter = today.valueOf() - dateObj.valueOf() > 86400000;
+      const isNotTodayOrAfter = today.valueOf() - dateObj.valueOf() >= 86400000;
       if (isNotTodayOrAfter) {
         return true;
       }
