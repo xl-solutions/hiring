@@ -9,4 +9,7 @@ app.use(cors());
 
 app.use('/v1/stocks', v1StockRouter);
 
+console.log('\n\n\n\t\t🚀 To the moon! 🚀');
+console.log('\tServer started at localhost:3000\n\n');
+
 app.listen(3000);
