@@ -1,4 +1,4 @@
 export function requiredEnv(env: string | undefined): string {
-  if (env) return env;
+  if (env !== undefined) return env;
   throw new Error('Please assign dotenv parameters.');
 }
