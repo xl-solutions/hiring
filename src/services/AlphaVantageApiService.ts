@@ -1,6 +1,5 @@
 import importedAxios from 'axios';
 import byline from 'byline';
-import fs from 'fs';
 import { requiredEnv } from '../utils/Env';
 
 export class AlphaVantageApiService {
