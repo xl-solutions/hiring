@@ -22,9 +22,9 @@ export class ApiController {
     private alphaApiService: AlphaVantageApiService = new AlphaVantageApiService()
   ) {}
 
-  static getInstance(yahooApiService?: YahooApiService): ApiController {
+  static getInstance(yahooApiService?: YahooApiService, alphaApiService?: AlphaVantageApiService): ApiController {
     if (!ApiController.instance) {
-      ApiController.instance = new ApiController(yahooApiService);
+      ApiController.instance = new ApiController(yahooApiService, alphaApiService);
     }
     return ApiController.instance;
   }
@@ -86,8 +86,8 @@ export class ApiController {
       [ValidatationTypes.STRING, { stock_name }],
       [ValidatationTypes.DATE, { from }],
       [ValidatationTypes.DATE, { to }],
-      [ValidatationTypes.IS_NOT_HOLIDAY, { from }],
-      [ValidatationTypes.IS_NOT_HOLIDAY, { to }],
+      [ValidatationTypes.IS_NOT_WEEKEND, { from }],
+      [ValidatationTypes.IS_NOT_WEEKEND, { to }],
       [ValidatationTypes.NOT_TODAY_OR_AFTER, { from }],
       [ValidatationTypes.NOT_TODAY_OR_AFTER, { to }],
       [ValidatationTypes.DATE_INTERVAL, { from_to: [from, to] }]
@@ -205,7 +205,7 @@ export class ApiController {
       [ValidatationTypes.STRING, { stock_name }],
       [ValidatationTypes.POSITIVE_NUMBER, { purchasedAmount }],
       [ValidatationTypes.DATE, { purchasedAt }],
-      [ValidatationTypes.IS_NOT_HOLIDAY, { purchasedAt }],
+      [ValidatationTypes.IS_NOT_WEEKEND, { purchasedAt }],
       [ValidatationTypes.NOT_TODAY_OR_AFTER, { purchasedAt }]
     );
 
