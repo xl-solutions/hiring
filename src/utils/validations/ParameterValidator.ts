@@ -8,7 +8,7 @@ export class ParameterValidator {
   private static nameValidationMap: Record<string, Function> = {
     string: Validators.isNotEmpty,
     date: Validators.isValidDate,
-    holiday: Validators.isNotHoliday,
+    weekend: Validators.isNotWeekend,
     date_interval: Validators.isValidDateInterval,
     today_or_after: Validators.dateIsNotTodayOrAfter,
     number: Validators.isNumber,
