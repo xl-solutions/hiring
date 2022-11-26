@@ -1,5 +1,4 @@
 import importedAxios from 'axios';
-import { NotFoundError } from '../utils/errors/NotFoundError';
 import {
   YahooApiErrorResponse,
   YahooApiSuccessResponse,
@@ -18,9 +17,11 @@ export class YahooApiService {
       .then(({ data }) => {
         // Some of the data are incomplete and do not return the price.
         // So I'm duckTyping it out as a NotFound Error
-        const { regularMarketTime, regularMarketPrice, symbol } = desconstructSuccessObject(data);
 
-        if (regularMarketPrice && regularMarketPrice && symbol) {
+        const { regularMarketTime, regularMarketPrice, symbol } = desconstructSuccessObject(data);
+        const hasEveryInfo: boolean = Boolean(regularMarketPrice) && Boolean(regularMarketTime) && Boolean(symbol);
+
+        if (hasEveryInfo) {
           return { regularMarketTime, regularMarketPrice, symbol };
         }
         //duck typing
