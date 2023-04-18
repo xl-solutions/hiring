@@ -1,0 +1,19 @@
+{
+  "name": "hiringRissoli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Rrissoli/hiringRissoli.git",
+  "author": "Rrissoli <raphels123@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^13.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  }
+}
