@@ -19,8 +19,9 @@ export default function ModalDetail({ show, setShow, nameAction }) {
                             <p>Preço Médio: R$ 24234</p>
                         </div>
                         <div className={styles.botons_container}>
-                            <button >Buscar</button>
+                            <button >Filtrar</button>
                             <button onClick={() => setShow(false)}>Fechar</button>
+                            
                         </div>
                     </div>
                 </div>
