@@ -11,11 +11,13 @@ import { useState } from 'react';
 
 export default function HomeScreen() {
   const [show, setShow] = useState(true)
+  const [nameAction, setAction] =  useState(null)
+  
   return (
     <Box>
       <Header/>
-      <ModalDetail show={show} setShow={setShow}/>
-      <GridCard/>
+      <ModalDetail show={show} setShow={setShow} nameAction={nameAction}/>
+      <GridCard setAction={setAction} setShow={setShow} />
       <FilterBox/>
       <Footer />
     </Box>

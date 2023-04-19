@@ -17,7 +17,7 @@
     background-color: #0069d9;
 }
 .align{
-    
+    margin-bottom: 40px;
     display: flex; 
     justify-content: space-between;
     align-items: center; 

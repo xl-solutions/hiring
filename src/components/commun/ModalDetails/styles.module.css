@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
   
   .modal {
@@ -16,6 +17,11 @@
     border-radius: 5px;
     max-width: 600px;
     text-align: center;
+    min-width: 50%;
+    min-height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
   
   .modal h2 {
@@ -30,4 +36,18 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+  .botons_container{
+    display: flex;
+    gap: 10px;
+  }
+  .text{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+  .container_data{
+    display: flex;
+    flex-direction: column;
   }

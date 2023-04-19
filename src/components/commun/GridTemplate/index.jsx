@@ -49,10 +49,10 @@ let arrAcoes = [
         dateTime: "12/04/2023"
     }
 ]
-export default function GridCard(){
+export default function GridCard({setAction, setShow}){
     return(
         <div className={styles.grid}>
-            {arrAcoes.map(acao => (<Card  acao={acao}/>))}
+            {arrAcoes.map(acao => (<Card  acao={acao} setAction={setAction} setShow={setShow}/>))}
         </div>
     )
 }
