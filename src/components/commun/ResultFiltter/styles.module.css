@@ -1,0 +1,12 @@
+.results{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    min-width: 50%;
+    height: 100%;
+}
+.container_1_results{
+    display: flex;
+    align-items: center;
+}

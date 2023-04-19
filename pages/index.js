@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import Header from '../src/components/Header'
- 
+import React from 'react'
+import Header from '../src/components/patterns/Header'
+ import Footer from '../src/components/patterns/Footer'
+import HomeScreen from '../src/screens/HomeScreen'
 export default function HomePage() {
     return (
         <div>
-            <Header/>
-            <h1>Home aqui</h1>
-            <Link href="/portfolio">Portifolio</Link>
+            <HomeScreen/>
         </div>
 
     )
