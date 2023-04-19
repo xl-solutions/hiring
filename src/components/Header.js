@@ -11,7 +11,7 @@ export default function TitleName() {
             </div>
             <style jsx>{`
                 h1{
-                    font-family: 'Montserrat',
+                    
                     font-size: 36px;
                     font-weight: 700; 
                     color: #333; 
