@@ -12,12 +12,13 @@ import { useState } from 'react';
 export default function HomeScreen() {
   const [show, setShow] = useState(true)
   const [nameAction, setAction] =  useState(null)
-  
+  const [stocks, setStocks] = useState([])
+  console.log(stocks)
   return (
     <Box>
-      <Header/>
+      <Header setStocks={setStocks}/>
       <ModalDetail show={show} setShow={setShow} nameAction={nameAction}/>
-      <GridCard setAction={setAction} setShow={setShow} />
+      <GridCard setAction={setAction} setShow={setShow} stocks={stocks} setStocks={setStocks}/>
       <FilterBox/>
       <Footer />
     </Box>

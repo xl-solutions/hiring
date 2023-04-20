@@ -1,23 +1,28 @@
+import { useState } from "react"
 import styles from "./styles.module.css"
 
-export default function Card({acao, setAction, setShow}) {
+export default function Card({stock, setAction, setShow}) {
     const tradeInfos = () => {
-        setAction(acao.name)
+        setAction(stock.name)
         setShow(true)
     }
+    const [newStock, setNewStock] = useState(stock)
+    console.log(newStock)
     return (
-                <div className={styles.card}>
-                    <div className={styles.header}>
-                        <h4>{acao.name}</h4>
-                    </div>
-                    <div className={styles.body}>
-                        <p className={styles.price}>Preço R$ {acao.price} ({acao.percent}% de queda)</p>
-                        <p className={styles.data}>Data/Hora atualizada: {acao.dateTime}</p>
-                    </div>
-                    <div className={styles.footer}>
-                        <button onClick={() => tradeInfos()}>Ver Histórico</button>
-                    </div>
-                </div>
-           
+        
+        <div className={styles.card}>
+            <div className={styles.header}>
+                <h4>{newStock.name}</h4>
+            </div>
+            <div className={styles.body}>
+                <p className={styles.price}>Preço R$ {newStock.price}</p>
+                <p className={styles.data}>Data/Hora atualizada: {newStock.date}</p>
+            </div>
+            <div className={styles.footer}>
+                <button onClick={() => tradeInfos()}>Ver Histórico</button>
+            </div>
+            
+        </div>
     )
+    
 }
