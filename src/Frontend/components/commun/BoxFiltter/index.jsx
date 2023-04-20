@@ -2,7 +2,7 @@ import { useState } from "react"
 import ResultFiltter from "../ResultFiltter"
 import styles from "./styles.module.css"
 import axios from 'axios';
-
+import { getGains } from "@/Frontend/api/api";
 
 export default function FilterBox() {
     const [stock_name, setStockName] = useState("");
@@ -23,15 +23,11 @@ export default function FilterBox() {
     };
     const handleCalculateClick = async () => {
         try {
-            
-            const response = await axios.get(`/api/stocks/${stock_name}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${purchasedAt}`);
-            const body = response.data;
-            
+            const response = await getGains(stock_name,purchasedAmount, purchasedAt);
+            const body = response;
             setGains(body)
-            
           } catch (error) {
-            console.error(error);
-            // Tratar erro adequadamente
+            throw error
           }
     };
     return (

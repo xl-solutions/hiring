@@ -1,6 +1,7 @@
 import AlphaVantageService from "@/Backend/services/alphaVantageService"
 import DataFormat from "../../../../utils/dateUtils";
 import formatCurrency from "../../../../utils/priceUtils";
+import calculateAverage from "../../../../utils/averagePrice";
 export default async function handler(req, res) {
     const { stock_name, from, to } = req.query;
 
@@ -26,12 +27,14 @@ export default async function handler(req, res) {
         low = formatCurrency(low)
         high = formatCurrency(high)
         close = formatCurrency(close)
+        
         const body = {
             oppening,
             low,
             high,
             close,
-            pricedAt
+            pricedAt,
+           
         }
         res.status(200).json(body)
     } catch (error) {

@@ -1,11 +1,13 @@
 import { useState } from "react"
 import styles from "./styles.module.css"
 import { getHistoricalPrice } from "../../../api/api"
+import calculateAverage from "../../../../../utils/averagePrice"
 
 export default function ModalDetail({ show, setShow, nameAction }) {
     const [details, setDetails] = useState({})
     const [from, setFrom] = useState("")
     const [to, setTo] = useState("")
+    const [average, setAverage] = useState(0)
     const handlerDateFrom = (event) => {
 
         setFrom(event.target.value)
@@ -14,11 +16,15 @@ export default function ModalDetail({ show, setShow, nameAction }) {
 
         setTo(event.target.value)
     }
-
+    const handleAverage = (high,low) => {
+        const av = calculateAverage(high,low)
+        setAverage(av)
+    }
     const handleHistoricalPrices = async () => {
         try {
             const response = await getHistoricalPrice(nameAction, from, to)
             setDetails(response)
+            handleAverage(response.high,response.low)
         } catch (error) {
             throw error
         }
@@ -38,7 +44,7 @@ export default function ModalDetail({ show, setShow, nameAction }) {
                         <div className={styles.text} >
                             <p>Maior Preço: {details.high}</p>
                             <p>Menor Preço: {details.low}</p>
-                            <p>Preço Médio: { }</p>
+                            <p>Preço Médio: {average}</p>
                         </div>
                         <div className={styles.botons_container}>
                             <button onClick={handleHistoricalPrices} >Filtrar</button>
