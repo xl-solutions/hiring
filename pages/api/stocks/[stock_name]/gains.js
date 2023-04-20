@@ -5,10 +5,10 @@ export default async function handler(req, res) {
     const { stock_name,purchasedAmount, purchasedAt } = req.query;
    
     try {
-        const arrPrices = await AlphaVantageService.getGains(stock_name,purchasedAmount,purchasedAt)
+        const response = await AlphaVantageService.getGains(stock_name,purchasedAmount,purchasedAt)
         
-
-        console.log(response)
+        
+        res.status(200).json(response)
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Erro ao obter cotação.' });

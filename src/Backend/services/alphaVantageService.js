@@ -30,11 +30,11 @@ class AlphaVantageService {
       if (to) {
         params.end_date = to;
       }
-      console.log(params)
+      
       const response = await axios.get('', {
         params,
       });
-      console.log(response)
+
       const prices = [];
       for (const [date, values] of Object.entries(response.data['Time Series (Daily)'])) {
         if (date >= from && date <= to) {
@@ -55,25 +55,33 @@ class AlphaVantageService {
 
       const currentPrice = await this.getCotacaoMaisRecente(stockName);
 
+      let data = new Date()
+      const ano = data.getFullYear();
+      const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+      const dia = data.getDate().toString().padStart(2, '0');
+      data = `${ano}-${mes}-${dia}`;
 
-      const historicalPrices = await this.getHistoricalPrices(stockName);
+      const historicalPrices = await this.getHistoricalPrices(stockName, purchasedAt, data);
+      
+      const purchasedPrice = historicalPrices.find(price => price.date === purchasedAt)?.price;
+     
+      const lastPrice = currentPrice;
 
-      // Filtrar apenas os preços a partir da data de compra
-      const purchasedPrices = historicalPrices.filter(price => {
-        return price.date >= purchasedAt;
-      });
+      if (!purchasedPrice) {
+        throw new Error('Não há dados de preços na data de compra');
+      }
 
-      // Obter o preço de compra da ação
-      const purchasedPrice = purchasedPrices[0].price;
+      const capitalGains = (lastPrice - purchasedPrice) * purchasedAmount;
+      const result = {
+        name: stockName,
+        purchasedAmount: purchasedAmount,
+        purchasedAt: purchasedAt,
+        priceAtDate: purchasedPrice,
+        lastPrice: lastPrice,
+        capitalGains: capitalGains
+      };
 
-      // Calcular o lucro ou prejuízo
-      const profitOrLoss = (currentPrice - purchasedPrice) * purchasedAmount;
-
-      // Formatar o valor para exibição
-      const formattedProfitOrLoss = this.formatValue(profitOrLoss);
-
-      // Retornar o lucro ou prejuízo
-      return formattedProfitOrLoss;
+      return result;
     } catch (error) {
       console.error(error);
       throw new Error('Erro ao projetar ganhos');
