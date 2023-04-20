@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './styles.module.css';
+import { getStock } from '@/Frontend/api/api';
 
 export default function Header({ setStocks }) {
   const [newStock, setNewStock] = useState('');
@@ -11,13 +12,12 @@ export default function Header({ setStocks }) {
 
   const handleAddStock = async () => {
     try {
-      const response = await axios.get(`/api/stocks/${newStock}/quote`);
-      const stockPrice = response.data;
-      setStocks((prevStocks) => [...prevStocks, { ...stockPrice }]);
+      const response = await getStock(newStock)
+      console.log(response)
+      setStocks((prevStocks) => [...prevStocks, { ...response }]);
       setNewStock('');
     } catch (error) {
-      console.error(error);
-      // Tratar erro adequadamente
+      throw error
     }
   };
 

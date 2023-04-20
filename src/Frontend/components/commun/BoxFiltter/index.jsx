@@ -23,7 +23,7 @@ export default function FilterBox() {
     };
     const handleCalculateClick = async () => {
         try {
-            console.log(purchasedAt)
+            
             const response = await axios.get(`/api/stocks/${stock_name}/gains?purchasedAmount=${purchasedAmount}&purchasedAt=${purchasedAt}`);
             const body = response.data;
             

@@ -33,7 +33,7 @@ export default async function handler(req, res) {
             close,
             pricedAt
         }
-        res.status(500).json(body)
+        res.status(200).json(body)
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Erro ao obter cotação.' });
