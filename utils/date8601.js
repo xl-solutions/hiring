@@ -3,5 +3,5 @@ export default function DataFormat(data) {
     const mes = (data.getMonth() + 1).toString().padStart(2, '0');
     const ano = data.getFullYear().toString();
 
-    return `${ano}-${dia}-${mes}/`;
+    return `${ano}-${dia}-${mes}`;
 }

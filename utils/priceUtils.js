@@ -4,5 +4,6 @@ export default function formatCurrency(value) {
       currency: 'BRL'
     }).format(value);
     
-    return formattedValue;
+    return formattedValue.replaceAll("\xa0", " ");
   }
+

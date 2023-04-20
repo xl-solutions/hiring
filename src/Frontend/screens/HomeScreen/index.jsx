@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 
 export default function HomeScreen() {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
   const [nameAction, setAction] =  useState(null)
   const [stocks, setStocks] = useState([])
   
