@@ -7,7 +7,6 @@ export default async function handler(req, res) {
 
     try {
         const arrPrices = await AlphaVantageService.getHistoricalPrices(stock_name, from, to)
-        
         let oppening = arrPrices[1].price
         let close = arrPrices[arrPrices.length - 1 ].price
         let low = arrPrices[1].price
