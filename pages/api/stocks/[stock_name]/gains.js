@@ -6,8 +6,9 @@ export default async function handler(req, res) {
    
     try {
         const response = await AlphaVantageService.getGains(stock_name,purchasedAmount,purchasedAt)
+       
         
-        
+       
         res.status(200).json(response)
     } catch (error) {
         console.log(error);

@@ -1,5 +1,6 @@
 import axios from '../api/axiosConfig';
-
+import formatCurrency from '../../../utils/priceUtils';
+import DataFormat from '../../../utils/date8601';
 class AlphaVantageService {
   static async getCotacaoMaisRecente(symbol) {
     try {
@@ -30,21 +31,22 @@ class AlphaVantageService {
       if (to) {
         params.end_date = to;
       }
-      
+
       const response = await axios.get('', {
         params,
       });
 
-      const prices = [];
+      const arrPrices = [];
       for (const [date, values] of Object.entries(response.data['Time Series (Daily)'])) {
         if (date >= from && date <= to) {
-          prices.push({
+          arrPrices.push({
             date,
             price: values['4. close'],
           });
         }
       }
-      return prices;
+      
+      return arrPrices;
     } catch (error) {
       console.error(error);
       throw new Error('Erro ao obter histórico de preços');
@@ -54,24 +56,30 @@ class AlphaVantageService {
     try {
 
       const currentPrice = await this.getCotacaoMaisRecente(stockName);
-
+      if(!currentPrice){
+        return "Api não consegui Buscar informações desta ação para está data"
+      }
       let data = new Date()
-      const ano = data.getFullYear();
-      const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-      const dia = data.getDate().toString().padStart(2, '0');
-      data = `${ano}-${mes}-${dia}`;
+      data = DataFormat(data);
 
       const historicalPrices = await this.getHistoricalPrices(stockName, purchasedAt, data);
-      
-      const purchasedPrice = historicalPrices.find(price => price.date === purchasedAt)?.price;
-     
-      const lastPrice = currentPrice;
+      if(!historicalPrices){
+        return "Api não consegui Buscar informações desta ação para está data"
+      }
+      let purchasedPrice = historicalPrices.find(price => price.date === purchasedAt)?.price;
+
+      let lastPrice = currentPrice;
 
       if (!purchasedPrice) {
         throw new Error('Não há dados de preços na data de compra');
       }
 
-      const capitalGains = (lastPrice - purchasedPrice) * purchasedAmount;
+      let capitalGains = (lastPrice - purchasedPrice) * purchasedAmount;
+
+      lastPrice = formatCurrency(lastPrice)
+      capitalGains = formatCurrency(capitalGains)
+      purchasedPrice = formatCurrency(purchasedPrice)
+      
       const result = {
         name: stockName,
         purchasedAmount: purchasedAmount,

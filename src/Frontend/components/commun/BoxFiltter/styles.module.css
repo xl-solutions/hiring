@@ -23,3 +23,11 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+  .container button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }

@@ -1,12 +1,13 @@
 import styles from "./styles.module.css"
-export default function ResultFiltter({acao}) {
+export default function ResultFiltter({ gains }) {
+   
     return (
-        <div className={styles.results}>
+        <div className={styles.results} >
             <div className={styles.container_1_results}>
-                <p className={styles.paragraph_result}>Preço na data de compra: {acao.priceAtDate}</p>
-                <p className={styles.paragraph_result}>Preço mais recente: {acao.lastPrice}</p>
+                <p className={styles.paragraph_result}>Preço na data de compra: {gains.priceAtDate}</p>
+                <p className={styles.paragraph_result}>Preço mais recente: {gains.lastPrice}</p>
             </div>
-            <p className={styles.paragraph_result}>Ganhos ou Perdas: {acao.capitalGains}</p>
+            <p className={styles.paragraph_result}>Ganhos ou Perdas: {gains.capitalGains}</p>
         </div>
     )
 }
