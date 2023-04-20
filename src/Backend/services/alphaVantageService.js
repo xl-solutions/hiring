@@ -1,6 +1,7 @@
 import axios from '../api/axiosConfig';
 import formatCurrency from '../../../utils/priceUtils';
 import DataFormat from '../../../utils/date8601';
+import { BadRequestError } from '@/shared/error/BadRequestError';
 class AlphaVantageService {
   static async getCotacaoMaisRecente(symbol) {
     try {
@@ -12,8 +13,8 @@ class AlphaVantageService {
       });
       return response.data['Global Quote']['05. price'];
     } catch (error) {
-      console.error(error);
-      throw new Error('Erro ao buscar cotação');
+
+      throw new BadRequestError('Erro ao buscar cotação');
     }
   }
   static async getHistoricalPrices(stockName, from, to) {
@@ -45,54 +46,64 @@ class AlphaVantageService {
           });
         }
       }
-      
+
       return arrPrices;
     } catch (error) {
-      console.error(error);
-      throw new Error('Erro ao obter histórico de preços');
+
+      throw new BadRequestError('Erro ao obter histórico de preços');
     }
   }
   static async getGains(stockName, purchasedAmount, purchasedAt) {
     try {
 
       const currentPrice = await this.getCotacaoMaisRecente(stockName);
-      if(!currentPrice){
-        return "Api não consegui Buscar informações desta ação para está data"
+      if (!currentPrice) {
+        const errorMessage = "Api não conseguiu buscar informações desta ação";
+         throw new Error(errorMessage);
       }
       let data = new Date()
-      data = DataFormat(data);
+      data = await DataFormat(data);
 
       const historicalPrices = await this.getHistoricalPrices(stockName, purchasedAt, data);
-      if(!historicalPrices){
-        return "Api não consegui Buscar informações desta ação para está data"
-      }
-      let purchasedPrice = historicalPrices.find(price => price.date === purchasedAt)?.price;
-
-      let lastPrice = currentPrice;
-
-      if (!purchasedPrice) {
-        throw new Error('Não há dados de preços na data de compra');
-      }
-
-      let capitalGains = (lastPrice - purchasedPrice) * purchasedAmount;
-
-      lastPrice = formatCurrency(lastPrice)
-      capitalGains = formatCurrency(capitalGains)
-      purchasedPrice = formatCurrency(purchasedPrice)
       
+      if (!historicalPrices) {
+        const errorMessage = "Api não consegui Buscar informações desta ação para está data";
+        throw new Error(errorMessage);
+      }
+
+
+      let lastObj = historicalPrices[historicalPrices.length - 1]
+      
+      purchasedAt = historicalPrices[historicalPrices.length - 1].date;
+      
+      let price = lastObj.price
+      
+      
+
+      let lastPrice = currentPrice ;
+      
+      
+     
+      let capitalGains = (lastPrice - price) * purchasedAmount;
+      capitalGains = capitalGains !== null ? formatCurrency(capitalGains) : null;
+      
+      lastPrice = formatCurrency(lastPrice);
+      let purchasedPrice = formatCurrency(price);
+      
+
       const result = {
         name: stockName,
         purchasedAmount: purchasedAmount,
         purchasedAt: purchasedAt,
-        priceAtDate: purchasedPrice,
+        purchasedPrice: purchasedPrice,
         lastPrice: lastPrice,
         capitalGains: capitalGains
       };
-
-      return result;
+      
+      return result
     } catch (error) {
-      console.error(error);
-      throw new Error('Erro ao projetar ganhos');
+
+      throw new BadRequestError('Erro ao projetar ganhos');
     }
   }
 

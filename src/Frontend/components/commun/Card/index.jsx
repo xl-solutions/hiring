@@ -15,7 +15,7 @@ export default function Card({stock, setAction, setShow}) {
                 <h4>{newStock.name}</h4>
             </div>
             <div className={styles.body}>
-                <p className={styles.price}>Preço R$ {newStock.price}</p>
+                <p className={styles.price}>Preço {newStock.price}</p>
                 <p className={styles.data}>Data/Hora atualizada: {newStock.date}</p>
             </div>
             <div className={styles.footer}>
