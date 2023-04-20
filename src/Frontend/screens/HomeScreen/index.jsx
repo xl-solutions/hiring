@@ -13,7 +13,7 @@ export default function HomeScreen() {
   const [show, setShow] = useState(true)
   const [nameAction, setAction] =  useState(null)
   const [stocks, setStocks] = useState([])
-  console.log(stocks)
+  
   return (
     <Box>
       <Header setStocks={setStocks}/>

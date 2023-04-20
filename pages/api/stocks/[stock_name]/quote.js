@@ -1,12 +1,13 @@
 import AlphaVantageService from "@/Backend/services/alphaVantageService"
 import DataFormat from "../../../../utils/dateUtils";
-
+import formatCurrency from "../../../../utils/priceUtils";
 export default async function handler(req, res) {
     const { stock_name } = req.query;
     try {
-        const price = await AlphaVantageService.getCotacaoMaisRecente(stock_name);
+        let price = await AlphaVantageService.getCotacaoMaisRecente(stock_name);
         let date = new Date()
         date = DataFormat(date)
+        price = formatCurrency(price)
         const body = {
             name: stock_name,
             price: price,

@@ -13,7 +13,7 @@ export default function Header({ setStocks }) {
     try {
       const response = await axios.get(`/api/stocks/${newStock}/quote`);
       const stockPrice = response.data;
-      setStocks((prevStocks) => [...prevStocks, { symbol: newStock, price: stockPrice }]);
+      setStocks((prevStocks) => [...prevStocks, { ...stockPrice }]);
       setNewStock('');
     } catch (error) {
       console.error(error);
