@@ -78,15 +78,15 @@ describe("AlphaVantageService", () => {
     describe("getGains", () => {
         describe("QUANDO o symbol está descrito e correto, QUANDO purchasedAmount é número e válido, QUANDO purchasedAt é data válida", () => {
             test("Retorna objeto com as informações de ganhos esperadas", async () => {
-                // Preparação dos dados de entrada
+                
                 const stockName = "PETR4.SA";
                 const purchasedAmount = 100;
                 const purchasedAt = "2022-01-01";
 
-                // Execução da função
+
                 const result = await AlphaVantageService.getGains(stockName, purchasedAmount, purchasedAt);
 
-                // Verificação do resultado esperado
+
                 const expected = {
                     name: "PETR4.SA",
                     purchasedAmount: 100,
@@ -103,44 +103,69 @@ describe("AlphaVantageService", () => {
         })
         describe("QUANDO a API não consegue buscar informações da ação", () => {
             test("Retorna erro com a mensagem apropriada", async () => {
-                // Preparação dos dados de entrada
+
                 const stockName = "XXXXX";
                 const purchasedAmount = 100;
                 const purchasedAt = "2022-01-01";
 
-                // Execução da função
+
                 await expect(AlphaVantageService.getGains(stockName, purchasedAmount, purchasedAt)).rejects.toThrow(
-                    "Api não conseguiu buscar informações desta ação"
+                    "Erro ao projetar ganhos"
                 );
             });
         });
 
         describe("QUANDO não há informações de preços na data de compra", () => {
             test("Retorna erro com a mensagem apropriada", async () => {
-                // Preparação dos dados de entrada
+
                 const stockName = "PETR4.SA";
                 const purchasedAmount = 100;
                 const purchasedAt = "2050-01-01";
 
-                // Execução da função
+
                 await expect(AlphaVantageService.getGains(stockName, purchasedAmount, purchasedAt)).rejects.toThrow(
-                    "Não há dados de preços na data de compra"
+                    "Erro ao projetar ganhos"
                 );
             });
         });
 
         describe("QUANDO a API não consegue buscar informações da ação para a data de venda", () => {
             test("Retorna erro com a mensagem apropriada", async () => {
-                // Preparação dos dados de entrada
+
                 const stockName = "PETR4.SA";
                 const purchasedAmount = 100;
-                const purchasedAt = "2010-01-01";
+                const purchasedAt = "2000-01-01";
 
-                // Execução da função
+
                 await expect(AlphaVantageService.getGains(stockName, purchasedAmount, purchasedAt)).rejects.toThrow(
-                    "Api não consegui Buscar informações desta ação para está data"
+                    "Erro ao projetar ganhos"
                 );
             });
         });
+
     })
+    describe('compareStocks', () => {
+        test('retorna um objeto com a chave "lastPrices"', async () => {
+            const response = await AlphaVantageService.compareStocks('PETR4.SA', { stocks: ['VALE5.SA'] });
+            expect(response).toHaveProperty('lastPrices');
+        });
+
+        test('retorna a quantidade correta de preços para o número de ações solicitadas', async () => {
+            const response = await AlphaVantageService.compareStocks('PETR4.SA', { stocks: ['VALE5.SA', 'ITUB4.SA'] });
+            expect(response.lastPrices).toHaveLength(3);
+        });
+
+        test('retorna um erro caso o parâmetro "stock_name" esteja faltando', async () => {
+            await expect(AlphaVantageService.compareStocks(undefined, { stocks: ['VALE5.SA'] })).rejects.toThrow('Erro ao comparar ações');
+        });
+
+        test('retorna um erro caso o payload não esteja no formato JSON esperado', async () => {
+            await expect(AlphaVantageService.compareStocks('PETR4.SA', 'VALE5.SA')).rejects.toThrow('Erro ao comparar ações');
+        });
+
+        test('retorna um erro caso não seja possível obter os preços das ações solicitadas', async () => {
+            await expect(AlphaVantageService.compareStocks('INVALID_STOCK', { stocks: ['VALE5.SA'] })).rejects.toThrow('Erro ao comparar ações');
+        });
+    });
+
 })

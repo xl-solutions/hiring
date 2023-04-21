@@ -59,13 +59,13 @@ class AlphaVantageService {
       const currentPrice = await this.getCotacaoMaisRecente(stockName);
       if (!currentPrice) {
         const errorMessage = "Api não conseguiu buscar informações desta ação";
-         throw new Error(errorMessage);
+        throw new Error(errorMessage);
       }
       let data = new Date()
       data = await DataFormat(data);
 
       const historicalPrices = await this.getHistoricalPrices(stockName, purchasedAt, data);
-      
+
       if (!historicalPrices) {
         const errorMessage = "Api não consegui Buscar informações desta ação para está data";
         throw new Error(errorMessage);
@@ -73,23 +73,23 @@ class AlphaVantageService {
 
 
       let lastObj = historicalPrices[historicalPrices.length - 1]
-      
-      purchasedAt = historicalPrices[historicalPrices.length - 1].date;
-      
-      let price = lastObj.price
-      
-      
 
-      let lastPrice = currentPrice ;
-      
-      
-     
+      purchasedAt = historicalPrices[historicalPrices.length - 1].date;
+
+      let price = lastObj.price
+
+
+
+      let lastPrice = currentPrice;
+
+
+
       let capitalGains = (lastPrice - price) * purchasedAmount;
       capitalGains = capitalGains !== null ? formatCurrency(capitalGains) : null;
-      
+
       lastPrice = formatCurrency(lastPrice);
       let purchasedPrice = formatCurrency(price);
-      
+
 
       const result = {
         name: stockName,
@@ -99,14 +99,30 @@ class AlphaVantageService {
         lastPrice: lastPrice,
         capitalGains: capitalGains
       };
-      
+
       return result
     } catch (error) {
 
       throw new BadRequestError('Erro ao projetar ganhos');
     }
   }
-
+  static async compareStocks(stock_name,payload) {
+    try {
+      const stocks = payload.stocks;
+      const lastPrices = [];
+      const response = await this.getCotacaoMaisRecente(stock_name);
+      let data = new Date()
+      lastPrices.push({name: stock_name, lastPrice: response, pricedAt: data});
+      for (const stock of stocks) {
+       const response = await this.getCotacaoMaisRecente(stock);
+      lastPrices.push({name:stock, lastPrice:response, data: data});
+     }
+      return { lastPrices };
+    } catch (error) {
+      
+      throw new Error('Erro ao comparar ações');
+    }
+  }
 }
 
 export default AlphaVantageService;

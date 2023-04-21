@@ -8,7 +8,6 @@ export default async function handler(req, res) {
         const response = await AlphaVantageService.getGains(stock_name,purchasedAmount,purchasedAt)
         res.status(200).json(response)
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: 'Erro ao obter cotação.' });
+        throw new ServerInternalError()
     }
 }
