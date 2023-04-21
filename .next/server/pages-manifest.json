@@ -1,7 +1,11 @@
 {
   "/_app": "pages/_app.js",
+  "/api/stocks/[stock_name]/compare": "pages/api/stocks/[stock_name]/compare.js",
+  "/404": "pages/404.html",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/api/stocks/[stock_name]/compare": "pages/api/stocks/[stock_name]/compare.js"
+  "/api/stocks/[stock_name]/gains": "pages/api/stocks/[stock_name]/gains.js",
+  "/api/stocks/[stock_name]/history": "pages/api/stocks/[stock_name]/history.js",
+  "/api/stocks/[stock_name]/quote": "pages/api/stocks/[stock_name]/quote.js",
+  "/": "pages/index.html",
+  "/_document": "pages/_document.js"
 }
