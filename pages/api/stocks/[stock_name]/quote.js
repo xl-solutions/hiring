@@ -15,7 +15,7 @@ export default async function handler(req, res) {
             date: date
         }
         
-
+        
         res.status(200).json(body);
     } catch (error) {
         

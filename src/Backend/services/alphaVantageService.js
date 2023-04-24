@@ -11,6 +11,7 @@ class AlphaVantageService {
           symbol: symbol,
         },
       });
+      
       return response.data['Global Quote']['05. price'];
     } catch (error) {
 
