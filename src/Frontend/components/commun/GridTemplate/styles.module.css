@@ -1,0 +1,17 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+}
+
+@media only screen and (max-width: 768px) {
+    .grid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100vw;
+        
+    }
+}

@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+   justify-content: space-around;
+    gap: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 40px;
+  }
+  .inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 40%;
+    max-width: 50%;
+  }
+  .label {
+    font-weight: bold;
+  }
+  
+  .input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .container button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }

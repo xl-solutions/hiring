@@ -1,0 +1,40 @@
+.align h1{
+                    
+    font-size: 36px;
+    font-weight: 700; 
+    color: #333; 
+    margin: 20px 0;
+}
+.align button{
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+.align button:hover{
+    background-color: #0069d9;
+}
+.align{
+    margin-bottom: 40px;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    padding: 0 50px 0 50px;
+}
+.gap{
+    min-width:315px;
+    display: flex; 
+    justify-content: space-between;
+}
+@media only screen and (max-width: 768px) {
+    .align {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100vw;
+        
+    }
+}
